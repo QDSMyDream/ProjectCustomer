@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:color="#FF21272B">
+
+    <gradient
+        android:angle="135.0"
+        android:endColor="@color/beauty_within_gridview_item_bg"
+        android:startColor="@color/beauty_within_gridview_item_bg"
+     />
+
+    <corners
+        android:bottomLeftRadius="5dp"
+        android:bottomRightRadius="5dp"
+        android:topLeftRadius="5dp"
+        android:topRightRadius="5dp" />
+
+</shape>

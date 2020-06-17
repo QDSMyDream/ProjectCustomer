@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.zhy.android.percent.support.PercentRelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#33000000">
+
+    <com.zhy.android.percent.support.PercentLinearLayout
+        android:id="@+id/container_picker"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:background="@color/popwin_bg"
+        android:orientation="vertical"
+        app:layout_widthPercent="70%">
+
+        <com.zhy.android.percent.support.PercentRelativeLayout
+            android:id="@+id/container_toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="5dp">
+
+            <Button
+                android:id="@+id/btn_cancel"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:text="取 消"
+                android:background="@drawable/bg_popwin_cancel"
+                android:textColor="@color/color_53"
+                android:textSize="@dimen/text_size_20" />
+
+            <Button
+                android:id="@+id/btn_confirm"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:background="@drawable/bg_popwin_cancel"
+                android:text="完 成"
+                android:textColor="@color/longin"
+                android:textSize="@dimen/text_size_20" />
+        </com.zhy.android.percent.support.PercentRelativeLayout>
+
+        <com.zhy.android.percent.support.PercentRelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="180dp"
+            android:background="#f2f7fa"
+            android:padding="3dp">
+
+            <com.zhy.android.percent.support.PercentLinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_alignParentEnd="true"
+                android:layout_marginEnd="3dp"
+                android:gravity="center">
+
+                <com.mnn.mydream.cosmetology.pickertime.LoopView
+                    android:id="@+id/picker_year"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    app:canLoop="false"
+                    app:layout_widthPercent="12%"
+
+                    app:textSize="@dimen/text_size_24" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="4dp"
+                    android:text="年"
+                    android:textColor="@color/jet"
+                    android:textSize="@dimen/text_size_24" />
+
+                <com.mnn.mydream.cosmetology.pickertime.LoopView
+                    android:id="@+id/picker_month"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="1dp"
+                    android:textColor="@color/jet"
+                    app:canLoop="false"
+                    app:layout_widthPercent="12%"
+                    app:textSize="@dimen/text_size_24" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="4dp"
+                    android:text="月"
+                    android:textColor="@color/jet"
+                    android:textSize="@dimen/text_size_24" />
+
+                <com.mnn.mydream.cosmetology.pickertime.LoopView
+                    android:id="@+id/picker_day"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="1dp"
+                    android:textColor="@color/jet"
+                    app:canLoop="false"
+                    app:layout_widthPercent="12%"
+                    app:textSize="@dimen/text_size_24" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="4dp"
+                    android:text="日"
+                    android:textColor="@color/jet"
+                    android:textSize="@dimen/text_size_24" />
+
+                <com.mnn.mydream.cosmetology.pickertime.LoopView
+                    android:id="@+id/picker_hour"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="1dp"
+                    android:textColor="@color/jet"
+                    app:canLoop="false"
+
+                    app:layout_widthPercent="12%"
+                    app:textSize="@dimen/text_size_24" />
+
+                <TextView
+                    android:id="@+id/hour"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="4dp"
+                    android:text="时"
+                    android:textColor="@color/jet"
+                    android:textSize="@dimen/text_size_24" />
+
+                <com.mnn.mydream.cosmetology.pickertime.LoopView
+                    android:id="@+id/picker_minute"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="1dp"
+                    android:textColor="@color/jet"
+
+                    app:canLoop="false"
+                    app:layout_widthPercent="12%"
+                    app:textSize="@dimen/text_size_24" />
+
+                <TextView
+                    android:id="@+id/min"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="4dp"
+                    android:text="分"
+                    android:textColor="@color/jet"
+                    android:textSize="@dimen/text_size_24" />
+
+                <com.mnn.mydream.cosmetology.pickertime.LoopView
+                    android:id="@+id/picker_second"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="1dp"
+                    android:textColor="@color/jet"
+                    app:canLoop="false"
+                    app:layout_widthPercent="12%"
+                    app:textSize="@dimen/text_size_24" />
+
+                <TextView
+                    android:id="@+id/ss"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="4dp"
+                    android:text="秒"
+                    android:textColor="@color/jet"
+                    android:textSize="@dimen/text_size_24" />
+            </com.zhy.android.percent.support.PercentLinearLayout>
+        </com.zhy.android.percent.support.PercentRelativeLayout>
+    </com.zhy.android.percent.support.PercentLinearLayout>
+
+</com.zhy.android.percent.support.PercentRelativeLayout>

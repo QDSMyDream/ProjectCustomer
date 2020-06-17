@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.zhy.android.percent.support.PercentLinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical"
+    tools:context=".activity.EditProjectsActivity">
+    <!--头部title-->
+    <com.zhy.android.percent.support.PercentRelativeLayout
+        android:id="@+id/record_toolbar"
+        style="@style/ToolBarTitleStyle"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:background="@color/custom"
+        android:gravity="center_vertical">
+
+        <TextView
+            android:id="@+id/back"
+            style="@style/ToolBarTitleStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_alignParentLeft="true"
+            android:background="@drawable/selector_btn_bg"
+            android:clickable="true"
+            android:gravity="center"
+            android:paddingLeft="20dp"
+            android:paddingRight="5dp"
+            android:text="返 回" />
+
+        <TextView
+            android:id="@+id/title_text"
+            style="@style/ToolBarTitleStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:gravity="center"
+            android:text="项目编辑页" />
+
+        <TextView
+            android:id="@+id/complete"
+            style="@style/ToolBarTitleStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_alignParentRight="true"
+            android:background="@drawable/selector_btn_bg"
+            android:gravity="center"
+            android:paddingLeft="5dp"
+            android:paddingRight="20dp"
+            android:text="添 加" />
+
+    </com.zhy.android.percent.support.PercentRelativeLayout>
+
+    <com.zhy.android.percent.support.PercentLinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <com.zhy.android.percent.support.PercentRelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1px"
+                android:background="@android:color/holo_blue_light"
+                app:layout_widthPercent="97%" />
+
+            <!--listview提示状态栏-->
+            <com.zhy.android.percent.support.PercentLinearLayout
+                android:id="@+id/title_layout"
+                android:layout_width="wrap_content"
+                android:layout_height="50dp"
+                android:layout_marginTop="1px"
+                android:layout_marginBottom="1px"
+                android:layout_marginRight="30dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/id"
+                    style="@style/HorTextStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="序 号"
+                    app:layout_widthPercent="15%" />
+
+                <View
+                    android:layout_width="1px"
+                    android:layout_height="match_parent"
+                    android:background="@android:color/holo_blue_light" />
+
+                <TextView
+                    android:id="@+id/peojects_manager"
+                    style="@style/HorTextStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="项目名称"
+                    app:layout_widthPercent="20%" />
+
+                <View
+                    android:layout_width="1px"
+                    android:layout_height="match_parent"
+                    android:background="@android:color/holo_blue_light"></View>
+
+                <TextView
+                    android:id="@+id/start_date"
+                    style="@style/HorTextStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="项目创建时间"
+                    app:layout_widthPercent="25%" />
+
+                <View
+                    android:layout_width="1px"
+                    android:layout_height="match_parent"
+                    android:background="@android:color/holo_blue_light" />
+
+                <TextView
+                    android:id="@+id/up_date"
+                    style="@style/HorTextStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="项目修改时间"
+                    app:layout_widthPercent="25%" />
+
+                <View
+                    android:layout_width="1px"
+                    android:layout_height="match_parent"
+                    android:background="@android:color/holo_blue_light" />
+
+                <TextView
+                    android:id="@+id/count"
+                    style="@style/HorTextStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="客户使用次数"
+                    app:layout_widthPercent="15%" />
+
+                <View
+                    android:layout_width="1px"
+                    android:layout_height="match_parent"
+                    android:background="@android:color/holo_blue_light">
+
+                </View>
+
+
+            </com.zhy.android.percent.support.PercentLinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1px"
+                android:layout_below="@id/title_layout"
+                android:background="@android:color/holo_blue_light"
+                app:layout_widthPercent="97%" />
+
+            <ListView
+                android:id="@+id/projects_list"
+                android:layout_width="match_parent"
+                android:layout_height="fill_parent"
+                android:layout_below="@id/title_layout"
+                android:layout_gravity="center"
+                android:layout_marginRight="30dp"
+                android:divider="@android:color/holo_blue_light"
+                android:dividerHeight="1px" />
+
+            <TextView
+                android:id="@+id/dialog"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:background="@color/custom"
+                android:gravity="center"
+                android:textColor="@color/white"
+                android:textSize="@dimen/text_size_32"
+                android:visibility="invisible" />
+
+            <com.mnn.mydream.cosmetology.view.SideBar
+                android:id="@+id/sidrbar"
+                android:layout_width="30.0dip"
+                android:layout_height="fill_parent"
+                android:layout_alignParentRight="true"
+                android:layout_gravity="right|center" />
+        </com.zhy.android.percent.support.PercentRelativeLayout>
+
+
+    </com.zhy.android.percent.support.PercentLinearLayout>
+
+
+</com.zhy.android.percent.support.PercentLinearLayout>

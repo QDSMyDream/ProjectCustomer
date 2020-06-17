@@ -1,0 +1,240 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.zhy.android.percent.support.PercentLinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+    <com.zhy.android.percent.support.PercentRelativeLayout
+        android:id="@+id/toolbar_container"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@color/custom">
+
+        <TextView
+            android:id="@+id/total_text"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:paddingLeft="15dp"
+            android:text="今日记录"
+
+            android:textColor="@color/white"
+            android:textSize="@dimen/text_size_20" />
+
+        <TextView
+            android:id="@+id/total_current_query"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_centerHorizontal="true"
+            android:gravity="center"
+            android:text="当前查询:"
+            android:textColor="@color/white"
+            android:textSize="@dimen/text_size_20" />
+
+        <!--<TextView-->
+        <!--android:id="@+id/total_searchview_text"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="match_parent"-->
+        <!--android:layout_alignParentRight="true"-->
+        <!--android:gravity="center"-->
+        <!--android:paddingLeft="5dp"-->
+        <!--android:paddingRight="10dp"-->
+        <!--android:text="搜索"-->
+        <!--android:textSize="@dimen/text_size_20"></TextView>-->
+
+        <!--<android.support.v7.widget.SearchView-->
+        <!--android:id="@+id/searchview"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="match_parent"-->
+        <!--android:layout_toLeftOf="@id/total_searchview_text"-->
+        <!--app:queryHint="请输入客户手机号或姓名">-->
+
+        <!--</android.support.v7.widget.SearchView>-->
+    </com.zhy.android.percent.support.PercentRelativeLayout>
+
+    <com.zhy.android.percent.support.PercentLinearLayout
+        android:id="@+id/title_layout"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:layout_marginTop="1dp"
+        android:background="@drawable/hor_text_style"
+        android:orientation="horizontal"
+        android:visibility="gone">
+
+        <TextView
+            android:id="@+id/item_name"
+            style="@style/HorTextStyle"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:text="姓名"
+            app:layout_widthPercent="8%" />
+
+
+        <TextView
+            android:id="@+id/item_phone"
+            style="@style/HorTextStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="手机号"
+            app:layout_widthPercent="17%" />
+
+
+        <TextView
+            android:id="@+id/item_sex"
+            style="@style/HorTextStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:lineSpacingExtra="3dp"
+            android:lineSpacingMultiplier="1.5"
+            android:text="性别"
+            android:visibility="gone"
+            app:layout_widthPercent="10%" />
+
+        <TextView
+            android:id="@+id/item_tx"
+            style="@style/HorTextStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:lineSpacingExtra="3dp"
+            android:lineSpacingMultiplier="1.5"
+            android:text="照片"
+            android:visibility="gone"
+            app:layout_widthPercent="10%" />
+
+        <TextView
+            android:id="@+id/item_age_barthday"
+            style="@style/HorTextStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:lineSpacingExtra="3dp"
+            android:lineSpacingMultiplier="1.5"
+            android:text="生日"
+            android:visibility="gone"
+            app:layout_widthPercent="20%" />
+
+        <TextView
+            android:id="@+id/item_age"
+            style="@style/HorTextStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:lineSpacingExtra="3dp"
+            android:lineSpacingMultiplier="1.5"
+            android:text="年龄"
+            app:layout_widthPercent="8%" />
+
+        <TextView
+            android:id="@+id/item_time"
+            style="@style/HorTextStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:lineSpacingExtra="3dp"
+            android:lineSpacingMultiplier="1.5"
+            android:text="日期"
+            app:layout_widthPercent="15%" />
+
+        <TextView
+            android:id="@+id/item_money"
+            style="@style/HorTextStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:lineSpacingExtra="3dp"
+            android:lineSpacingMultiplier="1.5"
+            android:text="缴费金额"
+            android:textColor="@color/primary_dark"
+            app:layout_widthPercent="15%" />
+
+        <TextView
+            android:id="@+id/item_puse"
+            style="@style/HorTextStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:lineSpacingExtra="3dp"
+            android:lineSpacingMultiplier="1.5"
+            android:text="是否团购"
+            android:visibility="gone"
+            app:layout_widthPercent="20%" />
+
+        <TextView
+            android:id="@+id/item_puse_projects"
+            style="@style/HorTextStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:lineSpacingExtra="3dp"
+            android:lineSpacingMultiplier="1.5"
+            android:text="团购项目"
+            android:visibility="gone"
+            app:layout_widthPercent="30%" />
+
+        <TextView
+            android:id="@+id/item_peojects"
+            style="@style/HorTextStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:lineSpacingExtra="3dp"
+            android:lineSpacingMultiplier="1.5"
+            android:text="项目"
+            app:layout_widthPercent="32%" />
+
+        <TextView
+            android:id="@+id/item_count"
+            style="@style/HorTextStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:lineSpacingExtra="3dp"
+            android:lineSpacingMultiplier="1.5"
+            android:text="总次数"
+            android:visibility="gone"
+            app:layout_widthPercent="10%" />
+
+        <TextView
+            android:id="@+id/item_txt1"
+            style="@style/HorTextStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:lineSpacingExtra="3dp"
+            android:lineSpacingMultiplier="1.5"
+            android:text="预留字段1"
+            android:visibility="gone"
+            app:layout_widthPercent="20%" />
+
+        <TextView
+            android:id="@+id/item_txt2"
+            style="@style/HorTextStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:lineSpacingExtra="3dp"
+            android:lineSpacingMultiplier="1.5"
+            android:text="预留字段2"
+            android:visibility="gone"
+            app:layout_widthPercent="20%" />
+
+    </com.zhy.android.percent.support.PercentLinearLayout>
+
+    <cn.droidlover.xrecyclerview.XRecyclerView
+        android:id="@+id/same_day_recyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone" />
+
+    <ListView
+        android:id="@+id/same_list"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:dividerHeight="1sp"
+        android:drawSelectorOnTop="false"
+        android:listSelector="@drawable/list_bg_lelector"></ListView>
+
+    <TextView
+        android:id="@+id/no_record"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:text="今日暂无顾客记录"
+        android:textColor="@color/recycle_text_color"
+        android:textSize="@dimen/text_size_24"
+        android:visibility="gone" />
+
+
+</com.zhy.android.percent.support.PercentLinearLayout>

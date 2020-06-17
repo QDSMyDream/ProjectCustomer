@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<resources>
+    <string-array name="projects">
+        <item>无</item>
+        <item>项目1</item>
+        <item>项目2</item>
+        <item>项目3</item>
+        <item>项目4</item>
+        <item>项目5</item>
+
+    </string-array>
+
+    <string-array name="tuangou_projects">
+        <item>团购项目1</item>
+        <item>团购项目2</item>
+        <item>团购项目3</item>
+        <item>团购项目4</item>
+        <item>团购项目5</item>
+    </string-array>
+
+
+    <string-array name="puse_projects">
+        <item>团购项目1</item>
+        <item>团购项目2</item>
+        <item>团购项目3</item>
+        <item>团购项目4</item>
+        <item>团购项目5</item>
+    </string-array>
+
+
+</resources>

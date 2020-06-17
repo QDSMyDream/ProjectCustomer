@@ -1,0 +1,80 @@
+<com.zhy.android.percent.support.PercentLinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="horizontal">
+
+    <com.zhy.android.percent.support.PercentLinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        app:layout_widthPercent="70%">
+
+        <com.stx.xhb.xbanner.XBanner
+            android:id="@+id/xbanner"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:AutoPlayTime="2000"
+            app:isAutoPlay="true"
+            app:pointsPosition="CENTER"
+            app:tipTextColor="#FFFFFFFF"
+            app:tipTextSize="22dp" />
+
+
+        <!--
+        isAutoPlay	是否支持自动轮播	boolean类型，默认为true
+        autoPlayTime	图片轮播事件间隔	int类型，默认5000ms
+        pointNormal	指示器未选中时的状态	drawable类型，不指定的话使用默认状态点
+        pointSelect	指示器选中时的状态	drawable类型，不指定的话使用默认状态点
+        pointsVisible	是否显示指示器	boolean类型，默认为true
+        pointsPosition	指示点位置	CENTER、LEFT、RIGHT，默认CENTER
+        pointsContainerBackground	指示器条背景	color类型、drawable类型、mipmap类型等
+        pointContainerPosition	指示器条位置	TOP、BOTTOM，默认BOTTOM
+        pointContainerLeftRightPadding	指示点容器左右内间距	dimension类型，默认10.0dip
+        pointTopBottomPadding	指示点上下内间距	dimension类型，默认6.0dip
+        pointLeftRightPadding	指示点左右内间距	dimension类型，默认3.0dip
+        tipTextColor	提示文字的颜色	reference类型
+        tipTextSize	提示文字的大小	dimension类型，默认10.0dp
+
+        -->
+
+    </com.zhy.android.percent.support.PercentLinearLayout>
+
+    <com.zhy.android.percent.support.PercentRelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        app:layout_widthPercent="30%">
+
+        <ImageView
+            android:id="@+id/menu_img"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/title_img"
+            app:layout_heightPercent="20%" />
+
+        <com.zhy.android.percent.support.PercentRelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_alignParentBottom="true"
+            app:layout_heightPercent="80%">
+
+            <GridView
+                android:id="@+id/gridview"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:horizontalSpacing="10dp"
+                android:numColumns="2"
+                android:verticalSpacing="10dp"></GridView>
+        </com.zhy.android.percent.support.PercentRelativeLayout>
+
+
+    </com.zhy.android.percent.support.PercentRelativeLayout>
+
+
+
+
+
+</com.zhy.android.percent.support.PercentLinearLayout>

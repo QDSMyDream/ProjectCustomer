@@ -1,0 +1,41 @@
+<resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="MissingTranslation">
+
+    <string name="app_name">百年吴越</string>
+
+    <string name="same_day_navigation_drawer_open">打开左侧菜单栏</string>
+    <string name="same_day_navigation_drawer_close">关闭左侧菜单栏</string>
+    <string name="please_name">请输入姓名</string>
+    <string name="please_phone">请输入手机号</string>
+    <string name="please_bir">请选择生日</string>
+    <string name="no_group_projects_text">暂无团购服务项目</string>
+    <string name="no_projects_text">暂无服务项目</string>
+    <string name="used_count_string">次数</string>
+    <string name="total_money">项目总价格</string>
+
+    <string name="total_count">项目总次数</string>
+
+    <string name="start_time_string">选择办理时间</string>
+    <string name="start_end_string">选择到期时间</string>
+
+    <string name="payment_amount">输入缴费金额</string>
+
+    <string name="payment_amount_surplus">输入剩余金额</string>
+    <string name="title_activity_edit_projects">EditProjectsActivity</string>
+
+    <string name="projects_name_txt">请输入项目名</string>
+    <string name="projects_update_txt">请输入修改的名称</string>
+
+    <string name="projects_dialog_update_title">修改服务项目</string>
+    <string name="projects_dialog_add_title">添加服务项目</string>
+
+    <string name="projects_update_name">修改项目名:</string>
+
+    <string name="projects_add_name">添加项目名:</string>
+
+    <string name="beauty_card_kh">Ta的卡包（%1$s）</string>
+
+    <string name="update">修 改</string>
+    <string name="add">添 加</string>
+    <string name="yes">确 定</string>
+    <string name="cance">取 消</string>
+</resources>

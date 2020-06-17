@@ -1,0 +1,642 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.zhy.android.percent.support.PercentLinearLayout android:id="@+id/menu_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/beauty_bg"
+    android:orientation="horizontal"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <com.zhy.android.percent.support.PercentLinearLayout
+        android:id="@+id/menu_left_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        app:layout_paddingLeftPercent="2.5%"
+        app:layout_paddingRightPercent="2.5%"
+        app:layout_widthPercent="84.5%">
+
+
+        <com.zhy.android.percent.support.PercentRelativeLayout
+            android:id="@+id/flipper_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            app:layout_heightPercent="5.5%"
+            app:layout_marginTopPercent="1.5%">
+
+            <com.zhy.android.percent.support.PercentLinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/beauty_menu_top_bg"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:id="@+id/title_expression_img"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="20dp"
+                    android:padding="2dp"
+                    android:src="@mipmap/beauty_smiling" />
+
+
+                <ViewFlipper
+                    android:id="@+id/vf_text"
+                    android:autoStart="true"
+                    android:flipInterval="5000"
+                    android:inAnimation="@anim/push_left_in"
+                    android:outAnimation="@anim/push_left_out"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+
+            </com.zhy.android.percent.support.PercentLinearLayout>
+
+
+        </com.zhy.android.percent.support.PercentRelativeLayout>
+
+
+        <com.zhy.android.percent.support.PercentRelativeLayout
+            android:id="@+id/content_title_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            app:layout_marginTopPercent="2%">
+
+            <TextView
+                android:id="@+id/title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="充 值"
+                android:textColor="@color/beauty_one_title_bg"
+                android:textSize="@dimen/text_size_18" />
+
+            <TextView
+                android:id="@+id/title2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="消 费"
+                android:textColor="@color/beauty_one_title_bg"
+                android:textSize="@dimen/text_size_18"
+                app:layout_marginLeftPercent="51%" />
+
+        </com.zhy.android.percent.support.PercentRelativeLayout>
+
+        <com.zhy.android.percent.support.PercentLinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/content_title_layout"
+            android:orientation="horizontal"
+
+            app:layout_heightPercent="8.9%"
+            app:layout_marginTopPercent="1%">
+
+            <com.zhy.android.percent.support.PercentRelativeLayout
+                android:id="@+id/layout1"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="3dp"
+                android:background="@drawable/btn_menu_radius_shape"
+                android:gravity="center|left"
+
+                app:layout_widthPercent="23.5%">
+
+                <ImageView
+                    android:id="@+id/img1"
+                    android:layout_width="32dp"
+                    android:layout_height="32dp"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="20dp"
+                    android:src="@mipmap/bk" />
+
+                <TextView
+                    android:id="@+id/text1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="5dp"
+                    android:layout_toRightOf="@id/img1"
+                    android:gravity="center"
+                    android:text="首次开卡"
+                    android:textColor="@color/beauty_one_title_bg"
+                    android:textSize="@dimen/text_size_22" />
+            </com.zhy.android.percent.support.PercentRelativeLayout>
+
+            <com.zhy.android.percent.support.PercentRelativeLayout
+                android:id="@+id/layout2"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="3dp"
+                android:background="@drawable/btn_menu_radius_shape"
+                android:gravity="center|left"
+
+                app:layout_marginLeftPercent="2%"
+                app:layout_widthPercent="23.5%">
+
+                <ImageView
+                    android:id="@+id/img2"
+                    android:layout_width="32dp"
+                    android:layout_height="32dp"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="20dp"
+                    android:src="@mipmap/xck" />
+
+                <TextView
+                    android:id="@+id/text2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="5dp"
+                    android:layout_toRightOf="@id/img2"
+                    android:gravity="center"
+                    android:text="续充卡"
+                    android:textColor="@color/beauty_one_title_bg"
+                    android:textSize="@dimen/text_size_22" />
+            </com.zhy.android.percent.support.PercentRelativeLayout>
+
+            <com.zhy.android.percent.support.PercentRelativeLayout
+                android:id="@+id/layout3"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="3dp"
+                android:background="@drawable/btn_menu_radius_shape"
+                android:gravity="center|left"
+                app:layout_marginLeftPercent="2%"
+                app:layout_widthPercent="23.5%">
+
+                <ImageView
+                    android:id="@+id/img3"
+                    android:layout_width="32dp"
+                    android:layout_height="32dp"
+                    android:layout_alignParentLeft="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="20dp"
+
+                    android:src="@mipmap/dcfw" />
+
+                <TextView
+                    android:id="@+id/text3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="5dp"
+
+                    android:layout_toRightOf="@id/img3"
+                    android:gravity="center"
+                    android:text="单次服务"
+                    android:textColor="@color/beauty_one_title_bg"
+                    android:textSize="@dimen/text_size_22" />
+            </com.zhy.android.percent.support.PercentRelativeLayout>
+
+            <com.zhy.android.percent.support.PercentRelativeLayout
+                android:id="@+id/layout4"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="3dp"
+                android:background="@drawable/btn_menu_radius_shape"
+                android:gravity="center|left"
+                app:layout_marginLeftPercent="2%"
+                app:layout_widthPercent="23.5%">
+
+                <ImageView
+                    android:id="@+id/img4"
+                    android:layout_width="32dp"
+                    android:layout_height="32dp"
+                    android:layout_alignParentLeft="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="20dp"
+                    android:src="@mipmap/gmxmk" />
+
+                <TextView
+                    android:id="@+id/text4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="5dp"
+                    android:layout_toRightOf="@id/img4"
+                    android:gravity="center"
+                    android:text="购买项目卡"
+                    android:textColor="@color/beauty_one_title_bg"
+                    android:textSize="@dimen/text_size_20" />
+            </com.zhy.android.percent.support.PercentRelativeLayout>
+
+        </com.zhy.android.percent.support.PercentLinearLayout>
+
+
+        <com.zhy.android.percent.support.PercentRelativeLayout
+            android:id="@+id/content_title_layout2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            app:layout_marginTopPercent="1.5%">
+
+            <TextView
+                android:id="@+id/title3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="消 耗"
+                android:textColor="@color/beauty_one_title_bg"
+                android:textSize="@dimen/text_size_18" />
+
+
+        </com.zhy.android.percent.support.PercentRelativeLayout>
+
+
+        <com.zhy.android.percent.support.PercentLinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/content_title_layout2"
+            android:orientation="horizontal"
+
+            app:layout_heightPercent="8.9%"
+            app:layout_marginTopPercent="1%">
+
+            <com.zhy.android.percent.support.PercentRelativeLayout
+                android:id="@+id/layout5"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="3dp"
+                android:background="@drawable/btn_menu_radius_shape"
+                android:gravity="center|left"
+                app:layout_widthPercent="23.5%">
+
+                <ImageView
+                    android:id="@+id/img5"
+                    android:layout_width="32dp"
+                    android:layout_height="32dp"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="20dp"
+                    android:src="@mipmap/hk" />
+
+                <TextView
+                    android:id="@+id/text5"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="5dp"
+                    android:layout_toRightOf="@id/img5"
+                    android:gravity="center"
+                    android:text="耗 卡"
+                    android:textColor="@color/beauty_one_title_bg"
+                    android:textSize="@dimen/text_size_22" />
+            </com.zhy.android.percent.support.PercentRelativeLayout>
+
+            <com.zhy.android.percent.support.PercentRelativeLayout
+                android:id="@+id/layout6"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="3dp"
+                android:background="@drawable/btn_menu_radius_shape"
+
+                android:gravity="center|left"
+                app:layout_marginLeftPercent="2%"
+                app:layout_widthPercent="23.5%">
+
+                <ImageView
+                    android:id="@+id/img6"
+                    android:layout_width="32dp"
+                    android:layout_height="32dp"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="20dp"
+                    android:src="@mipmap/dphx" />
+
+                <TextView
+                    android:id="@+id/text6"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="5dp"
+                    android:layout_toRightOf="@id/img6"
+                    android:gravity="center"
+                    android:text="店铺核销"
+                    android:textColor="@color/beauty_one_title_bg"
+                    android:textSize="@dimen/text_size_22" />
+            </com.zhy.android.percent.support.PercentRelativeLayout>
+
+            <com.zhy.android.percent.support.PercentRelativeLayout
+                android:id="@+id/layout7"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="3dp"
+                android:background="@drawable/btn_menu_radius_shape"
+                android:gravity="center|left"
+                app:layout_marginLeftPercent="2%"
+                app:layout_widthPercent="23.5%">
+
+                <ImageView
+                    android:id="@+id/img7"
+                    android:layout_width="32dp"
+                    android:layout_height="32dp"
+                    android:layout_alignParentLeft="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="20dp"
+
+                    android:src="@mipmap/dsfhx" />
+
+                <TextView
+                    android:id="@+id/text7"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="5dp"
+
+                    android:layout_toRightOf="@id/img7"
+                    android:gravity="center"
+                    android:text="第三方核销"
+                    android:textColor="@color/beauty_one_title_bg"
+                    android:textSize="@dimen/text_size_22" />
+            </com.zhy.android.percent.support.PercentRelativeLayout>
+
+            <com.zhy.android.percent.support.PercentRelativeLayout
+                android:id="@+id/layout8"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="3dp"
+                android:background="@drawable/btn_menu_radius_shape"
+                android:gravity="center|left"
+                app:layout_marginLeftPercent="2%"
+                app:layout_widthPercent="23.5%">
+
+                <ImageView
+                    android:id="@+id/img8"
+                    android:layout_width="32dp"
+                    android:layout_height="32dp"
+                    android:layout_alignParentLeft="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="20dp"
+                    android:src="@mipmap/fwhx" />
+
+                <TextView
+                    android:id="@+id/text8"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="5dp"
+                    android:layout_toRightOf="@id/img8"
+                    android:gravity="center"
+                    android:text="服务核销"
+                    android:textColor="@color/beauty_one_title_bg"
+                    android:textSize="@dimen/text_size_20" />
+            </com.zhy.android.percent.support.PercentRelativeLayout>
+
+        </com.zhy.android.percent.support.PercentLinearLayout>
+
+
+        <com.zhy.android.percent.support.PercentRelativeLayout
+            android:id="@+id/content_title_layout3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            app:layout_marginTopPercent="1.5%">
+
+            <TextView
+                android:id="@+id/title4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="其他"
+                android:textColor="@color/beauty_one_title_bg"
+                android:textSize="@dimen/text_size_18" />
+
+
+        </com.zhy.android.percent.support.PercentRelativeLayout>
+
+
+        <com.zhy.android.percent.support.PercentLinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/content_title_layout3"
+            android:orientation="horizontal"
+            app:layout_heightPercent="8.9%"
+            app:layout_marginTopPercent="1%">
+
+            <com.zhy.android.percent.support.PercentRelativeLayout
+                android:id="@+id/layout9"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="3dp"
+                android:background="@drawable/btn_menu_radius_shape"
+                android:gravity="center|left"
+                app:layout_widthPercent="23.5%">
+
+                <ImageView
+                    android:id="@+id/img9"
+                    android:layout_width="32dp"
+                    android:layout_height="32dp"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="20dp"
+                    android:src="@mipmap/xfzs" />
+
+                <TextView
+                    android:id="@+id/text9"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="5dp"
+                    android:layout_toRightOf="@id/img9"
+                    android:gravity="center"
+                    android:text="消费赠送"
+                    android:textColor="@color/beauty_one_title_bg"
+                    android:textSize="@dimen/text_size_22" />
+            </com.zhy.android.percent.support.PercentRelativeLayout>
+
+            <com.zhy.android.percent.support.PercentRelativeLayout
+                android:id="@+id/layout10"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="3dp"
+                android:background="@drawable/btn_menu_radius_shape"
+
+
+                android:gravity="center|left"
+                app:layout_marginLeftPercent="2%"
+                app:layout_widthPercent="23.5%">
+
+                <ImageView
+                    android:id="@+id/img10"
+                    android:layout_width="32dp"
+                    android:layout_height="32dp"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="20dp"
+                    android:src="@mipmap/lpk" />
+
+                <TextView
+                    android:id="@+id/text10"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="5dp"
+                    android:layout_toRightOf="@id/img10"
+                    android:gravity="center"
+                    android:text="激活礼品卡"
+                    android:textColor="@color/beauty_one_title_bg"
+                    android:textSize="@dimen/text_size_22" />
+            </com.zhy.android.percent.support.PercentRelativeLayout>
+
+            <com.zhy.android.percent.support.PercentRelativeLayout
+                android:id="@+id/layout11"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="3dp"
+                android:background="@drawable/btn_menu_radius_shape"
+
+                android:gravity="center|left"
+                app:layout_marginLeftPercent="2%"
+                app:layout_widthPercent="23.5%">
+
+                <ImageView
+                    android:id="@+id/img11"
+                    android:layout_width="32dp"
+                    android:layout_height="32dp"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="20dp"
+                    android:src="@mipmap/dcfw" />
+
+                <TextView
+                    android:id="@+id/text11"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="5dp"
+
+                    android:layout_toRightOf="@id/img11"
+                    android:gravity="center"
+                    android:text="单次服务"
+                    android:textColor="@color/beauty_one_title_bg"
+                    android:textSize="@dimen/text_size_22" />
+            </com.zhy.android.percent.support.PercentRelativeLayout>
+
+
+        </com.zhy.android.percent.support.PercentLinearLayout>
+
+
+        <ListView
+            android:id="@+id/menu_img_listview"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:divider="@null"
+            android:dividerHeight="10dp"
+            app:layout_marginTopPercent="1.5%"></ListView>
+
+        <com.zhy.android.percent.support.PercentRelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_marginTopPercent="2%">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="代办事项"
+                android:textColor="@color/beauty_one_title_bg"
+                android:textSize="@dimen/text_size_16" />
+        </com.zhy.android.percent.support.PercentRelativeLayout>
+
+        <com.zhy.android.percent.support.PercentLinearLayout
+            android:id="@+id/agency_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_heightPercent="8.9%"
+            app:layout_marginTopPercent="1%">
+
+            <com.zhy.android.percent.support.PercentRelativeLayout
+                android:id="@+id/agency_order_layout"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="3dp"
+                android:background="@drawable/btn_menu_radius_shape"
+                app:layout_widthPercent="49%">
+
+                <ImageView
+                    android:id="@+id/line1"
+                    android:layout_width="2dp"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentLeft="true"
+                    android:background="@color/beauty_add_custmer_bg" />
+
+                <TextView
+                    android:id="@+id/agency_order_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:layout_centerVertical="true"
+                    android:gravity="center"
+                    android:text="订单待处理"
+                    android:textColor="@color/beauty_one_title_bg"
+                    android:textSize="@dimen/text_size_22" />
+            </com.zhy.android.percent.support.PercentRelativeLayout>
+
+            <com.zhy.android.percent.support.PercentRelativeLayout
+                android:id="@+id/agency_appointment_layout"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="3dp"
+                android:background="@drawable/btn_menu_radius_shape"
+
+                app:layout_marginLeftPercent="2%"
+                app:layout_widthPercent="49%">
+
+                <ImageView
+                    android:id="@+id/line2"
+                    android:layout_width="2dp"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentLeft="true"
+                    android:background="@color/beauty_add_custmer_bg" />
+
+                <TextView
+                    android:id="@+id/agency_appointment_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:layout_centerVertical="true"
+                    android:gravity="center"
+                    android:text="待预约服务"
+                    android:textColor="@color/beauty_one_title_bg"
+                    android:textSize="@dimen/text_size_22" />
+            </com.zhy.android.percent.support.PercentRelativeLayout>
+
+        </com.zhy.android.percent.support.PercentLinearLayout>
+
+    </com.zhy.android.percent.support.PercentLinearLayout>
+
+    <com.zhy.android.percent.support.PercentLinearLayout
+        android:id="@+id/menu_right_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        app:layout_widthPercent="15.5%">
+
+        <com.zhy.android.percent.support.PercentRelativeLayout
+            android:id="@+id/common_problem_layout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginRight="10dp"
+            android:background="@drawable/btn_menu_radius_shape"
+            android:gravity="center_vertical"
+            app:layout_heightPercent="8.9%"
+            app:layout_marginTopPercent="1.5%">
+
+            <ImageView
+                android:id="@+id/img_question"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true"
+                android:background="@mipmap/beauty_question" />
+
+            <TextView
+                android:id="@+id/common_problem_text"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_alignParentTop="true"
+                android:layout_marginLeft="5dp"
+                android:layout_toRightOf="@id/img_question"
+                android:gravity="center"
+                android:text="常见问题"
+                android:textColor="@color/beauty_one_title_bg"
+                android:textSize="@dimen/text_size_22" />
+        </com.zhy.android.percent.support.PercentRelativeLayout>
+
+
+    </com.zhy.android.percent.support.PercentLinearLayout>
+</com.zhy.android.percent.support.PercentLinearLayout>

@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.zhy.android.percent.support.PercentLinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/set_item_press_color"
+    android:orientation="vertical">
+
+    <com.zhy.android.percent.support.PercentRelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_heightPercent="8%">
+
+        <ImageView
+            android:id="@+id/tb_back"
+            android:layout_width="14dp"
+            android:layout_height="match_parent"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:layout_gravity="center_vertical|left"
+            android:layout_marginLeft="16dp"
+            android:src="@mipmap/arrow_left" />
+
+        <TextView
+            android:id="@+id/tb_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:layout_marginTop="19px"
+            android:singleLine="true"
+            android:text="APP"
+            android:textColor="@color/textColorNormal"
+            android:textSize="17sp" />
+
+        <TextView
+            android:id="@+id/tv_right"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="17sp"
+            android:text="保存"
+            android:textColor="@color/textColorNormal" />
+
+    </com.zhy.android.percent.support.PercentRelativeLayout>
+
+
+    <com.zhy.android.percent.support.PercentRelativeLayout
+        android:id="@+id/layout_photo"
+        android:layout_width="146px"
+        android:layout_height="146px"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="48px">
+
+        <com.mnn.mydream.cosmetology.view.CircleImageView
+            android:id="@+id/img_photo"
+            android:layout_width="146px"
+            android:layout_height="146px"
+            android:src="@mipmap/def_photo" />
+
+        <ImageView
+            android:layout_width="50px"
+            android:layout_height="50px"
+            android:layout_centerInParent="true"
+            android:src="@mipmap/camera" />
+
+    </com.zhy.android.percent.support.PercentRelativeLayout>
+
+    <com.zhy.android.percent.support.PercentLinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="100px"
+        android:layout_marginTop="58px"
+        android:background="@color/white"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingLeft="29px"
+        android:paddingRight="29px">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="昵称"
+            android:textColor="@color/textColorNormal"
+            android:textSize="30px" />
+
+        <EditText
+            android:id="@+id/et_nickname"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="29px"
+            android:layout_weight="1"
+            android:background="@null"
+            android:text="Jay"
+            android:textColor="@color/textColorLight"
+            android:textSize="30px" />
+
+    </com.zhy.android.percent.support.PercentLinearLayout>
+
+    <com.zhy.android.percent.support.PercentLinearLayout
+        android:id="@+id/layout_sex"
+        android:layout_width="match_parent"
+        android:layout_height="100px"
+        android:layout_marginTop="2px"
+        android:background="@drawable/bg_setitem_layout"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingLeft="29px"
+        android:paddingRight="29px">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="性别"
+            android:textColor="@color/textColorNormal"
+            android:textSize="30px" />
+
+        <TextView
+            android:id="@+id/tv_sex"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="29px"
+            android:layout_weight="1"
+            android:text="男"
+            android:textColor="@color/textColorLight"
+            android:textSize="30px" />
+
+        <ImageView
+            android:layout_width="28px"
+            android:layout_height="28px"
+            android:layout_gravity="center_vertical|right"
+            android:src="@mipmap/arrow_right" />
+
+    </com.zhy.android.percent.support.PercentLinearLayout>
+
+</com.zhy.android.percent.support.PercentLinearLayout>

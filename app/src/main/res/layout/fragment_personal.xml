@@ -1,0 +1,296 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.zhy.android.percent.support.PercentLinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+    <com.zhy.android.percent.support.PercentLinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/custom"
+        android:orientation="vertical"
+        app:layout_heightPercent="35%">
+
+        <com.zhy.android.percent.support.PercentRelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            app:layout_heightPercent="50%">
+
+            <com.mnn.mydream.cosmetology.view.CircleImageView
+                android:id="@+id/img_photo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="30px"
+                android:src="@mipmap/def_photo"
+                app:civ_border_color="@color/white68"
+                app:civ_border_width="2dp"
+                app:layout_heightPercent="50%" />
+
+            <TextView
+                android:id="@+id/tv_nickName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="31px"
+                android:layout_toRightOf="@id/img_photo"
+                android:ellipsize="marquee"
+                android:maxLength="20"
+                android:singleLine="true"
+                android:text="用户名"
+                android:textColor="@color/white"
+                android:textSize="@dimen/text_size_28" />
+
+            <TextView
+                android:id="@+id/tv_authSate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tv_nickName"
+                android:layout_alignLeft="@id/tv_nickName"
+                android:layout_marginTop="10px"
+                android:background="@drawable/set_tv_gold"
+                android:maxLines="1"
+                android:paddingLeft="12px"
+                android:paddingTop="2px"
+                android:paddingRight="12px"
+                android:paddingBottom="2px"
+                android:text="申请认证"
+                android:textColor="@color/white"
+                android:textSize="24px"
+                android:visibility="gone" />
+
+
+        </com.zhy.android.percent.support.PercentRelativeLayout>
+
+        <com.zhy.android.percent.support.PercentLinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_heightPercent="50%">
+
+            <com.zhy.android.percent.support.PercentLinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/tv_postCount"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:maxLines="1"
+                    android:text="0"
+                    android:textColor="@color/white"
+                    android:textSize="22sp" />
+
+                <com.zhy.android.percent.support.PercentRelativeLayout
+                    android:id="@+id/layout_post"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:id="@+id/tv_dongtai"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentTop="true"
+                        android:layout_marginTop="5dp"
+                        android:text="今日添加"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/text_size_22" />
+
+                    <TextView
+                        android:id="@+id/dot_post"
+                        android:layout_width="10px"
+                        android:layout_height="10px"
+                        android:layout_alignTop="@id/tv_dongtai"
+                        android:layout_toRightOf="@id/tv_dongtai"
+                        android:background="@drawable/bg_dot_red"
+                        android:textSize="@dimen/text_size_22"
+                        android:visibility="invisible" />
+
+                </com.zhy.android.percent.support.PercentRelativeLayout>
+
+
+            </com.zhy.android.percent.support.PercentLinearLayout>
+
+            <View
+                android:layout_width="2px"
+                android:layout_height="48px"
+                android:layout_gravity="center_vertical"
+                android:background="@color/white7A"
+                app:layout_heightPercent="50%" />
+
+            <com.zhy.android.percent.support.PercentLinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/tv_followCount"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:maxLines="1"
+                    android:text="0"
+                    android:textColor="@color/white"
+                    android:textSize="22sp" />
+
+                <com.zhy.android.percent.support.PercentRelativeLayout
+                    android:id="@+id/layout_follow"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:id="@+id/tv_guanzhu"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:text="总添加"
+                        android:textColor="@color/white8A"
+                        android:textSize="@dimen/text_size_22" />
+
+                    <TextView
+                        android:id="@+id/dot_follow"
+                        android:layout_width="10px"
+                        android:layout_height="10px"
+                        android:layout_alignTop="@id/tv_guanzhu"
+                        android:layout_toRightOf="@id/tv_guanzhu"
+                        android:background="@drawable/bg_dot_red"
+                        android:textSize="@dimen/text_size_22"
+                        android:visibility="invisible" />
+
+                </com.zhy.android.percent.support.PercentRelativeLayout>
+
+
+            </com.zhy.android.percent.support.PercentLinearLayout>
+
+            <View
+                android:layout_width="2px"
+                android:layout_height="48px"
+                android:layout_gravity="center_vertical"
+                android:background="@color/white7A" />
+
+            <com.zhy.android.percent.support.PercentLinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/tv_collectCount"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:maxLines="1"
+                    android:text="0"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/text_size_22" />
+
+
+                <com.zhy.android.percent.support.PercentRelativeLayout
+                    android:id="@+id/layout_collect"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:id="@+id/tv_shoucang"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentTop="true"
+                        android:layout_marginTop="5dp"
+                        android:text="总添加"
+                        android:textColor="@color/white8A"
+                        android:textSize="@dimen/text_size_22" />
+
+                    <TextView
+                        android:id="@+id/dot_collect"
+                        android:layout_width="10px"
+                        android:layout_height="10px"
+                        android:layout_alignTop="@id/tv_shoucang"
+                        android:layout_toRightOf="@id/tv_shoucang"
+                        android:background="@drawable/bg_dot_red"
+                        android:visibility="invisible" />
+
+                </com.zhy.android.percent.support.PercentRelativeLayout>
+
+
+            </com.zhy.android.percent.support.PercentLinearLayout>
+
+        </com.zhy.android.percent.support.PercentLinearLayout>
+
+    </com.zhy.android.percent.support.PercentLinearLayout>
+
+    <com.zhy.android.percent.support.PercentLinearLayout
+        android:id="@+id/layout_setting"
+        android:layout_width="match_parent"
+        android:layout_height="100px"
+        android:layout_marginTop="10px"
+        android:background="@drawable/bg_setitem_layout"
+        android:orientation="horizontal"
+        app:layout_heightPercent="10%">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical|left"
+            android:layout_marginLeft="32sp"
+            android:layout_weight="1"
+            android:text="软件详情"
+            android:textColor="@color/blackNormal"
+            android:textSize="@dimen/text_size_22" />
+
+        <ImageView
+            android:layout_width="28px"
+            android:layout_height="28px"
+            android:layout_gravity="center_vertical|right"
+            android:layout_marginRight="29px"
+            android:src="@mipmap/arrow_right" />
+
+    </com.zhy.android.percent.support.PercentLinearLayout>
+
+
+    <com.zhy.android.percent.support.PercentLinearLayout
+        android:id="@+id/layout_update"
+        android:layout_width="match_parent"
+        android:layout_height="100px"
+        android:layout_marginTop="2px"
+        android:background="@drawable/bg_setitem_layout"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        app:layout_heightPercent="10%">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical|left"
+            android:layout_marginLeft="32sp"
+            android:layout_weight="1"
+            android:text="切换账号"
+            android:textColor="@color/blackNormal"
+            android:textSize="@dimen/text_size_22" />
+
+        <TextView
+            android:id="@+id/dot_update"
+            android:layout_width="15px"
+            android:layout_height="15px"
+            android:layout_gravity="center_vertical|right"
+            android:layout_marginRight="10px"
+            android:background="@drawable/bg_dot_red"
+            android:visibility="invisible" />
+
+        <ImageView
+            android:layout_width="28px"
+            android:layout_height="28px"
+            android:layout_gravity="center_vertical|right"
+            android:layout_marginRight="29px"
+            android:src="@mipmap/arrow_right" />
+
+    </com.zhy.android.percent.support.PercentLinearLayout>
+
+</com.zhy.android.percent.support.PercentLinearLayout>

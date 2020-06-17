@@ -1,0 +1,207 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.zhy.android.percent.support.PercentLinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:gravity="center"
+    android:orientation="vertical">
+
+
+    <com.zhy.android.percent.support.PercentLinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="30dp"
+        android:layout_marginTop="30dp"
+        android:orientation="horizontal"
+        app:layout_widthPercent="90%">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginRight="5dp"
+            android:gravity="center"
+            android:singleLine="true"
+            android:text="开始时间:"
+            android:textColor="@color/textColorNormal"
+            android:textSize="20sp" />
+
+        <com.zhy.android.percent.support.PercentLinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:background="@drawable/customer_text_frame"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/start_time_text"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:hint="@string/please_bir"
+                android:singleLine="true"
+                android:textColor="@color/customer_text"
+                android:textColorHint="@color/aluminum"
+                android:textSize="20sp"
+                app:layout_widthPercent="80%" />
+
+            <ImageView
+                android:id="@+id/start_time_img"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:src="@mipmap/time" />
+
+        </com.zhy.android.percent.support.PercentLinearLayout>
+
+    </com.zhy.android.percent.support.PercentLinearLayout>
+
+    <com.zhy.android.percent.support.PercentLinearLayout
+
+        android:layout_width="wrap_content"
+        android:layout_height="30dp"
+        android:layout_marginTop="10dp"
+        android:orientation="horizontal"
+        app:layout_widthPercent="90%">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginRight="5dp"
+            android:gravity="center"
+            android:singleLine="true"
+            android:text="结束时间:"
+            android:textColor="@color/textColorNormal"
+            android:textSize="20sp" />
+
+        <com.zhy.android.percent.support.PercentLinearLayout
+
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:background="@drawable/customer_text_frame"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/end_time_text"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:hint="@string/please_bir"
+                android:singleLine="true"
+                android:textColor="@color/customer_text"
+                android:textColorHint="@color/aluminum"
+                android:textSize="20sp"
+                app:layout_widthPercent="80%" />
+
+            <ImageView
+                android:id="@+id/end_time_img"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:src="@mipmap/time" />
+
+        </com.zhy.android.percent.support.PercentLinearLayout>
+
+    </com.zhy.android.percent.support.PercentLinearLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:layout_marginTop="20dp"
+        android:background="@color/custom"
+        android:gravity="left|center_vertical"
+        android:padding="5dp"
+        android:text="服务项目查询"
+        android:textColor="@color/white"
+        android:textSize="@dimen/text_size_16" />
+
+
+    <TextView
+        android:id="@+id/item_txt"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/btn_radius_shape_nav"
+        android:gravity="center"
+        android:padding="5dp"
+        android:text="查询期间所有顾客"
+        android:textColor="@color/white"
+        android:textSize="@dimen/text_size_20"
+        app:layout_widthPercent="90%" />
+
+    <TextView
+        android:id="@+id/item_txt1"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/btn_radius_shape_nav"
+        android:gravity="center"
+        android:padding="5dp"
+        android:text="查询办理年卡顾客"
+        android:textColor="@color/white"
+        android:textSize="@dimen/text_size_20"
+        app:layout_widthPercent="90%" />
+
+    <TextView
+        android:id="@+id/item_txt2"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/btn_radius_shape_nav"
+        android:gravity="center"
+        android:padding="5dp"
+        android:text="查询办理次卡顾客"
+        android:textColor="@color/white"
+        android:textSize="@dimen/text_size_20"
+        app:layout_widthPercent="90%" />
+
+    <TextView
+        android:id="@+id/item_txt3"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/btn_radius_shape_nav"
+        android:gravity="center"
+        android:padding="5dp"
+        android:text="查询办理分期顾客"
+        android:textColor="@color/white"
+        android:textSize="@dimen/text_size_20"
+        app:layout_widthPercent="90%" />
+
+
+    <TextView
+        android:id="@+id/item_txt4"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/btn_radius_shape_nav"
+        android:gravity="center"
+        android:padding="5dp"
+        android:text="查询单次所有顾客"
+        android:textColor="@color/white"
+        android:textSize="@dimen/text_size_20"
+        app:layout_widthPercent="90%" />
+
+
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:layout_marginTop="20dp"
+        android:background="@color/custom"
+        android:gravity="left|center_vertical"
+        android:padding="5dp"
+        android:text="团购项目查询"
+        android:textColor="@color/white"
+        android:textSize="@dimen/text_size_16" />
+
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:layout_marginTop="20dp"
+        android:background="@color/custom"
+        android:gravity="left|center_vertical"
+        android:padding="5dp"
+        android:text="脱毛项目查询"
+        android:textColor="@color/white"
+        android:textSize="@dimen/text_size_16" />
+
+</com.zhy.android.percent.support.PercentLinearLayout>

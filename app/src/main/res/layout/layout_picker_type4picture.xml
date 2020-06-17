@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="356px"
+    android:background="@android:color/white"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="218px"
+        android:layout_marginLeft="20px"
+        android:layout_marginRight="20px"
+        android:background="@drawable/bg_white_corner"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tv_album"
+            android:layout_width="match_parent"
+            android:layout_height="108px"
+            android:gravity="center"
+            android:text="相册"
+            android:textColor="@color/textColorNormal"
+            android:textSize="16sp" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="2px"
+            android:background="@color/driverLine" />
+
+        <TextView
+            android:id="@+id/tv_camera"
+            android:layout_width="match_parent"
+            android:layout_height="108px"
+            android:gravity="center"
+            android:text="拍 照"
+            android:textColor="@color/textColorNormal"
+            android:textSize="16sp" />
+
+    </LinearLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="2px"
+        android:background="@color/driverLine" />
+    <TextView
+        android:id="@+id/tv_cancel"
+        android:layout_width="match_parent"
+        android:layout_height="108px"
+        android:layout_marginBottom="15px"
+        android:layout_marginLeft="20px"
+        android:layout_marginRight="20px"
+        android:layout_marginTop="15px"
+        android:background="@drawable/bg_white_corner"
+        android:gravity="center"
+        android:text="取 消"
+        android:textColor="@color/textColorNormal"
+        android:textSize="16sp" />
+
+</LinearLayout>

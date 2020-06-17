@@ -1,0 +1,213 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+    </style>
+
+    <!-- 选择框自定义主题 -->
+    <style name="select_style">
+        <item name="android:layout_width">60dip</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginLeft">4dip</item>
+        <item name="android:layout_marginRight">4dip</item>
+        <item name="android:paddingTop">4dip</item>
+        <item name="android:paddingBottom">4dip</item>
+        <item name="android:background">@drawable/select_selector</item>
+        <item name="android:button">@null</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textSize">17sp</item>
+        <item name="android:textColor">@drawable/txt_select_selector</item>
+    </style>
+
+
+    <style name="SmallTextStyle">
+        <item name="android:textSize">@dimen/text_size_20</item>
+        <item name="android:gravity">center</item>
+        <item name="android:singleLine">true</item>
+        <item name="android:imeOptions">actionDone</item>
+        <item name="android:maxLength">11</item>
+        <item name="android:maxLines">1</item>
+        <item name="android:padding">2dp</item>
+        <item name="android:textColor">@color/customer_text</item>
+        <item name="android:background">@drawable/customer_text_frame</item>
+
+    </style>
+
+
+    <style name="HorTextStyle">
+        <item name="android:textSize">@dimen/text_size_18</item>
+        <item name="android:gravity">center</item>
+        <item name="android:singleLine">true</item>
+        <item name="android:imeOptions">actionNext</item>
+        <item name="android:layout_marginTop">5dp</item>
+        <item name="android:layout_marginBottom">5dp</item>
+        <item name="android:textColor">@color/jet</item>
+    </style>
+
+    <style name="ToolBarTitleStyle" parent="@style/TextAppearance.Widget.AppCompat.Toolbar.Title">
+        <item name="android:textSize">@dimen/text_size_20</item>
+        <item name="android:textColor">@color/white</item>
+    </style>
+
+    <style name="LayoutStyle">
+        <item name="android:layout_height">50dp</item>
+        <item name="android:gravity">center</item>
+
+    </style>
+
+    <style name="textViewStyle">
+        <item name="android:layout_marginRight">20dp</item>
+        <item name="android:gravity">right</item>
+        <item name="android:textColor">@color/jet</item>
+    </style>
+
+    <style name="AppTheme.Dark.Dialog" parent="Theme.AppCompat.Dialog">
+        <item name="colorAccent">@color/white</item>
+        <item name="android:textColorPrimary">@color/iron</item>
+        <item name="android:background">@color/colorPrimary</item>
+    </style>
+
+    <style name="AppTheme.Dark" parent="Theme.AppCompat.NoActionBar">
+        <item name="colorPrimary">@color/longin</item>
+        <item name="colorPrimaryDark">@color/colorPrimary</item>
+        <item name="colorAccent">@color/longin</item>
+        <item name="android:windowBackground">@color/custom</item>
+        <item name="colorControlNormal">@color/iron</item>
+        <item name="colorControlActivated">@color/white</item>
+        <item name="colorControlHighlight">@color/white</item>
+        <item name="android:textColorHint">@color/iron</item>
+        <item name="colorButtonNormal">@color/longin</item>
+        <item name="android:colorButtonNormal">@color/longin</item>
+    </style>
+
+    <style name="DialogBottomStyle" parent="@android:style/Animation.Dialog">
+        <item name="android:windowAnimationStyle">@style/BottomDialogAnimation</item>
+        <item name="android:backgroundDimEnabled">true</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+    </style>
+
+    <style name="BottomDialogAnimation">
+        <item name="android:windowEnterAnimation">@anim/push_left_in</item>
+        <item name="android:windowExitAnimation">@anim/push_left_out</item>
+    </style>
+
+    <style name="PictureStyle" parent="picture.default.style">
+        <!--标题栏背景色-->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <!--状态栏背景色-->
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <!--图片列表勾选样式-->
+
+        <!--选择图片样式0/9-->
+        <item name="picture.style.numComplete">true</item>
+        <!--图片列表预览文字颜色-->
+        <item name="picture.preview.textColor">@color/colorPrimary</item>
+        <!--图片列表已完成文字颜色-->
+        <item name="picture.complete.textColor">@color/colorPrimary</item>
+        <!--预览界面已完成文字颜色-->
+        <item name="picture.ac_preview.complete.textColor">@color/colorPrimary</item>
+        <!--预览界面标题栏背景色-->
+        <item name="picture.ac_preview.title.bg">@color/colorPrimary</item>
+        <!--裁剪页面状态栏颜色-->
+        <item name="picture.crop.status.color">@color/colorPrimary</item>
+        <!--裁剪页面标题背景色-->
+        <item name="picture.crop.toolbar.bg">@color/colorPrimary</item>
+    </style>
+
+    <style name="AppTheme.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+        <item name="android:windowDrawsSystemBarBackgrounds">true</item>
+        <item name="android:statusBarColor">@android:color/transparent</item>
+    </style>
+
+
+    <!--客户详情点击弹窗-->
+    <style name="ShowDetailsCustomer_Dialog" parent="android:style/Theme.Dialog">
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowCloseOnTouchOutside">true</item>
+        <item name="android:windowIsFloating">true</item>
+    </style>
+
+    <style name="FadeInPopWin">
+        <item name="android:backgroundDimEnabled">true</item>
+        <item name="android:windowEnterAnimation">@anim/pop_win_content_fade_in</item>
+        <item name="android:windowExitAnimation">@anim/pop_win_content_fade_out</item>
+    </style>
+
+    <style name="NoActionBar" parent="Theme.AppCompat.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
+
+    <style name="customerShowTextViewStyle">
+
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:textColor">@color/customer_text</item>
+
+    </style>
+
+
+    <style name="BeautyTitleStyle">
+
+        <item name="android:textSize">@dimen/text_size_20</item>
+        <item name="android:gravity">center</item>
+        <item name="android:singleLine">true</item>
+        <item name="android:imeOptions">actionDone</item>
+        <item name="android:maxLength">11</item>
+        <item name="android:maxLines">1</item>
+        <item name="android:padding">2dp</item>
+        <item name="android:textColor">@color/beauty_text_color</item>
+        <item name="android:background">@drawable/customer_text_frame</item>
+    </style>
+
+
+    <style name="BeautyTextStyle">
+
+        <item name="android:textSize">@dimen/text_size_20</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textColor">@color/beauty_text_color</item>
+
+    </style>
+
+
+    <style name="BeautyNumStyle">
+        <item name="android:textSize">@dimen/text_size_20</item>
+        <item name="android:textColor">@color/beauty_text_color</item>
+        <item name="android:background">@drawable/customer_text_frame</item>
+        <item name="android:imeOptions">actionDone</item>
+    </style>
+
+
+    <!-- 选择框自定义主题 -->
+    <style name="beauty_select_style">
+        <item name="android:layout_width">60dip</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginLeft">4dip</item>
+        <item name="android:layout_marginRight">4dip</item>
+        <item name="android:paddingTop">4dip</item>
+        <item name="android:paddingBottom">4dip</item>
+        <item name="android:background">@drawable/beauty_select_selector_ckbox</item>
+        <item name="android:button">@null</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textSize">17sp</item>
+        <item name="android:textColor">@drawable/beauty_select_selector</item>
+    </style>
+
+<!--tablayout字体大小-->
+    <style name="TabLayoutTextStyle" parent="TextAppearance.Design.Tab">
+        <item name="android:textSize">20sp</item>
+
+    </style>
+
+</resources>

@@ -1,0 +1,348 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.zhy.android.percent.support.PercentLinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:focusable="true"
+    android:focusableInTouchMode="true"
+    android:orientation="vertical"
+    tools:context=".activity.CustomerActivity">
+
+    <ScrollView
+        android:id="@+id/myScrollView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/record_toolbar"
+        android:layout_centerVertical="true"
+        android:fillViewport="true">
+
+
+        <com.zhy.android.percent.support.PercentLinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center_horizontal"
+            android:orientation="vertical">
+
+            <!--照片-->
+            <com.zhy.android.percent.support.PercentLinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:orientation="vertical">
+
+                <com.zhy.android.percent.support.PercentRelativeLayout
+                    android:id="@+id/layout_photo"
+                    android:layout_width="120px"
+                    android:layout_height="120px"
+                    android:layout_gravity="center_horizontal">
+
+                    <com.mnn.mydream.cosmetology.view.CircleImageView
+                        android:id="@+id/img_photo"
+                        android:layout_width="120px"
+                        android:layout_height="120px"
+                        android:src="@mipmap/def_photo" />
+
+                    <ImageView
+                        android:id="@+id/img_tx"
+                        android:layout_width="50px"
+                        android:layout_height="50px"
+                        android:layout_centerInParent="true"
+                        android:src="@mipmap/camera" />
+
+                </com.zhy.android.percent.support.PercentRelativeLayout>
+
+                <TextView
+                    style="@style/customerShowTextViewStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:gravity="center_horizontal"
+                    android:text="客户照片"
+                    android:textSize="@dimen/text_size_18" />
+
+            </com.zhy.android.percent.support.PercentLinearLayout>
+
+            <!--姓名-->
+            <com.zhy.android.percent.support.PercentLinearLayout
+                android:id="@+id/name_layout"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/text_view_height"
+                android:layout_marginTop="20dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    style="@style/customerShowTextViewStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="姓        名:"
+                    android:textSize="@dimen/text_size_20"
+                    app:layout_widthPercent="12%" />
+
+                <AutoCompleteTextView
+                    android:id="@+id/name_ed"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/customer_text_frame"
+                    android:completionThreshold="1"
+                    android:gravity="center"
+                    android:hint="@string/please_name"
+                    android:imeOptions="actionDone"
+                    android:maxLength="11"
+                    android:maxLines="1"
+                    android:padding="2dp"
+                    android:singleLine="true"
+                    android:textColor="@color/customer_text"
+                    android:textColorHint="@color/aluminum"
+                    android:textSize="@dimen/text_size_20"
+                    app:layout_widthPercent="20%" />
+
+                <TextView
+                    style="@style/customerShowTextViewStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="50dp"
+                    android:gravity="center"
+                    android:text="电         话:"
+                    android:textSize="@dimen/text_size_20"
+                    app:layout_widthPercent="12%" />
+
+                <EditText
+                    android:id="@+id/phone_ed"
+                    style="@style/SmallTextStyle"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/please_phone"
+                    android:inputType="number"
+
+                    android:textColorHint="@color/aluminum"
+                    app:layout_widthPercent="25%" />
+
+            </com.zhy.android.percent.support.PercentLinearLayout>
+
+            <!--性别-->
+            <com.zhy.android.percent.support.PercentLinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/text_view_height"
+                android:layout_marginTop="20dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <TextView
+                    style="@style/customerShowTextViewStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="性        别:"
+                    android:textSize="@dimen/text_size_20"
+                    app:layout_widthPercent="12%" />
+
+                <com.zhy.android.percent.support.PercentLinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:gravity="center"
+                    android:orientation="horizontal"
+                    app:layout_widthPercent="20%">
+
+                    <CheckBox
+                        android:id="@+id/male"
+                        style="@style/select_style"
+                        android:tag="男"
+                        android:text="男" />
+
+                    <CheckBox
+                        android:id="@+id/femle"
+                        style="@style/select_style"
+                        android:layout_marginLeft="30dp"
+                        android:tag="女"
+                        android:text="女" />
+
+                </com.zhy.android.percent.support.PercentLinearLayout>
+
+
+                <TextView
+                    style="@style/customerShowTextViewStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="50dp"
+                    android:gravity="center"
+                    android:text="生         日:"
+                    android:textSize="@dimen/text_size_20"
+                    app:layout_widthPercent="12%" />
+
+                <com.zhy.android.percent.support.PercentLinearLayout
+
+                    android:layout_width="wrap_content"
+                    android:layout_height="30dp"
+                    android:background="@drawable/customer_text_frame"
+                    android:orientation="horizontal"
+                    app:layout_widthPercent="25%">
+
+                    <TextView
+                        android:id="@+id/bir_txt"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:hint="@string/please_bir"
+                        android:padding="2dp"
+                        android:singleLine="true"
+                        android:textColor="@color/customer_text"
+                        android:textColorHint="@color/aluminum"
+                        android:textSize="20sp"
+                        app:layout_widthPercent="85%" />
+
+                    <ImageView
+                        android:id="@+id/bir_img"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:src="@mipmap/time" />
+
+                </com.zhy.android.percent.support.PercentLinearLayout>
+
+                <TextView
+                    style="@style/customerShowTextViewStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="年龄:"
+                    android:textSize="@dimen/text_size_20"
+                    app:layout_widthPercent="10%" />
+
+                <EditText
+                    android:id="@+id/age"
+                    style="@style/SmallTextStyle"
+                    android:layout_height="wrap_content"
+                    android:digits="0123456789."
+                    android:hint="0"
+                    android:inputType="number"
+                    android:maxLength="3"
+                    android:maxLines="1"
+                    android:textColorHint="@color/aluminum"
+
+                    app:layout_widthPercent="8%" />
+            </com.zhy.android.percent.support.PercentLinearLayout>
+
+            <!--创建时间-->
+            <com.zhy.android.percent.support.PercentLinearLayout
+
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:orientation="horizontal"
+                android:visibility="gone">
+
+                <TextView
+                    style="@style/customerShowTextViewStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="客户录入时间:"
+                    android:textSize="@dimen/text_size_20"
+                    app:layout_widthPercent="12%" />
+
+                <TextView
+                    android:id="@+id/createtime_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/customer_text_frame"
+                    android:gravity="center"
+                    android:imeOptions="actionDone"
+                    android:maxLines="1"
+                    android:singleLine="true"
+                    android:textColor="@color/customer_text"
+                    android:textSize="@dimen/text_size_20"
+                    app:layout_widthPercent="20%" />
+
+
+                <TextView
+                    style="@style/customerShowTextViewStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="50dp"
+                    android:gravity="center"
+                    android:text="客户修改时间:"
+                    android:textSize="@dimen/text_size_20"
+                    app:layout_widthPercent="12%" />
+
+                <TextView
+                    android:id="@+id/updatetime_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/customer_text_frame"
+                    android:gravity="center"
+                    android:imeOptions="actionDone"
+                    android:maxLines="1"
+                    android:singleLine="true"
+                    android:textColor="@color/customer_text"
+                    android:textSize="@dimen/text_size_20"
+                    app:layout_widthPercent="25%" />
+            </com.zhy.android.percent.support.PercentLinearLayout>
+
+            <!--备注-->
+            <com.zhy.android.percent.support.PercentLinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    style="@style/customerShowTextViewStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:gravity="center"
+                    android:text="备注信息:"
+                    android:textSize="@dimen/text_size_20"
+                    app:layout_widthPercent="12%" />
+
+                <EditText
+                    android:id="@+id/add_content"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/customer_text_frame"
+                    android:enabled="true"
+                    android:gravity="center_horizontal"
+                    android:hint="暂无备注"
+                    android:imeOptions="actionDone"
+                    android:inputType="textMultiLine"
+                    android:maxLength="300"
+                    android:maxLines="3"
+                    android:minLines="2"
+                    android:padding="5dp"
+                    android:scrollbars="vertical"
+                    android:textColor="@color/customer_text"
+                    android:textColorHint="@color/aluminum"
+                    android:textSize="@dimen/text_size_20"
+                    app:layout_widthPercent="70%" />
+
+
+                <TextView
+                    android:id="@+id/num"
+                    style="@style/customerShowTextViewStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="10dp"
+                    android:gravity="bottom"
+                    android:text="0"
+                    android:textSize="@dimen/text_size_16" />
+
+                <TextView
+                    style="@style/customerShowTextViewStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center_vertical"
+                    android:gravity="bottom"
+                    android:text="/300"
+                    android:textSize="@dimen/text_size_16" />
+
+            </com.zhy.android.percent.support.PercentLinearLayout>
+
+
+        </com.zhy.android.percent.support.PercentLinearLayout>
+
+    </ScrollView>
+
+</com.zhy.android.percent.support.PercentLinearLayout>

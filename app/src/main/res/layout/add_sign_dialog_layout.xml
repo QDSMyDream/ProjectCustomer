@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.zhy.android.percent.support.PercentLinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/shape_show_details_customer_dialog_title"
+    android:orientation="vertical">
+
+
+    <com.zhy.android.percent.support.PercentLinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="4dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/title"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:background="@drawable/shape_dialogchoose_title"
+            android:gravity="center"
+            android:text="项目签名"
+            android:textColor="@color/white"
+            android:textSize="@dimen/text_size_26"
+            app:layout_heightPercent="10%" />
+
+        <com.zhy.android.percent.support.PercentRelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/shape_dialogchoose_content"
+            android:orientation="vertical"
+            app:layout_heightPercent="90%">
+
+            <com.mnn.mydream.cosmetology.view.DrawView
+                android:id="@+id/mainView1"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/white" />
+
+            <ImageView
+                android:id="@+id/cancel_empty"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:padding="10dp"
+                android:src="@mipmap/refresh"
+                android:textColor="@color/jet"
+                android:textSize="@dimen/text_size_22" />
+
+            <com.zhy.android.percent.support.PercentLinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/shape_dialogchoose_content"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/btn_cancel"
+                    android:layout_width="@dimen/btn_view_width"
+                    android:layout_height="@dimen/btn_view_height"
+                    android:layout_alignParentLeft="true"
+                    android:background="@drawable/btn_cancel_radius_shape"
+                    android:clickable="true"
+                    android:gravity="center"
+                    android:text="取  消"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/text_size_22" />
+
+                <TextView
+                    android:id="@+id/btn_yes"
+                    android:layout_width="@dimen/btn_view_width"
+                    android:layout_height="@dimen/btn_view_height"
+                    android:layout_alignParentRight="true"
+                    android:background="@drawable/btn_radius_shape"
+                    android:clickable="true"
+                    android:gravity="center"
+                    android:text="完 成"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/text_size_22"
+                    app:layout_marginLeftPercent="20%" />
+
+
+            </com.zhy.android.percent.support.PercentLinearLayout>
+
+
+        </com.zhy.android.percent.support.PercentRelativeLayout>
+
+    </com.zhy.android.percent.support.PercentLinearLayout>
+</com.zhy.android.percent.support.PercentLinearLayout>

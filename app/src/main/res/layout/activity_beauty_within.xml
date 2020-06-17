@@ -1,0 +1,409 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.zhy.android.percent.support.PercentLinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical"
+    tools:context=".activity.BeautyWithinActivity">
+
+    <com.zhy.android.percent.support.PercentRelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_heightPercent="7.5%"
+        app:layout_paddingLeftPercent="2.5%"
+        app:layout_paddingRightPercent="2.5%">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:text="工作台"
+            android:textColor="@color/beauty_one_title_bg"
+            android:textSize="@dimen/text_size_22"
+            android:textStyle="bold" />
+
+        <com.zhy.android.percent.support.PercentRelativeLayout
+            android:id="@+id/back_layout"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            app:layout_marginLeftPercent="9%">
+
+            <ImageView
+                android:id="@+id/back_img"
+                android:layout_width="30dp"
+                android:layout_height="wrap_content"
+                android:padding="3dp"
+                android:src="@mipmap/back" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="10dp"
+                android:layout_toRightOf="@id/back_img"
+                android:gravity="center"
+                android:text="返回工作台"
+                android:textColor="@color/beauty_add_custmer_bg"
+                android:textSize="@dimen/text_size_18" />
+
+        </com.zhy.android.percent.support.PercentRelativeLayout>
+
+        <com.zhy.android.percent.support.PercentRelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_alignParentRight="true"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            app:layout_marginLeftPercent="9%">
+
+            <TextView
+                android:id="@+id/operation_text"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:padding="3dp"
+                android:text="操作人:"
+                android:textColor="@color/beauty_two_menu_bg"
+                android:textSize="@dimen/text_size_20" />
+
+            <TextView
+                android:id="@+id/operation_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="10dp"
+                android:layout_toRightOf="@id/operation_text"
+                android:gravity="center"
+                android:text="ddddddd"
+                android:textColor="@color/custom"
+                android:textSize="@dimen/text_size_20" />
+
+        </com.zhy.android.percent.support.PercentRelativeLayout>
+
+
+    </com.zhy.android.percent.support.PercentRelativeLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/beauty_within_lines_color"></View>
+
+    <com.zhy.android.percent.support.PercentLinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal">
+
+        <com.zhy.android.percent.support.PercentLinearLayout
+            android:id="@+id/layout_left"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:background="@color/white"
+            android:orientation="vertical"
+            app:layout_widthPercent="9%">
+
+            <ListView
+                android:id="@+id/menu_listview"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="5dp"></ListView>
+
+
+        </com.zhy.android.percent.support.PercentLinearLayout>
+
+        <com.zhy.android.percent.support.PercentLinearLayout
+            android:id="@+id/layout_content"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/beauty_menu_top_bg"
+            android:orientation="vertical">
+
+
+            <com.zhy.android.percent.support.PercentLinearLayout
+                android:id="@+id/menu_layout"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/beauty_bg"
+                android:orientation="horizontal">
+
+                <com.zhy.android.percent.support.PercentLinearLayout
+                    android:id="@+id/menu_left_layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    app:layout_widthPercent="54%">
+
+                    <com.xujiaji.happybubble.BubbleLayout
+                        android:id="@+id/bubbleLayout"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        app:layout_heightPercent="25.5%"
+                        app:lookAt="right"
+                        app:lookLength="16dp"
+                        app:lookPosition="20dp"
+                        app:lookWidth="16dp">
+
+
+                    </com.xujiaji.happybubble.BubbleLayout>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginTop="10dp"
+                        android:text="@string/beauty_card_kh" />
+
+                    <GridView
+                        android:id="@+id/gridview"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginRight="10dp"
+                        android:horizontalSpacing="10dp"
+                        android:numColumns="2"
+                        android:verticalSpacing="10dp"></GridView>
+
+
+                </com.zhy.android.percent.support.PercentLinearLayout>
+
+                <com.zhy.android.percent.support.PercentLinearLayout
+
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@color/white"
+                    android:orientation="vertical"
+                    app:layout_paddingLeftPercent="1%"
+                    app:layout_paddingRightPercent="1%"
+                    app:layout_widthPercent="46%">
+
+                    <com.zhy.android.percent.support.PercentLinearLayout
+                        android:id="@+id/select_kh_layout"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginTop="5dp"
+                        android:background="@drawable/beauty_within_text_frame"
+                        android:orientation="horizontal"
+                        app:layout_heightPercent="9.5%"
+                        app:layout_marginLeftPercent="1%"
+                        app:layout_marginRightPercent="1%">
+
+                        <AutoCompleteTextView
+                            android:id="@+id/ed_select"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_margin="3dp"
+                            android:background="@color/white"
+                            android:hint="请示如客户手机或姓名"
+                            android:imeOptions="actionDone"
+                            android:maxLength="11"
+                            android:maxLines="1"
+                            android:paddingLeft="20dp"
+                            android:singleLine="true"
+                            android:textColor="@color/beauty_text_color"
+                            android:textColorHint="@color/beauty_within_lines_color"
+                            android:textSize="@dimen/text_size_18"
+                            app:layout_widthPercent="84%" />
+
+                        <TextView
+                            android:id="@+id/btn_select"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:gravity="center"
+                            android:text="查询客户"
+                            android:textColor="@color/custom"
+                            android:textSize="@dimen/text_size_16" />
+
+
+                    </com.zhy.android.percent.support.PercentLinearLayout>
+
+                    <com.zhy.android.percent.support.PercentLinearLayout
+                        android:id="@+id/khxq_layout"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginTop="5dp"
+                        android:background="@drawable/beauty_within_text_frame"
+                        android:orientation="horizontal"
+
+                        app:layout_heightPercent="9.5%"
+                        app:layout_marginLeftPercent="1%"
+                        app:layout_marginRightPercent="1%">
+
+                        <com.zhy.android.percent.support.PercentRelativeLayout
+                            android:id="@+id/user_info_layout"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_alignParentRight="true"
+                            android:gravity="center_vertical"
+                            android:orientation="horizontal">
+
+
+                            <com.mnn.mydream.cosmetology.view.CircleImageView
+                                android:id="@+id/kh_tx"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_centerVertical="true"
+                                android:layout_marginLeft="5dp"
+                                android:padding="2dp"
+                                android:src="@mipmap/def_photo" />
+
+                            <com.zhy.android.percent.support.PercentLinearLayout
+                                android:id="@+id/khxq_left_layout"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_toRightOf="@id/kh_tx"
+                                android:gravity="center_vertical"
+                                android:orientation="vertical"
+                                app:layout_widthPercent="39%">
+
+                                <com.zhy.android.percent.support.PercentLinearLayout
+                                    android:id="@+id/title_username_layout"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:layout_marginLeft="5dp"
+                                    android:orientation="horizontal"
+                                    app:layout_heightPercent="50%">
+
+                                    <TextView
+                                        android:id="@+id/kh_name"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="match_parent"
+                                        android:gravity="center_vertical"
+                                        android:maxLength="9"
+                                        android:maxLines="1"
+                                        android:textColor="@color/beauty_text_color"
+                                        android:textSize="@dimen/text_size_18" />
+
+                                    <ImageView
+                                        android:id="@+id/kh_sex"
+                                        android:layout_width="25dp"
+                                        android:layout_height="wrap_content"
+                                        android:layout_gravity="center_vertical"
+                                        android:layout_marginLeft="10dp"
+                                        android:src="@mipmap/nan" />
+
+                                </com.zhy.android.percent.support.PercentLinearLayout>
+
+
+                                <TextView
+                                    android:id="@+id/kh_phone"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="match_parent"
+                                    android:layout_marginLeft="5dp"
+                                    android:gravity="center_vertical"
+                                    android:textColor="@color/beauty_text_color"
+                                    android:textSize="@dimen/text_size_18"
+                                    app:layout_heightPercent="50%" />
+
+                            </com.zhy.android.percent.support.PercentLinearLayout>
+
+
+                            <com.zhy.android.percent.support.PercentLinearLayout
+                                android:id="@+id/khxq_right_layout"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_alignParentTop="true"
+                                android:layout_marginLeft="4dp"
+                                android:layout_toRightOf="@id/khxq_left_layout"
+                                android:gravity="center_vertical|left"
+                                android:orientation="vertical"
+                                app:layout_widthPercent="39%">
+
+                                <com.zhy.android.percent.support.PercentLinearLayout
+                                    android:id="@+id/khsr_layout"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:layout_marginLeft="10dp"
+                                    android:gravity="center_vertical"
+                                    android:orientation="horizontal"
+                                    app:layout_heightPercent="50%">
+
+                                    <TextView
+                                        android:id="@+id/khsr_text"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="match_parent"
+                                        android:gravity="center_vertical|left"
+                                        android:text="生日:"
+                                        android:textColor="@color/beauty_text_color"
+                                        android:textSize="@dimen/text_size_18" />
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_gravity="center_vertical"
+                                        android:layout_marginLeft="5dp"
+                                        android:textColor="@color/beauty_text_color"
+                                        android:textSize="@dimen/text_size_18" />
+
+                                </com.zhy.android.percent.support.PercentLinearLayout>
+
+
+                                <TextView
+                                    android:id="@+id/khssmd_text"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="match_parent"
+                                    android:layout_gravity="center|left"
+                                    android:layout_marginLeft="10dp"
+                                    android:gravity="center_vertical|left"
+                                    android:textColor="@color/beauty_text_color"
+                                    android:textSize="@dimen/text_size_18"
+                                    app:layout_heightPercent="50%" />
+
+                            </com.zhy.android.percent.support.PercentLinearLayout>
+
+
+                            <ImageView
+                                android:id="@+id/delete_kh"
+                                android:layout_width="40dp"
+                                android:layout_height="wrap_content"
+                                android:layout_centerVertical="true"
+                                android:layout_toRightOf="@id/khxq_right_layout"
+                                android:src="@mipmap/delete" />
+
+
+                        </com.zhy.android.percent.support.PercentRelativeLayout>
+
+
+                    </com.zhy.android.percent.support.PercentLinearLayout>
+
+
+                    <com.zhy.android.percent.support.PercentLinearLayout
+                        android:id="@+id/select_right_layout"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginTop="2dp"
+                        android:background="@drawable/beauty_within_text_frame"
+                        android:orientation="horizontal"
+                        app:layout_heightPercent="9.5%"
+                        app:layout_marginLeftPercent="1%"
+                        app:layout_marginRightPercent="1%">
+
+
+                    </com.zhy.android.percent.support.PercentLinearLayout>
+
+
+                </com.zhy.android.percent.support.PercentLinearLayout>
+            </com.zhy.android.percent.support.PercentLinearLayout>
+
+            <com.mnn.mydream.cosmetology.view.MyViewPager
+                android:id="@+id/viewpager"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+            </com.mnn.mydream.cosmetology.view.MyViewPager>
+
+
+        </com.zhy.android.percent.support.PercentLinearLayout>
+
+
+    </com.zhy.android.percent.support.PercentLinearLayout>
+
+
+</com.zhy.android.percent.support.PercentLinearLayout>

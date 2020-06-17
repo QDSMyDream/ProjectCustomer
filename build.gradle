@@ -1,0 +1,36 @@
+// Top-level build file where you can add configuration options common to all sub-projects/modules.
+
+buildscript {
+
+    repositories {
+        google()
+        jcenter()
+        maven{ url 'https://maven.aliyun.com/repository/google'}
+    }
+    dependencies {
+        classpath 'com.android.tools.build:gradle:3.2.0'
+        classpath 'com.jfrog.bintray.gradle:gradle-bintray-plugin:1.6'
+        classpath 'com.github.dcendents:android-maven-gradle-plugin:1.4.1'
+        classpath 'org.kt3k.gradle.plugin:coveralls-gradle-plugin:2.4.0'
+        classpath 'com.mob.sdk:MobSDK:+'
+        classpath 'com.android.tools.build:gradle:1.2.3'
+        classpath 'org.greenrobot:greendao-gradle-plugin:3.2.2' // 添加插件 更好支持GreenDao
+        classpath "com.tencent.bugly:tinker-support:1.0.9"
+    }
+}
+
+allprojects {
+    repositories {
+        google()
+        jcenter()
+        maven { url "https://jitpack.io" }
+        //Bmob的maven仓库地址--必填
+        maven {url 'https://dl.bintray.com/chaozhouzhang/maven' }
+
+        mavenCentral()
+    }
+}
+
+task clean(type: Delete) {
+    delete rootProject.buildDir
+}

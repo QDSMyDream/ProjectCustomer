@@ -1,0 +1,620 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.zhy.android.percent.support.PercentLinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_margin="2dp"
+    android:background="@drawable/shape_show_details_customer_dialog_title"
+    android:orientation="vertical">
+
+    <ScrollView
+        android:id="@+id/myScrollView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_centerVertical="true">
+
+        <com.zhy.android.percent.support.PercentLinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/title"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:background="@drawable/shape_dialogchoose_title"
+                android:gravity="center"
+                android:text="添加客户服务项目"
+                android:textColor="@color/white"
+                android:textSize="@dimen/text_size_26" />
+
+            <com.zhy.android.percent.support.PercentLinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="30dp"
+                android:background="@drawable/shape_dialogchoose_content"
+                android:gravity="center"
+                android:orientation="vertical"
+                app:layout_marginLeftPercent="8%">
+
+                <com.zhy.android.percent.support.PercentLinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+
+                    android:background="@drawable/shape_dialogchoose_content"
+                    android:gravity="left"
+                    android:orientation="vertical">
+
+                    <!--项目选择-->
+                    <com.zhy.android.percent.support.PercentLinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="40dp"
+                        android:background="@drawable/shape_dialogchoose_content"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            style="@style/customerShowTextViewStyle"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="服务项目："
+                            android:textSize="@dimen/text_size_22"
+                            app:layout_widthPercent="20%" />
+
+                        <TextView
+                            android:id="@+id/project_text"
+                            style="@style/SmallTextStyle"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:text="服务项目"
+                            android:visibility="gone"
+                            app:layout_widthPercent="20%" />
+
+                        <com.zhy.android.percent.support.PercentLinearLayout
+                            android:id="@+id/sp_projects_layout"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:background="@drawable/customer_text_frame"
+                            android:padding="3dp">
+
+                            <com.applandeo.materialcalendarview.view.NiceSpinner
+                                android:id="@+id/spinner_projects1"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:gravity="center_vertical"
+                                android:textColor="@color/jet"
+                                android:textSize="@dimen/text_size_22"
+                                app:popupTextAlignment="center"
+                                app:textTint="@color/jet" />
+
+
+                        </com.zhy.android.percent.support.PercentLinearLayout>
+                        <!--app:textTint="@color/jet"-->
+                        <!--app:backgroundSelector="@drawable/customer_text_frame"-->
+                    </com.zhy.android.percent.support.PercentLinearLayout>
+
+
+                    <!--是否是年卡-->
+                    <com.zhy.android.percent.support.PercentLinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="@dimen/text_view_height"
+                        android:layout_marginTop="10dp"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            style="@style/customerShowTextViewStyle"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="是否是年卡："
+                            android:textSize="@dimen/text_size_22"
+                            app:layout_widthPercent="20%" />
+
+                        <com.zhy.android.percent.support.PercentLinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:gravity="center_vertical"
+                            app:layout_widthPercent="20%">
+
+                            <CheckBox
+                                android:id="@+id/sp_yes"
+                                style="@style/select_style"
+                                android:tag="是"
+                                android:text="是" />
+
+                            <CheckBox
+                                android:id="@+id/sp_no"
+                                style="@style/select_style"
+                                android:tag="否"
+                                android:text="否" />
+
+                        </com.zhy.android.percent.support.PercentLinearLayout>
+
+                        <TextView
+                            android:id="@+id/sp_money"
+                            style="@style/customerShowTextViewStyle"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="项目总价格："
+                            android:textSize="@dimen/text_size_22"
+                            app:layout_marginLeftPercent="5%"
+                            app:layout_widthPercent="16%" />
+
+                        <EditText
+                            android:id="@+id/ed_money"
+                            style="@style/SmallTextStyle"
+                            android:layout_height="wrap_content"
+                            android:hint="@string/total_money"
+                            android:inputType="number"
+                            android:singleLine="true"
+                            android:text="2888"
+                            android:textColorHint="@color/aluminum"
+                            app:layout_widthPercent="15%" />
+
+                    </com.zhy.android.percent.support.PercentLinearLayout>
+
+                    <!--是否办卡-->
+                    <com.zhy.android.percent.support.PercentLinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="@dimen/text_view_height"
+                        android:layout_marginTop="10dp"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            style="@style/customerShowTextViewStyle"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="是否办卡："
+                            android:textSize="@dimen/text_size_22"
+                            app:layout_widthPercent="20%" />
+
+                        <com.zhy.android.percent.support.PercentLinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:gravity="center_vertical"
+                            app:layout_widthPercent="20%">
+
+                            <CheckBox
+                                android:id="@+id/sp_card_yes"
+                                style="@style/select_style"
+                                android:tag="是"
+                                android:text="是" />
+
+                            <CheckBox
+                                android:id="@+id/sp_card_no"
+                                style="@style/select_style"
+                                android:tag="否"
+                                android:text="否" />
+
+                        </com.zhy.android.percent.support.PercentLinearLayout>
+
+
+                    </com.zhy.android.percent.support.PercentLinearLayout>
+
+
+                    <!--已用次数-->           <!--总次数-->
+                    <com.zhy.android.percent.support.PercentLinearLayout
+                        android:id="@+id/count_layout"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/shape_dialogchoose_content"
+                        android:orientation="horizontal">
+
+                        <com.zhy.android.percent.support.PercentLinearLayout
+                            android:id="@+id/sp_count_layout"
+                            android:layout_width="wrap_content"
+                            android:visibility="gone"
+                            android:layout_height="@dimen/text_view_height"
+                            android:layout_marginTop="10dp"
+                            android:gravity="center_vertical"
+                            android:orientation="horizontal">
+
+
+                            <TextView
+                                style="@style/customerShowTextViewStyle"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="已用次数："
+
+                                android:textSize="@dimen/text_size_22"
+                                app:layout_widthPercent="20%" />
+
+                            <ImageView
+                                android:id="@+id/reduce_img"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:background="@drawable/img_left_lelector"
+
+                                app:layout_widthPercent="5%" />
+
+                            <EditText
+                                android:id="@+id/ed_use_count"
+                                style="@style/SmallTextStyle"
+                                android:layout_width="100dp"
+                                android:layout_height="wrap_content"
+                                android:hint="@string/used_count_string"
+                                android:inputType="number"
+                                android:singleLine="true"
+
+                                android:textColorHint="@color/aluminum"
+                                app:layout_widthPercent="10%" />
+
+                            <ImageView
+                                android:id="@+id/plus_img"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:background="@drawable/img_right_lelector"
+
+                                app:layout_widthPercent="5%" />
+
+                            <TextView
+                                style="@style/customerShowTextViewStyle"
+                                android:layout_width="177dp"
+                                android:layout_height="wrap_content"
+                                android:text="总    次     数："
+                                android:textSize="@dimen/text_size_22"
+                                app:layout_marginLeftPercent="5%"
+                                app:layout_widthPercent="16%" />
+
+                            <EditText
+                                android:id="@+id/t_count"
+                                style="@style/SmallTextStyle"
+                                android:layout_width="100dp"
+                                android:layout_height="wrap_content"
+                                android:hint="@string/total_count"
+                                android:inputType="number"
+                                android:singleLine="true"
+                                android:textColorHint="@color/aluminum"
+                                app:layout_widthPercent="15%" />
+                        </com.zhy.android.percent.support.PercentLinearLayout>
+
+
+                    </com.zhy.android.percent.support.PercentLinearLayout>
+
+
+                    <!--是否分期-->
+                    <com.zhy.android.percent.support.PercentLinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="@dimen/text_view_height"
+                        android:layout_marginTop="10dp"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            style="@style/customerShowTextViewStyle"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="是否分期："
+                            android:textSize="@dimen/text_size_22"
+                            app:layout_widthPercent="20%" />
+
+                        <com.zhy.android.percent.support.PercentLinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:gravity="center_vertical"
+                            app:layout_widthPercent="20%">
+
+                            <CheckBox
+                                android:id="@+id/sp_stages_yes"
+                                style="@style/select_style"
+                                android:tag="是"
+                                android:text="是" />
+
+                            <CheckBox
+                                android:id="@+id/sp_stages_no"
+                                style="@style/select_style"
+                                android:tag="否"
+                                android:text="否" />
+
+                        </com.zhy.android.percent.support.PercentLinearLayout>
+
+
+                    </com.zhy.android.percent.support.PercentLinearLayout>
+
+                    <!--缴费金额-->
+                    <com.zhy.android.percent.support.PercentLinearLayout
+
+                        android:layout_width="wrap_content"
+                        android:layout_height="@dimen/text_view_height"
+                        android:layout_marginTop="10dp"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
+
+
+                        <TextView
+                            style="@style/customerShowTextViewStyle"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="缴费金额："
+                            android:textSize="@dimen/text_size_22"
+                            app:layout_widthPercent="20%" />
+
+
+                        <EditText
+                            android:id="@+id/stages_money"
+                            style="@style/SmallTextStyle"
+                            android:layout_height="wrap_content"
+                            android:hint="@string/payment_amount"
+                            android:imeOptions="actionDone"
+                            android:inputType="number"
+                            android:singleLine="true"
+                            android:text="2888"
+                            android:textColor="@color/primary_darker"
+                            android:textColorHint="@color/aluminum"
+                            app:layout_widthPercent="20%" />
+
+                    </com.zhy.android.percent.support.PercentLinearLayout>
+
+                    <!--分期剩余金额-->
+                    <com.zhy.android.percent.support.PercentLinearLayout
+                        android:id="@+id/stages_surplus_money_layout"
+                        android:layout_width="wrap_content"
+                        android:layout_height="@dimen/text_view_height"
+                        android:layout_marginTop="10dp"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal"
+                        android:visibility="gone">
+
+                        <TextView
+                            style="@style/customerShowTextViewStyle"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="分期剩余金额："
+                            android:textSize="@dimen/text_size_22"
+                            app:layout_widthPercent="20%" />
+
+
+                        <TextView
+                            android:id="@+id/stages_surplus_money_txt"
+                            style="@style/SmallTextStyle"
+                            android:layout_height="wrap_content"
+                            android:hint="@string/payment_amount_surplus"
+                            android:inputType="number"
+                            android:singleLine="true"
+                            android:text="0"
+                            android:textColor="@color/primary_darker"
+                            android:textColorHint="@color/aluminum"
+                            app:layout_widthPercent="20%" />
+                    </com.zhy.android.percent.support.PercentLinearLayout>
+
+                    <!--办理时间-->
+                    <com.zhy.android.percent.support.PercentLinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="@dimen/text_view_height"
+                        android:layout_marginTop="10dp"
+                        android:background="@drawable/shape_dialogchoose_content"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            style="@style/customerShowTextViewStyle"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="办理时间："
+                            android:textSize="@dimen/text_size_22"
+                            app:layout_widthPercent="20%" />
+
+                        <com.zhy.android.percent.support.PercentLinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="30dp"
+
+                            android:background="@drawable/customer_text_frame"
+                            android:orientation="horizontal"
+                            app:layout_widthPercent="34%">
+
+
+                            <TextView
+                                android:id="@+id/sp_time"
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:gravity="center"
+                                android:hint="@string/start_time_string"
+                                android:singleLine="true"
+                                android:textColor="@color/customer_text"
+                                android:textColorHint="@color/aluminum"
+                                android:textSize="@dimen/text_size_20"
+                                app:layout_widthPercent="90%" />
+
+                            <ImageView
+
+                                android:id="@+id/sp_start_img"
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:src="@mipmap/time" />
+
+                        </com.zhy.android.percent.support.PercentLinearLayout>
+
+                    </com.zhy.android.percent.support.PercentLinearLayout>
+
+                    <!--到期时间-->
+                    <com.zhy.android.percent.support.PercentLinearLayout
+                        android:id="@+id/end_time_layout"
+                        android:layout_width="wrap_content"
+                        android:layout_height="@dimen/text_view_height"
+                        android:layout_marginTop="10dp"
+                        android:orientation="horizontal"
+                        android:visibility="gone">
+
+
+                        <TextView
+                            style="@style/customerShowTextViewStyle"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="到期时间："
+                            android:textSize="@dimen/text_size_22"
+                            app:layout_widthPercent="20%" />
+
+                        <com.zhy.android.percent.support.PercentLinearLayout
+                            android:layout_width="250dp"
+                            android:layout_height="30dp"
+                            android:background="@drawable/customer_text_frame"
+                            android:orientation="horizontal"
+                            app:layout_widthPercent="34%">
+
+                            <TextView
+                                android:id="@+id/sp_end_time"
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:gravity="center"
+                                android:hint="@string/start_end_string"
+                                android:singleLine="true"
+                                android:textColor="@color/customer_text"
+                                android:textColorHint="@color/aluminum"
+                                android:textSize="@dimen/text_size_20"
+                                app:layout_widthPercent="90%" />
+
+                            <ImageView
+
+                                android:id="@+id/sp_end_img"
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:src="@mipmap/time" />
+
+                        </com.zhy.android.percent.support.PercentLinearLayout>
+
+
+                    </com.zhy.android.percent.support.PercentLinearLayout>
+                    <!--到期时间-->
+                    <com.zhy.android.percent.support.PercentLinearLayout
+                        android:id="@+id/sign_layout"
+                        android:layout_width="wrap_content"
+                        android:layout_height="@dimen/text_view_height"
+                        android:layout_marginTop="10dp"
+                        android:orientation="horizontal">
+
+
+                        <TextView
+                            style="@style/customerShowTextViewStyle"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="是否签名："
+                            android:textSize="@dimen/text_size_22"
+                            app:layout_widthPercent="20%" />
+
+                        <com.zhy.android.percent.support.PercentLinearLayout
+                            android:layout_width="250dp"
+                            android:layout_height="30dp"
+                            android:orientation="horizontal"
+                            app:layout_widthPercent="34%">
+
+                            <TextView
+                                android:id="@+id/sign_text"
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:gravity="center"
+                                android:singleLine="true"
+                                android:text="已签名"
+                                android:textColor="@color/customer_text"
+                                android:textSize="@dimen/text_size_20" />
+
+                        </com.zhy.android.percent.support.PercentLinearLayout>
+
+
+                    </com.zhy.android.percent.support.PercentLinearLayout>
+                    <!--提示-->
+                    <com.zhy.android.percent.support.PercentLinearLayout
+                        android:id="@+id/tip_layout"
+                        android:layout_width="wrap_content"
+                        android:layout_height="@dimen/text_view_height"
+                        android:layout_marginTop="10dp"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/tip"
+                            style="@style/customerShowTextViewStyle"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="注:不勾选办卡和年卡默认为单次！"
+                            android:textColor="@color/primary_darker"
+                            android:textSize="@dimen/text_size_22" />
+
+                    </com.zhy.android.percent.support.PercentLinearLayout>
+
+                    <!--提示-->
+                    <com.zhy.android.percent.support.PercentLinearLayout
+                        android:id="@+id/tip_layout2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="@dimen/text_view_height"
+                        android:visibility="gone"
+                        android:layout_marginTop="10dp"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/tip2"
+                            style="@style/customerShowTextViewStyle"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="注:勾选分期列表将会是红色"
+                            android:textColor="@color/primary_darker"
+                            android:textSize="@dimen/text_size_22" />
+
+                    </com.zhy.android.percent.support.PercentLinearLayout>
+
+
+                </com.zhy.android.percent.support.PercentLinearLayout>
+
+            </com.zhy.android.percent.support.PercentLinearLayout>
+
+            <com.zhy.android.percent.support.PercentLinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="30dp"
+                android:layout_marginBottom="30dp"
+                android:background="@drawable/shape_dialogchoose_content"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/btn_cancel"
+                    android:layout_width="@dimen/btn_view_width"
+                    android:layout_height="@dimen/btn_view_height"
+                    android:layout_alignParentLeft="true"
+                    android:background="@drawable/btn_cancel_radius_shape"
+                    android:clickable="true"
+                    android:gravity="center"
+                    android:text="取  消"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/text_size_22" />
+
+
+                <TextView
+                    android:id="@+id/btn_yes"
+                    android:layout_width="@dimen/btn_view_width"
+                    android:layout_height="@dimen/btn_view_height"
+                    android:layout_alignParentRight="true"
+                    android:background="@drawable/btn_radius_shape"
+                    android:clickable="true"
+                    android:gravity="center"
+                    android:text="完 成"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/text_size_22"
+                    app:layout_marginLeftPercent="20%" />
+
+
+            </com.zhy.android.percent.support.PercentLinearLayout>
+
+
+        </com.zhy.android.percent.support.PercentLinearLayout>
+    </ScrollView>
+</com.zhy.android.percent.support.PercentLinearLayout>
+
+
+    <!--缴费金额--><!--<com.zhy.android.percent.support.PercentLinearLayout--><!--android:layout_width="wrap_content"--><!--android:layout_height="wrap_content"--><!--android:layout_marginTop="10dp"--><!--android:background="@drawable/shape_dialogchoose_content"--><!--android:orientation="horizontal">-->
+
+
+    <!--<TextView--><!--android:id="@+id/sp_money"--><!--style="@style/customerShowTextViewStyle"--><!--android:layout_width="wrap_content"--><!--android:layout_height="wrap_content"--><!--android:text="缴费金额"--><!--android:textSize="24sp"--><!--app:layout_widthPercent="15%" />-->
+
+    <!--<EditText--><!--android:id="@+id/ed_money"--><!--style="@style/SmallTextStyle"--><!--android:layout_height="wrap_content"--><!--android:inputType="number"--><!--android:text="1522154"--><!--android:textColor="@color/primary_darker"--><!--app:layout_widthPercent="10%" />-->
+
+    <!--</com.zhy.android.percent.support.PercentLinearLayout>-->
+
+
+

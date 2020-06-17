@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#ffffff"
+    android:clickable="true">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:textColor="@color/accent"
+        android:text="添加一些提示  有待完善"
+        tools:ignore="MissingConstraints" />
+
+    <LinearLayout
+        android:id="@+id/cancel_ll"
+        android:layout_width="match_parent"
+        android:layout_height="42dp"
+        android:gravity="center"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <View
+            android:id="@+id/common_horizontal_line"
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            android:layout_above="@+id/navigation_ll"
+            android:background="#f7f7f7" />
+
+        <ImageView
+            android:id="@+id/cancel_iv"
+            android:layout_width="35dp"
+            android:layout_height="match_parent"
+            android:scaleType="centerInside"
+            android:src="@mipmap/cancel" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/icon_group"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toTopOf="@+id/cancel_ll">
+
+    </LinearLayout>
+</android.support.constraint.ConstraintLayout>

@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.zhy.android.percent.support.PercentLinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical"
+    tools:context=".activity.CustomerActivity">
+
+    <com.zhy.android.percent.support.PercentRelativeLayout
+        android:id="@+id/record_toolbar"
+        style="@style/ToolBarTitleStyle"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:background="@color/custom"
+        android:gravity="center_vertical">
+
+        <TextView
+            android:id="@+id/back"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_alignParentLeft="true"
+            style="@style/ToolBarTitleStyle"
+            android:background="@drawable/selector_btn_bg"
+            android:gravity="center"
+            android:paddingLeft="20dp"
+            android:paddingRight="5dp"
+            android:text="返 回"
+      />
+
+
+        <TextView
+            android:id="@+id/title_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:gravity="center"
+            style="@style/ToolBarTitleStyle"
+            android:text="客户信息输入"
+             />
+
+        <TextView
+            android:id="@+id/complete"
+            style="@style/ToolBarTitleStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_alignParentRight="true"
+            android:background="@drawable/selector_btn_bg"
+            android:gravity="center"
+            android:paddingLeft="5dp"
+
+            android:paddingRight="20dp"
+            android:text="完 成"
+         />
+    </com.zhy.android.percent.support.PercentRelativeLayout>
+
+
+    <include
+        layout="@layout/layout1"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+
+</com.zhy.android.percent.support.PercentLinearLayout>

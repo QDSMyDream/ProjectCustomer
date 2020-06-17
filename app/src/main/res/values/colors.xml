@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorAccent">#FF4081</color>
+    <color name="theme_background">#149078</color>
+    <color name="alert">#CC0000</color>
+    <color name="confirm">#FF8800</color>
+    <color name="info">#669900</color>
+    <color name="custom">#87CEFA</color>
+
+    <color name="longin">#1E90FF</color>
+
+    <color name="primary">#FA8072</color>
+    <color name="primary_dark">#FF7256</color>
+    <color name="primary_darker">#FF6347</color>
+    <color name="accent">#FF0000</color>
+    <color name="black">#000000</color>
+    <color name="jet">#222222</color>
+    <color name="oil">#333333</color>
+    <color name="monsoon">#777777</color>
+    <color name="jumbo">#888888</color>
+    <color name="aluminum">#999999</color>
+    <color name="base">#AAAAAA</color>
+    <color name="iron">#CCCCCC</color>
+    <color name="white">#FFFFFF</color>
+    <color name="setingbg">#FF9800</color>
+    <color name="text_board">#57daf6</color>
+    <color name="pink">#FF69B4</color>
+    <color name="gold">#E2BE72</color>
+    <color name="white8A">#8AFFFFFF</color>
+    <color name="white7A">#7AFFFFFF</color>
+    <color name="blackNormal">#3C3C3C</color>
+    <color name="set_item_press_color">#F9F9F9</color>
+    <color name="textColorNormal">#333333</color>
+    <color name="textColorLight">#999999</color>
+    <color name="white68">#68FFFFFF</color>
+    <color name="driverLine">#EEEEEE</color>
+    <color name="recycle_text_color">#55000000</color>
+    <color name="customer_text">#666666</color>
+    <color name="no_sign_text_color">#FFCE42</color>
+    <color name="blue">#ff33b5e5</color>
+    <color name="popwin_bg">#f2f7fa</color>
+
+
+    <!--左边背景颜色-->
+    <color name="beauty_left_bg">#262835</color>
+    <!--左边图标颜色#8A8DA0-->
+    <color name="beauty_img_bg">#8A8DA0</color>
+    <!--左边字体颜色-->
+    <color name="beauty_left_font_bg">#8A8DA0</color>
+
+    <!--左边选中背景颜色-->
+    <color name="beauty_left_select_bg">#414457</color>
+    <!--左边选中图标颜色-->
+    <color name="beauty_img_select_bg">#FDFFFE</color>
+    <!--左边选中字体颜色-->
+    <color name="beauty_left_font_select_bg">#FCFFFF</color>
+
+    <!--菜单背景颜色-->
+    <color name="beauty_menu_top_bg">#FFFFFF</color>
+    <!--整体背景颜色-->
+    <color name="beauty_bg">#F5F5F7</color>
+    <!--整体字体颜色-->
+    <color name="beauty_font_bg">#6D6B69</color>
+
+    <!--添加客户红色-->
+    <color name="beauty_add_custmer_bg">#AC5E70</color>
+    <!--一级标题字体颜色-->
+    <color name="beauty_one_title_bg">#2F2F2A</color>
+    <!--消费紫色-->
+    <color name="beauty_consumption_bg">#827EFF</color>
+
+    <!--二级菜单颜色-->
+    <color name="beauty_two_menu_bg">#36363F</color>
+    <!--菜单界面轮播字体颜色-->
+    <color name="beauty_rotation_font_bg">#71716F</color>
+
+    <!--内界面-->
+    <!--大标题-->
+    <color name="beauty_large_font_bg">#2F2F2A</color>
+    <!--二级标题-->
+    <color name="beauty_two_title_bg">#C2C2C2</color>
+    <!--左边菜单选中背景颜色-->
+    <color name="beauty_within_left_select_bg">#E0D0D3</color>
+    <!--左边菜单选中字体颜色-->
+    <color name="beauty_within_left_select_font_bg">#BE5269</color>
+
+    <!--选择日期hint提示颜色-->
+    <color name="beauty_time_hint_font_bg">#7190C4</color>
+
+    <!--输入框hint提示颜色-->
+    <color name="beauty_edit_hint_font_bg">#737373</color>
+
+    <!--开卡图标字体颜色-->
+    <color name="beauty_card_img_font_bg">#FAFAFA</color>
+
+    <!--开卡图标 渐变色 #12AF94到#129CB8渐变 -->
+    <color name="beauty_card_img_left_start_bg">#12AF94</color>
+
+    <!--开卡图标 渐变色 #12AF94到#129CB8渐变 -->
+    <color name="beauty_card_img_right_end_bg">#129CB8</color>
+
+    <!--开卡图标 禁止使用背景颜色#E5E5E5-->
+    <color name="beauty_card_not_select_bg">#E5E5E5</color>
+
+    <!--图标按下颜色-->
+    <color name="beauty_img_press_bg">#DDDDDD</color>
+    <!--字体颜色-->
+    <color name="beauty_text_color">#5F5E63</color>
+
+    <!--内部左侧菜单标题颜色-->
+    <color name="beauty_within_title_color">#C9C9C9</color>
+    <!--内部左侧选中字体颜色-->
+    <color name="beauty_within_select_color">#D87187</color>
+    <!--内部左侧选中颜色-->
+    <color name="beauty_within_select_font_color">#FFEDF1</color>
+    <!--内部左侧未选中颜色-->
+    <color name="beauty_within_font_color">#303032</color>
+
+    <!--内部线-->
+    <color name="beauty_within_lines_color">#C1C1C1</color>
+
+    <!--开卡 卡包默认背景颜色-->
+    <color name="beauty_within_gridview_item_bg">#EBEBEB</color>
+
+
+</resources>
