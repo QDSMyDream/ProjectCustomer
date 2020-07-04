@@ -8,6 +8,8 @@ import android.view.ViewGroup;
 
 import com.mnn.mydream.cosmetology.R;
 
+import me.yokeyword.fragmentation.SupportFragment;
+
 
 /**
  * 创建人 :MyDream
@@ -15,10 +17,19 @@ import com.mnn.mydream.cosmetology.R;
  * 类描述：JYGKFragment 经营概况
  */
 
-public class JYGKFragment extends Fragment {
+public class JYGKFragment extends SupportFragment {
 
     private View view;
+    public static JYGKFragment newInstance() {
 
+
+        Bundle args = new Bundle();
+
+        JYGKFragment fragment = new JYGKFragment();
+        fragment.setArguments(args);
+        return fragment;
+
+    }
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         if (view == null) {

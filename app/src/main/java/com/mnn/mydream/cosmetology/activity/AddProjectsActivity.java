@@ -190,11 +190,13 @@ public class AddProjectsActivity extends AppCompatActivity {
     private long signLong = 0;
     //头像地址
     String picPath = "";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_projects);
         ButterKnife.bind(this);
+
         customerAndProject = (CustomerAndProject) getIntent().getSerializableExtra("customerAndProject");
         customer = customerAndProject.getCustomer();
 
@@ -209,9 +211,8 @@ public class AddProjectsActivity extends AppCompatActivity {
             femle.setChecked(true);
         }
 
-
         //加载图片
-        ImageLoader.displayImageView(this,customer.getCustomer_tx(),imgPhoto);
+        ImageLoader.displayImageView(this, customer.getCustomer_tx(), imgPhoto);
 
         birTxt.setText(customer.getBirthday());
         age.setText(customer.getAge() + "");
@@ -300,7 +301,6 @@ public class AddProjectsActivity extends AppCompatActivity {
                 .setYesOnClick(clickListenerYes);
 
         defaultSelectProjects();//查询所有项目表
-
 
         //团购项目表
 
@@ -407,7 +407,7 @@ public class AddProjectsActivity extends AppCompatActivity {
 
     }
 
-    @OnClick({R.id.back, R.id.btn_cancel, R.id.btn_yes, R.id.bir_img, R.id.add_projects, R.id.complete, R.id.male, R.id.femle,R.id.img_photo})
+    @OnClick({R.id.back, R.id.btn_cancel, R.id.btn_yes, R.id.bir_img, R.id.add_projects, R.id.complete, R.id.male, R.id.femle, R.id.img_photo})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.back:
@@ -416,7 +416,6 @@ public class AddProjectsActivity extends AppCompatActivity {
             case R.id.img_photo:
                 showPickerDialog();
                 break;
-
 
 
             case R.id.btn_cancel:
@@ -1138,7 +1137,6 @@ public class AddProjectsActivity extends AppCompatActivity {
     }
 
 
-
     /**
      * 显示对话框
      */
@@ -1277,19 +1275,18 @@ public class AddProjectsActivity extends AppCompatActivity {
     }
 
 
-
-    private void uoloadImg(String f){
+    private void uoloadImg(String f) {
 
         BmobFile bmobFile = new BmobFile(new File(f));
         bmobFile.uploadblock(new UploadFileListener() {
 
             @Override
             public void done(BmobException e) {
-                if(e==null){
-                    picPath=bmobFile.getFileUrl();
-                    Log.e(TAG, "done: 上传成功"+bmobFile.getFileUrl() );
-                }else{
-                    Log.e(TAG,"上传文件失败：" + e.getMessage());
+                if (e == null) {
+                    picPath = bmobFile.getFileUrl();
+                    Log.e(TAG, "done: 上传成功" + bmobFile.getFileUrl());
+                } else {
+                    Log.e(TAG, "上传文件失败：" + e.getMessage());
                 }
 
             }
@@ -1299,14 +1296,10 @@ public class AddProjectsActivity extends AppCompatActivity {
                 // 返回的上传进度（百分比）
 
 
-
-
             }
         });
 
     }
-
-
 
 
 }

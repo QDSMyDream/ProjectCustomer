@@ -39,6 +39,8 @@ import cn.bmob.v3.BmobQuery;
 import cn.bmob.v3.datatype.BmobDate;
 import cn.bmob.v3.exception.BmobException;
 import cn.bmob.v3.listener.FindListener;
+import me.yokeyword.fragmentation.ISupportFragment;
+import me.yokeyword.fragmentation.SupportFragment;
 
 
 /**
@@ -46,7 +48,7 @@ import cn.bmob.v3.listener.FindListener;
  * 创建时间：2020/6/11 18:18
  * 类描述：GZTFragment  工作台
  */
-public class GZTFragment extends Fragment {
+public class GZTFragment extends SupportFragment {
 
     @BindView(R.id.vf_text)
     ViewFlipper vfText;
@@ -170,6 +172,17 @@ public class GZTFragment extends Fragment {
     private View view;
     private List<String> titleStrings = new ArrayList<>();//头部滚动字符串
 
+    public static GZTFragment newInstance() {
+
+
+        Bundle args = new Bundle();
+
+        GZTFragment fragment = new GZTFragment();
+        fragment.setArguments(args);
+        return fragment;
+
+    }
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -219,7 +232,6 @@ public class GZTFragment extends Fragment {
                     for (BeautyTitleBean beautyTitleBean : object) {
                         titleStrings.add(beautyTitleBean.getTitleString());
                     }
-
 
                     refreshHandler.sendEmptyMessage(1);
 

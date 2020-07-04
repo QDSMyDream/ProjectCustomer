@@ -75,7 +75,6 @@
     <color name="beauty_two_menu_bg">#36363F</color>
     <!--菜单界面轮播字体颜色-->
     <color name="beauty_rotation_font_bg">#71716F</color>
-
     <!--内界面-->
     <!--大标题-->
     <color name="beauty_large_font_bg">#2F2F2A</color>
@@ -106,6 +105,7 @@
 
     <!--图标按下颜色-->
     <color name="beauty_img_press_bg">#DDDDDD</color>
+
     <!--字体颜色-->
     <color name="beauty_text_color">#5F5E63</color>
 
@@ -123,6 +123,15 @@
 
     <!--开卡 卡包默认背景颜色-->
     <color name="beauty_within_gridview_item_bg">#EBEBEB</color>
+
+    <!--开卡 卡包默认背景颜色-->
+    <color name="beauty_within_select_time">#6D8BAF</color>
+
+    <!--红色背景颜色-->
+    <color name="beauty_within_btn_red_bg">#E54063</color>
+
+    <!--未选中背景颜色-->
+    <color name="beauty_within_not_select_bg">#EEEEF0</color>
 
 
 </resources>

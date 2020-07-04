@@ -13,7 +13,6 @@ buildscript {
         classpath 'com.github.dcendents:android-maven-gradle-plugin:1.4.1'
         classpath 'org.kt3k.gradle.plugin:coveralls-gradle-plugin:2.4.0'
         classpath 'com.mob.sdk:MobSDK:+'
-        classpath 'com.android.tools.build:gradle:1.2.3'
         classpath 'org.greenrobot:greendao-gradle-plugin:3.2.2' // 添加插件 更好支持GreenDao
         classpath "com.tencent.bugly:tinker-support:1.0.9"
     }
@@ -33,4 +32,9 @@ allprojects {
 
 task clean(type: Delete) {
     delete rootProject.buildDir
+}
+ext {
+    compileSdkVersion = 28
+    minSdkVersion = 22
+    targetSdkVersion = compileSdkVersion
 }

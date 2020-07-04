@@ -478,7 +478,7 @@
                 android:layout_height="match_parent"
                 android:layout_marginTop="3dp"
                 android:background="@drawable/btn_menu_radius_shape"
-
+android:visibility="gone"
                 android:gravity="center|left"
                 app:layout_marginLeftPercent="2%"
                 app:layout_widthPercent="23.5%">

@@ -1,0 +1,786 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.zhy.android.percent.support.PercentLinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/menu_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/beauty_bg"
+    android:orientation="horizontal">
+
+    <com.zhy.android.percent.support.PercentLinearLayout
+        android:id="@+id/menu_left_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        app:layout_widthPercent="54%">
+
+        <com.xujiaji.happybubble.BubbleLayout
+            android:id="@+id/bubbleLayout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layout_heightPercent="27%"
+            app:lookAt="right"
+            app:lookLength="10dp">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <LinearLayout
+                    android:id="@+id/layout1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:text="来源"
+                        android:textColor="@color/beauty_within_lines_color"
+                        android:textSize="@dimen/text_size_16" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:text="累计核销"
+                        android:textColor="@color/beauty_within_lines_color"
+                        android:textSize="@dimen/text_size_16" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:text="成为会员时间"
+                        android:textColor="@color/beauty_within_lines_color"
+                        android:textSize="@dimen/text_size_16"
+
+                        />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:text="累计现金消费（元）"
+                        android:textColor="@color/beauty_within_lines_color"
+                        android:textSize="@dimen/text_size_16" />
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/layout1_text"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/layout1"
+                    android:layout_marginTop="5dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/layout1_tv1"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:text="-"
+                        android:textColor="@color/beauty_text_color"
+                        android:textSize="@dimen/text_size_16"
+
+                        />
+
+                    <TextView
+                        android:id="@+id/layout1_tv2"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:gravity="center"
+
+                        android:text="82次"
+                        android:textColor="@color/beauty_text_color"
+                        android:textSize="@dimen/text_size_16"
+
+                        />
+
+                    <TextView
+                        android:id="@+id/layout1_tv4"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:text="2020-05-06"
+                        android:textColor="@color/beauty_text_color"
+                        android:textSize="@dimen/text_size_16" />
+
+                    <TextView
+                        android:id="@+id/layout1_tv3"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:text="163525.0"
+                        android:textColor="@color/beauty_text_color"
+                        android:textSize="@dimen/text_size_16" />
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/layout2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/layout1_text"
+                    android:layout_marginTop="5dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:text="所属医疗师"
+                        android:textColor="@color/beauty_within_lines_color"
+                        android:textSize="@dimen/text_size_16" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:text="所属技师"
+                        android:textColor="@color/beauty_within_lines_color"
+                        android:textSize="@dimen/text_size_16" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:text="上次消费时间"
+                        android:textColor="@color/beauty_within_lines_color"
+                        android:textSize="@dimen/text_size_16" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:text="上次消费项目"
+                        android:textColor="@color/beauty_within_lines_color"
+                        android:textSize="@dimen/text_size_16" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/layout2_text"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/layout2"
+                    android:layout_marginTop="3dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/layout2_tv1"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:text="-"
+                        android:textColor="@color/beauty_text_color"
+                        android:textSize="@dimen/text_size_16" />
+
+                    <TextView
+                        android:id="@+id/layout2_tv2"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:text="-"
+                        android:textColor="@color/beauty_text_color"
+                        android:textSize="@dimen/text_size_16"
+
+                        />
+
+                    <TextView
+                        android:id="@+id/layout2_tv3"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:text="2020-05-02"
+                        android:textColor="@color/beauty_text_color"
+                        android:textSize="@dimen/text_size_16" />
+
+                    <TextView
+                        android:id="@+id/layout2_tv4"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:text="默认规则项目"
+                        android:textColor="@color/beauty_text_color"
+                        android:textSize="@dimen/text_size_16" />
+
+                </LinearLayout>
+
+
+                <TextView
+                    android:id="@+id/tv_lines"
+                    android:layout_width="match_parent"
+                    android:layout_height="1sp"
+                    android:layout_below="@id/layout2_text"
+                    android:layout_marginTop="10dp"
+                    android:background="@color/beauty_within_lines_color" />
+
+                <LinearLayout
+                    android:id="@+id/layout3"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/tv_lines"
+                    android:layout_marginTop="10dp"
+                    android:gravity="center_horizontal"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_below="@id/tv_lines"
+                        android:layout_weight="1"
+                        android:gravity="center_vertical"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:text="储蓄卡余额（元）"
+                            android:textColor="@color/beauty_text_color"
+                            android:textSize="@dimen/text_size_16" />
+
+                        <TextView
+                            android:id="@+id/layout3_tv1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:text="@string/beauty_card_few"
+                            android:textColor="@color/beauty_text_color"
+                            android:textSize="@dimen/text_size_16"
+
+                            />
+
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_below="@id/tv_lines"
+                        android:layout_weight="1"
+                        android:gravity="center_vertical"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:text="赠送金（元）"
+                            android:textColor="@color/beauty_text_color"
+                            android:textSize="@dimen/text_size_16" />
+
+                        <TextView
+                            android:id="@+id/layout3_tv2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:text="0"
+                            android:textColor="@color/beauty_text_color"
+                            android:textSize="@dimen/text_size_16"
+
+                            />
+
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_below="@id/tv_lines"
+                        android:layout_weight="1"
+                        android:gravity="center_vertical"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:text="项目卡余额（元）"
+                            android:textColor="@color/beauty_text_color"
+                            android:textSize="@dimen/text_size_16" />
+
+                        <TextView
+                            android:id="@+id/layout3_tv3"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:text="@string/beauty_card_few"
+                            android:textColor="@color/beauty_text_color"
+                            android:textSize="@dimen/text_size_16"
+
+                            />
+
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_below="@id/tv_lines"
+                        android:layout_weight="1"
+                        android:gravity="center_vertical"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:text="待服务项目"
+                            android:textColor="@color/beauty_text_color"
+                            android:textSize="@dimen/text_size_16" />
+
+                        <TextView
+                            android:id="@+id/layout3_tv4"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:text="11"
+                            android:textColor="@color/beauty_text_color"
+                            android:textSize="@dimen/text_size_16"
+
+                            />
+
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_below="@id/tv_lines"
+                        android:layout_weight="1"
+                        android:gravity="center_vertical"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:text="可用券"
+                            android:textColor="@color/beauty_text_color"
+                            android:textSize="@dimen/text_size_16"
+
+                            />
+
+                        <TextView
+                            android:id="@+id/layout3_tv5"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:text="9"
+                            android:textColor="@color/beauty_text_color"
+                            android:textSize="@dimen/text_size_16" />
+
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_below="@id/tv_lines"
+                        android:layout_weight="1"
+                        android:gravity="center_vertical"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:text="欠款（元）"
+                            android:textColor="@color/beauty_text_color"
+                            android:textSize="@dimen/text_size_16"
+
+                            />
+
+                        <TextView
+                            android:id="@+id/layout3_tv6"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:text="128"
+                            android:textColor="@color/beauty_add_custmer_bg"
+                            android:textSize="@dimen/text_size_16" />
+                    </LinearLayout>
+
+
+                </LinearLayout>
+
+
+            </RelativeLayout>
+
+        </com.xujiaji.happybubble.BubbleLayout>
+
+        <TextView
+            android:id="@+id/text_cards"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"
+            android:text="@string/beauty_card_kh"
+            android:textSize="@dimen/text_size_16" />
+
+
+        <GridView
+            android:id="@+id/gridview"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="10dp"
+            android:horizontalSpacing="10dp"
+            android:numColumns="2"
+            android:verticalSpacing="10dp"></GridView>
+
+
+    </com.zhy.android.percent.support.PercentLinearLayout>
+
+    <com.zhy.android.percent.support.PercentLinearLayout
+
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white"
+        android:orientation="vertical"
+        app:layout_paddingLeftPercent="1%"
+        app:layout_paddingRightPercent="1%"
+        app:layout_widthPercent="46%">
+
+        <com.zhy.android.percent.support.PercentLinearLayout
+            android:id="@+id/select_kh_layout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="5dp"
+            android:background="@drawable/beauty_within_text_frame"
+            android:orientation="horizontal"
+            app:layout_heightPercent="9.5%"
+            app:layout_marginLeftPercent="1%"
+            app:layout_marginRightPercent="1%">
+
+            <AutoCompleteTextView
+                android:id="@+id/ed_select"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="3dp"
+                android:background="@color/white"
+                android:hint="请输入客户手机或姓名"
+                android:imeOptions="actionDone"
+                android:maxLength="11"
+                android:maxLines="1"
+                android:paddingLeft="20dp"
+                android:singleLine="true"
+                android:textColor="@color/beauty_text_color"
+                android:textColorHint="@color/beauty_within_lines_color"
+                android:textSize="@dimen/text_size_18"
+                app:layout_widthPercent="84%" />
+
+            <TextView
+                android:id="@+id/btn_select"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:text="查询客户"
+                android:textColor="@color/custom"
+                android:textSize="@dimen/text_size_16" />
+
+
+        </com.zhy.android.percent.support.PercentLinearLayout>
+
+        <com.zhy.android.percent.support.PercentLinearLayout
+            android:id="@+id/khxq_layout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="3dp"
+            android:background="@drawable/beauty_within_text_frame"
+            android:orientation="horizontal"
+            app:layout_heightPercent="9.5%"
+            app:layout_marginLeftPercent="1%"
+            app:layout_marginRightPercent="1%">
+
+            <com.zhy.android.percent.support.PercentRelativeLayout
+                android:id="@+id/user_info_layout"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_alignParentRight="true"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+
+                <com.mnn.mydream.cosmetology.view.CircleImageView
+                    android:id="@+id/kh_tx"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="5dp"
+                    android:padding="2dp"
+                    android:src="@mipmap/def_photo" />
+
+                <com.zhy.android.percent.support.PercentLinearLayout
+                    android:id="@+id/khxq_left_layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_toRightOf="@id/kh_tx"
+                    android:gravity="center_vertical"
+                    android:orientation="vertical"
+                    app:layout_widthPercent="39%">
+
+                    <com.zhy.android.percent.support.PercentLinearLayout
+                        android:id="@+id/title_username_layout"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="5dp"
+                        android:orientation="horizontal"
+                        app:layout_heightPercent="50%">
+
+                        <TextView
+                            android:id="@+id/kh_name"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:gravity="center_vertical"
+                            android:maxLength="9"
+                            android:maxLines="1"
+                            android:textColor="@color/beauty_text_color"
+                            android:textSize="@dimen/text_size_18" />
+
+                        <ImageView
+                            android:id="@+id/kh_sex"
+                            android:layout_width="25dp"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:layout_marginLeft="10dp"
+                            android:src="@mipmap/nan" />
+
+                    </com.zhy.android.percent.support.PercentLinearLayout>
+
+
+                    <TextView
+                        android:id="@+id/kh_phone"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="5dp"
+                        android:gravity="center_vertical"
+                        android:textColor="@color/beauty_text_color"
+                        android:textSize="@dimen/text_size_18"
+                        app:layout_heightPercent="50%" />
+
+                </com.zhy.android.percent.support.PercentLinearLayout>
+
+
+                <com.zhy.android.percent.support.PercentLinearLayout
+                    android:id="@+id/khxq_right_layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginLeft="4dp"
+                    android:layout_toRightOf="@id/khxq_left_layout"
+                    android:gravity="center_vertical|left"
+                    android:orientation="vertical"
+                    app:layout_widthPercent="39%">
+
+                    <com.zhy.android.percent.support.PercentLinearLayout
+                        android:id="@+id/khsr_layout"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="10dp"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal"
+                        app:layout_heightPercent="50%">
+
+                        <TextView
+                            android:id="@+id/khsr_text"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:gravity="center_vertical|left"
+                            android:text="生日:"
+                            android:textColor="@color/beauty_text_color"
+                            android:textSize="@dimen/text_size_18" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:layout_marginLeft="5dp"
+                            android:textColor="@color/beauty_text_color"
+                            android:textSize="@dimen/text_size_18" />
+
+                    </com.zhy.android.percent.support.PercentLinearLayout>
+
+
+                    <TextView
+                        android:id="@+id/khssmd_text"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center|left"
+                        android:layout_marginLeft="10dp"
+                        android:gravity="center_vertical|left"
+                        android:textColor="@color/beauty_text_color"
+                        android:textSize="@dimen/text_size_18"
+                        app:layout_heightPercent="50%" />
+
+                </com.zhy.android.percent.support.PercentLinearLayout>
+
+
+                <ImageView
+                    android:id="@+id/delete_kh"
+                    android:layout_width="40dp"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_toRightOf="@id/khxq_right_layout"
+                    android:src="@mipmap/delete" />
+
+
+            </com.zhy.android.percent.support.PercentRelativeLayout>
+
+
+        </com.zhy.android.percent.support.PercentLinearLayout>
+
+
+        <com.zhy.android.percent.support.PercentLinearLayout
+            android:id="@+id/select_right_layout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="3dp"
+            android:background="@drawable/beauty_within_text_frame"
+            android:orientation="horizontal"
+            app:layout_heightPercent="9.5%"
+            app:layout_marginLeftPercent="1%"
+            app:layout_marginRightPercent="1%">
+
+            <com.zhy.android.percent.support.PercentLinearLayout
+                android:id="@+id/select_layout1"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:orientation="vertical"
+                app:layout_widthPercent="49.5%">
+
+                <com.zhy.android.percent.support.PercentLinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    app:layout_widthPercent="80%">
+
+                    <TextView
+                        android:id="@+id/consumption_time"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginRight="5dp"
+                        android:gravity="right"
+                        android:text="消费日期"
+                        android:textColor="@color/beauty_within_lines_color" />
+
+                    <com.zhy.android.percent.support.PercentLinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="30dp"
+                        android:layout_centerHorizontal="true"
+                        android:background="@drawable/beauty_within_text_frame"
+                        android:orientation="horizontal">
+
+
+                        <TextView
+                            android:id="@+id/consumption_txt"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:gravity="center"
+                            android:hint="@string/beauty_select_consumption_time"
+                            android:singleLine="true"
+                            android:textColor="@color/customer_text"
+                            android:textColorHint="@color/beauty_within_select_time"
+                            android:textSize="@dimen/text_size_16"
+                            app:layout_widthPercent="85%" />
+
+                        <ImageView
+                            android:id="@+id/consumption_img"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_marginRight="10dp"
+                            android:src="@mipmap/time" />
+
+                    </com.zhy.android.percent.support.PercentLinearLayout>
+
+
+                </com.zhy.android.percent.support.PercentLinearLayout>
+
+
+            </com.zhy.android.percent.support.PercentLinearLayout>
+
+
+            <View
+                android:layout_width="1sp"
+                android:layout_height="match_parent"
+                android:background="@color/beauty_within_lines_color"></View>
+
+            <com.zhy.android.percent.support.PercentRelativeLayout
+                android:id="@+id/select_layout2"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:orientation="vertical"
+                app:layout_widthPercent="49.5%">
+
+                <com.zhy.android.percent.support.PercentLinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    app:layout_widthPercent="80%">
+
+                    <TextView
+                        android:id="@+id/consumption_md"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginRight="5dp"
+                        android:gravity="right"
+                        android:text="消费门店"
+                        android:textColor="@color/beauty_within_lines_color" />
+
+                    <com.zhy.android.percent.support.PercentLinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="30dp"
+                        android:layout_centerHorizontal="true"
+                        android:background="@drawable/beauty_within_text_frame"
+                        android:orientation="horizontal"
+                        android:padding="1dp">
+
+                        <com.applandeo.materialcalendarview.view.NiceSpinner
+                            android:id="@+id/spinner_md"
+                            style="@style/BeautyTitleStyle"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:textSize="@dimen/text_size_16"
+                            app:popupTextAlignment="center"
+                            app:textTint="@color/beauty_within_select_time" />
+
+                    </com.zhy.android.percent.support.PercentLinearLayout>
+
+
+                </com.zhy.android.percent.support.PercentLinearLayout>
+
+
+            </com.zhy.android.percent.support.PercentRelativeLayout>
+
+        </com.zhy.android.percent.support.PercentLinearLayout>
+
+
+    </com.zhy.android.percent.support.PercentLinearLayout>
+</com.zhy.android.percent.support.PercentLinearLayout>

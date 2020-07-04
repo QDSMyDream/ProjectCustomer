@@ -8,6 +8,8 @@ import android.view.ViewGroup;
 
 import com.mnn.mydream.cosmetology.R;
 
+import me.yokeyword.fragmentation.SupportFragment;
+
 
 /**
  * 创建人 :MyDream
@@ -15,23 +17,23 @@ import com.mnn.mydream.cosmetology.R;
  * 类描述：DDGLFragment 订单管理
  */
 
-public class DDGLFragment extends Fragment {
+public class DDGLFragment extends SupportFragment {
 
     private View view;
 
+    public static DDGLFragment newInstance() {
+        Bundle args = new Bundle();
+        DDGLFragment fragment = new DDGLFragment();
+        fragment.setArguments(args);
+        return fragment;
+    }
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        if (view == null) {
-            view = inflater.inflate(R.layout.ddgl_fragment, container, false);
-            initview();
 
-        }
-        // 缓存的viewiew需要判断是否已经被加过parent，
-        // 如果有parent需要从parent删除，要不然会发生这个view已经有parent的错误。
-        ViewGroup parent = (ViewGroup) view.getParent();
-        if (parent != null) {
-            parent.removeView(view);
-        }
+        view = inflater.inflate(R.layout.ddgl_fragment, container, false);
+
+        initview();
 
         return view;
 

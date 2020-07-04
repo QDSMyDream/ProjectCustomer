@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.zhy.android.percent.support.PercentLinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <com.zhy.android.percent.support.PercentLinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/beauty_within_not_select_bg"
+        android:orientation="vertical">
+
+        <!--listview提示状态栏-->
+        <com.zhy.android.percent.support.PercentLinearLayout
+            android:id="@+id/title_layout"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <com.zhy.android.percent.support.PercentLinearLayout
+                android:id="@+id/select_server_all"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <com.example.smoothcheckbox.SmoothCheckBox
+                    android:id="@+id/check_box1"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:layout_gravity="center_vertical|right"
+                    android:layout_marginLeft="5dp" />
+
+                <TextView
+                    style="@style/HorTextStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="商品名"
+                    app:layout_widthPercent="22%" />
+
+            </com.zhy.android.percent.support.PercentLinearLayout>
+
+            <TextView
+                android:id="@+id/type_text"
+                style="@style/HorTextStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="分类"
+                app:layout_widthPercent="20%" />
+
+            <TextView
+                android:id="@+id/apply_md"
+                style="@style/HorTextStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="适用门店"
+                app:layout_widthPercent="18%" />
+
+            <TextView
+                android:id="@+id/add_date"
+                style="@style/HorTextStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="添加时间"
+                app:layout_widthPercent="20%" />
+
+
+            <TextView
+                android:id="@+id/operation"
+                style="@style/HorTextStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="操作"
+                app:layout_widthPercent="20%" />
+
+
+        </com.zhy.android.percent.support.PercentLinearLayout>
+
+        <ListView
+            android:id="@+id/fuwu_view1_list"
+            android:layout_width="match_parent"
+            android:layout_height="fill_parent"
+            android:dividerHeight="1px" />
+
+    </com.zhy.android.percent.support.PercentLinearLayout>
+
+
+</com.zhy.android.percent.support.PercentLinearLayout>

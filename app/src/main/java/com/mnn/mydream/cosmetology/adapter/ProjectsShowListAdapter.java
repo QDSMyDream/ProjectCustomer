@@ -145,12 +145,16 @@ public class ProjectsShowListAdapter extends BaseAdapter implements SectionIndex
 
     public void updataView(int posi, ListView listView, ProjectsListBean projectsListBean) {
 
+        Log.e(TAG, "updataView: "+posi );
+        Log.e(TAG, "updataView: "+projectsListBean.toString() );
         int visibleFirstPosi = listView.getFirstVisiblePosition();
         int visibleLastPosi = listView.getLastVisiblePosition();
         if (posi >= visibleFirstPosi && posi <= visibleLastPosi) {
             View view = listView.getChildAt(posi - visibleFirstPosi);
             ViewHolder holder = (ViewHolder) view.getTag();
 
+            Log.e(TAG, "updataView: "+view.getId());
+            Log.e(TAG, "updataView: "+holder.peojectsManager);
             holder.peojectsManager.setText(projectsListBean.getCustomerProject().getcProjects());
             holder.startDate.setText(projectsListBean.getCustomerProject().getCreatedAt());
             holder.upDate.setText(projectsListBean.getCustomerProject().getUpdatedAt());
@@ -180,7 +184,6 @@ public class ProjectsShowListAdapter extends BaseAdapter implements SectionIndex
         notifyDataSetChanged();
 
     }
-
 
     //删除单个view
     public void deleteView(int posi, ListView listView) {

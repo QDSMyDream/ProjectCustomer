@@ -1,5 +1,6 @@
 package com.mnn.mydream.cosmetology.activity;
 
+import android.Manifest;
 import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.os.Handler;
@@ -16,7 +17,9 @@ import android.widget.TextView;
 import com.mnn.mydream.cosmetology.R;
 import com.mnn.mydream.cosmetology.bean.User;
 import com.mnn.mydream.cosmetology.utils.ConfigDataMethod;
+import com.mnn.mydream.cosmetology.utils.Constons;
 import com.mnn.mydream.cosmetology.utils.ToastUtils;
+import com.tbruyelle.rxpermissions2.RxPermissions;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -24,6 +27,7 @@ import cn.bmob.v3.BmobUser;
 import cn.bmob.v3.exception.BmobException;
 import cn.bmob.v3.listener.LogInListener;
 import cn.bmob.v3.listener.SaveListener;
+import io.reactivex.functions.Consumer;
 
 /**
  * 创建人 :MyDream
@@ -42,45 +46,49 @@ public class LoginActivity extends AppCompatActivity {
     @BindView(R.id.link_signup)
     TextView _signupLink;
 
-    private static final int NO_LOGINFLAG = -10000;//返回 没有登陆
-    private static final int YES_LOGINFLAG = 10002;//登陆成功
-
+    ProgressDialog progressDialog;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         ButterKnife.bind(this);
+        getMissions();
 
         ConfigDataMethod.bmobInit(getApplicationContext());
-//        CrashReport.initCrashReport(getApplicationContext(), "35ac317edb", true);
-        //默认用户名密码
-//        Intent intent = getIntent();
-//        //从Intent当中根据key取得value
-//        if (intent != null) {
-//            String name = intent.getStringExtra("name");
-//            String pwd = intent.getStringExtra("pwd");
-//            _emailText.setText(name);
-//            _passwordText.setText(pwd);
-//        }
-        _loginButton.setOnClickListener(new View.OnClickListener() {
 
+        _loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 login();
             }
         });
-//        _signupLink.setOnClickListener(new View.OnClickListener() {
-//
-//            @Override
-//            public void onClick(View v) {
-//                // Start the Signup activity
-//                Intent intent = new Intent(getApplicationContext(), SignupActivity.class);
-//                startActivityForResult(intent, REQUEST_SIGNUP);
-//                finish();
-//                overridePendingTransition(R.anim.push_left_in, R.anim.push_left_out);
-//            }
-//        });
+    }
+
+
+    private void getMissions() {
+
+        //RX权限获取
+        RxPermissions rxPermissions = new RxPermissions(this);
+        rxPermissions.request(
+                Manifest.permission.WRITE_EXTERNAL_STORAGE,
+                Manifest.permission.CAMERA,
+                Manifest.permission.CALL_PHONE,
+                Manifest.permission.INTERNET,
+                Manifest.permission.CHANGE_NETWORK_STATE
+
+        ).subscribe(new Consumer<Boolean>() {
+            @Override
+            public void accept(Boolean aBoolean) throws Exception {
+                if (aBoolean) {
+                    //申请的权限全部允许
+//                    Toast.makeText(HomeActivity.this, "允许了权限!", Toast.LENGTH_SHORT).show();
+                } else {
+                    //只要有一个权限被拒绝，就会执行
+                    ToastUtils.showToast(getBaseContext(), "未授权权限，部分功能不能使用", false);
+                }
+            }
+        });
     }
 
     public void login() {
@@ -92,7 +100,7 @@ public class LoginActivity extends AppCompatActivity {
         }
         _loginButton.setEnabled(false);
 
-        final ProgressDialog progressDialog = new ProgressDialog(LoginActivity.this,
+        progressDialog = new ProgressDialog(LoginActivity.this,
                 R.style.AppTheme_Dark_Dialog);
         progressDialog.setIndeterminate(true);
         progressDialog.setMessage("Authenticating...");
@@ -101,16 +109,9 @@ public class LoginActivity extends AppCompatActivity {
         final String email = _emailText.getText().toString();
         final String password = _passwordText.getText().toString();
 
-        new Handler().postDelayed(
-                new Runnable() {
-                    @Override
-                    public void run() {
-                        // On complete call either onLoginSuccess or onLoginFailed
-                        onLoginSuccess(email, password);
-                        // onLoginFailed();
-                        progressDialog.dismiss();
-                    }
-                }, 2000);
+
+        onLoginSuccess(email, password);
+
     }
 
 
@@ -175,15 +176,13 @@ public class LoginActivity extends AppCompatActivity {
         if (e == null) {
 
             ToastUtils.showToast(getApplication(), "登录成功", true);
-            this.setResult(YES_LOGINFLAG);
-//            ConfigDataMethod.toastShow(this, "登录成功，正在跳转", AppMsg.STYLE_ALERT);
-//            Toast.makeText(getApplication(), "登录成功", Toast.LENGTH_LONG).show();
-//            Intent intent = new Intent();
-//            intent.setClass(this, HomeActivity.class);
-//            startActivity(intent);
+            progressDialog.dismiss();
+            this.setResult(Constons.RESULT_LONGIN_SUCCESS);
             finish();
         } else {
-            ToastUtils.showToast(getApplication(), "登录失败,请检查用户名和密码", true);
+            ToastUtils.showToast(getApplication(), "登录失败,请检查用户名和密码", false);
+
+            progressDialog.dismiss();
         }
 
     }
@@ -210,7 +209,7 @@ public class LoginActivity extends AppCompatActivity {
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         if (keyCode == KeyEvent.KEYCODE_BACK) {
-            this.setResult(NO_LOGINFLAG);
+            this.setResult(Constons.RESULT_LONGIN_FAIL);
             finish();
         }
         return false;

@@ -578,8 +578,6 @@
                         android:layout_height="match_parent"
                         android:layout_marginTop="3dp"
                         android:background="@drawable/btn_menu_radius_shape"
-
-
                         android:gravity="center|left"
                         app:layout_marginLeftPercent="2%"
                         app:layout_widthPercent="23.5%">
@@ -603,6 +601,7 @@
                             android:text="激活礼品卡"
                             android:textColor="@color/beauty_one_title_bg"
                             android:textSize="@dimen/text_size_22" />
+
                     </com.zhy.android.percent.support.PercentRelativeLayout>
 
                     <com.zhy.android.percent.support.PercentRelativeLayout
@@ -774,12 +773,12 @@
             </com.zhy.android.percent.support.PercentLinearLayout>
         </com.zhy.android.percent.support.PercentLinearLayout>
 
-        <com.mnn.mydream.cosmetology.view.MyViewPager
-            android:id="@+id/viewpager"
+        <FrameLayout
+            android:id="@+id/fragment"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-        </com.mnn.mydream.cosmetology.view.MyViewPager>
+        </FrameLayout>
 
 
     </com.zhy.android.percent.support.PercentLinearLayout>

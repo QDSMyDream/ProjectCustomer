@@ -173,13 +173,11 @@
 
 
     <style name="BeautyTextStyle">
-
         <item name="android:textSize">@dimen/text_size_20</item>
         <item name="android:gravity">center</item>
         <item name="android:textColor">@color/beauty_text_color</item>
 
     </style>
-
 
     <style name="BeautyNumStyle">
         <item name="android:textSize">@dimen/text_size_20</item>
@@ -204,10 +202,23 @@
         <item name="android:textColor">@drawable/beauty_select_selector</item>
     </style>
 
-<!--tablayout字体大小-->
+    <!--tablayout字体大小-->
     <style name="TabLayoutTextStyle" parent="TextAppearance.Design.Tab">
         <item name="android:textSize">20sp</item>
 
     </style>
 
+
+    <!--客户详情点击弹窗-->
+    <style name="dialogstyle" parent="AppTheme">
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowCloseOnTouchOutside">true</item>
+        <item name="android:windowIsFloating">true</item>
+        <item name="android:windowFullscreen">true</item>
+        <item name="android:windowActionBar">false</item>
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+
+    </style>
 </resources>

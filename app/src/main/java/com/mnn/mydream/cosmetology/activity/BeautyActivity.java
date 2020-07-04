@@ -10,19 +10,11 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.support.annotation.Nullable;
-import android.support.design.widget.Snackbar;
-import android.support.v4.app.Fragment;
 import android.support.v4.app.NotificationCompat;
-import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.WindowManager;
-import android.view.animation.AlphaAnimation;
-import android.view.animation.Animation;
-import android.view.animation.AnimationSet;
-import android.view.animation.TranslateAnimation;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -34,14 +26,11 @@ import com.luck.picture.lib.entity.LocalMedia;
 import com.mnn.mydream.cosmetology.R;
 import com.mnn.mydream.cosmetology.adapter.BeautyContentMenuAdapter;
 import com.mnn.mydream.cosmetology.adapter.BeautyListViewAdapter;
-import com.mnn.mydream.cosmetology.adapter.fragmentAdapter.FragmentMainAdapter;
 import com.mnn.mydream.cosmetology.bean.BeautyContentMenuBean;
 import com.mnn.mydream.cosmetology.bean.BeautyListItemBean;
 import com.mnn.mydream.cosmetology.bean.BeautyTitleBean;
-import com.mnn.mydream.cosmetology.bean.CustomerAndProject;
 import com.mnn.mydream.cosmetology.bean.User;
 import com.mnn.mydream.cosmetology.dialog.CommonDialog;
-import com.mnn.mydream.cosmetology.dialog.DeleteDialog;
 import com.mnn.mydream.cosmetology.dialog.LoadingDialog;
 import com.mnn.mydream.cosmetology.fragment.beauty.DDGLFragment;
 import com.mnn.mydream.cosmetology.fragment.beauty.GZTFragment;
@@ -49,17 +38,18 @@ import com.mnn.mydream.cosmetology.fragment.beauty.JYGKFragment;
 import com.mnn.mydream.cosmetology.fragment.beauty.KHGLFragment;
 import com.mnn.mydream.cosmetology.fragment.beauty.SJZXFragment;
 import com.mnn.mydream.cosmetology.fragment.beauty.SPGLFragment;
-import com.mnn.mydream.cosmetology.fragment.beauty.XJKHFragment;
+
 import com.mnn.mydream.cosmetology.fragment.beauty.XTSZFragment;
 import com.mnn.mydream.cosmetology.fragment.beauty.YXZXFragment;
 import com.mnn.mydream.cosmetology.fragment.beauty.YYGLFragment;
+import com.mnn.mydream.cosmetology.fragment.beauty.commoditiesFragments.FuWuFragment;
+import com.mnn.mydream.cosmetology.fragment.beauty.khfragments.XJKHFragment;
 import com.mnn.mydream.cosmetology.interfaces.BeautyContentListOnClickListener;
 import com.mnn.mydream.cosmetology.utils.Constons;
 import com.mnn.mydream.cosmetology.utils.ImageLoader;
 import com.mnn.mydream.cosmetology.utils.ToastUtils;
 import com.mnn.mydream.cosmetology.utils.Tools;
 import com.mnn.mydream.cosmetology.view.CircleImageView;
-import com.mnn.mydream.cosmetology.view.MyViewPager;
 import com.tbruyelle.rxpermissions2.RxPermissions;
 import com.zhy.android.percent.support.PercentLinearLayout;
 import com.zhy.android.percent.support.PercentRelativeLayout;
@@ -80,10 +70,11 @@ import cn.bmob.v3.datatype.BmobDate;
 import cn.bmob.v3.datatype.BmobFile;
 import cn.bmob.v3.exception.BmobException;
 import cn.bmob.v3.listener.FindListener;
-import cn.bmob.v3.listener.SaveListener;
 import cn.bmob.v3.listener.UpdateListener;
 import cn.bmob.v3.listener.UploadFileListener;
 import io.reactivex.functions.Consumer;
+import me.yokeyword.fragmentation.SupportActivity;
+import me.yokeyword.fragmentation.SupportFragment;
 
 /**
  * 创建人 :MyDream
@@ -92,9 +83,8 @@ import io.reactivex.functions.Consumer;
  */
 
 
-public class BeautyActivity extends AppCompatActivity implements BeautyContentListOnClickListener, View.OnLongClickListener {
-    @BindView(R.id.viewpager)
-    MyViewPager viewpager;
+public class BeautyActivity extends SupportActivity implements BeautyContentListOnClickListener, View.OnLongClickListener {
+
     private String TAG = "BeautyActivity";
     @BindView(R.id.title)
     TextView title;
@@ -240,7 +230,7 @@ public class BeautyActivity extends AppCompatActivity implements BeautyContentLi
 
     private int leftListViewImgs[] = new int[]{R.mipmap.gzt, R.mipmap.jygk, R.mipmap.gkgl, R.mipmap.ddgl, R.mipmap.yuyue, R.mipmap.sjzx, R.mipmap.yx, R.mipmap.xm, R.mipmap.xtsz};
 
-    private String leftListViewStrings[] = new String[]{"工作台", "经营概况", "顾客管理", "订单管理", "预约管理", "数据中心", "营销中心", "项目管理", "系统设置"};
+    private String leftListViewStrings[] = new String[]{"工作台", "经营概况", "顾客管理", "订单管理", "预约管理", "数据中心", "营销中心", "服务管理", "系统设置"};
 
     private int leftListViewMenuFontColor = R.color.beauty_left_font_bg;
 
@@ -255,11 +245,13 @@ public class BeautyActivity extends AppCompatActivity implements BeautyContentLi
     private LoadingDialog loadingDialog;
 
     private List<BeautyContentMenuBean> beautyContentMenuBeans = new ArrayList<>();
+
     private BeautyContentMenuAdapter beautyContentMenuAdapter;
 
     private String contentListViewTitles[] = new String[]{"充值", "消费", "消耗", "其他"};
 
     public NotificationManager mNotificationManager;//通知
+
     public NotificationCompat.Builder mBuilder;
 
     private int notifyId = 100;
@@ -268,6 +260,8 @@ public class BeautyActivity extends AppCompatActivity implements BeautyContentLi
     private String picPath = "";
 
     private User user = null;//当前登陆账户
+
+    SupportFragment[] mFragments;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -286,23 +280,56 @@ public class BeautyActivity extends AppCompatActivity implements BeautyContentLi
     //初始化viewPager
     private void initViewPager() {
 
-        List<Fragment> fragments = new ArrayList<Fragment>();
-        fragments.add(new GZTFragment());
-        fragments.add(new JYGKFragment());
-        fragments.add(new KHGLFragment());
-        fragments.add(new DDGLFragment());
-        fragments.add(new YYGLFragment());
-        fragments.add(new SJZXFragment());
-        fragments.add(new YXZXFragment());
-        fragments.add(new SPGLFragment());
-        fragments.add(new XTSZFragment());
-        fragments.add(new XJKHFragment());
+//        List<Fragment> fragments = new ArrayList<Fragment>();
+//        fragments.add(new GZTFragment());
+//        fragments.add(new JYGKFragment());
+//        fragments.add(new KHGLFragment());
+//        fragments.add(new DDGLFragment());
+//        fragments.add(new YYGLFragment());
+//        fragments.add(new SJZXFragment());
+//        fragments.add(new YXZXFragment());
+//        fragments.add(new SPGLFragment());
+//        fragments.add(new XTSZFragment());
+//        fragments.add(new XJKHFragment());
 
-        FragmentMainAdapter adapter = new FragmentMainAdapter(getSupportFragmentManager(), fragments);
-        viewpager.setAdapter(adapter);
-        //设置主viewpager不能滑动
-        viewpager.setOffscreenPageLimit(10);
-        getFragment(0);
+        mFragments = new SupportFragment[]{
+                GZTFragment.newInstance(),
+                JYGKFragment.newInstance(),
+                KHGLFragment.newInstance(),
+                DDGLFragment.newInstance(),
+                YYGLFragment.newInstance(),
+                SJZXFragment.newInstance(),
+                YXZXFragment.newInstance(),
+                SPGLFragment.newInstance(),
+                XTSZFragment.newInstance(),
+        };
+//        FragmentMainAdapter adapter = new FragmentMainAdapter(getSupportFragmentManager(), fragments);
+//        viewpager.setAdapter(adapter);
+//        //设置主viewpager不能滑动
+//        viewpager.setOffscreenPageLimit(10);
+//        getFragment(0);
+
+
+        //这里需要如下判断，否则可能出现这个错误https://xuexuan.blog.csdn.net/article/details/103733622
+        if (findFragment(GZTFragment.class) == null &&
+                findFragment(XJKHFragment.class) == null &&
+                findFragment(XTSZFragment.class) == null) {
+//            loadRootFragment(R.id.fragment, GZTFragment.newInstance());
+
+            loadMultipleRootFragment(R.id.fragment, 0,
+                    mFragments[0],
+                    mFragments[1],
+                    mFragments[2],
+                    mFragments[3],
+                    mFragments[4],
+                    mFragments[5],
+                    mFragments[6],
+                    mFragments[7],
+                    mFragments[8]
+            );
+
+        }
+
     }
 
 
@@ -389,7 +416,6 @@ public class BeautyActivity extends AppCompatActivity implements BeautyContentLi
         layout9.setOnLongClickListener(this);
         layout10.setOnLongClickListener(this);
 
-
         //RX权限获取
         RxPermissions rxPermissions = new RxPermissions(this);
 
@@ -413,6 +439,7 @@ public class BeautyActivity extends AppCompatActivity implements BeautyContentLi
             }
         });
 
+
     }
 
     @OnClick({R.id.title_tx, R.id.layout1, R.id.layout2, R.id.layout3, R.id.layout4, R.id.layout5, R.id.layout6, R.id.layout7, R.id.layout8, R.id.layout9, R.id.layout10, R.id.add_customer_layout, R.id.user_info_layout, R.id.agency_appointment_layout, R.id.common_problem_layout})
@@ -427,13 +454,15 @@ public class BeautyActivity extends AppCompatActivity implements BeautyContentLi
                 break;
 
             case R.id.add_customer_layout:
-                getFragment(9);
+//                getFragment(9);
+                showHideFragment(mFragments[2], mFragments[Constons.BEAUTY_FRAGMENT_POSTION]);
+                Constons.BEAUTY_FRAGMENT_POSTION = 2;
                 break;
 
             case R.id.user_info_layout:
-                Intent intent = new Intent();
-                intent.setClass(BeautyActivity.this, LoginActivity.class);
-                startActivityForResult(intent,Constons.BEAUTY_RESULT_LONGIN_CODE);
+//                Intent intent = new Intent();
+//                intent.setClass(BeautyActivity.this, LoginActivity.class);
+//                startActivityForResult(intent, Constons.BEAUTY_RESULT_LONGIN_CODE);
                 break;
 
             case R.id.agency_appointment_layout:
@@ -444,7 +473,6 @@ public class BeautyActivity extends AppCompatActivity implements BeautyContentLi
 
             case R.id.layout1:
                 Constons.BEAUTY_WITHIN_PREVIOUS_POSTION = 0;
-
                 break;
 
             case R.id.layout2:
@@ -492,12 +520,13 @@ public class BeautyActivity extends AppCompatActivity implements BeautyContentLi
         public void onClick(View v) {
             int position = menuListview.getPositionForView(v);
             BeautyListViewAdapter.BEAUTY_SELECT_ITEM = position;
-
-            getFragment(position);
-
+//            getFragment(position);
+//            startWithPop(mFragments[position]);
+//            start(mFragments[position]);
+            showHideFragment(mFragments[position], mFragments[Constons.BEAUTY_FRAGMENT_POSTION]);
             isAdapter(beautyListViewAdapter);
             Log.e("click positon::", "" + position);
-
+            Constons.BEAUTY_FRAGMENT_POSTION = position;
         }
     };
 
@@ -553,7 +582,6 @@ public class BeautyActivity extends AppCompatActivity implements BeautyContentLi
                 case 1:
                     setFlipperString();
                     break;
-
                 case 2:
 
                     break;
@@ -566,7 +594,7 @@ public class BeautyActivity extends AppCompatActivity implements BeautyContentLi
 
     private void setFlipperString() {
         Log.e(TAG, "setFlipperString: ");
-//
+
 //        for (int i = 0; i < titleStrings.size(); i++) {
 //            Log.e(TAG, "setFlipperString: " + titleStrings.get(i));
 //            View view = LayoutInflater.from(getBaseContext()).inflate(R.layout.beauty_viewflipper_item, null);
@@ -676,13 +704,30 @@ public class BeautyActivity extends AppCompatActivity implements BeautyContentLi
                             return;
                         }
                         //加载本地图片
-                        ImageLoader.displayLocalImageViewCircle(BeautyActivity.this, titleTx, picPath);
+//                        ImageLoader.displayLocalImageViewCircle(BeautyActivity.this, titleTx, picPath);
                         uoloadImg(picPath);
+
+
                     } catch (Exception e) {
                         ToastUtils.showToast(BeautyActivity.this, "图片路径获取失败", false);
 
                     }
                     break;
+//
+//                case Constons.RESULT_FUWU_SERVER_CODE_SCUESS_REQUEST://添加成功
+//
+//                    FuWuFragment.newInstance().onActivityResult(requestCode, resultCode, data);
+//                    break;
+//                case Constons.RESULT_FUWU_SERVER_CODE_CANCEL_REQUEST://添加失败
+//
+//                    FuWuFragment.newInstance().onActivityResult(requestCode, resultCode, data);
+//                    break;
+//
+//                case Constons.RESULT_FUWU_SERVER_CODE_UPDATE_REQUEST://修改成功
+//
+//                    FuWuFragment.newInstance().onActivityResult(requestCode, resultCode, data);
+//                    break;
+
             }
         }
 
@@ -741,6 +786,7 @@ public class BeautyActivity extends AppCompatActivity implements BeautyContentLi
      * 相册
      */
     private void pickPictrue() {
+
         PictureSelector.create(BeautyActivity.this)
                 .openGallery(PictureMimeType.ofImage())//全部.PictureMimeType.ofAll()、图片.ofImage()、视频.ofVideo()、音频.ofAudio()
                 .theme(R.style.PictureStyle)
@@ -827,8 +873,12 @@ public class BeautyActivity extends AppCompatActivity implements BeautyContentLi
 
                             if (e == null) {
                                 ToastUtils.showToast(BeautyActivity.this, "上传头像成功", true);
+
+                                ImageLoader.displayImageView(BeautyActivity.this,picPath, titleTx);
+
                             } else {
                                 ToastUtils.showToast(BeautyActivity.this, "上传头像失败", false);
+                                Log.e(TAG, "done: "+e.getMessage().toString() );
                             }
                         }
 
@@ -836,6 +886,7 @@ public class BeautyActivity extends AppCompatActivity implements BeautyContentLi
                     });
                 } else {
                     Log.e(TAG, "上传文件失败：" + e.getMessage());
+                    Log.e(TAG, "done: "+e.getMessage().toString() );
                 }
             }
 
@@ -872,7 +923,7 @@ public class BeautyActivity extends AppCompatActivity implements BeautyContentLi
 
 
             String userTx = (String) BmobUser.getObjectByKey("userTx");
-            Log.e(TAG, "setIsLoginInfo: "+userTx );
+            Log.e(TAG, "setIsLoginInfo: " + userTx);
             //加载图片
             ImageLoader.displayImageView(this, userTx, titleTx);
             ToastUtils.showToast(getBaseContext(), "已经登陆" + user.getUsername(), true);
@@ -881,7 +932,7 @@ public class BeautyActivity extends AppCompatActivity implements BeautyContentLi
             ToastUtils.showToast(getBaseContext(), "请先登陆", false);
             Intent intent = new Intent();
             intent.setClass(BeautyActivity.this, LoginActivity.class);
-            startActivityForResult(intent,Constons.BEAUTY_RESULT_LONGIN_CODE);
+            startActivityForResult(intent, Constons.BEAUTY_RESULT_LONGIN_CODE);
         }
 
 
@@ -934,11 +985,11 @@ public class BeautyActivity extends AppCompatActivity implements BeautyContentLi
         }
     }
 
-
-    public void getFragment(int menuItemId) {
-        viewpager.setCurrentItem(menuItemId, false);
-
-    }
+//
+//    public void getFragment(int menuItemId) {
+//        viewpager.setCurrentItem(menuItemId, false);
+//
+//    }
 
     //退出函数
     long firstTime = 0;
@@ -959,7 +1010,6 @@ public class BeautyActivity extends AppCompatActivity implements BeautyContentLi
         }
         return false;
     }
-
 
 
 }

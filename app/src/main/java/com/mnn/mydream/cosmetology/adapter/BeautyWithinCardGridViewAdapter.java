@@ -7,13 +7,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.mnn.mydream.cosmetology.R;
 import com.mnn.mydream.cosmetology.bean.BeautyWithinCardsBean;
-import com.zhy.android.percent.support.PercentLinearLayout;
-import com.zhy.android.percent.support.PercentRelativeLayout;
 
 import java.util.List;
 
@@ -68,7 +65,7 @@ public class BeautyWithinCardGridViewAdapter extends BaseAdapter {
         ViewHolder viewHolder = null;
 
         if (convertView == null) {
-            convertView = LayoutInflater.from(mContext).inflate(R.layout.layouts, null);
+            convertView = LayoutInflater.from(mContext).inflate(R.layout.beauty_within_cards_layouts, null);
             viewHolder = new ViewHolder(convertView);
             convertView.setTag(viewHolder);
         } else {

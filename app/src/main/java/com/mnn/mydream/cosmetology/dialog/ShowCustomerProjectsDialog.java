@@ -59,7 +59,6 @@ public class ShowCustomerProjectsDialog extends Dialog {
         @BindView(R.id.title)
         TextView title;
 
-
         @BindView(R.id.reduce_img)
         ImageView reduceImg;
 

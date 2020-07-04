@@ -8,6 +8,8 @@ import android.view.ViewGroup;
 
 import com.mnn.mydream.cosmetology.R;
 
+import me.yokeyword.fragmentation.SupportFragment;
+
 
 /**
  * 创建人 :MyDream
@@ -15,10 +17,19 @@ import com.mnn.mydream.cosmetology.R;
  * 类描述：XTSZFragment 系统设置
  */
 
-public class XTSZFragment extends Fragment {
+public class XTSZFragment extends SupportFragment {
 
     private View view;
+    public static XTSZFragment newInstance() {
 
+
+        Bundle args = new Bundle();
+
+        XTSZFragment fragment = new XTSZFragment();
+        fragment.setArguments(args);
+        return fragment;
+
+    }
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         if (view == null) {

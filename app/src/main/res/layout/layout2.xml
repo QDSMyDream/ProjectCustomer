@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
   >
 
-    <com.lonbon.icum.mydemoyxs.view.MyViewPager
+    <com.mnn.mydream.cosmetology.view.MyViewPager
         android:id="@+id/main_ViewPager"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />

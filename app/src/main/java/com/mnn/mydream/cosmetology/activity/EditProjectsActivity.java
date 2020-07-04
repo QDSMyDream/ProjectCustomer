@@ -92,7 +92,6 @@ public class EditProjectsActivity extends AppCompatActivity implements OnItemRec
 
     private CustomerProjectBean addCustomerProjectBean;
 
-
     private int count = 0;
 
     @Override
@@ -123,7 +122,6 @@ public class EditProjectsActivity extends AppCompatActivity implements OnItemRec
                 if (position != -1) {
                     projectsList.setSelection(position);
                 }
-
             }
         });
 
@@ -208,7 +206,6 @@ public class EditProjectsActivity extends AppCompatActivity implements OnItemRec
 
                     break;
 
-
                 //删除
                 case 2:
 //                    projectsListBeanList.remove(selectProjectsListBean);
@@ -218,7 +215,6 @@ public class EditProjectsActivity extends AppCompatActivity implements OnItemRec
 
                 //修改
                 case 3:
-
 
                     String pinyin2 = characterParser.getSelling(selectProjectsListBean.getCustomerProject().getcProjects());
                     String sortString2 = pinyin2.substring(0, 1).toUpperCase();
@@ -277,14 +273,12 @@ public class EditProjectsActivity extends AppCompatActivity implements OnItemRec
                             return;
                         }
 
-
                         for (CustomerProjectBean customerProjectBean : customerProjects) {
                             if (customerProjectBean.getcProjects().equals(editText.getText().toString())) {
                                 ToastUtils.showToast(getBaseContext(), "请误重复添加", false);
                                 return;
                             }
                         }
-
 
                         CustomerProjectBean customerProject = new CustomerProjectBean();
                         customerProject.setcProjects(editText.getText().toString());
@@ -323,6 +317,7 @@ public class EditProjectsActivity extends AppCompatActivity implements OnItemRec
         addProjectsDialogBuild.setString(getString(R.string.projects_dialog_update_title), getString(R.string.projects_update_name), getString(R.string.projects_update_txt), getString(R.string.update));
         addProjectsDialogBuild.setVisble(true);
         addProjectsDialogBuild.setYesOnClick(new View.OnClickListener() {
+
             @Override
             public void onClick(View v) {
 

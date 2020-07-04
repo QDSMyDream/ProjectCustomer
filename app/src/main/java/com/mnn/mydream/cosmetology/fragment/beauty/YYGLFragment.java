@@ -8,6 +8,8 @@ import android.view.ViewGroup;
 
 import com.mnn.mydream.cosmetology.R;
 
+import me.yokeyword.fragmentation.SupportFragment;
+
 
 /**
  * 创建人 :MyDream
@@ -15,10 +17,15 @@ import com.mnn.mydream.cosmetology.R;
  * 类描述：YYGLFragment 预约管理
  */
 
-public class YYGLFragment extends Fragment {
+public class YYGLFragment extends SupportFragment {
 
     private View view;
-
+    public static YYGLFragment newInstance() {
+        Bundle args = new Bundle();
+        YYGLFragment fragment = new YYGLFragment();
+        fragment.setArguments(args);
+        return fragment;
+    }
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         if (view == null) {

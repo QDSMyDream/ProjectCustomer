@@ -28,20 +28,35 @@ public class Constons {
 
     public static final int RESULT_LONGIN_SUCCESS = 10002;//登陆成功返回码
     public static final int RESULT_LONGIN_FAIL = -1;//登陆失败或返回
-    public static final int BEAUTY_RESULT_LONGIN_CODE= 10001;//beautyActivity请求登陆码
+    public static final int BEAUTY_RESULT_LONGIN_CODE = 10001;//beautyActivity请求登陆码
 
 
     public static final int RESULT_XJKH_TX_SUCCESS = 10003;//顾客选择头像成功返回码
     public static final int RESULT_XJKH_TX_FAIL = -1;//顾客取消头像设置失败返回码
-    public static final int BEAUTY_XJKH_TX_CODE= -10003;//顾客取消头像设置失败返回码
+    public static final int BEAUTY_XJKH_TX_CODE = -10003;//顾客取消头像设置失败返回码
+
+    public static final int RESULT_FUWU_SERVER_CODE_REQUEST = 10005;//添加服务图片请求码
+    public static final int RESULT_FUWU_SERVER_CODE_VIEW_REQUEST = 10006;//添加服务请求码
+
+    public static final int RESULT_FUWU_SERVER_CODE_SCUESS_REQUEST = 10007;//添加服务成功请求码
+    public static final int RESULT_FUWU_SERVER_CODE_CANCEL_REQUEST = 10008;//添加服务失败或取消请求码
 
 
-    public static final int BEAUTY_FRAGMENT_POSTION= 0;//记录当前fragment位置
-    public static final int BEAUTY_FRAGMENT_PREVIOUS_POSTION= 0;//上个fragment位置
+    public static final String RESULT_FUWU_SERVER_STR_UPDATE_REQUEST = "Update";//修改请求码
+
+    public static final int RESULT_FUWU_SERVER_CODE_UPDATE_REQUEST = 10009;//修改请求码
+
+    public static final int RESULT_FUWU_SERVER_CODE_UPDATE2_REQUEST = 10010;//修改请求码
 
 
-    public static int BEAUTY_WITHIN_PREVIOUS_POSTION= 0;//BeautyWithinActivity左侧菜单位置
+    public static String FUWU_PICPATH = "";
 
+
+    public static int BEAUTY_FRAGMENT_POSTION = 0;//记录当前fragment位置
+    public static final int BEAUTY_FRAGMENT_PREVIOUS_POSTION = 0;//上个fragment位置
+
+
+    public static int BEAUTY_WITHIN_PREVIOUS_POSTION = 0;//BeautyWithinActivity左侧菜单位置
 
 
 }

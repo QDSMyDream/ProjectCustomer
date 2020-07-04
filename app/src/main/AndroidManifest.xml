@@ -55,6 +55,9 @@
 
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
 
+    <uses-permission android:name="android.permission.INTERNET" />
+
+
     <application
         android:name=".MyApplication"
         android:allowBackup="true"
@@ -84,7 +87,7 @@
             android:configChanges="orientation|keyboardHidden"
             android:screenOrientation="landscape"
             android:theme="@style/NoActionBar"
-            android:windowSoftInputMode="adjustPan"></activity>
+            android:windowSoftInputMode="adjustPan" />
         <activity
             android:name=".activity.CustomerActivity"
             android:configChanges="orientation|keyboardHidden"
@@ -102,7 +105,7 @@
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:screenOrientation="landscape"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar"
-            android:windowSoftInputMode="stateHidden|adjustUnspecified" />
+            android:windowSoftInputMode="stateHidden|adjustUnspecified"></activity>
         <activity
             android:name=".activity.LoginActivity"
             android:configChanges="orientation|keyboardHidden"
@@ -148,12 +151,19 @@
                 android:resource="@xml/provider_paths" />
         </provider>
 
-        <activity android:name=".activity.BeautyWithinActivity"
+        <activity
+            android:name=".activity.BeautyWithinActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:screenOrientation="landscape"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar"
-            android:windowSoftInputMode="adjustPan"
-            ></activity>
+            android:windowSoftInputMode="adjustPan" />
+        <activity
+            android:name=".activity.FuWuServerDialogActivity"
+            android:screenOrientation="landscape"
+            android:theme="@style/dialogstyle"
+            android:windowSoftInputMode="adjustPan">
+
+        </activity>
     </application>
 
 </manifest>

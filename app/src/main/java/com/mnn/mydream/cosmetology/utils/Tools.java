@@ -11,7 +11,9 @@ import android.util.DisplayMetrics;
 import android.util.TypedValue;
 import android.view.View;
 
+import com.mnn.mydream.cosmetology.bean.BeautyBeanKh;
 import com.mnn.mydream.cosmetology.bean.PickTimeBean;
+import com.mnn.mydream.cosmetology.bean.fuwuBean.FuWuSaleBean;
 import com.mnn.mydream.cosmetology.pickertime.TimePickerPopWin;
 import com.mnn.mydream.cosmetology.view.DrawView;
 
@@ -22,7 +24,11 @@ import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.Date;
+import java.util.List;
+import java.util.Objects;
 
 public class Tools {
 
@@ -340,6 +346,82 @@ public class Tools {
     public static int dpTopx(Context context, float dipValue) {
         float scale = context.getResources().getDisplayMetrics().density;
         return (int) (dipValue * scale + 0.5f);
+    }
+
+
+    //正序
+    public static void ListSort(List<FuWuSaleBean> list) {
+
+        Collections.sort(list, new Comparator<FuWuSaleBean>() {
+            @Override
+            //定义一个比较器
+            public int compare(FuWuSaleBean o1, FuWuSaleBean o2) {
+                SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");//设置日期格式
+                try {
+                    Date dt1 = df.parse(o1.getCreatedAt());
+                    Date dt2 = df.parse(o2.getCreatedAt());
+                    if (dt1.getTime() > dt2.getTime()) {
+                        return 1;
+                    } else if (dt1.getTime() < dt2.getTime()) {
+                        return -1;
+                    } else {
+                        return 0;
+                    }
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+                return 0;
+            }
+        });
+    }
+
+    //倒叙
+    public static void ListSorts(List<FuWuSaleBean> list) {
+        Collections.sort(list, new Comparator<FuWuSaleBean>() {
+            @Override
+            public int compare(FuWuSaleBean o1, FuWuSaleBean o2) {
+                SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+                try {
+                    Date dt1 = df.parse(o1.getCreatedAt());
+                    Date dt2 = df.parse(o2.getCreatedAt());
+                    if (dt1.getTime() > dt2.getTime()) {
+                        return -1;
+                    } else if (dt1.getTime() < dt2.getTime()) {
+                        return 1;
+                    } else {
+                        return 0;
+                    }
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+                return 0;
+            }
+        });
+    }
+
+
+    //倒叙
+    public static void ListSortsKh(List<BeautyBeanKh> list) {
+        Collections.sort(list, new Comparator<BeautyBeanKh>() {
+            @Override
+            public int compare(BeautyBeanKh o1, BeautyBeanKh o2) {
+                SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+                try {
+                    Date dt1 = df.parse(o1.getCreatedAt());
+                    Date dt2 = df.parse(o2.getCreatedAt());
+                    if (dt1.getTime() > dt2.getTime()) {
+                        return -1;
+                    } else if (dt1.getTime() < dt2.getTime()) {
+                        return 1;
+                    } else {
+                        return 0;
+                    }
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+                return 0;
+            }
+        });
     }
 
 }

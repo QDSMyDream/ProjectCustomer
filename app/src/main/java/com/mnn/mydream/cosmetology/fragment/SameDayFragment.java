@@ -642,9 +642,7 @@ public class SameDayFragment extends Fragment implements SetSameDayListOnClickLi
                 }
             });
 
-
         }
-
 
     }
 

@@ -32,6 +32,7 @@ import butterknife.ButterKnife;
 public class GeneralRecordListAdapter extends BaseAdapter {
 
     private String TAG = "GeneralRecordListAdapter";
+
     private final List<Customer> comingslist;
     private final Context mContext;
     private final LayoutInflater mLayoutInflater;
@@ -122,8 +123,7 @@ public class GeneralRecordListAdapter extends BaseAdapter {
 
             Customer costorBean = comingslist.get(position);
             //加载图片
-            ImageLoader.displayImageView(mContext,costorBean.getCustomer_tx(),txRoundedImageView);
-
+            ImageLoader.displayImageView(mContext, costorBean.getCustomer_tx(), txRoundedImageView);
 
             name.setText(costorBean.getName());
 
