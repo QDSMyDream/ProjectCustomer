@@ -74,7 +74,7 @@ public class GeneralRecordStagesListAdapter extends BaseAdapter {
             holder.itemLayout1.setVisibility(View.VISIBLE);
             holder.itemLayout2.setVisibility(View.VISIBLE);
             //加载图片
-            ImageLoader.displayImageView(mContext, costorBean.getCustomer().getCustomer_tx(), holder.txRoundedImageView);
+            ImageLoader.displayImageView(mContext, costorBean.getCustomer().getCustomer_tx(), holder.txRoundedImageView,R.mipmap.ic_img_default);
 
             holder.name.setText(costorBean.getCustomer().getName());
             holder.sex.setText(costorBean.getCustomer().getSex());

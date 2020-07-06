@@ -70,7 +70,7 @@
                 <!--服务图片-->
                 <com.zhy.android.percent.support.PercentLinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="40dp"
+                    android:layout_height="wrap_content"
                     android:orientation="horizontal"
                     app:layout_marginTopPercent="2%">
 
@@ -190,18 +190,18 @@
 
                     </com.zhy.android.percent.support.PercentLinearLayout>
 
+
                     <com.zhy.android.percent.support.PercentLinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:layout_marginLeft="10dp"
                         android:background="@drawable/customer_text_frame"
-                        android:padding="3dp">
-
+                        android:padding="3dp"
+                        app:layout_widthPercent="19.5%">
 
                         <com.applandeo.materialcalendarview.view.NiceSpinner
                             android:id="@+id/server_type"
-
-                            android:layout_width="wrap_content"
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:gravity="center_vertical"
                             android:textColor="@color/jet"
@@ -211,6 +211,37 @@
 
 
                     </com.zhy.android.percent.support.PercentLinearLayout>
+
+
+                    <com.zhy.android.percent.support.PercentRelativeLayout
+                        android:id="@+id/add_type_layout"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+
+                        android:background="@drawable/beauty_text_frame_shape"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal"
+                        app:layout_marginLeftPercent="2%">
+
+                        <ImageView
+                            android:id="@+id/add_img"
+                            android:layout_width="30dp"
+                            android:layout_height="wrap_content"
+                            android:padding="3dp"
+                            android:src="@mipmap/add_red" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:layout_marginRight="10dp"
+                            android:layout_toRightOf="@id/add_img"
+                            android:gravity="center"
+                            android:text="添加分类"
+                            android:textColor="@color/beauty_add_custmer_bg"
+                            android:textSize="@dimen/text_size_18" />
+
+                    </com.zhy.android.percent.support.PercentRelativeLayout>
 
                 </com.zhy.android.percent.support.PercentLinearLayout>
 

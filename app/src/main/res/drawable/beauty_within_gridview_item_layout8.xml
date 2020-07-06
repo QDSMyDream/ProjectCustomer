@@ -4,8 +4,8 @@
 
     <gradient
         android:angle="180.0"
-        android:endColor="@color/beauty_card_img_left_start_bg3"
-        android:startColor="@color/beauty_card_img_left_end_bg3"
+        android:endColor="@color/beauty_card_img_left_start_bg8"
+        android:startColor="@color/beauty_card_img_left_end_bg8"
         android:type="linear" />
 
     <corners

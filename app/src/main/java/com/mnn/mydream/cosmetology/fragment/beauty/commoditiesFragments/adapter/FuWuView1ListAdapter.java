@@ -76,7 +76,7 @@ public class FuWuView1ListAdapter extends BaseAdapter {
         FuWuSaleBean fuWuSaleBean = fuWuSaleBeans.get(position);
 
         //加载图片
-        ImageLoader.displayImageView(mContext, fuWuSaleBean.getServerUrl(), holder.ivServer);
+        ImageLoader.displayImageView(mContext, fuWuSaleBean.getServerUrl(), holder.ivServer,R.mipmap.ic_img_default);
         holder.serverName.setText(fuWuSaleBean.getServerName() + "");
         holder.serverMoney.setText(fuWuSaleBean.getServerMoney() + "");
         holder.applyMd.setText(fuWuSaleBean.getApplyMd() + "");
@@ -141,7 +141,7 @@ public class FuWuView1ListAdapter extends BaseAdapter {
             TextView addDate = view.findViewById(R.id.add_date);
             ImageView ivServer = view.findViewById(R.id.iv_server);
             //加载图片
-            ImageLoader.displayImageView(mContext, fuWuSaleBean.getServerUrl(), ivServer);
+            ImageLoader.displayImageView(mContext, fuWuSaleBean.getServerUrl(), ivServer,R.mipmap.ic_img_default);
             serverName.setText(fuWuSaleBean.getServerName() + "");
             serverMoney.setText(fuWuSaleBean.getServerMoney() + "");
             applyMd.setText(fuWuSaleBean.getApplyMd() + "");

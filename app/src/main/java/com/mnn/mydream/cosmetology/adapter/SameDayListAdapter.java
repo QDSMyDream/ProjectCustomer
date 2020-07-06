@@ -100,7 +100,7 @@ public class SameDayListAdapter extends BaseAdapter {
             holder.name.setText(costorBean.getName());
 
             //加载图片
-            ImageLoader.displayImageView(mContext,costorBean.getCustomer_tx(),holder.txRoundedImageView);
+            ImageLoader.displayImageView(mContext,costorBean.getCustomer_tx(),holder.txRoundedImageView,R.mipmap.def_photo);
 
             holder.projectsTitle.setText(costorBean.getPhone());
             holder.sex.setText(costorBean.getSex());

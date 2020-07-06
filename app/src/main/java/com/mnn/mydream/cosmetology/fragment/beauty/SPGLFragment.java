@@ -1,9 +1,11 @@
 package com.mnn.mydream.cosmetology.fragment.beauty;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -79,8 +81,10 @@ public class SPGLFragment extends SupportFragment {
     @Override
     public void onLazyInitView(@Nullable Bundle savedInstanceState) {
         super.onLazyInitView(savedInstanceState);
+        Log.e(TAG, "onLazyInitView: ");
 
         viewpagers.setAdapter(new ViewPagerFragmentAdapter(getChildFragmentManager(), stringitles, supportFragments));
+        viewpagers.setOffscreenPageLimit(4);
 
         tabs.setupWithViewPager(viewpagers);
     }
@@ -90,4 +94,73 @@ public class SPGLFragment extends SupportFragment {
         super.onDestroyView();
         unbinder.unbind();
     }
+
+
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        Log.e(TAG, "onAttach: ");
+    }
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        Log.e(TAG, "onCreate: ");
+    }
+
+    @Override
+    public void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        Log.e(TAG, "onSaveInstanceState: ");
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        Log.e(TAG, "onResume: ");
+
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        Log.e(TAG, "onPause: ");
+    }
+
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        Log.e(TAG, "onDestroy: ");
+    }
+
+    @Override
+    public void onSupportVisible() {
+        super.onSupportVisible();
+        Log.e(TAG, "onSupportVisible: ");
+
+
+    }
+
+    @Override
+    public void onSupportInvisible() {
+        super.onSupportInvisible();
+        Log.e(TAG, "onSupportInvisible: ");
+    }
+
+
+    @Override
+    public void onHiddenChanged(boolean hidden) {
+        super.onHiddenChanged(hidden);
+        Log.e(TAG, "onHiddenChanged: " + hidden);
+    }
+
+
+    @Override
+    public void setUserVisibleHint(boolean isVisibleToUser) {
+        super.setUserVisibleHint(isVisibleToUser);
+        Log.e(TAG, "setUserVisibleHint: " + isVisibleToUser);
+    }
+
+
 }

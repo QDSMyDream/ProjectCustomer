@@ -94,12 +94,45 @@
     <!--开卡图标字体颜色-->
     <color name="beauty_card_img_font_bg">#FAFAFA</color>
 
-    <!--开卡图标 渐变色 #12AF94到#129CB8渐变 -->
-    <color name="beauty_card_img_left_start_bg">#12AF94</color>
 
-    <!--开卡图标 渐变色 #12AF94到#129CB8渐变 -->
-    <color name="beauty_card_img_right_end_bg">#129CB8</color>
 
+    <color name="beauty_card_img_left_start_bg1">#12AF94</color>
+    <color name="beauty_card_img_right_end_bg1">#129CB8</color>
+
+    <!--金色-->
+    <color name="beauty_card_img_left_start_bg2">#f4ae46</color>
+    <color name="beauty_card_img_left_end_bg2">#ff9900</color>
+
+    <!--草色-->
+    <color name="beauty_card_img_left_start_bg3">#8B864E</color>
+    <color name="beauty_card_img_left_end_bg3">#8E8E38</color>
+
+    <!--红色-->
+    <color name="beauty_card_img_left_start_bg4">#ff7575</color>
+    <color name="beauty_card_img_left_end_bg4">#FF5151</color>
+
+    <!--黑色-->
+    <color name="beauty_card_img_left_start_bg5">#4F4F4F</color>
+    <color name="beauty_card_img_left_end_bg5">#3C3C3C</color>
+
+    <!--紫色-->
+    <color name="beauty_card_img_left_start_bg6">#CA8EFF</color>
+    <color name="beauty_card_img_left_end_bg6">#B15BFF</color>
+
+    <!--青色-->
+    <color name="beauty_card_img_left_start_bg7">#80FFFF</color>
+    <color name="beauty_card_img_left_end_bg7">#00FFFF</color>
+
+    <!--绿色-->
+    <color name="beauty_card_img_left_start_bg8">#79FF79</color>
+    <color name="beauty_card_img_left_end_bg8">#28FF28</color>
+
+    <!--浅紫色-->
+    <color name="beauty_card_img_left_start_bg9">#D2A2CC</color>
+    <color name="beauty_card_img_left_end_bg9">#CA8EC2</color>
+
+
+    <!--白色-->
     <!--开卡图标 禁止使用背景颜色#E5E5E5-->
     <color name="beauty_card_not_select_bg">#E5E5E5</color>
 

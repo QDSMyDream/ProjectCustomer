@@ -22,6 +22,7 @@ import com.mnn.mydream.cosmetology.adapter.BeautyWithinCardGridViewAdapter;
 import com.mnn.mydream.cosmetology.adapter.BeautyWithinTipsAdapter;
 import com.mnn.mydream.cosmetology.bean.BeautyBeanKh;
 import com.mnn.mydream.cosmetology.bean.BeautyWithinCardsBean;
+import com.mnn.mydream.cosmetology.utils.Constons;
 import com.mnn.mydream.cosmetology.utils.ImageLoader;
 import com.mnn.mydream.cosmetology.utils.ToastUtils;
 import com.mnn.mydream.cosmetology.utils.Tools;
@@ -188,6 +189,8 @@ public class KKFragment extends SupportFragment {
 
     private void initview() {
 
+        spinnerMd.attachDataSource(Constons.getOperationMd());
+
         //气泡布局
         bubbleLayout.setLook(BubbleLayout.Look.RIGHT);
         bubbleLayout.setShadowColor(getResources().getColor(R.color.beauty_add_custmer_bg));
@@ -199,6 +202,14 @@ public class KKFragment extends SupportFragment {
         beautyWithinCardsBeans.add(new BeautyWithinCardsBean("我是秦大帅2", "大撒哇强大", "储蓄卡", 1));
         beautyWithinCardsBeans.add(new BeautyWithinCardsBean("我是秦大帅3", "大沙发阿斯顿", "储蓄卡", 2));
         beautyWithinCardsBeans.add(new BeautyWithinCardsBean("我是秦大帅4", "温热打赏", "储蓄卡", 3));
+        beautyWithinCardsBeans.add(new BeautyWithinCardsBean("我是秦大帅5", "大沙发阿斯顿", "储蓄卡", 4));
+        beautyWithinCardsBeans.add(new BeautyWithinCardsBean("我是秦大帅6", "温热打赏", "储蓄卡", 5));
+
+        beautyWithinCardsBeans.add(new BeautyWithinCardsBean("我是秦大帅7", "大沙发阿斯顿", "储蓄卡", 6));
+        beautyWithinCardsBeans.add(new BeautyWithinCardsBean("我是秦大帅8", "温热打赏", "储蓄卡", 7));
+
+        beautyWithinCardsBeans.add(new BeautyWithinCardsBean("我是秦大帅9", "大沙发阿斯顿", "储蓄卡", 8));
+        beautyWithinCardsBeans.add(new BeautyWithinCardsBean("我是秦大帅0", "温热打赏", "储蓄卡", 9));
 
         beautyWithinCardGridViewAdapter = new BeautyWithinCardGridViewAdapter(getActivity(), beautyWithinCardsBeans);
         gridview.setAdapter(beautyWithinCardGridViewAdapter);
@@ -330,7 +341,7 @@ public class KKFragment extends SupportFragment {
             selectKhLayout.setVisibility(View.GONE);
 
             //加载图片
-            ImageLoader.displayImageView(getContext(), beautyBeanKh.getTx(), khTx);
+            ImageLoader.displayImageView(getContext(), beautyBeanKh.getTx(), khTx, R.mipmap.def_photo);
 
             khName.setText(beautyBeanKh.getName());
 

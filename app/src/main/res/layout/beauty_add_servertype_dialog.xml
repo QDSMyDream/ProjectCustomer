@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.zhy.android.percent.support.PercentLinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+    <com.zhy.android.percent.support.PercentLinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/title"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:background="@drawable/beauty_within_dialog_title_bg"
+            android:gravity="center"
+            android:text="添加客户服务类型"
+            android:textColor="@color/white"
+            android:textSize="@dimen/text_size_24" />
+
+        <android.support.v7.widget.AppCompatEditText
+            android:id="@+id/ed_servertype"
+            style="@style/BeautyNumStyle"
+            android:layout_height="40dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="30dp"
+            android:gravity="center"
+            android:hint="@string/beauty_server_name"
+            android:maxLines="1"
+            android:singleLine="true"
+            android:textColorHint="@color/aluminum"
+            app:layout_widthPercent="80%" />
+
+        <!--按钮-->
+        <com.zhy.android.percent.support.PercentLinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="30dp"
+            android:layout_marginBottom="20dp"
+            android:gravity="right"
+            android:orientation="horizontal"
+            app:layout_widthPercent="80%">
+
+
+            <android.support.v7.widget.AppCompatButton
+                android:id="@+id/btn_cancel"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/beauty_text_frame_shape"
+                android:text="取  消"
+                android:textColor="@color/beauty_add_custmer_bg"
+                android:textSize="@dimen/text_size_20"
+                app:layout_widthPercent="20%" />
+
+            <android.support.v7.widget.AppCompatButton
+                android:id="@+id/btn_commit"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/beauty_text_frame_shape_yes"
+                android:text="保  存"
+                android:textColor="@color/white"
+                android:textSize="@dimen/text_size_20"
+                app:layout_marginLeftPercent="5%"
+                app:layout_widthPercent="20%" />
+        </com.zhy.android.percent.support.PercentLinearLayout>
+
+
+    </com.zhy.android.percent.support.PercentLinearLayout>
+</com.zhy.android.percent.support.PercentLinearLayout>
+
+

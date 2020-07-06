@@ -45,4 +45,9 @@ public class NiceSpinnerAdapterWrapper extends NiceSpinnerBaseAdapter {
     @Override public Object getItemInDataset(int position) {
         return baseAdapter.getItem(position);
     }
+
+    @Override
+    public int getCountIndex() {
+        return baseAdapter.getCount();
+    }
 }

@@ -39,6 +39,8 @@
 
     <string name="beauty_server_name">请输入服务名称</string>
 
+    <string name="beauty_server_type">请输入服务类型</string>
+
     <string name="beauty_server_money">请输入服务价格</string>
 
 

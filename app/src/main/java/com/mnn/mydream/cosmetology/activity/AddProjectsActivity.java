@@ -212,7 +212,7 @@ public class AddProjectsActivity extends AppCompatActivity {
         }
 
         //加载图片
-        ImageLoader.displayImageView(this, customer.getCustomer_tx(), imgPhoto);
+        ImageLoader.displayImageView(this, customer.getCustomer_tx(), imgPhoto,R.mipmap.def_photo);
 
         birTxt.setText(customer.getBirthday());
         age.setText(customer.getAge() + "");

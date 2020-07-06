@@ -4,7 +4,7 @@
     android:id="@+id/layout_item"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@drawable/beauty_within_gridview_item_layout"
+    android:background="@drawable/beauty_within_gridview_item_layout1"
     android:orientation="vertical"
     android:padding="5dp">
 
@@ -14,18 +14,18 @@
         android:layout_height="50dp"
         android:layout_alignParentTop="true"
         android:layout_marginLeft="10dp"
-        android:paddingTop="5dp"
         android:gravity="top"
-        android:text="撒大大是"
+        android:paddingTop="5dp"
+        android:text="-"
         android:textColor="@color/white"
         android:textSize="@dimen/text_size_18" />
 
     <RelativeLayout
         android:layout_width="wrap_content"
         android:layout_height="55dp"
-        android:paddingBottom="5dp"
+        android:layout_alignParentBottom="true"
         android:layout_marginLeft="10dp"
-        android:layout_alignParentBottom="true">
+        android:paddingBottom="5dp">
 
         <LinearLayout
             android:id="@+id/title_layout2"
@@ -40,20 +40,20 @@
                 android:layout_height="match_parent"
                 android:layout_below="@id/img_icon"
                 android:layout_alignParentLeft="true"
-                android:gravity="bottom"
                 android:layout_marginBottom="5dp"
+                android:gravity="bottom"
                 android:maxLines="1"
-                android:text="最低起充"
+                android:text="-"
                 android:textColor="@color/white"
                 android:textSize="@dimen/text_size_16" />
 
             <ImageView
                 android:layout_width="20dp"
                 android:layout_height="25dp"
-                android:layout_marginLeft="5dp"
-                android:gravity="bottom"
                 android:layout_gravity="bottom"
+                android:layout_marginLeft="5dp"
                 android:layout_marginBottom="5dp"
+                android:gravity="bottom"
                 android:src="@mipmap/money" />
 
             <TextView
@@ -62,10 +62,10 @@
                 android:layout_height="match_parent"
                 android:layout_below="@id/img_icon"
                 android:layout_alignParentLeft="true"
-                android:gravity="bottom"
                 android:layout_marginBottom="5dp"
+                android:gravity="bottom"
                 android:maxLines="1"
-                android:text="15000"
+                android:text="-"
                 android:textColor="@color/white"
                 android:textSize="@dimen/text_size_16" />
 
@@ -96,9 +96,9 @@
                 android:layout_alignParentRight="true"
                 android:layout_centerVertical="true"
                 android:gravity="bottom"
-                android:paddingBottom="5dp"
                 android:maxLines="1"
-                android:text="储蓄卡"
+                android:paddingBottom="5dp"
+                android:text="-"
                 android:textColor="@color/white"
                 android:textSize="@dimen/text_size_16" />
 

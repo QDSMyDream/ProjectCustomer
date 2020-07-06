@@ -79,7 +79,7 @@ public class GeneralRecordPeriodListAdapter extends BaseAdapter {
         holder.age.setText(setAgeSize(costorBean.getAge() + ""));
         holder.time.setText(costorBean.getCreatedAt());
         //加载图片
-        ImageLoader.displayImageView(mContext,costorBean.getCustomer_tx(),holder.txRoundedImageView);
+        ImageLoader.displayImageView(mContext,costorBean.getCustomer_tx(),holder.txRoundedImageView,R.mipmap.ic_img_default);
         holder.itemLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

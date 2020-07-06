@@ -74,7 +74,7 @@ public class GridVeiwMenuAdapter extends BaseAdapter {
 
             Log.e(TAG, "getView: "+ projectMenuBeans.get(position).getProjectMenuImg());
             //加载图片
-            ImageLoader.displayImageView(mContext, projectMenuBeans.get(position).getProjectMenuImg(), viewHolder.imgIcon);
+            ImageLoader.displayImageView(mContext, projectMenuBeans.get(position).getProjectMenuImg(), viewHolder.imgIcon,R.mipmap.ic_img_default);
         }
 
 

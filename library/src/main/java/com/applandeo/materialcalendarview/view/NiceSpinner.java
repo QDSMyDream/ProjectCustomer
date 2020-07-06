@@ -18,6 +18,7 @@ import android.support.v4.graphics.drawable.DrawableCompat;
 import android.support.v4.view.animation.LinearOutSlowInInterpolator;
 import android.support.v7.widget.AppCompatTextView;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.MotionEvent;
@@ -27,6 +28,8 @@ import android.widget.ListAdapter;
 import android.widget.ListPopupWindow;
 import android.widget.ListView;
 import android.widget.PopupWindow;
+import android.widget.Spinner;
+import android.widget.SpinnerAdapter;
 
 import com.applandeo.materialcalendarview.R;
 
@@ -50,6 +53,8 @@ import java.util.List;
  * limitations under the License.
  */
 public class NiceSpinner extends AppCompatTextView {
+
+    private String TAG = "NiceSpinner";
 
     private static final int MAX_LEVEL = 10000;
     private static final int VERTICAL_OFFSET = 1;
@@ -348,11 +353,33 @@ public class NiceSpinner extends AppCompatTextView {
         setAdapterInternal(adapter);
     }
 
+
+    public void setAdapterString(String s) {
+        int j = adapter.getCount();
+        Log.e(TAG, "handleMessage: " + j);
+        for (int i = 0; i < j; i++) {
+            Log.e(TAG, "handleMessage: " + adapter.getItem(i).toString());
+
+            if (s.equals(adapter.getItem(i).toString())) {
+                adapter.setSelectedIndex(i + 1);// 默认选中项
+                break;
+            }
+        }
+
+    }
+
+
     public void setAdapter(ListAdapter adapter) {
         this.adapter = new NiceSpinnerAdapterWrapper(getContext(), adapter, textColor, backgroundSelector,
                 spinnerTextFormatter, horizontalAlignment);
         setAdapterInternal(this.adapter);
     }
+
+    public NiceSpinnerBaseAdapter getAdapter() {
+
+        return adapter;
+    }
+
 
     public PopUpTextAlignment getPopUpTextAlignment() {
         return horizontalAlignment;

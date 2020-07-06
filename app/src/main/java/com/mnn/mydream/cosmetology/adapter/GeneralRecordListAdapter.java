@@ -123,7 +123,7 @@ public class GeneralRecordListAdapter extends BaseAdapter {
 
             Customer costorBean = comingslist.get(position);
             //加载图片
-            ImageLoader.displayImageView(mContext, costorBean.getCustomer_tx(), txRoundedImageView);
+            ImageLoader.displayImageView(mContext, costorBean.getCustomer_tx(), txRoundedImageView,R.mipmap.ic_img_default);
 
             name.setText(costorBean.getName());
 

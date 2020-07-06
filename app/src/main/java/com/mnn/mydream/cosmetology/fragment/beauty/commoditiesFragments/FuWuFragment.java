@@ -593,7 +593,7 @@ public class FuWuFragment extends SupportFragment {
                 ImageView ivServer = itemView.findViewById(R.id.iv_server);
 
                 //加载图片
-                ImageLoader.displayImageView(getContext(), fuWuSaleBean.getServerUrl(), ivServer);
+                ImageLoader.displayImageView(getContext(), fuWuSaleBean.getServerUrl(), ivServer,R.mipmap.ic_img_default);
                 serverName.setText(fuWuSaleBean.getServerName() + "");
                 serverMoney.setText(fuWuSaleBean.getServerMoney() + "");
                 applyMd.setText(fuWuSaleBean.getApplyMd() + "");
@@ -618,7 +618,7 @@ public class FuWuFragment extends SupportFragment {
                 ImageView ivServer = itemView.findViewById(R.id.iv_server);
 
                 //加载图片
-                ImageLoader.displayImageView(getContext(), fuWuSaleBean.getServerUrl(), ivServer);
+                ImageLoader.displayImageView(getContext(), fuWuSaleBean.getServerUrl(), ivServer,R.mipmap.ic_img_default);
                 serverName.setText(fuWuSaleBean.getServerName() + "");
                 serverMoney.setText(fuWuSaleBean.getServerMoney() + "");
                 applyMd.setText(fuWuSaleBean.getApplyMd() + "");
@@ -629,6 +629,10 @@ public class FuWuFragment extends SupportFragment {
         }
 
     }
+
+
+
+
 
 
 }

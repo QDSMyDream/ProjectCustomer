@@ -18,6 +18,9 @@ import com.mnn.mydream.cosmetology.utils.Constons;
 import com.zhy.android.percent.support.PercentLinearLayout;
 import com.zhy.android.percent.support.PercentRelativeLayout;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -51,6 +54,7 @@ public class BeautyWithinActivity extends SupportActivity {
     BeautyWithinListViewAdapter beautyWithinListViewAdapter;
 
     private String[] strings = new String[]{"充值", "开卡", "续充卡", "消费", "服务", "产品", "项目卡", "消耗", "耗卡", "券核销", "服务核销", "其它", "消费赠送", "激活礼品卡"};
+
 
     SupportFragment[] mFragments;
 

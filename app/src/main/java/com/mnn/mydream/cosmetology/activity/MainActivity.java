@@ -182,7 +182,7 @@ public class MainActivity extends AppCompatActivity {
                         @Override
                         public void loadBanner(XBanner banner, View view, int position) {
                             //加载图片
-                            ImageLoader.displayImageView(MainActivity.this, imgesUrl.get(position).getImgUrl(), (ImageView) view);
+                            ImageLoader.displayImageView(MainActivity.this, imgesUrl.get(position).getImgUrl(), (ImageView) view,R.mipmap.def_photo);
                         }
                     });
 

@@ -11,6 +11,7 @@ import android.widget.TextView;
 
 import com.mnn.mydream.cosmetology.R;
 import com.mnn.mydream.cosmetology.bean.BeautyWithinCardsBean;
+import com.mnn.mydream.cosmetology.utils.DrawableUtils;
 
 import java.util.List;
 
@@ -28,7 +29,6 @@ public class BeautyWithinCardGridViewAdapter extends BaseAdapter {
 
     private Context mContext;
     private List<BeautyWithinCardsBean> beautyWithinCardsBeans;
-
 
 
     public BeautyWithinCardGridViewAdapter(Context context, List<BeautyWithinCardsBean> list) {
@@ -78,13 +78,8 @@ public class BeautyWithinCardGridViewAdapter extends BaseAdapter {
             viewHolder.contentText1.setText(beautyWithinCardsBeans.get(position).getCardContentZDDCString());
             viewHolder.contentText2.setText(beautyWithinCardsBeans.get(position).getCardContentCXKString());
 
-            if (beautyWithinCardsBeans.get(position).getCardGradeInt() == 0) {
 
-                viewHolder.layoutItem.setBackgroundResource(R.drawable.beauty_within_gridview_item_layout2);
-            } else {
-                viewHolder.layoutItem.setBackgroundResource(R.drawable.beauty_within_gridview_item_layout);
-
-            }
+            viewHolder.layoutItem.setBackgroundResource(DrawableUtils.getDrawableCardsLayout(beautyWithinCardsBeans.get(position).getCardGradeInt()));
 
 
         }

@@ -16,6 +16,13 @@
         android:paddingTop="5dp"
         android:paddingBottom="5dp">
 
+        <ImageView
+            android:id="@+id/img_tx"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/ic_img_default"
+            app:layout_widthPercent="5%" />
+
         <com.zhy.android.percent.support.PercentLinearLayout
             android:id="@+id/select_server_all"
             android:layout_width="wrap_content"
@@ -72,7 +79,7 @@
             android:layout_height="wrap_content"
             android:text="性别"
             android:textColor="@color/beauty_text_color"
-            app:layout_widthPercent="8%" />
+            app:layout_widthPercent="6%" />
 
         <TextView
             android:id="@+id/bir"
@@ -81,7 +88,7 @@
             android:layout_height="wrap_content"
             android:text="生日"
             android:textColor="@color/beauty_text_color"
-            app:layout_widthPercent="15%" />
+            app:layout_widthPercent="12%" />
 
         <TextView
             android:id="@+id/identity"
@@ -147,7 +154,6 @@
                 android:text="编辑档案"
                 android:textColor="@color/beauty_text_color"
                 android:textSize="@dimen/text_size_18" />
-
 
 
         </com.zhy.android.percent.support.PercentLinearLayout>

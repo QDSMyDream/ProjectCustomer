@@ -83,98 +83,15 @@ import me.yokeyword.fragmentation.SupportFragment;
  */
 
 
-public class BeautyActivity extends SupportActivity implements BeautyContentListOnClickListener, View.OnLongClickListener {
+public class BeautyActivity extends SupportActivity implements BeautyContentListOnClickListener {
 
     private String TAG = "BeautyActivity";
-    @BindView(R.id.title)
-    TextView title;
-    @BindView(R.id.title2)
-    TextView title2;
-    @BindView(R.id.content_title_layout)
-    PercentRelativeLayout contentTitleLayout;
-    @BindView(R.id.img1)
-    ImageView img1;
-    @BindView(R.id.text1)
-    TextView text1;
-    @BindView(R.id.layout1)
-    PercentRelativeLayout layout1;
-    @BindView(R.id.img2)
-    ImageView img2;
-    @BindView(R.id.text2)
-    TextView text2;
-    @BindView(R.id.layout2)
-    PercentRelativeLayout layout2;
-    @BindView(R.id.img3)
-    ImageView img3;
-    @BindView(R.id.text3)
-    TextView text3;
-    @BindView(R.id.layout3)
-    PercentRelativeLayout layout3;
-    @BindView(R.id.img4)
-    ImageView img4;
-    @BindView(R.id.text4)
-    TextView text4;
-    @BindView(R.id.layout4)
-    PercentRelativeLayout layout4;
-    @BindView(R.id.title3)
-    TextView title3;
-    @BindView(R.id.content_title_layout2)
-    PercentRelativeLayout contentTitleLayout2;
-    @BindView(R.id.img5)
-    ImageView img5;
-    @BindView(R.id.text5)
-    TextView text5;
-    @BindView(R.id.layout5)
-    PercentRelativeLayout layout5;
-    @BindView(R.id.img6)
-    ImageView img6;
-    @BindView(R.id.text6)
-    TextView text6;
-    @BindView(R.id.layout6)
-    PercentRelativeLayout layout6;
-    @BindView(R.id.img7)
-    ImageView img7;
-    @BindView(R.id.text7)
-    TextView text7;
-    @BindView(R.id.layout7)
-    PercentRelativeLayout layout7;
-    @BindView(R.id.img8)
-    ImageView img8;
-    @BindView(R.id.text8)
-    TextView text8;
-    @BindView(R.id.layout8)
-    PercentRelativeLayout layout8;
-    @BindView(R.id.title4)
-    TextView title4;
-    @BindView(R.id.content_title_layout3)
-    PercentRelativeLayout contentTitleLayout3;
-    @BindView(R.id.img9)
-    ImageView img9;
-    @BindView(R.id.text9)
-    TextView text9;
-    @BindView(R.id.layout9)
-    PercentRelativeLayout layout9;
-    @BindView(R.id.img10)
-    ImageView img10;
-    @BindView(R.id.text10)
-    TextView text10;
-    @BindView(R.id.layout10)
-    PercentRelativeLayout layout10;
-    @BindView(R.id.img11)
-    ImageView img11;
-    @BindView(R.id.text11)
-    TextView text11;
-    @BindView(R.id.layout11)
-    PercentRelativeLayout layout11;
-
     @BindView(R.id.menu_img)
     ImageView menuImg;
     @BindView(R.id.menu_listview)
     ListView menuListview;
     @BindView(R.id.layout_left)
     PercentLinearLayout layoutLeft;
-    @BindView(R.id.title_add_img)
-    ImageView titleAddImg;
     @BindView(R.id.title_add_text)
     TextView titleAddText;
     @BindView(R.id.add_customer_layout)
@@ -191,38 +108,7 @@ public class BeautyActivity extends SupportActivity implements BeautyContentList
     PercentRelativeLayout userInfoLayout;
     @BindView(R.id.title_layout)
     PercentRelativeLayout titleLayout;
-    @BindView(R.id.title_expression_img)
-    ImageView titleExpressionImg;
-    @BindView(R.id.flipper_layout)
-    PercentRelativeLayout flipperLayout;
-    @BindView(R.id.menu_img_listview)
-    ListView menuImgListview;
-    @BindView(R.id.line1)
-    ImageView line1;
-    @BindView(R.id.agency_order_text)
-    TextView agencyOrderText;
-    @BindView(R.id.agency_order_layout)
-    PercentRelativeLayout agencyOrderLayout;
-    @BindView(R.id.line2)
-    ImageView line2;
-    @BindView(R.id.agency_appointment_text)
-    TextView agencyAppointmentText;
-    @BindView(R.id.agency_appointment_layout)
-    PercentRelativeLayout agencyAppointmentLayout;
-    @BindView(R.id.agency_layout)
-    PercentLinearLayout agencyLayout;
-    @BindView(R.id.menu_left_layout)
-    PercentLinearLayout menuLeftLayout;
-    @BindView(R.id.img_question)
-    ImageView imgQuestion;
-    @BindView(R.id.common_problem_text)
-    TextView commonProblemText;
-    @BindView(R.id.common_problem_layout)
-    PercentRelativeLayout commonProblemLayout;
-    @BindView(R.id.menu_right_layout)
-    PercentLinearLayout menuRightLayout;
-    @BindView(R.id.menu_layout)
-    PercentLinearLayout menuLayout;
+
     @BindView(R.id.layout_content)
     PercentLinearLayout layoutContent;
 
@@ -239,16 +125,6 @@ public class BeautyActivity extends SupportActivity implements BeautyContentList
     private int leftListViewMenuFontSelects = R.color.beauty_left_font_select_bg;
 
     private BeautyListViewAdapter beautyListViewAdapter;
-
-    private List<String> titleStrings = new ArrayList<>();
-
-    private LoadingDialog loadingDialog;
-
-    private List<BeautyContentMenuBean> beautyContentMenuBeans = new ArrayList<>();
-
-    private BeautyContentMenuAdapter beautyContentMenuAdapter;
-
-    private String contentListViewTitles[] = new String[]{"充值", "消费", "消耗", "其他"};
 
     public NotificationManager mNotificationManager;//通知
 
@@ -272,25 +148,12 @@ public class BeautyActivity extends SupportActivity implements BeautyContentList
         initView();
         initViewPager();
         initLogin();
-//        selectTitleStrings();
 
     }
 
 
     //初始化viewPager
     private void initViewPager() {
-
-//        List<Fragment> fragments = new ArrayList<Fragment>();
-//        fragments.add(new GZTFragment());
-//        fragments.add(new JYGKFragment());
-//        fragments.add(new KHGLFragment());
-//        fragments.add(new DDGLFragment());
-//        fragments.add(new YYGLFragment());
-//        fragments.add(new SJZXFragment());
-//        fragments.add(new YXZXFragment());
-//        fragments.add(new SPGLFragment());
-//        fragments.add(new XTSZFragment());
-//        fragments.add(new XJKHFragment());
 
         mFragments = new SupportFragment[]{
                 GZTFragment.newInstance(),
@@ -303,18 +166,10 @@ public class BeautyActivity extends SupportActivity implements BeautyContentList
                 SPGLFragment.newInstance(),
                 XTSZFragment.newInstance(),
         };
-//        FragmentMainAdapter adapter = new FragmentMainAdapter(getSupportFragmentManager(), fragments);
-//        viewpager.setAdapter(adapter);
-//        //设置主viewpager不能滑动
-//        viewpager.setOffscreenPageLimit(10);
-//        getFragment(0);
 
-
-        //这里需要如下判断，否则可能出现这个错误https://xuexuan.blog.csdn.net/article/details/103733622
         if (findFragment(GZTFragment.class) == null &&
                 findFragment(XJKHFragment.class) == null &&
                 findFragment(XTSZFragment.class) == null) {
-//            loadRootFragment(R.id.fragment, GZTFragment.newInstance());
 
             loadMultipleRootFragment(R.id.fragment, 0,
                     mFragments[0],
@@ -349,74 +204,7 @@ public class BeautyActivity extends SupportActivity implements BeautyContentList
 
         beautyListViewAdapter = new BeautyListViewAdapter(this, beautyListItemBeans, onClickListener);
         menuListview.setAdapter(beautyListViewAdapter);
-//
-//        LoadingDialog.Builder addSignDialogBuild = new LoadingDialog.Builder(BeautyActivity.this);
-//        loadingDialog = addSignDialogBuild.createDialog();
-//        loadingDialog.setCanceledOnTouchOutside(false);
-//        // 设置点击屏幕Dialog不消失
-//        loadingDialog.show();
 
-//        int img1[] = new int[]{R.mipmap.bk, R.mipmap.xck};
-//        String strings1[] = new String[]{"首次开卡", "续充卡"};
-//
-//        int img2[] = new int[]{R.mipmap.dcfw, R.mipmap.gmxmk};
-//        String strings2[] = new String[]{"单次/服务", "购买项目卡"};
-//
-//        int img3[] = new int[]{R.mipmap.hk, R.mipmap.dphx, R.mipmap.dsfhx, R.mipmap.fwhx};
-//        String strings3[] = new String[]{"耗卡", "店铺核销", "第三方核销", "服务核销"};
-//
-//        int img4[] = new int[]{R.mipmap.xfzs, R.mipmap.lpk};
-//        String strings4[] = new String[]{"消费赠送", "礼品卡"};
-//
-//        List<BeautyContentMenuItem> beautyContentMenuItems1 = new ArrayList<>();
-//        List<BeautyContentMenuItem> beautyContentMenuItems2 = new ArrayList<>();
-//        List<BeautyContentMenuItem> beautyContentMenuItems3 = new ArrayList<>();
-//        List<BeautyContentMenuItem> beautyContentMenuItems4 = new ArrayList<>();
-//
-//
-//        for (int i1 = 0; i1 < img1.length; i1++) {
-//            BeautyContentMenuItem beautyContentMenuItem = new BeautyContentMenuItem(strings1[i1], img1[i1]);
-//            beautyContentMenuItems1.add(beautyContentMenuItem);
-//        }
-//
-//        for (int i2 = 0; i2 < img2.length; i2++) {
-//            BeautyContentMenuItem beautyContentMenuItem = new BeautyContentMenuItem(strings2[i2], img2[i2]);
-//            beautyContentMenuItems2.add(beautyContentMenuItem);
-//        }
-//        for (int i3 = 0; i3 < img3.length; i3++) {
-//            BeautyContentMenuItem beautyContentMenuItem = new BeautyContentMenuItem(strings3[i3], img3[i3]);
-//            beautyContentMenuItems3.add(beautyContentMenuItem);
-//        }
-//        for (int i4 = 0; i4 < img4.length; i4++) {
-//            BeautyContentMenuItem beautyContentMenuItem = new BeautyContentMenuItem(strings4[i4], img4[i4]);
-//            beautyContentMenuItems4.add(beautyContentMenuItem);
-//        }
-//
-//
-//        BeautyContentMenuBean beautyContentMenuBean1 = new BeautyContentMenuBean(contentListViewTitles[0], beautyContentMenuItems1);
-//        BeautyContentMenuBean beautyContentMenuBean2 = new BeautyContentMenuBean(contentListViewTitles[1], beautyContentMenuItems2);
-//        BeautyContentMenuBean beautyContentMenuBean3 = new BeautyContentMenuBean(contentListViewTitles[2], beautyContentMenuItems3);
-//        BeautyContentMenuBean beautyContentMenuBean4 = new BeautyContentMenuBean(contentListViewTitles[3], beautyContentMenuItems4);
-//        beautyContentMenuBeans.add(beautyContentMenuBean1);
-//        beautyContentMenuBeans.add(beautyContentMenuBean2);
-//        beautyContentMenuBeans.add(beautyContentMenuBean3);
-//        beautyContentMenuBeans.add(beautyContentMenuBean4);
-        //绑定中间布局
-//        beautyContentMenuAdapter = new BeautyContentMenuAdapter(this, beautyContentMenuBeans);
-//        beautyContentMenuAdapter.setBeautyContentListOnClickListener(this);
-//        menuImgListview.setAdapter(beautyContentMenuAdapter);
-        layout1.setOnLongClickListener(this);
-        layout2.setOnLongClickListener(this);
-        layout3.setOnLongClickListener(this);
-        layout4.setOnLongClickListener(this);
-        layout5.setOnLongClickListener(this);
-        layout6.setOnLongClickListener(this);
-        layout7.setOnLongClickListener(this);
-        layout8.setOnLongClickListener(this);
-        layout9.setOnLongClickListener(this);
-        layout10.setOnLongClickListener(this);
-
-        //RX权限获取
         RxPermissions rxPermissions = new RxPermissions(this);
 
         rxPermissions.request(
@@ -442,7 +230,7 @@ public class BeautyActivity extends SupportActivity implements BeautyContentList
 
     }
 
-    @OnClick({R.id.title_tx, R.id.layout1, R.id.layout2, R.id.layout3, R.id.layout4, R.id.layout5, R.id.layout6, R.id.layout7, R.id.layout8, R.id.layout9, R.id.layout10, R.id.add_customer_layout, R.id.user_info_layout, R.id.agency_appointment_layout, R.id.common_problem_layout})
+    @OnClick({R.id.title_tx, R.id.add_customer_layout, R.id.user_info_layout})
     public void onViewClicked(View view) {
         switch (view.getId()) {
 
@@ -454,62 +242,17 @@ public class BeautyActivity extends SupportActivity implements BeautyContentList
                 break;
 
             case R.id.add_customer_layout:
-//                getFragment(9);
                 showHideFragment(mFragments[2], mFragments[Constons.BEAUTY_FRAGMENT_POSTION]);
                 Constons.BEAUTY_FRAGMENT_POSTION = 2;
+                BeautyListViewAdapter.BEAUTY_SELECT_ITEM = 2;
+                isAdapter(beautyListViewAdapter);
                 break;
 
             case R.id.user_info_layout:
-//                Intent intent = new Intent();
-//                intent.setClass(BeautyActivity.this, LoginActivity.class);
-//                startActivityForResult(intent, Constons.BEAUTY_RESULT_LONGIN_CODE);
+                Intent intent = new Intent(this, BeautyUserInfoActivity.class);
+                startActivityForResult(intent, Constons.RESULT_USER_INFO_REQUEST);
                 break;
 
-            case R.id.agency_appointment_layout:
-                break;
-
-            case R.id.common_problem_layout:
-                break;
-
-            case R.id.layout1:
-                Constons.BEAUTY_WITHIN_PREVIOUS_POSTION = 0;
-                break;
-
-            case R.id.layout2:
-                Constons.BEAUTY_WITHIN_PREVIOUS_POSTION = 1;
-                break;
-
-            case R.id.layout3:
-                Constons.BEAUTY_WITHIN_PREVIOUS_POSTION = 2;
-                break;
-
-            case R.id.layout4:
-                Constons.BEAUTY_WITHIN_PREVIOUS_POSTION = 3;
-                break;
-
-            case R.id.layout5:
-                Constons.BEAUTY_WITHIN_PREVIOUS_POSTION = 4;
-                break;
-
-            case R.id.layout6:
-                Constons.BEAUTY_WITHIN_PREVIOUS_POSTION = 5;
-                break;
-
-            case R.id.layout7:
-                Constons.BEAUTY_WITHIN_PREVIOUS_POSTION = 6;
-                break;
-
-            case R.id.layout8:
-                Constons.BEAUTY_WITHIN_PREVIOUS_POSTION = 7;
-                break;
-
-            case R.id.layout9:
-                Constons.BEAUTY_WITHIN_PREVIOUS_POSTION = 8;
-                break;
-
-            case R.id.layout10:
-                Constons.BEAUTY_WITHIN_PREVIOUS_POSTION = 9;
-                break;
 
         }
     }
@@ -520,9 +263,7 @@ public class BeautyActivity extends SupportActivity implements BeautyContentList
         public void onClick(View v) {
             int position = menuListview.getPositionForView(v);
             BeautyListViewAdapter.BEAUTY_SELECT_ITEM = position;
-//            getFragment(position);
-//            startWithPop(mFragments[position]);
-//            start(mFragments[position]);
+
             showHideFragment(mFragments[position], mFragments[Constons.BEAUTY_FRAGMENT_POSTION]);
             isAdapter(beautyListViewAdapter);
             Log.e("click positon::", "" + position);
@@ -534,109 +275,6 @@ public class BeautyActivity extends SupportActivity implements BeautyContentList
         if (adapters != null) {
             adapters.notifyDataSetChanged();
         }
-    }
-
-    //查询某个时间前
-    private void selectTitleStrings() {
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        Date createdAtDate = null;
-        try {
-            createdAtDate = sdf.parse(Tools.getSameDay());
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
-        BmobDate bmobCreatedAtDate = new BmobDate(createdAtDate);
-        BmobQuery<BeautyTitleBean> categoryBmobQuery = new BmobQuery<>();
-
-        Log.e(TAG, "selectMenuItem: " + createdAtDate);
-        categoryBmobQuery.addWhereLessThan("createdAt", bmobCreatedAtDate);
-        categoryBmobQuery.findObjects(new FindListener<BeautyTitleBean>() {
-            @Override
-            public void done(List<BeautyTitleBean> object, BmobException e) {
-                if (e == null) {
-                    Log.e(TAG, "done: " + "查询成功" + object.size());
-
-                    for (BeautyTitleBean beautyTitleBean : object) {
-                        titleStrings.add(beautyTitleBean.getTitleString());
-                    }
-                    loadingDialog.dismiss();
-                    refreshHandler.sendEmptyMessage(1);
-
-                } else {
-                    Log.e(TAG, "done: " + "查询失败" + e.toString());
-                    loadingDialog.dismiss();
-
-                }
-            }
-        });
-
-    }
-
-
-    ///刷新Handler
-    @SuppressLint("HandlerLeak")
-    private Handler refreshHandler = new Handler() {
-        @Override
-        public void handleMessage(Message msg) {
-            switch (msg.what) {
-                case 1:
-                    setFlipperString();
-                    break;
-                case 2:
-
-                    break;
-
-                default:
-                    break;
-            }
-        }
-    };
-
-    private void setFlipperString() {
-        Log.e(TAG, "setFlipperString: ");
-
-//        for (int i = 0; i < titleStrings.size(); i++) {
-//            Log.e(TAG, "setFlipperString: " + titleStrings.get(i));
-//            View view = LayoutInflater.from(getBaseContext()).inflate(R.layout.beauty_viewflipper_item, null);
-//            TextView textView = view.findViewById(R.id.flipper_text);
-//            textView.setText(titleStrings.get(i));
-//            vfText.addView(view);
-//        }
-
-    }
-
-
-    @Override
-    public boolean onLongClick(View v) {
-
-        switch (v.getId()) {
-            case R.id.layout1:
-                break;
-            case R.id.layout2:
-                break;
-            case R.id.layout3:
-                break;
-            case R.id.layout4:
-                break;
-            case R.id.layout5:
-                break;
-            case R.id.layout6:
-                break;
-            case R.id.layout7:
-                break;
-            case R.id.layout8:
-                break;
-            case R.id.layout9:
-                break;
-            case R.id.layout10:
-                break;
-            default:
-        }
-        return true;
-    }
-
-    private void setCostomMsg(String msg) {
-        sendNotification(msg);
     }
 
 
@@ -713,20 +351,7 @@ public class BeautyActivity extends SupportActivity implements BeautyContentList
 
                     }
                     break;
-//
-//                case Constons.RESULT_FUWU_SERVER_CODE_SCUESS_REQUEST://添加成功
-//
-//                    FuWuFragment.newInstance().onActivityResult(requestCode, resultCode, data);
-//                    break;
-//                case Constons.RESULT_FUWU_SERVER_CODE_CANCEL_REQUEST://添加失败
-//
-//                    FuWuFragment.newInstance().onActivityResult(requestCode, resultCode, data);
-//                    break;
-//
-//                case Constons.RESULT_FUWU_SERVER_CODE_UPDATE_REQUEST://修改成功
-//
-//                    FuWuFragment.newInstance().onActivityResult(requestCode, resultCode, data);
-//                    break;
+
 
             }
         }
@@ -874,11 +499,11 @@ public class BeautyActivity extends SupportActivity implements BeautyContentList
                             if (e == null) {
                                 ToastUtils.showToast(BeautyActivity.this, "上传头像成功", true);
 
-                                ImageLoader.displayImageView(BeautyActivity.this,picPath, titleTx);
+                                ImageLoader.displayImageView(BeautyActivity.this, picPath, titleTx, R.mipmap.def_photo);
 
                             } else {
                                 ToastUtils.showToast(BeautyActivity.this, "上传头像失败", false);
-                                Log.e(TAG, "done: "+e.getMessage().toString() );
+                                Log.e(TAG, "done: " + e.getMessage().toString());
                             }
                         }
 
@@ -886,7 +511,7 @@ public class BeautyActivity extends SupportActivity implements BeautyContentList
                     });
                 } else {
                     Log.e(TAG, "上传文件失败：" + e.getMessage());
-                    Log.e(TAG, "done: "+e.getMessage().toString() );
+                    Log.e(TAG, "done: " + e.getMessage().toString());
                 }
             }
 
@@ -925,7 +550,7 @@ public class BeautyActivity extends SupportActivity implements BeautyContentList
             String userTx = (String) BmobUser.getObjectByKey("userTx");
             Log.e(TAG, "setIsLoginInfo: " + userTx);
             //加载图片
-            ImageLoader.displayImageView(this, userTx, titleTx);
+            ImageLoader.displayImageView(this, userTx, titleTx, R.mipmap.def_photo);
             ToastUtils.showToast(getBaseContext(), "已经登陆" + user.getUsername(), true);
 
         } else {
@@ -985,11 +610,6 @@ public class BeautyActivity extends SupportActivity implements BeautyContentList
         }
     }
 
-//
-//    public void getFragment(int menuItemId) {
-//        viewpager.setCurrentItem(menuItemId, false);
-//
-//    }
 
     //退出函数
     long firstTime = 0;

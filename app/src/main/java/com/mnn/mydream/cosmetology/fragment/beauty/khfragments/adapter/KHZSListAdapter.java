@@ -13,9 +13,7 @@ import android.widget.TextView;
 import com.mnn.mydream.cosmetology.R;
 import com.mnn.mydream.cosmetology.bean.BeautyBeanKh;
 import com.mnn.mydream.cosmetology.bean.fuwuBean.FuWuSaleBean;
-import com.mnn.mydream.cosmetology.interfaces.FuWuListOnClickListener;
 import com.mnn.mydream.cosmetology.interfaces.SetListOnClickListener;
-import com.mnn.mydream.cosmetology.interfaces.SetSameDayListOnClickListener;
 import com.mnn.mydream.cosmetology.utils.ImageLoader;
 import com.zhy.android.percent.support.PercentLinearLayout;
 
@@ -70,6 +68,8 @@ public class KHZSListAdapter extends BaseAdapter {
         }
 
         BeautyBeanKh beautyBeanKh = beautyBeanKhs.get(position);
+        //加载图片
+        ImageLoader.displayImageView(mContext, beautyBeanKh.getTx(), holder.imgTx, R.mipmap.ic_img_default);
 
         holder.name.setText(beautyBeanKh.getName());
         holder.bir.setText(beautyBeanKh.getBir());
@@ -86,14 +86,12 @@ public class KHZSListAdapter extends BaseAdapter {
             }
         });
 
-
         holder.infoBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 setListOnClickListener.onClick(v, position, beautyBeanKh);
             }
         });
-
 
         return convertView;
     }
@@ -121,7 +119,7 @@ public class KHZSListAdapter extends BaseAdapter {
             TextView addDate = view.findViewById(R.id.add_date);
             ImageView ivServer = view.findViewById(R.id.iv_server);
             //加载图片
-            ImageLoader.displayImageView(mContext, fuWuSaleBean.getServerUrl(), ivServer);
+            ImageLoader.displayImageView(mContext, fuWuSaleBean.getServerUrl(), ivServer, R.mipmap.def_photo);
             serverName.setText(fuWuSaleBean.getServerName() + "");
             serverMoney.setText(fuWuSaleBean.getServerMoney() + "");
             applyMd.setText(fuWuSaleBean.getApplyMd() + "");
@@ -160,6 +158,8 @@ public class KHZSListAdapter extends BaseAdapter {
 
 
     static class ViewHolder {
+        @BindView(R.id.img_tx)
+        ImageView imgTx;
         @BindView(R.id.name)
         TextView name;
         @BindView(R.id.phone)
@@ -180,7 +180,6 @@ public class KHZSListAdapter extends BaseAdapter {
         TextView infoBtn;
         @BindView(R.id.update_btn)
         TextView updateBtn;
-
         @BindView(R.id.title_layout)
         PercentLinearLayout titleLayout;
 

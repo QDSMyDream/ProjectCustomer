@@ -41,12 +41,15 @@ public class Constons {
     public static final int RESULT_FUWU_SERVER_CODE_SCUESS_REQUEST = 10007;//添加服务成功请求码
     public static final int RESULT_FUWU_SERVER_CODE_CANCEL_REQUEST = 10008;//添加服务失败或取消请求码
 
+    public static final String RESULT_FUWU_SERVER_STR_UPDATE_REQUEST = "Update";//修改服务请求标识
 
-    public static final String RESULT_FUWU_SERVER_STR_UPDATE_REQUEST = "Update";//修改请求码
+    public static final int RESULT_FUWU_SERVER_CODE_UPDATE_REQUEST = 10009;//修改服务请求码
 
-    public static final int RESULT_FUWU_SERVER_CODE_UPDATE_REQUEST = 10009;//修改请求码
 
-    public static final int RESULT_FUWU_SERVER_CODE_UPDATE2_REQUEST = 10010;//修改请求码
+    public static final int RESULT_USER_INFO_REQUEST = 10010;//管理员账户详情请求码
+
+
+
 
 
     public static String FUWU_PICPATH = "";
@@ -57,6 +60,20 @@ public class Constons {
 
 
     public static int BEAUTY_WITHIN_PREVIOUS_POSTION = 0;//BeautyWithinActivity左侧菜单位置
+
+
+    //获取操作门店
+    public static List<String> getOperationMd() {
+        List<String> OPERATION_MD = new ArrayList<String>();
+        OPERATION_MD.add("苏州园区曼哈顿店");
+        return OPERATION_MD;
+    }
+
+    //服务类型
+    public static List<String> ServerTypeString= new ArrayList<>();
+
+
+
 
 
 }

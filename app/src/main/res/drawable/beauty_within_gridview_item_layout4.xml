@@ -3,9 +3,9 @@
     android:color="#FF21272B">
 
     <gradient
-        android:angle="135.0"
-        android:endColor="@color/beauty_card_img_right_end_bg"
-        android:startColor="@color/beauty_card_img_left_start_bg"
+        android:angle="180.0"
+        android:endColor="@color/beauty_card_img_left_start_bg4"
+        android:startColor="@color/beauty_card_img_left_end_bg4"
         android:type="linear" />
 
     <corners

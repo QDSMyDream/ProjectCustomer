@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <shape xmlns:android="http://schemas.android.com/apk/res/android"
-    android:shape="rectangle"
-    >
+    android:color="#FF21272B">
 
     <gradient
-        android:angle="135.0"
-        android:endColor="@color/beauty_card_img_right_end_bg"
-        android:startColor="@color/beauty_card_img_left_start_bg" />
+        android:angle="180.0"
+        android:endColor="@color/beauty_within_gridview_item_bg"
+        android:startColor="@color/beauty_within_gridview_item_bg"
+     />
 
     <corners
         android:bottomLeftRadius="5dp"

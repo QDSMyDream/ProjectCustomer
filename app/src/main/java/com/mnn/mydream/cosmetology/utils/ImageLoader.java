@@ -32,9 +32,9 @@ public class ImageLoader {
     /**
      * 显示图片Imageview
      */
-    public static void displayImageView(Context context, String url, ImageView imgeview) {
+    public static void displayImageView(Context context, String url, ImageView imgeview, int errorImg) {
 
-        Glide.with(context).load(url).apply(options).into(imgeview);
+        Glide.with(context).load(url).apply(options.error(errorImg)).into(imgeview);
 //placeholder 加载中的图片
 //error 加载失败后显示的占位图
 //thumbnail 缩略图支持。
@@ -76,7 +76,7 @@ public class ImageLoader {
     }
 
     public static void displayLocalImageView(Context context, final ImageView imageView, String path) {
-        if(path==null||path.equals("")){
+        if (path == null || path.equals("")) {
             return;
         }
 

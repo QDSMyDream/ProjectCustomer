@@ -105,6 +105,8 @@ public abstract class NiceSpinnerBaseAdapter<T> extends BaseAdapter {
         return position;
     }
 
+    public abstract int getCountIndex();
+
     @Override
     public abstract T getItem(int position);
 

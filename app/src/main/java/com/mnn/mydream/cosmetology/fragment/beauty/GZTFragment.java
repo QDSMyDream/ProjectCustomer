@@ -49,15 +49,14 @@ import me.yokeyword.fragmentation.SupportFragment;
  * 类描述：GZTFragment  工作台
  */
 public class GZTFragment extends SupportFragment {
-
+    private String TAG = "GZTFragment";
     @BindView(R.id.vf_text)
     ViewFlipper vfText;
     Unbinder unbinder1;
-    private String TAG = "GZTFragment";
+
     Unbinder unbinder;
     @BindView(R.id.title_expression_img)
     ImageView titleExpressionImg;
-
     @BindView(R.id.flipper_layout)
     PercentRelativeLayout flipperLayout;
     @BindView(R.id.title)
@@ -174,9 +173,7 @@ public class GZTFragment extends SupportFragment {
 
     public static GZTFragment newInstance() {
 
-
         Bundle args = new Bundle();
-
         GZTFragment fragment = new GZTFragment();
         fragment.setArguments(args);
         return fragment;
@@ -197,7 +194,6 @@ public class GZTFragment extends SupportFragment {
         if (parent != null) {
             parent.removeView(view);
         }
-
 
         unbinder1 = ButterKnife.bind(this, view);
         return view;
@@ -269,6 +265,7 @@ public class GZTFragment extends SupportFragment {
 
             //常见问题
             case R.id.common_problem_layout:
+
 
                 break;
 

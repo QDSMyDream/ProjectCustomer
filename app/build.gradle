@@ -141,6 +141,7 @@ dependencies {
 
     api project(':fragmentation')
     api project(':fragmentation_swipeback')
+    implementation 'org.jetbrains:annotations:15.0'
 
 
 }

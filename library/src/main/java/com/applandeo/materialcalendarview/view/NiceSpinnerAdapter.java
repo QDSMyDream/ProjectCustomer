@@ -40,6 +40,13 @@ public class NiceSpinnerAdapter<T> extends NiceSpinnerBaseAdapter {
         return items.size() - 1;
     }
 
+
+    @Override
+    public int getCountIndex() {
+        return items.size() - 1;
+    }
+
+
     @Override
     public T getItem(int position) {
         if (position >= selectedIndex) {

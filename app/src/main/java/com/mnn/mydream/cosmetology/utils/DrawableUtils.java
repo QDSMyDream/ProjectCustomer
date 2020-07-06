@@ -2,8 +2,10 @@ package com.mnn.mydream.cosmetology.utils;
 
 import android.content.Context;
 import android.graphics.drawable.Drawable;
+import android.graphics.drawable.GradientDrawable;
 import android.graphics.drawable.InsetDrawable;
 import android.graphics.drawable.LayerDrawable;
+import android.graphics.drawable.StateListDrawable;
 import android.support.v4.content.ContextCompat;
 
 import com.applandeo.materialcalendarview.CalendarUtils;
@@ -63,6 +65,35 @@ public final class DrawableUtils {
     private DrawableUtils() {
 
     }
+
+    public static int getDrawableCardsLayout(int cardGradeInt) {
+        switch (cardGradeInt) {
+            case 0:
+                return R.drawable.beauty_within_gridview_item_layout0;
+            case 1:
+                return R.drawable.beauty_within_gridview_item_layout1;
+            case 2:
+                return R.drawable.beauty_within_gridview_item_layout2;
+            case 3:
+                return R.drawable.beauty_within_gridview_item_layout3;
+            case 4:
+                return R.drawable.beauty_within_gridview_item_layout4;
+            case 5:
+                return R.drawable.beauty_within_gridview_item_layout5;
+            case 6:
+                return R.drawable.beauty_within_gridview_item_layout6;
+            case 7:
+                return R.drawable.beauty_within_gridview_item_layout7;
+            case 8:
+                return R.drawable.beauty_within_gridview_item_layout8;
+            case 9:
+                return R.drawable.beauty_within_gridview_item_layout9;
+            default:
+                return R.drawable.beauty_within_gridview_item_layout1;
+
+        }
+    }
+
 
 }
 

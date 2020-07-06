@@ -202,7 +202,7 @@ public class ShowProjectsActivity extends AppCompatActivity {
 
         }
         //加载图片
-        ImageLoader.displayImageView(this,customer.getCustomer_tx(),imgPhoto);
+        ImageLoader.displayImageView(this,customer.getCustomer_tx(),imgPhoto,R.mipmap.ic_img_default);
 
         if (customer.getRemarks() == null || customer.getRemarks().equals("")) {
             mAddContent.setText("");

@@ -164,6 +164,16 @@
             android:windowSoftInputMode="adjustPan">
 
         </activity>
+
+        <activity
+            android:name=".activity.BeautyUserInfoActivity"
+            android:screenOrientation="landscape"
+            android:theme="@style/dialogstyle"
+            android:windowSoftInputMode="adjustPan">
+
+        </activity>
+
+
     </application>
 
 </manifest>
