@@ -173,7 +173,7 @@
 
 
     <style name="BeautyTextStyle">
-        <item name="android:textSize">@dimen/text_size_20</item>
+        <item name="android:textSize">@dimen/text_size_18</item>
         <item name="android:gravity">center</item>
         <item name="android:textColor">@color/beauty_text_color</item>
 
