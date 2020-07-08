@@ -1,6 +1,7 @@
 package com.mnn.mydream.cosmetology.fragment.beauty.withinFragment;
 
 import android.annotation.SuppressLint;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -22,6 +23,7 @@ import com.mnn.mydream.cosmetology.adapter.BeautyWithinCardGridViewAdapter;
 import com.mnn.mydream.cosmetology.adapter.BeautyWithinTipsAdapter;
 import com.mnn.mydream.cosmetology.bean.BeautyBeanKh;
 import com.mnn.mydream.cosmetology.bean.BeautyWithinCardsBean;
+import com.mnn.mydream.cosmetology.pickertime.TimePickerPopWin;
 import com.mnn.mydream.cosmetology.utils.Constons;
 import com.mnn.mydream.cosmetology.utils.ImageLoader;
 import com.mnn.mydream.cosmetology.utils.ToastUtils;
@@ -181,7 +183,6 @@ public class KKFragment extends SupportFragment {
         view = inflater.inflate(R.layout.kk_fragment_layout, container, false);
         unbinder = ButterKnife.bind(this, view);
 
-
         initview();
         return view;
     }
@@ -230,7 +231,7 @@ public class KKFragment extends SupportFragment {
         unbinder.unbind();
     }
 
-    @OnClick({R.id.btn_select, R.id.delete_kh})
+    @OnClick({R.id.btn_select, R.id.delete_kh, R.id.consumption_img})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.btn_select:
@@ -238,6 +239,11 @@ public class KKFragment extends SupportFragment {
                 break;
             case R.id.delete_kh:
                 deleteKhInfo();
+                break;
+            case R.id.consumption_img:
+
+                Tools.inputImm(getActivity(), view);
+                setOnclick(1);
                 break;
         }
     }
@@ -357,4 +363,41 @@ public class KKFragment extends SupportFragment {
 
         }
     };
+
+
+    //时间选择框
+    public void setOnclick(final int count) {
+        boolean b = false;
+        if (count == 1) {
+            b = true;
+        }
+        if (count == 0) {
+            b = false;
+        }
+
+        TimePickerPopWin timePickerPopWin = new TimePickerPopWin.Builder(getActivity(), b, new TimePickerPopWin.OnTimePickListener() {
+            @Override
+            public void onTimePickCompleted(int year, int month, int day, int hour, int minute, int second, String time) {
+
+                if (count == 0) {
+                    if (Integer.parseInt(Tools.getSameYear()) > year) {
+
+                    } else {
+                        ToastUtils.showToast(getContext(), "出生时间错误，请重新选择！", false);
+                    }
+                } else if (count == 1) {
+                    consumptionTxt.setText(time);
+
+                }
+
+            }
+        }).btnTextSize(16)
+                .viewTextSize(25)
+                .colorCancel(Color.parseColor("#999999"))
+                .colorConfirm(Color.parseColor("#009900"))
+                .build();
+        timePickerPopWin.showPopWin(getActivity());
+    }
+
+
 }

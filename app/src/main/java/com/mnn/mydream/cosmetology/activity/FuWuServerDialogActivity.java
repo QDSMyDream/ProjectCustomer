@@ -15,12 +15,9 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.ScrollView;
-import android.widget.Spinner;
-import android.widget.SpinnerAdapter;
 import android.widget.TextView;
 
 import com.applandeo.materialcalendarview.view.NiceSpinner;
-import com.applandeo.materialcalendarview.view.NiceSpinnerBaseAdapter;
 import com.luck.picture.lib.PictureSelector;
 import com.luck.picture.lib.config.PictureConfig;
 import com.luck.picture.lib.config.PictureMimeType;
@@ -84,13 +81,14 @@ public class FuWuServerDialogActivity extends AppCompatActivity {
     ImageView addImg;
     @BindView(R.id.add_type_layout)
     PercentRelativeLayout addTypeLayout;
+    @BindView(R.id.server_time)
+    AppCompatEditText serverTime;
     private String TAG = "FuWuServerDialogActivity";
     private Integer flagInt;
 
     private String picPath = "";
 
     private List<ServerTypeBean> serverTypeBeans = new ArrayList<>();
-
 
     private FuWuSaleBean fuWuSaleBean;
 
@@ -114,6 +112,7 @@ public class FuWuServerDialogActivity extends AppCompatActivity {
     }
 
     private void initView() {
+
         Intent intent = getIntent();
 
         fuWuSaleBean = (FuWuSaleBean) getIntent().getSerializableExtra(Constons.RESULT_FUWU_SERVER_STR_UPDATE_REQUEST);
@@ -123,13 +122,13 @@ public class FuWuServerDialogActivity extends AppCompatActivity {
         serverMd.attachDataSource(Constons.getOperationMd());
 
         if (fuWuSaleBean != null) {
+
             FLAG_INDEX = 1;
-
             serverName.setText(fuWuSaleBean.getServerName());
-
             serverType.setSelectedIndex(Constons.ServerTypeString.indexOf(fuWuSaleBean.getServerType()));
             serverMd.setSelectedIndex(0);
             serverMoney.setText(fuWuSaleBean.getServerMoney() + "");
+            serverTime.setText(fuWuSaleBean.getServerTime() + "");
 
             //加载网络图片
             ImageLoader.displayImageView(this, fuWuSaleBean.getServerUrl(), serverImgPhoto, R.mipmap.ic_img_default);
@@ -308,7 +307,6 @@ public class FuWuServerDialogActivity extends AppCompatActivity {
     @OnClick({R.id.layout_photo, R.id.btn_yes, R.id.btn_cancel, R.id.add_type_layout})
     public void onViewClicked(View view) {
         switch (view.getId()) {
-
             case R.id.layout_photo:
                 showPickerDialog();
                 break;
@@ -316,14 +314,11 @@ public class FuWuServerDialogActivity extends AppCompatActivity {
                 saveServer();
                 break;
             case R.id.btn_cancel:
-
                 finish();
                 break;
 
             case R.id.add_type_layout:
-
                 addTypeDialog();
-
                 break;
 
         }
@@ -392,6 +387,8 @@ public class FuWuServerDialogActivity extends AppCompatActivity {
                 fuWuSaleBean.setServerUrl(picPath);
             }
 
+            fuWuSaleBean.setServerTime(Integer.parseInt(serverTime.getText().toString()));
+
             setUpdateFuWuServer(fuWuSaleBean);
 
         } else {
@@ -412,6 +409,15 @@ public class FuWuServerDialogActivity extends AppCompatActivity {
                 ToastUtils.showToast(this, "请选择服务类型", false);
                 return;
             }
+
+
+            if (StringUtils.isEmpty(serverTime.getText().toString())) {
+                ToastUtils.showToast(this, "请输入服务时长", false);
+                return;
+            }
+
+            fuWuSaleBean.setServerTime(Integer.parseInt(serverTime.getText().toString()));
+
             String type = serverType.getSelectedItem().toString();
 
             fuWuSaleBean.setServerName(serverName.getText().toString());
@@ -476,13 +482,16 @@ public class FuWuServerDialogActivity extends AppCompatActivity {
                 case 0://刷新类型
                     serverType.attachDataSource(Constons.ServerTypeString);
 
-                    int k = serverType.getAdapter().getCount();
-                    Log.e(TAG, "handleMessage: " + k);
-                    for (int i = 0; i < k; i++) {
-                        Log.e(TAG, "handleMessage: " + serverType.getAdapter().getItem(i).toString());
-                        if (fuWuSaleBean.getServerType().equals(serverType.getAdapter().getItem(i).toString())) {
-                            serverType.setSelectedIndex(i + 1);// 默认选中项
-                            break;
+
+                    if (fuWuSaleBean != null) {
+                        int k = serverType.getAdapter().getCount();
+                        Log.e(TAG, "handleMessage: " + k);
+                        for (int i = 0; i < k; i++) {
+                            Log.e(TAG, "handleMessage: " + serverType.getAdapter().getItem(i).toString());
+                            if (fuWuSaleBean.getServerType().equals(serverType.getAdapter().getItem(i).toString())) {
+                                serverType.setSelectedIndex(i + 1);// 默认选中项
+                                break;
+                            }
                         }
                     }
 

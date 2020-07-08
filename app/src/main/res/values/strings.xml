@@ -63,4 +63,8 @@
 
     <string name="beauty_within_select_all_text">共查询到%1$d位顾客</string>
 
+    <string name="beauty_within_hint_recharge_money">请输入充值金额</string>
+    <string name="beauty_within_hint_give_money">请输入赠送金额</string>
+
+
 </resources>

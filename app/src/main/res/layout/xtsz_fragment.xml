@@ -5,10 +5,11 @@
     android:orientation="vertical">
 
     <TextView
+        android:id="@+id/update_btn"
         android:layout_width="match_parent"
 
         android:gravity="center"
         android:layout_height="match_parent"
-        android:text="系统设置" />
+        android:text="系统更新" />
 
 </com.zhy.android.percent.support.PercentLinearLayout>

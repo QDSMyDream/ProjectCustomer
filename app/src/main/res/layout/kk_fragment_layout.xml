@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <com.zhy.android.percent.support.PercentLinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/menu_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -233,7 +234,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="1sp"
                     android:layout_below="@id/layout2_text"
-                    android:layout_marginTop="10dp"
+                    android:layout_marginTop="5dp"
                     android:background="@color/beauty_within_lines_color" />
 
                 <LinearLayout
@@ -241,7 +242,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/tv_lines"
-                    android:layout_marginTop="10dp"
+                    android:layout_marginTop="5dp"
                     android:gravity="center_horizontal"
                     android:orientation="horizontal">
 
@@ -456,7 +457,6 @@
     </com.zhy.android.percent.support.PercentLinearLayout>
 
     <com.zhy.android.percent.support.PercentLinearLayout
-
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/white"
@@ -654,6 +654,7 @@
         </com.zhy.android.percent.support.PercentLinearLayout>
 
 
+        <!--选择时间-->
         <com.zhy.android.percent.support.PercentLinearLayout
             android:id="@+id/select_right_layout"
             android:layout_width="match_parent"
@@ -781,6 +782,271 @@
 
         </com.zhy.android.percent.support.PercentLinearLayout>
 
+
+        <!--充值缴费-->
+        <com.zhy.android.percent.support.PercentLinearLayout
+            android:id="@+id/recharge_layout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+
+            android:layout_marginTop="3dp"
+            android:background="@drawable/beauty_within_text_frame"
+            android:gravity="center_vertical"
+            android:orientation="vertical"
+            app:layout_heightPercent="25%"
+            app:layout_marginLeftPercent="1%"
+            app:layout_marginRightPercent="1%">
+
+            <!--充值方案-->
+            <com.zhy.android.percent.support.PercentLinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_heightPercent="17%">
+
+                <com.zhy.android.percent.support.PercentLinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="right"
+                    app:layout_widthPercent="20%">
+
+
+                    <TextView
+                        style="@style/BeautyTextStyle"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+
+                        android:gravity="center"
+                        android:text="充值方案:" />
+
+                </com.zhy.android.percent.support.PercentLinearLayout>
+
+
+                <com.zhy.android.percent.support.PercentLinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginLeft="10dp"
+                    android:background="@drawable/beauty_within_text_frame"
+                    android:orientation="horizontal"
+                    android:padding="1dp"
+                    app:layout_widthPercent="35%">
+
+                    <com.applandeo.materialcalendarview.view.NiceSpinner
+                        android:id="@+id/recharge_scheme"
+                        style="@style/BeautyTitleStyle"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:textSize="@dimen/text_size_16"
+                        app:popupTextAlignment="center"
+                        app:textTint="@color/beauty_within_select_time" />
+
+                </com.zhy.android.percent.support.PercentLinearLayout>
+
+            </com.zhy.android.percent.support.PercentLinearLayout>
+            <!--充值方案-->
+            <com.zhy.android.percent.support.PercentLinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_heightPercent="17%"
+                app:layout_marginTopPercent="10%">
+
+                <com.zhy.android.percent.support.PercentLinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="right"
+                    app:layout_widthPercent="20%">
+
+
+                    <TextView
+                        style="@style/BeautyTextStyle"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+
+                        android:gravity="center"
+                        android:text="充值金额:" />
+
+                </com.zhy.android.percent.support.PercentLinearLayout>
+
+                <android.support.v7.widget.AppCompatEditText
+                    android:id="@+id/ed_recharge_money"
+                    style="@style/BeautyNumStyle"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="10dp"
+                    android:digits="0123456789"
+                    android:gravity="center"
+                    android:hint="@string/beauty_within_hint_recharge_money"
+                    android:inputType="number"
+                    android:textColorHint="@color/aluminum"
+                    app:layout_widthPercent="35%" />
+
+                <TextView
+                    style="@style/BeautyTextStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="5dp"
+                    android:gravity="center"
+                    android:text="元" />
+
+            </com.zhy.android.percent.support.PercentLinearLayout>
+            <!--充值方案-->
+            <com.zhy.android.percent.support.PercentLinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_heightPercent="17%"
+                app:layout_marginTopPercent="10%">
+
+                <com.zhy.android.percent.support.PercentLinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="right"
+                    app:layout_widthPercent="20%">
+
+
+                    <TextView
+                        style="@style/BeautyTextStyle"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:text="赠送金额:" />
+
+                </com.zhy.android.percent.support.PercentLinearLayout>
+
+                <android.support.v7.widget.AppCompatEditText
+
+                    android:id="@+id/ed_give_money"
+                    style="@style/BeautyNumStyle"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="10dp"
+                    android:digits="0123456789"
+                    android:gravity="center"
+                    android:hint="@string/beauty_within_hint_give_money"
+                    android:inputType="number"
+                    android:textColorHint="@color/aluminum"
+                    app:layout_widthPercent="35%" />
+
+                <TextView
+                    style="@style/BeautyTextStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+
+                    android:layout_marginLeft="5dp"
+                    android:gravity="center"
+                    android:text="元" />
+
+            </com.zhy.android.percent.support.PercentLinearLayout>
+
+        </com.zhy.android.percent.support.PercentLinearLayout>
+        <!--结账-->
+        <com.zhy.android.percent.support.PercentLinearLayout
+
+            android:layout_width="match_parent"
+            android:layout_height="fill_parent"
+            android:layout_marginTop="3dp"
+            android:background="@drawable/beauty_within_text_frame"
+            android:orientation="horizontal"
+            app:layout_marginLeftPercent="1%"
+            app:layout_marginRightPercent="1%">
+
+            <com.zhy.android.percent.support.PercentRelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <!--充值方案-->
+                <com.zhy.android.percent.support.PercentRelativeLayout
+                    android:id="@+id/checkout_layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_alignParentBottom="true"
+                    android:gravity="center_vertical">
+
+                    <TextView
+                        android:id="@+id/checkout_t1"
+                        style="@style/BeautyTextStyle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:text="待充值:" />
+
+
+                    <ImageView
+                        android:id="@+id/checkout_img1"
+                        android:layout_width="20dp"
+                        android:layout_height="30dp"
+                        android:layout_centerVertical="true"
+
+                        android:layout_marginLeft="10dp"
+                        android:layout_toRightOf="@id/checkout_t1"
+                        android:gravity="center"
+                        android:src="@mipmap/money_red" />
+
+                    <TextView
+                        android:id="@+id/checkout_t2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center_vertical"
+                        android:layout_toRightOf="@id/checkout_img1"
+                        android:gravity="center"
+                        android:maxLines="1"
+                        android:text="1000"
+                        android:textColor="@color/x_red"
+                        android:textSize="@dimen/text_size_18" />
+
+                    <TextView
+                        android:id="@+id/checkout_t3"
+                        style="@style/BeautyTextStyle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="30dp"
+                        android:layout_toRightOf="@id/checkout_t2"
+                        android:gravity="center"
+                        android:text="赠送金额:" />
+
+
+                    <ImageView
+                        android:id="@+id/checkout_img2"
+                        android:layout_width="20dp"
+                        android:layout_height="30dp"
+                        android:layout_centerVertical="true"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginLeft="10dp"
+                        android:layout_toRightOf="@id/checkout_t3"
+                        android:gravity="center"
+                        android:src="@mipmap/money_black" />
+
+                    <TextView
+                        android:id="@+id/checkout_t4"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center_vertical"
+                        android:layout_toRightOf="@id/checkout_img2"
+                        android:gravity="center"
+                        android:maxLines="1"
+                        android:text="1000"
+                        android:textColor="@color/beauty_text_color"
+                        android:textSize="@dimen/text_size_18" />
+
+                    <android.support.v7.widget.AppCompatButton
+                        android:id="@+id/btn_commit"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_alignParentRight="true"
+                        android:layout_marginTop="2dp"
+                        android:layout_marginBottom="2dp"
+                        android:background="@drawable/beauty_text_frame_shape_yes"
+                        android:text="结账"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/text_size_18"
+                        app:layout_widthPercent="15%" />
+
+                </com.zhy.android.percent.support.PercentRelativeLayout>
+
+
+            </com.zhy.android.percent.support.PercentRelativeLayout>
+
+        </com.zhy.android.percent.support.PercentLinearLayout>
 
     </com.zhy.android.percent.support.PercentLinearLayout>
 </com.zhy.android.percent.support.PercentLinearLayout>

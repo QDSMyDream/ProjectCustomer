@@ -8,6 +8,10 @@ import com.mnn.mydream.cosmetology.utils.ConfigDataMethod;
 import com.mnn.mydream.cosmetology.utils.Tools;
 import com.tencent.bugly.crashreport.CrashReport;
 
+import cn.bmob.v3.update.BmobUpdateAgent;
+import me.yokeyword.fragmentation.Fragmentation;
+import me.yokeyword.fragmentation.helper.ExceptionHandler;
+
 /**
  * 创建人：MyDream
  * 创建日期：2020/5/10 22:13
@@ -22,6 +26,7 @@ public class MyApplication extends Application {
         Log.e(TAG, "onCreate: MyApplication");
 
         ConfigDataMethod.bmobInit(this);//bmob初始化
+
         CrashReport.UserStrategy userStrategy = new CrashReport.UserStrategy(getApplicationContext());
         Log.e(TAG, "onCreate: " + Tools.packageCode(getApplicationContext()) + "");
         Log.e(TAG, "onCreate: " + Tools.packageName(getApplicationContext()) + "");
@@ -29,6 +34,23 @@ public class MyApplication extends Application {
         userStrategy.setAppPackageName(Tools.packageName(getApplicationContext()));  //App的包
 
         CrashReport.initCrashReport(this, ConfigDataCons.BUGLY_ID, true);//Bugly
+
+        Fragmentation.builder()
+                // 设置 栈视图 模式为 （默认）悬浮球模式   SHAKE: 摇一摇唤出  NONE：隐藏， 仅在Debug环境生效
+                .stackViewMode(Fragmentation.BUBBLE)
+                .debug(true) // 实际场景建议.debug(BuildConfig.DEBUG)
+                /**
+                 * 可以获取到{@link me.yokeyword.fragmentation.exception.AfterSaveStateTransactionWarning}
+                 * 在遇到After onSaveInstanceState时，不会抛出异常，会回调到下面的ExceptionHandler
+                 */
+                .handleException(new ExceptionHandler() {
+                    @Override
+                    public void onException(Exception e) {
+                        // 以Bugtags为例子: 把捕获到的 Exception 传到 Bugtags 后台。
+                        // Bugtags.sendException(e);
+                    }
+                })
+                .install();
 
 
     }

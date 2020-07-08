@@ -54,6 +54,28 @@
 
         </com.zhy.android.percent.support.PercentRelativeLayout>
 
+        <TextView
+            android:id="@+id/title_content1"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:layout_centerHorizontal="true"
+            android:text="当前界面为:"
+            android:textColor="@color/beauty_two_menu_bg"
+            android:textSize="@dimen/text_size_20"
+         />
+        <TextView
+            android:id="@+id/title_content2"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:layout_toRightOf="@id/title_content1"
+            android:layout_centerHorizontal="true"
+            android:text="开卡"
+            android:textColor="@color/beauty_add_custmer_bg"
+            android:textSize="@dimen/text_size_20"
+        />
+
         <com.zhy.android.percent.support.PercentRelativeLayout
             android:layout_width="wrap_content"
             android:layout_height="match_parent"

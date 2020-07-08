@@ -10,11 +10,11 @@ import java.util.List;
 public class Constons {
 
     public static Customer costorBean;//存储
+
     public static List<Customer> costorBeans = new ArrayList<>();//存储List
     public static final String SIGN_PNG_PATH_FL = "/storage/emulated/0" + "/customer";
     //    public static final String SIGN_PNG_PATH_FL = Environment.getExternalStorageDirectory().getPath() + "/customer";
     public static final String SIGN_PNG_PATH = SIGN_PNG_PATH_FL + File.separator + "png" + File.separator;
-
 
     public static final int STATE_NORMAL = 0;//正常状态
     public static final int STATE_MODIFY = 1;//修改状态
@@ -25,11 +25,9 @@ public class Constons {
     public static final int STATE_MODIFY_PROJECTS = 6;//修改项目信息状态
     public static final int STATE_EDIT_PROJECTS = 7;//编辑项目状态
 
-
     public static final int RESULT_LONGIN_SUCCESS = 10002;//登陆成功返回码
     public static final int RESULT_LONGIN_FAIL = -1;//登陆失败或返回
     public static final int BEAUTY_RESULT_LONGIN_CODE = 10001;//beautyActivity请求登陆码
-
 
     public static final int RESULT_XJKH_TX_SUCCESS = 10003;//顾客选择头像成功返回码
     public static final int RESULT_XJKH_TX_FAIL = -1;//顾客取消头像设置失败返回码
@@ -45,12 +43,7 @@ public class Constons {
 
     public static final int RESULT_FUWU_SERVER_CODE_UPDATE_REQUEST = 10009;//修改服务请求码
 
-
     public static final int RESULT_USER_INFO_REQUEST = 10010;//管理员账户详情请求码
-
-
-
-
 
     public static String FUWU_PICPATH = "";
 
@@ -61,18 +54,17 @@ public class Constons {
 
     public static int BEAUTY_WITHIN_PREVIOUS_POSTION = 0;//BeautyWithinActivity左侧菜单位置
 
+    public static  List<String> OPERATION_MD = new ArrayList<String>();
 
     //获取操作门店
     public static List<String> getOperationMd() {
-        List<String> OPERATION_MD = new ArrayList<String>();
         OPERATION_MD.add("苏州园区曼哈顿店");
         return OPERATION_MD;
     }
 
+
     //服务类型
     public static List<String> ServerTypeString= new ArrayList<>();
-
-
 
 
 

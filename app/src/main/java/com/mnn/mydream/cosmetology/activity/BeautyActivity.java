@@ -5,18 +5,25 @@ import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
 import android.os.Handler;
 import android.os.Message;
 import android.support.annotation.Nullable;
 import android.support.v4.app.NotificationCompat;
+import android.support.v7.app.AlertDialog;
+import android.support.v7.widget.AppCompatButton;
+import android.support.v7.widget.AppCompatTextView;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.luck.picture.lib.PictureSelector;
@@ -26,10 +33,12 @@ import com.luck.picture.lib.entity.LocalMedia;
 import com.mnn.mydream.cosmetology.R;
 import com.mnn.mydream.cosmetology.adapter.BeautyContentMenuAdapter;
 import com.mnn.mydream.cosmetology.adapter.BeautyListViewAdapter;
+import com.mnn.mydream.cosmetology.bean.AppUpdateBean;
 import com.mnn.mydream.cosmetology.bean.BeautyContentMenuBean;
 import com.mnn.mydream.cosmetology.bean.BeautyListItemBean;
 import com.mnn.mydream.cosmetology.bean.BeautyTitleBean;
 import com.mnn.mydream.cosmetology.bean.User;
+import com.mnn.mydream.cosmetology.dialog.APPUpdateDialog;
 import com.mnn.mydream.cosmetology.dialog.CommonDialog;
 import com.mnn.mydream.cosmetology.dialog.LoadingDialog;
 import com.mnn.mydream.cosmetology.fragment.beauty.DDGLFragment;
@@ -45,6 +54,7 @@ import com.mnn.mydream.cosmetology.fragment.beauty.YYGLFragment;
 import com.mnn.mydream.cosmetology.fragment.beauty.commoditiesFragments.FuWuFragment;
 import com.mnn.mydream.cosmetology.fragment.beauty.khfragments.XJKHFragment;
 import com.mnn.mydream.cosmetology.interfaces.BeautyContentListOnClickListener;
+import com.mnn.mydream.cosmetology.utils.APKVersionCodeUtils;
 import com.mnn.mydream.cosmetology.utils.Constons;
 import com.mnn.mydream.cosmetology.utils.ImageLoader;
 import com.mnn.mydream.cosmetology.utils.ToastUtils;
@@ -55,6 +65,10 @@ import com.zhy.android.percent.support.PercentLinearLayout;
 import com.zhy.android.percent.support.PercentRelativeLayout;
 
 import java.io.File;
+import java.io.FileOutputStream;
+import java.io.InputStream;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -70,8 +84,10 @@ import cn.bmob.v3.datatype.BmobDate;
 import cn.bmob.v3.datatype.BmobFile;
 import cn.bmob.v3.exception.BmobException;
 import cn.bmob.v3.listener.FindListener;
+import cn.bmob.v3.listener.QueryListener;
 import cn.bmob.v3.listener.UpdateListener;
 import cn.bmob.v3.listener.UploadFileListener;
+import cn.bmob.v3.update.BmobUpdateAgent;
 import io.reactivex.functions.Consumer;
 import me.yokeyword.fragmentation.SupportActivity;
 import me.yokeyword.fragmentation.SupportFragment;
@@ -139,14 +155,17 @@ public class BeautyActivity extends SupportActivity implements BeautyContentList
 
     SupportFragment[] mFragments;
 
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_beauty);
-
         ButterKnife.bind(this);
+
         initView();
         initViewPager();
+
         initLogin();
 
     }
@@ -190,10 +209,10 @@ public class BeautyActivity extends SupportActivity implements BeautyContentList
 
     //初始化登陆
     private void initLogin() {
-
         setIsLoginInfo();
-
     }
+
+
 
     private void initView() {
         //绑定数据
@@ -630,6 +649,8 @@ public class BeautyActivity extends SupportActivity implements BeautyContentList
         }
         return false;
     }
+
+
 
 
 }

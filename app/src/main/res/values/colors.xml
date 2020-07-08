@@ -95,7 +95,6 @@
     <color name="beauty_card_img_font_bg">#FAFAFA</color>
 
 
-
     <color name="beauty_card_img_left_start_bg1">#12AF94</color>
     <color name="beauty_card_img_right_end_bg1">#129CB8</color>
 
@@ -165,6 +164,11 @@
 
     <!--未选中背景颜色-->
     <color name="beauty_within_not_select_bg">#EEEEF0</color>
+
+    <!--客户详情信息name颜色-->
+    <color name="beauty_kh_info_name_color">#504E50</color>
+
+
 
 
 </resources>

@@ -21,10 +21,20 @@ public class FuWuSaleBean extends BmobObject {
     private String serverType;
     private String applyMd;
     private float serverMoney;//价钱
+    private int serverTime; //是否上架
+
     private boolean serverSaleFlag; //是否上架
 
     public FuWuSaleBean() {
 
+    }
+
+    public int getServerTime() {
+        return serverTime;
+    }
+
+    public void setServerTime(int serverTime) {
+        this.serverTime = serverTime;
     }
 
     public String getServerName() {
@@ -93,9 +103,8 @@ public class FuWuSaleBean extends BmobObject {
                 ", serverType='" + serverType + '\'' +
                 ", applyMd='" + applyMd + '\'' +
                 ", serverMoney=" + serverMoney +
+                ", serverTime=" + serverTime +
                 ", serverSaleFlag=" + serverSaleFlag +
                 '}';
     }
-
-
 }

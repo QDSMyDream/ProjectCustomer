@@ -6,6 +6,7 @@ import android.os.Handler;
 import android.os.Message;
 import android.util.Log;
 import android.view.View;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -18,9 +19,6 @@ import com.mnn.mydream.cosmetology.utils.Constons;
 import com.zhy.android.percent.support.PercentLinearLayout;
 import com.zhy.android.percent.support.PercentRelativeLayout;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -30,6 +28,12 @@ import me.yokeyword.fragmentation.SupportFragment;
 
 public class BeautyWithinActivity extends SupportActivity {
 
+    @BindView(R.id.title_content2)
+    TextView titleContent2;
+    @BindView(R.id.within_fragment)
+    FrameLayout withinFragment;
+    @BindView(R.id.layout_content)
+    PercentLinearLayout layoutContent;
     private String TAG = "BeautyWithinActivity";
 
     @BindView(R.id.back_img)
@@ -80,6 +84,7 @@ public class BeautyWithinActivity extends SupportActivity {
                     mFragments[0]);
         }
 
+        titleContent2.setText(strings[0]);
 
         beautyWithinListViewAdapter = new BeautyWithinListViewAdapter(this, strings, onClickListener);
         BeautyWithinListViewAdapter.BEAUTY_SELECT_ITEM = Constons.BEAUTY_WITHIN_PREVIOUS_POSTION;

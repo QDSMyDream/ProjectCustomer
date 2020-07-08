@@ -101,12 +101,10 @@ public class XJKHFragment extends SupportFragment implements View.OnClickListene
     private String picPath = "";
 
     public static XJKHFragment newInstance() {
-
         Bundle args = new Bundle();
         XJKHFragment fragment = new XJKHFragment();
         fragment.setArguments(args);
         return fragment;
-
     }
 
     @Override
@@ -260,11 +258,7 @@ public class XJKHFragment extends SupportFragment implements View.OnClickListene
     }
 
 
-    private void inputImm(View view) {
-        //隐藏输入法
-        InputMethodManager imm = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
-        imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
-    }
+
 
     //时间选择框
     public void setOnclick(View v, final int count) {
@@ -411,7 +405,7 @@ public class XJKHFragment extends SupportFragment implements View.OnClickListene
                 break;
 
             case R.id.bir_img:
-                inputImm(v);
+                Tools.inputImm(getActivity(),v);
                 setOnclick(v, 0);
                 break;
             case R.id.btn_commit:

@@ -296,8 +296,8 @@ public class KHZSFragment extends SupportFragment implements SetListOnClickListe
         super.onSupportVisible();
         Log.e(TAG, "onSupportVisible: ");
         // 设置点击屏幕Dialog不消失
-        loadingDialog.show();
-        getKhzs();//查询所有
+//        loadingDialog.show();
+//        getKhzs();//查询所有
     }
 
     @Override

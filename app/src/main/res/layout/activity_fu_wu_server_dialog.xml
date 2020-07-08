@@ -319,6 +319,58 @@
 
                 </com.zhy.android.percent.support.PercentLinearLayout>
 
+                <!--服务时长-->
+                <com.zhy.android.percent.support.PercentLinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_marginTop="10dp"
+                    android:orientation="horizontal"
+                    app:layout_marginTopPercent="2%">
+
+                    <com.zhy.android.percent.support.PercentLinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:gravity="right"
+                        app:layout_widthPercent="11.5%">
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_marginBottom="5dp"
+                            android:src="@mipmap/tips_fail_text" />
+
+                        <TextView
+                            style="@style/BeautyTextStyle"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:gravity="center"
+                            android:text="服务时长:" />
+
+                    </com.zhy.android.percent.support.PercentLinearLayout>
+
+                    <android.support.v7.widget.AppCompatEditText
+                        android:id="@+id/server_time"
+                        style="@style/BeautyTitleStyle"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="10dp"
+                        android:digits="0123456789"
+                        android:gravity="center"
+                        android:hint="@string/beauty_server_money"
+                        android:inputType="number"
+                        android:textColorHint="@color/aluminum"
+                        app:layout_widthPercent="19.5%" />
+
+                    <TextView
+                        style="@style/BeautyTextStyle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="10dp"
+                        android:gravity="center"
+                        android:text="分钟" />
+
+                </com.zhy.android.percent.support.PercentLinearLayout>
+
                 <!--服务类型-->
                 <com.zhy.android.percent.support.PercentLinearLayout
                     android:layout_width="match_parent"

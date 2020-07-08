@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.zhy.android.percent.support.PercentLinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/swipelistlayout"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <com.zhy.android.percent.support.PercentRelativeLayout
+        android:id="@+id/user_info_layout"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_alignParentRight="true"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+
+        <com.mnn.mydream.cosmetology.view.CircleImageView
+            android:id="@+id/kh_tx"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="5dp"
+            android:padding="2dp"
+            android:src="@mipmap/def_photo" />
+
+        <com.zhy.android.percent.support.PercentLinearLayout
+            android:id="@+id/khxq_left_layout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_toRightOf="@id/kh_tx"
+            android:gravity="center_vertical"
+            android:orientation="vertical"
+            app:layout_widthPercent="39%">
+
+            <com.zhy.android.percent.support.PercentLinearLayout
+                android:id="@+id/title_username_layout"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="5dp"
+                android:orientation="horizontal"
+                app:layout_heightPercent="50%">
+
+                <TextView
+                    android:id="@+id/kh_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:gravity="center_vertical"
+                    android:maxLength="9"
+                    android:maxLines="1"
+                    android:textColor="@color/beauty_text_color"
+                    android:textSize="@dimen/text_size_18" />
+
+                <ImageView
+                    android:id="@+id/kh_sex"
+                    android:layout_width="25dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="10dp"
+                    android:src="@mipmap/nan" />
+
+            </com.zhy.android.percent.support.PercentLinearLayout>
+
+
+            <TextView
+                android:id="@+id/kh_phone"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="5dp"
+                android:gravity="center_vertical"
+                android:textColor="@color/beauty_text_color"
+                android:textSize="@dimen/text_size_18"
+                app:layout_heightPercent="50%" />
+
+        </com.zhy.android.percent.support.PercentLinearLayout>
+
+
+        <com.zhy.android.percent.support.PercentLinearLayout
+            android:id="@+id/khxq_right_layout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_alignParentTop="true"
+            android:layout_marginLeft="4dp"
+            android:layout_toRightOf="@id/khxq_left_layout"
+            android:gravity="center_vertical|left"
+            android:orientation="vertical"
+            app:layout_widthPercent="39%">
+
+            <com.zhy.android.percent.support.PercentLinearLayout
+                android:id="@+id/khsr_layout"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="10dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                app:layout_heightPercent="50%">
+
+                <TextView
+                    android:id="@+id/khsr_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:gravity="center_vertical|left"
+                    android:text="生日:"
+                    android:textColor="@color/beauty_text_color"
+                    android:textSize="@dimen/text_size_18" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="5dp"
+                    android:textColor="@color/beauty_text_color"
+                    android:textSize="@dimen/text_size_18" />
+
+            </com.zhy.android.percent.support.PercentLinearLayout>
+
+
+            <TextView
+                android:id="@+id/khssmd_text"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_gravity="center|left"
+                android:layout_marginLeft="10dp"
+                android:gravity="center_vertical|left"
+                android:textColor="@color/beauty_text_color"
+                android:textSize="@dimen/text_size_18"
+                app:layout_heightPercent="50%" />
+
+        </com.zhy.android.percent.support.PercentLinearLayout>
+
+
+        <ImageView
+            android:id="@+id/delete_kh"
+            android:layout_width="40dp"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@id/khxq_right_layout"
+            android:src="@mipmap/delete" />
+
+
+    </com.zhy.android.percent.support.PercentRelativeLayout>
+
+
+</com.zhy.android.percent.support.PercentLinearLayout>

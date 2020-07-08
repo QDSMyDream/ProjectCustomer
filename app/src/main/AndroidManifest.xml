@@ -54,9 +54,7 @@
     <uses-permission android:name="android.permission.CALL_PHONE" /> <!-- 保持CPU 运转，屏幕和键盘灯有可能是关闭的,用于文件上传和下载 -->
 
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
-
     <uses-permission android:name="android.permission.INTERNET" />
-
 
     <application
         android:name=".MyApplication"
@@ -105,7 +103,7 @@
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:screenOrientation="landscape"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar"
-            android:windowSoftInputMode="stateHidden|adjustUnspecified"></activity>
+            android:windowSoftInputMode="stateHidden|adjustUnspecified" />
         <activity
             android:name=".activity.LoginActivity"
             android:configChanges="orientation|keyboardHidden"
@@ -143,12 +141,12 @@
 
         <provider
             android:name="android.support.v4.content.FileProvider"
-            android:authorities="com.mnn.mydream.cosmetology.fileProvider"
+            android:authorities="com.mnn.mydream.cosmetology.fileprovider"
             android:exported="false"
             android:grantUriPermissions="true">
             <meta-data
                 android:name="android.support.FILE_PROVIDER_PATHS"
-                android:resource="@xml/provider_paths" />
+                android:resource="@xml/file_paths" />
         </provider>
 
         <activity
@@ -161,19 +159,26 @@
             android:name=".activity.FuWuServerDialogActivity"
             android:screenOrientation="landscape"
             android:theme="@style/dialogstyle"
-            android:windowSoftInputMode="adjustPan">
-
-        </activity>
-
+            android:windowSoftInputMode="adjustPan"></activity>
         <activity
             android:name=".activity.BeautyUserInfoActivity"
             android:screenOrientation="landscape"
             android:theme="@style/dialogstyle"
-            android:windowSoftInputMode="adjustPan">
+            android:windowSoftInputMode="adjustPan"></activity>
+        <activity
+            android:name="cn.bmob.v3.update.UpdateDialogActivity"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar"></activity>
+        <activity
+            android:name=".activity.AppUpdateActivity"
+            android:screenOrientation="landscape"
+            android:theme="@style/dialogstyle"
+            android:windowSoftInputMode="adjustPan"></activity>
 
-        </activity>
-
-
+        <activity
+            android:name=".activity.BeautyKHInfoActivity"
+            android:screenOrientation="landscape"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"
+            android:windowSoftInputMode="adjustPan"></activity>
     </application>
 
 </manifest>
