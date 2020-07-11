@@ -54,18 +54,31 @@ public class Constons {
 
     public static int BEAUTY_WITHIN_PREVIOUS_POSTION = 0;//BeautyWithinActivity左侧菜单位置
 
-    public static  List<String> OPERATION_MD = new ArrayList<String>();
-
-    //获取操作门店
-    public static List<String> getOperationMd() {
-        OPERATION_MD.add("苏州园区曼哈顿店");
-        return OPERATION_MD;
-    }
 
 
-    //服务类型
-    public static List<String> ServerTypeString= new ArrayList<>();
+    /**
+     * EventBus消息分发
+     */
+    public static final int SELECT_TITLE = 0x64;//修改状态
+    public static final int SELECT_MD = 0x65;//修改状态
+    public static final int SELECT_FL = 0x66;//修改状态
+    public static final int SELECT_APP_UPDATE = 0x67;//修改状态
 
+
+    /**
+     * 工作台顶部滚动title
+     */
+    public static List<String> titleStrings = new ArrayList<>();
+
+    /**
+     * 门店
+     */
+    public static List<String> OPERATION_MD = new ArrayList<>();
+
+    /**
+     * 服务类型
+     */
+    public static List<String> ServerTypeString = new ArrayList<>();
 
 
 }

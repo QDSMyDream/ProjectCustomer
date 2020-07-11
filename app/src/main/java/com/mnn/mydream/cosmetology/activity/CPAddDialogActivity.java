@@ -55,7 +55,7 @@ import cn.bmob.v3.listener.UploadFileListener;
  * 创建时间：2020/5/3 18:18
  * 类描述：添加服务
  */
-public class FuWuServerDialogActivity extends AppCompatActivity {
+public class CPAddDialogActivity extends AppCompatActivity {
 
     @BindView(R.id.title)
     TextView title;
@@ -83,12 +83,12 @@ public class FuWuServerDialogActivity extends AppCompatActivity {
     PercentRelativeLayout addTypeLayout;
     @BindView(R.id.server_time)
     AppCompatEditText serverTime;
-    private String TAG = "FuWuServerDialogActivity";
+    private String TAG = "CPAddDialogActivity";
     private Integer flagInt;
 
     private String picPath = "";
 
-//    private List<ServerTypeBean> serverTypeBeans = new ArrayList<>();
+    private List<ServerTypeBean> serverTypeBeans = new ArrayList<>();
 
     private FuWuSaleBean fuWuSaleBean;
 
@@ -105,7 +105,7 @@ public class FuWuServerDialogActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
-        setContentView(R.layout.activity_fu_wu_server_dialog);
+        setContentView(R.layout.activity_add_cp_dialog);
         ButterKnife.bind(this);
         initView();
 
@@ -120,7 +120,6 @@ public class FuWuServerDialogActivity extends AppCompatActivity {
         Log.e(TAG, "onCreate: " + flagInt);
 
         serverMd.attachDataSource(Constons.OPERATION_MD);
-        serverType.attachDataSource(Constons.ServerTypeString);
 
         if (fuWuSaleBean != null) {
 
@@ -142,7 +141,7 @@ public class FuWuServerDialogActivity extends AppCompatActivity {
             title.setText("添加客户服务项目");
         }
 
-//        getSelectServerTypeAll();
+        getSelectServerTypeAll();
     }
 
 
@@ -368,7 +367,7 @@ public class FuWuServerDialogActivity extends AppCompatActivity {
                 return;
             }
 
-            if (Constons.ServerTypeString.size() == 0) {
+            if (serverTypeBeans.size() == 0) {
                 ToastUtils.showToast(this, "请选择服务类型", false);
                 return;
             }
@@ -406,7 +405,7 @@ public class FuWuServerDialogActivity extends AppCompatActivity {
                 return;
             }
 
-            if (Constons.ServerTypeString.size() == 0) {
+            if (serverTypeBeans.size() == 0) {
                 ToastUtils.showToast(this, "请选择服务类型", false);
                 return;
             }
@@ -538,53 +537,53 @@ public class FuWuServerDialogActivity extends AppCompatActivity {
         }
     };
 
-//    /**
-//     * serverTypeStrings 服务类型
-//     */
-//    private void getSelectServerTypeAll() {
+    /**
+     * serverTypeStrings 服务类型
+     */
+    private void getSelectServerTypeAll() {
+
+        LoadingDialog.Builder addSignDialogBuild = new LoadingDialog.Builder(this);
+        loadingDialog = addSignDialogBuild.createDialog();
+        loadingDialog.setCanceledOnTouchOutside(false);
+        // 设置点击屏幕Dialog不消失
+        loadingDialog.show();
+
+//        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 //
-//        LoadingDialog.Builder addSignDialogBuild = new LoadingDialog.Builder(this);
-//        loadingDialog = addSignDialogBuild.createDialog();
-//        loadingDialog.setCanceledOnTouchOutside(false);
-//        // 设置点击屏幕Dialog不消失
-//        loadingDialog.show();
+//        Date createdAtDate = null;
+//        try {
+//            createdAtDate = sdf.parse(Tools.getSameDay());
+//        } catch (ParseException e) {
+//            e.printStackTrace();
+//        }
+//        BmobDate bmobCreatedAtDate = new BmobDate(createdAtDate);
 //
-////        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-////
-////        Date createdAtDate = null;
-////        try {
-////            createdAtDate = sdf.parse(Tools.getSameDay());
-////        } catch (ParseException e) {
-////            e.printStackTrace();
-////        }
-////        BmobDate bmobCreatedAtDate = new BmobDate(createdAtDate);
-////
-//        BmobQuery<ServerTypeBean> categoryBmobQuery = new BmobQuery<>();
-////        categoryBmobQuery.addWhereLessThanOrEqualTo("createdAt", bmobCreatedAtDate);
-//        categoryBmobQuery.findObjects(new FindListener<ServerTypeBean>() {
-//            @Override
-//            public void done(List<ServerTypeBean> object, BmobException e) {
-//                if (e == null) {
-//                    if (object.size() == 0) {
-//                        Constons.ServerTypeString.add("无");
-//                    } else {
-//                        Constons.ServerTypeString.clear();
-//                        serverTypeBeans = object;
-//                        for (ServerTypeBean serverTypeBean : serverTypeBeans) {
-//                            Constons.ServerTypeString.add(serverTypeBean.getServerTypeString());
-//                        }
-//                    }
-//                    loadingDialog.dismiss();
-//                    refreshHandler.sendEmptyMessage(0);
-//
-//                } else {
-//                    loadingDialog.dismiss();
-//                    Log.e("BMOB", e.toString());
-//                    ToastUtils.showToast(getBaseContext(), "查询失败", false);
-//                }
-//            }
-//        });
-//    }
+        BmobQuery<ServerTypeBean> categoryBmobQuery = new BmobQuery<>();
+//        categoryBmobQuery.addWhereLessThanOrEqualTo("createdAt", bmobCreatedAtDate);
+        categoryBmobQuery.findObjects(new FindListener<ServerTypeBean>() {
+            @Override
+            public void done(List<ServerTypeBean> object, BmobException e) {
+                if (e == null) {
+                    if (object.size() == 0) {
+                        Constons.ServerTypeString.add("无");
+                    } else {
+                        Constons.ServerTypeString.clear();
+                        serverTypeBeans = object;
+                        for (ServerTypeBean serverTypeBean : serverTypeBeans) {
+                            Constons.ServerTypeString.add(serverTypeBean.getServerTypeString());
+                        }
+                    }
+                    loadingDialog.dismiss();
+                    refreshHandler.sendEmptyMessage(0);
+
+                } else {
+                    loadingDialog.dismiss();
+                    Log.e("BMOB", e.toString());
+                    ToastUtils.showToast(getBaseContext(), "查询失败", false);
+                }
+            }
+        });
+    }
 
 
     //添加服务类型

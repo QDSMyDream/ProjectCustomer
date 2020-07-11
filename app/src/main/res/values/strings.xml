@@ -31,17 +31,72 @@
 
 
     <string name="beauty_select_consumption_time">选择消费日期</string>
+
+
+
     <string name="beauty_select_consumption_md">选择消费门店</string>
     <string name="update">修 改</string>
     <string name="add">添 加</string>
     <string name="yes">确 定</string>
     <string name="cance">取 消</string>
 
-    <string name="beauty_server_name">请输入服务名称</string>
+    <!--服务-->
+    <string name="beauty_server_name">服务名称</string>
 
-    <string name="beauty_server_type">请输入服务类型</string>
+    <string name="beauty_server_type">服务类型</string>
 
-    <string name="beauty_server_money">请输入服务价格</string>
+    <string name="beauty_server_money">服务价格</string>
+
+    <!--产品-->
+    <string name="beauty_cp_money">产品价格</string>
+
+    <string name="beauty_cp_vip_money">产品会员价</string>
+
+    <string name="beauty_cp_specifications">产品规格</string>
+
+    <string name="beauty_cp_original_price">产品原价</string>
+
+    <string name="beauty_cp_sales_volume">产品销量</string>
+
+    <string name="beauty_cp_name">产品名称</string>
+
+    <!--项目卡-->
+    <string name="beauty_xmk_money">项目卡价格</string>
+
+    <string name="beauty_xmk_vip_money">项目卡会员价</string>
+
+    <string name="beauty_xmk_specifications">项目卡规格</string>
+
+    <string name="beauty_xmk_original_price">项目卡原价</string>
+
+    <string name="beauty_xmk_sales_volume">项目卡销量</string>
+
+    <string name="beauty_xmk_name">项目卡名称</string>
+
+    <string name="beauty_xmk_expire_time">选择到期日期</string>
+
+    <!--储蓄卡-->
+    <string name="beauty_cxk_money">储蓄卡价格</string>
+
+    <string name="beauty_cxk_vip_money">储蓄卡会员价</string>
+
+    <string name="beauty_cxk_specifications">储蓄卡规格</string>
+
+    <string name="beauty_cxk_original_price">储蓄卡原价</string>
+
+    <string name="beauty_cxk_sales_volume">储蓄卡销量</string>
+
+    <string name="beauty_cxk_name">储蓄卡名称</string>
+
+    <string name="beauty_cxk_expire_time">选择到期日期</string>
+
+    <string name="beauty_cxk_recharge_money">充值金额</string>
+
+    <string name="beauty_cxk_give_money">赠送金额</string>
+
+    <string name="beauty_cxk_discount">折扣数</string>
+
+
 
 
     <string name="payment_amount">输入缴费金额</string>
@@ -58,6 +113,13 @@
     <string name="beauty_within_dismount_txt">已下架(%1$d)</string>
 
     <string name="beauty_within_add_server">添加服务</string>
+
+    <string name="beauty_within_add_cp">添加产品</string>
+
+    <string name="beauty_within_add_xmk">添加项目卡</string>
+
+    <string name="beauty_within_add_cxk">添加储蓄卡</string>
+
 
     <string name="beauty_within_input_name_phone">请输入客户手机号或姓名</string>
 

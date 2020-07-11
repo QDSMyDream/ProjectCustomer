@@ -38,7 +38,6 @@ import cn.bmob.v3.listener.UploadFileListener;
 public class BeautyKHInfoActivity extends AppCompatActivity {
 
     private String TAG = "BeautyKHInfoActivity";
-
     private String picPath;
 
     @Override

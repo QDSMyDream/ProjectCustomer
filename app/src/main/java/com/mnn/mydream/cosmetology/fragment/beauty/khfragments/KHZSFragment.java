@@ -251,10 +251,9 @@ public class KHZSFragment extends SupportFragment implements SetListOnClickListe
 
             case R.id.info_btn:
 
-                Intent intent=new Intent();
-                intent.setClass(getActivity(),BeautyKHInfoActivity.class);
+                Intent intent = new Intent();
+                intent.setClass(getActivity(), BeautyKHInfoActivity.class);
                 getActivity().startActivity(intent);
-
 
 
                 Log.e(TAG, "onClick: " + o.toString());

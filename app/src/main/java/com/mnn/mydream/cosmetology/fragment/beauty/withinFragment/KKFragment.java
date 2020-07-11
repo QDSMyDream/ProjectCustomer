@@ -189,7 +189,7 @@ public class KKFragment extends SupportFragment {
 
     private void initview() {
 
-        spinnerMd.attachDataSource(Constons.getOperationMd());
+        spinnerMd.attachDataSource(Constons.OPERATION_MD);
 
         //气泡布局
         bubbleLayout.setLook(BubbleLayout.Look.RIGHT);

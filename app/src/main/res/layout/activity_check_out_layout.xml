@@ -1,38 +1,101 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<com.zhy.android.percent.support.PercentLinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical"
     tools:ignore="MissingPrefix">
 
+    <com.zhy.android.percent.support.PercentRelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_heightPercent="7.5%"
+        app:layout_paddingLeftPercent="2.5%"
+        app:layout_paddingRightPercent="2.5%">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:text="收银台"
+            android:textColor="@color/beauty_one_title_bg"
+            android:textSize="@dimen/text_size_22"
+            android:textStyle="bold" />
+
+        <com.zhy.android.percent.support.PercentRelativeLayout
+            android:id="@+id/back_layout"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_alignParentRight="true"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp"
+            android:background="@drawable/beauty_within_text_frame"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            app:layout_marginLeftPercent="9%">
+
+            <ImageView
+                android:id="@+id/back_img"
+                android:layout_width="30dp"
+                android:layout_height="wrap_content"
+                android:padding="3dp"
+                android:src="@mipmap/back" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="10dp"
+                android:layout_toRightOf="@id/back_img"
+                android:gravity="center"
+                android:text="关闭界面"
+                android:textColor="@color/beauty_add_custmer_bg"
+                android:textSize="@dimen/text_size_18" />
+
+
+        </com.zhy.android.percent.support.PercentRelativeLayout>
+
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_alignParentBottom="true"
+            android:background="@color/beauty_within_lines_color"></View>
+
+
+    </com.zhy.android.percent.support.PercentRelativeLayout>
 
     <com.zhy.android.percent.support.PercentLinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_gravity="center_horizontal"
-        android:background="@color/white"
-        android:orientation="vertical">
+        android:layout_marginTop="5dp">
 
 
-        <include
-            android:id="@+id/main_head"
-            layout="@layout/beauty_kh_info_recycle_item_layout1"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content" />
+        <com.zhy.android.percent.support.PercentLinearLayout
+            android:id="@+id/layout_left"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            app:layout_widthPercent="30%">
 
-        <include
-            android:id="@+id/main_head"
-            layout="@layout/beauty_kh_info_recycle_item_layout2"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content" />
 
-        <include
-            android:id="@+id/main_head"
-            layout="@layout/beauty_kh_info_recycle_item_layout3"
-            android:layout_width="fill_parent"
-            android:layout_height="match_parent" />
+        </com.zhy.android.percent.support.PercentLinearLayout>
+
+        <com.zhy.android.percent.support.PercentLinearLayout
+            android:id="@+id/layout_content"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/beauty_menu_top_bg"
+            android:orientation="vertical"
+            app:layout_marginLeftPercent="3%">
+
+
+        </com.zhy.android.percent.support.PercentLinearLayout>
+
+
     </com.zhy.android.percent.support.PercentLinearLayout>
-</ScrollView>
+</com.zhy.android.percent.support.PercentLinearLayout>
 
 

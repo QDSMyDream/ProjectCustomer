@@ -29,7 +29,17 @@ public class BeautyBeanKh extends BmobObject {
     private String hy;
 
     private String md;
+
     private BmobUser bmobUser;
+
+    private String xmkJson;
+
+    private String cxkJson;
+
+    private String fwJson;
+
+    private String jzJson;
+
 
     public BmobUser getBmobUser() {
         return bmobUser;

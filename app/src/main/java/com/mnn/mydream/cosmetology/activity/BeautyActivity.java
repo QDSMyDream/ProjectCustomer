@@ -41,6 +41,7 @@ import com.mnn.mydream.cosmetology.bean.User;
 import com.mnn.mydream.cosmetology.dialog.APPUpdateDialog;
 import com.mnn.mydream.cosmetology.dialog.CommonDialog;
 import com.mnn.mydream.cosmetology.dialog.LoadingDialog;
+import com.mnn.mydream.cosmetology.eventBus.EventBusMsg;
 import com.mnn.mydream.cosmetology.fragment.beauty.DDGLFragment;
 import com.mnn.mydream.cosmetology.fragment.beauty.GZTFragment;
 import com.mnn.mydream.cosmetology.fragment.beauty.JYGKFragment;
@@ -54,6 +55,7 @@ import com.mnn.mydream.cosmetology.fragment.beauty.YYGLFragment;
 import com.mnn.mydream.cosmetology.fragment.beauty.commoditiesFragments.FuWuFragment;
 import com.mnn.mydream.cosmetology.fragment.beauty.khfragments.XJKHFragment;
 import com.mnn.mydream.cosmetology.interfaces.BeautyContentListOnClickListener;
+import com.mnn.mydream.cosmetology.service.StartService;
 import com.mnn.mydream.cosmetology.utils.APKVersionCodeUtils;
 import com.mnn.mydream.cosmetology.utils.Constons;
 import com.mnn.mydream.cosmetology.utils.ImageLoader;
@@ -63,6 +65,10 @@ import com.mnn.mydream.cosmetology.view.CircleImageView;
 import com.tbruyelle.rxpermissions2.RxPermissions;
 import com.zhy.android.percent.support.PercentLinearLayout;
 import com.zhy.android.percent.support.PercentRelativeLayout;
+
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -156,18 +162,24 @@ public class BeautyActivity extends SupportActivity implements BeautyContentList
     SupportFragment[] mFragments;
 
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_beauty);
+
         ButterKnife.bind(this);
 
         initView();
+
         initViewPager();
 
         initLogin();
 
+        initService();
+    }
+
+    private void initService() {
+        startService(new Intent(this, StartService.class));
     }
 
 
@@ -213,7 +225,6 @@ public class BeautyActivity extends SupportActivity implements BeautyContentList
     }
 
 
-
     private void initView() {
         //绑定数据
         for (int i = 0; i < leftListViewImgs.length; i++) {
@@ -245,6 +256,11 @@ public class BeautyActivity extends SupportActivity implements BeautyContentList
                 }
             }
         });
+
+
+
+
+
 
 
     }
@@ -392,6 +408,7 @@ public class BeautyActivity extends SupportActivity implements BeautyContentList
     @Override
     protected void onDestroy() {
         super.onDestroy();
+        stopService(new Intent(this, StartService.class));
         Log.e(TAG, "onDestroy: ");
 //        mNotificationManager.cancel(notifyId);
     }
@@ -649,8 +666,6 @@ public class BeautyActivity extends SupportActivity implements BeautyContentList
         }
         return false;
     }
-
-
 
 
 }

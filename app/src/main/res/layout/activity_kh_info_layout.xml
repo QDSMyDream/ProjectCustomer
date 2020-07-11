@@ -42,7 +42,9 @@
             layout="@layout/beauty_kh_info_recycle_item_layout3"
             android:layout_width="fill_parent"
             android:layout_height="match_parent" />
+
     </com.zhy.android.percent.support.PercentLinearLayout>
+
 </ScrollView>
 
 

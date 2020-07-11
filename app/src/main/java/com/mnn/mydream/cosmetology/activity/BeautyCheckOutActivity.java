@@ -56,12 +56,13 @@ import cn.bmob.v3.listener.UploadFileListener;
  * 类描述：添加服务
  */
 public class BeautyCheckOutActivity extends AppCompatActivity {
+    private String TAG = "BeautyCheckOutActivity";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
-        setContentView(R.layout.activity_kh_info_layout);
+        setContentView(R.layout.activity_check_out_layout);
         ButterKnife.bind(this);
         initView();
 

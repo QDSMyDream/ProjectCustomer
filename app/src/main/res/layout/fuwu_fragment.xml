@@ -113,7 +113,29 @@
                 android:text="搜 索"
                 android:textColor="@color/white"
                 app:layout_widthPercent="11.5%" />
+            <!--重制-->
+            <com.zhy.android.percent.support.PercentRelativeLayout
+                android:id="@+id/remake_layout"
+                android:layout_width="0dp"
+                android:layout_height="40dp"
+                android:layout_marginLeft="20dp"
+                android:background="@drawable/beauty_text_frame_shape"
+                android:gravity="center"
+                android:orientation="horizontal"
+                app:layout_widthPercent="11.5%">
 
+
+                <TextView
+                    android:id="@+id/remake"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_centerVertical="true"
+                    android:layout_toRightOf="@id/title_add_img"
+                    android:text="重制"
+                    android:textColor="@color/beauty_add_custmer_bg"
+                    android:textSize="@dimen/text_size_20" />
+
+            </com.zhy.android.percent.support.PercentRelativeLayout>
         </com.zhy.android.percent.support.PercentLinearLayout>
 
         <com.zhy.android.percent.support.PercentLinearLayout

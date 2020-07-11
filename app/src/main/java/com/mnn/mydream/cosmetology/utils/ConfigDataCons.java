@@ -9,14 +9,12 @@ package com.mnn.mydream.cosmetology.utils;
 public class ConfigDataCons {
 
     //Bmob  APPKEY 云数据库
-    public static final String APP_BMOB_ID= "abebd05539f4e25033be3c18eea384cb";
+    public static final String APP_BMOB_ID = "abebd05539f4e25033be3c18eea384cb";
     //Bmob  APPKEY 云数据库
 //    public static final String APP_BMOB_ID= "3dda9978e1e89ddfe69c65d8162e227f";
 
-
     //腾讯bug反馈
-    public static  final  String BUGLY_ID="5757045639";
-
+    public static final String BUGLY_ID = "5757045639";
 
     //聚合数据Jock  APPKEY
     public static final String APP_JOCK_ID = "83e43b2a0a477e9aaa213297a8940563";

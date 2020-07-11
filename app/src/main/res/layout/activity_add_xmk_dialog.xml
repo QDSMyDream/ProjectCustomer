@@ -1,0 +1,1130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.zhy.android.percent.support.PercentLinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="1000dp"
+    android:layout_height="match_parent"
+    android:layout_gravity="center_horizontal"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+    <ScrollView
+        android:id="@+id/myScrollView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_centerVertical="true">
+
+        <com.zhy.android.percent.support.PercentLinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/title"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:background="@drawable/beauty_within_dialog_title_bg"
+                android:gravity="center"
+                android:text="添加产品项目"
+                android:textColor="@color/white"
+                android:textSize="@dimen/text_size_24" />
+
+            <com.zhy.android.percent.support.PercentLinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="30dp"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/shape_dialogchoose_content"
+                android:gravity="center"
+
+                android:orientation="vertical">
+
+                <com.zhy.android.percent.support.PercentLinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="30dp"
+                    android:orientation="horizontal">
+
+                    <View
+                        android:layout_width="3sp"
+                        android:layout_height="match_parent"
+                        android:background="@color/beauty_within_btn_red_bg"></View>
+
+                    <TextView
+                        style="@style/customerShowTextViewStyle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="5dp"
+                        android:text="基本信息"
+                        android:textSize="@dimen/text_size_22" />
+
+
+                </com.zhy.android.percent.support.PercentLinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1sp"
+                    android:layout_marginTop="10dp"
+                    android:background="@color/beauty_within_lines_color"></View>
+
+
+                <com.zhy.android.percent.support.PercentLinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_marginTop="10dp"
+                    android:orientation="horizontal"
+                    app:layout_marginTopPercent="2%">
+
+                    <com.zhy.android.percent.support.PercentLinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:gravity="right"
+                        app:layout_widthPercent="11.5%">
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_marginBottom="5dp"
+                            android:src="@mipmap/tips_fail_text" />
+
+                        <TextView
+                            style="@style/BeautyTextStyle"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:gravity="center"
+                            android:text="项目卡名称:" />
+
+                    </com.zhy.android.percent.support.PercentLinearLayout>
+
+                    <android.support.v7.widget.AppCompatEditText
+                        android:id="@+id/server_name"
+                        style="@style/BeautyTitleStyle"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="10dp"
+                        android:gravity="center"
+                        android:hint="@string/beauty_xmk_name"
+                        android:inputType="text"
+                        android:textColorHint="@color/aluminum"
+                        app:layout_widthPercent="19.5%" />
+
+
+                </com.zhy.android.percent.support.PercentLinearLayout>
+
+                <com.zhy.android.percent.support.PercentLinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_marginTop="10dp"
+                    android:orientation="horizontal">
+
+                    <com.zhy.android.percent.support.PercentLinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:gravity="right"
+                        app:layout_widthPercent="11.5%">
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_marginBottom="5dp"
+                            android:src="@mipmap/tips_fail_text" />
+
+                        <TextView
+                            style="@style/BeautyTextStyle"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:gravity="center"
+                            android:text="项目卡类型:" />
+
+                    </com.zhy.android.percent.support.PercentLinearLayout>
+
+
+                    <com.zhy.android.percent.support.PercentLinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="10dp"
+                        android:background="@drawable/customer_text_frame"
+                        android:padding="3dp"
+                        app:layout_widthPercent="19.5%">
+
+                        <com.applandeo.materialcalendarview.view.NiceSpinner
+                            android:id="@+id/server_type"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center_vertical"
+                            android:textColor="@color/jet"
+                            android:textSize="@dimen/text_size_22"
+                            app:popupTextAlignment="center"
+                            app:textTint="@color/jet" />
+
+
+                    </com.zhy.android.percent.support.PercentLinearLayout>
+
+
+                    <com.zhy.android.percent.support.PercentRelativeLayout
+                        android:id="@+id/add_type_layout"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+
+                        android:background="@drawable/beauty_text_frame_shape"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal"
+                        app:layout_marginLeftPercent="2%">
+
+                        <ImageView
+                            android:id="@+id/add_img"
+                            android:layout_width="30dp"
+                            android:layout_height="wrap_content"
+                            android:padding="3dp"
+                            android:src="@mipmap/add_red" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:layout_marginRight="10dp"
+                            android:layout_toRightOf="@id/add_img"
+                            android:gravity="center"
+                            android:text="添加分类"
+                            android:textColor="@color/beauty_add_custmer_bg"
+                            android:textSize="@dimen/text_size_18" />
+
+                    </com.zhy.android.percent.support.PercentRelativeLayout>
+
+                </com.zhy.android.percent.support.PercentLinearLayout>
+
+
+                <com.zhy.android.percent.support.PercentLinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="30dp"
+                    android:layout_marginTop="30dp"
+                    android:orientation="horizontal">
+
+                    <View
+                        android:layout_width="3sp"
+                        android:layout_height="match_parent"
+                        android:background="@color/beauty_within_btn_red_bg"></View>
+
+                    <TextView
+                        style="@style/customerShowTextViewStyle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="5dp"
+                        android:text="项目卡属性"
+                        android:textSize="@dimen/text_size_22" />
+
+                </com.zhy.android.percent.support.PercentLinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1sp"
+                    android:layout_marginTop="10dp"
+                    android:background="@color/beauty_within_lines_color"></View>
+
+
+                <com.zhy.android.percent.support.PercentLinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:orientation="horizontal">
+
+                    <com.zhy.android.percent.support.PercentLinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+                        android:gravity="right"
+                        app:layout_widthPercent="11.5%">
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_marginBottom="5dp"
+                            android:src="@mipmap/tips_fail_text" />
+
+                        <TextView
+                            style="@style/BeautyTextStyle"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:gravity="center"
+                            android:text="服务内容:" />
+
+                    </com.zhy.android.percent.support.PercentLinearLayout>
+
+                    <com.zhy.android.percent.support.PercentRelativeLayout
+                        android:id="@+id/add_fuwu_layout"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/beauty_text_frame_shape"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal"
+                        app:layout_marginLeftPercent="2%">
+
+                        <ImageView
+                            android:id="@+id/add_img2"
+                            android:layout_width="30dp"
+                            android:layout_height="wrap_content"
+                            android:padding="3dp"
+                            android:src="@mipmap/add_red" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:layout_marginRight="10dp"
+                            android:layout_toRightOf="@id/add_img2"
+                            android:gravity="center"
+                            android:text="添加服务"
+                            android:textColor="@color/beauty_add_custmer_bg"
+                            android:textSize="@dimen/text_size_18" />
+
+                    </com.zhy.android.percent.support.PercentRelativeLayout>
+
+                </com.zhy.android.percent.support.PercentLinearLayout>
+
+
+                <com.zhy.android.percent.support.PercentLinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:orientation="horizontal">
+
+                    <com.zhy.android.percent.support.PercentLinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+                        android:gravity="right"
+                        android:visibility="invisible"
+                        app:layout_widthPercent="11.5%">
+
+                    </com.zhy.android.percent.support.PercentLinearLayout>
+
+                    <com.zhy.android.percent.support.PercentRelativeLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@color/beauty_list_bg_color"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal"
+                        app:layout_marginLeftPercent="2%">
+
+
+                    </com.zhy.android.percent.support.PercentRelativeLayout>
+
+                </com.zhy.android.percent.support.PercentLinearLayout>
+
+
+                <com.zhy.android.percent.support.PercentLinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_marginTop="10dp"
+                    android:orientation="horizontal"
+                    app:layout_marginTopPercent="2%">
+
+                    <com.zhy.android.percent.support.PercentLinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:gravity="right"
+                        app:layout_widthPercent="11.5%">
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_marginBottom="5dp"
+                            android:src="@mipmap/tips_fail_text" />
+
+                        <TextView
+                            style="@style/BeautyTextStyle"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:gravity="center"
+                            android:text="项目卡价格:" />
+
+                    </com.zhy.android.percent.support.PercentLinearLayout>
+
+                    <android.support.v7.widget.AppCompatEditText
+                        android:id="@+id/server_money"
+                        style="@style/BeautyTitleStyle"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="10dp"
+                        android:digits=".0123456789"
+                        android:gravity="center"
+                        android:hint="@string/beauty_xmk_money"
+                        android:inputType="number"
+                        android:textColorHint="@color/aluminum"
+                        app:layout_widthPercent="19.5%" />
+
+                    <TextView
+                        style="@style/BeautyTextStyle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="10dp"
+                        android:gravity="center"
+                        android:text="元" />
+
+
+                </com.zhy.android.percent.support.PercentLinearLayout>
+
+
+                <com.zhy.android.percent.support.PercentLinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_marginTop="10dp"
+                    android:orientation="horizontal"
+                    app:layout_marginTopPercent="2%">
+
+                    <com.zhy.android.percent.support.PercentLinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:gravity="right"
+                        app:layout_widthPercent="11.5%">
+
+                        <TextView
+                            style="@style/BeautyTextStyle"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:gravity="center"
+                            android:text="项目卡会员价:" />
+
+                    </com.zhy.android.percent.support.PercentLinearLayout>
+
+                    <android.support.v7.widget.AppCompatEditText
+                        android:id="@+id/server_time"
+                        style="@style/BeautyTitleStyle"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="10dp"
+                        android:digits="0123456789"
+                        android:gravity="center"
+                        android:hint="@string/beauty_xmk_vip_money"
+                        android:inputType="number"
+                        android:textColorHint="@color/aluminum"
+                        app:layout_widthPercent="19.5%" />
+
+                    <TextView
+                        style="@style/BeautyTextStyle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="10dp"
+                        android:gravity="center"
+                        android:text="元" />
+
+                    <com.zhy.android.percent.support.PercentRelativeLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal"
+                        app:layout_marginLeftPercent="2%"
+                        app:layout_widthPercent="13%">
+
+                        <com.example.smoothcheckbox.SmoothCheckBox
+                            android:id="@+id/check_box2"
+                            android:layout_width="25dp"
+                            android:layout_height="25dp"
+                            android:layout_centerVertical="true"
+                            android:layout_gravity="center_vertical|right"
+                            android:layout_marginLeft="5dp" />
+
+                        <TextView
+                            style="@style/BeautyTextStyle"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:layout_marginLeft="5dp"
+                            android:layout_toRightOf="@id/check_box2"
+                            android:text="不启用" />
+
+                    </com.zhy.android.percent.support.PercentRelativeLayout>
+
+
+                </com.zhy.android.percent.support.PercentLinearLayout>
+
+
+                <com.zhy.android.percent.support.PercentLinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_marginTop="10dp"
+                    android:orientation="horizontal"
+                    app:layout_marginTopPercent="2%">
+
+                    <com.zhy.android.percent.support.PercentLinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:gravity="right"
+                        app:layout_widthPercent="11.5%">
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_marginBottom="5dp"
+                            android:src="@mipmap/tips_fail_text" />
+
+                        <TextView
+                            style="@style/BeautyTextStyle"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:gravity="center"
+                            android:text="有效时间:" />
+
+                    </com.zhy.android.percent.support.PercentLinearLayout>
+
+
+                    <com.zhy.android.percent.support.PercentRelativeLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="10dp"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal"
+                        app:layout_widthPercent="13%">
+
+                        <com.example.smoothcheckbox.SmoothCheckBox
+                            android:id="@+id/check_box3"
+                            android:layout_width="25dp"
+                            android:layout_height="25dp"
+                            android:layout_centerVertical="true"
+                            android:layout_gravity="center_vertical|right"
+                            android:layout_marginLeft="5dp" />
+
+                        <TextView
+                            style="@style/BeautyTextStyle"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:layout_marginLeft="5dp"
+                            android:layout_toRightOf="@id/check_box3"
+                            android:text="永久有效" />
+
+                    </com.zhy.android.percent.support.PercentRelativeLayout>
+
+
+                </com.zhy.android.percent.support.PercentLinearLayout>
+
+
+                <!--购买后生效-->
+                <com.zhy.android.percent.support.PercentLinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_marginTop="10dp"
+                    android:orientation="horizontal"
+                    app:layout_marginTopPercent="2%">
+
+                    <com.zhy.android.percent.support.PercentLinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:gravity="right"
+                        android:visibility="invisible"
+                        app:layout_widthPercent="11.5%">
+
+
+                    </com.zhy.android.percent.support.PercentLinearLayout>
+
+                    <com.zhy.android.percent.support.PercentRelativeLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="10dp"
+                        android:gravity="center_vertical"
+
+                        android:orientation="horizontal">
+
+                        <com.example.smoothcheckbox.SmoothCheckBox
+                            android:id="@+id/check_box4"
+                            android:layout_width="25dp"
+                            android:layout_height="25dp"
+                            android:layout_centerVertical="true"
+                            android:layout_gravity="center_vertical|right"
+                            android:layout_marginLeft="5dp" />
+
+                        <TextView
+                            style="@style/BeautyTextStyle"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:layout_marginLeft="5dp"
+                            android:layout_toRightOf="@id/check_box4"
+                            android:text="购买后立即生效，有效期至" />
+
+                    </com.zhy.android.percent.support.PercentRelativeLayout>
+
+
+                    <com.zhy.android.percent.support.PercentLinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginLeft="10dp"
+                        android:background="@drawable/customer_text_frame"
+                        android:orientation="horizontal"
+                        app:layout_widthPercent="19.5%">
+
+
+                        <TextView
+                            android:id="@+id/expire_txt"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:gravity="center"
+                            android:hint="@string/beauty_xmk_expire_time"
+                            android:singleLine="true"
+                            android:textColor="@color/customer_text"
+                            android:textColorHint="@color/beauty_within_select_time"
+                            android:textSize="@dimen/text_size_16"
+                            app:layout_widthPercent="85%" />
+
+                        <ImageView
+                            android:id="@+id/expire_img"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:src="@mipmap/time" />
+
+                    </com.zhy.android.percent.support.PercentLinearLayout>
+
+
+                </com.zhy.android.percent.support.PercentLinearLayout>
+
+
+                <com.zhy.android.percent.support.PercentLinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_marginTop="10dp"
+                    android:orientation="horizontal"
+                    app:layout_marginTopPercent="2%">
+
+                    <com.zhy.android.percent.support.PercentLinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:gravity="right"
+                        app:layout_widthPercent="11.5%">
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_marginBottom="5dp"
+                            android:src="@mipmap/tips_fail_text" />
+
+                        <TextView
+                            style="@style/BeautyTextStyle"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:gravity="center"
+                            android:text="卡授权:" />
+
+                    </com.zhy.android.percent.support.PercentLinearLayout>
+
+                    <com.zhy.android.percent.support.PercentRelativeLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="10dp"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
+
+                        <com.example.smoothcheckbox.SmoothCheckBox
+                            android:id="@+id/check_box5"
+                            android:layout_width="25dp"
+                            android:layout_height="25dp"
+                            android:layout_centerVertical="true"
+                            android:layout_gravity="center_vertical|right"
+                            android:layout_marginLeft="5dp" />
+
+                        <TextView
+                            style="@style/BeautyTextStyle"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:layout_marginLeft="5dp"
+                            android:layout_toRightOf="@id/check_box5"
+                            android:text="无法授权" />
+
+                    </com.zhy.android.percent.support.PercentRelativeLayout>
+
+                    <com.zhy.android.percent.support.PercentRelativeLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="10dp"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
+
+                        <com.example.smoothcheckbox.SmoothCheckBox
+                            android:id="@+id/check_box6"
+                            android:layout_width="25dp"
+                            android:layout_height="25dp"
+                            android:layout_centerVertical="true"
+                            android:layout_gravity="center_vertical|right"
+                            android:layout_marginLeft="5dp" />
+
+                        <TextView
+                            style="@style/BeautyTextStyle"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:layout_marginLeft="5dp"
+                            android:layout_toRightOf="@id/check_box6"
+                            android:text="可以授权给他/她人使用" />
+
+                    </com.zhy.android.percent.support.PercentRelativeLayout>
+
+
+                </com.zhy.android.percent.support.PercentLinearLayout>
+
+
+                <com.zhy.android.percent.support.PercentLinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_marginTop="10dp"
+                    android:orientation="horizontal">
+
+                    <com.zhy.android.percent.support.PercentLinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:gravity="right"
+                        app:layout_widthPercent="11.5%">
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_marginBottom="5dp"
+                            android:src="@mipmap/tips_fail_text" />
+
+                        <TextView
+                            style="@style/BeautyTextStyle"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:gravity="center"
+                            android:text="适用门店:" />
+
+                    </com.zhy.android.percent.support.PercentLinearLayout>
+
+                    <com.zhy.android.percent.support.PercentLinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="10dp"
+                        android:background="@drawable/customer_text_frame"
+                        android:padding="3dp">
+
+
+                        <com.applandeo.materialcalendarview.view.NiceSpinner
+
+                            android:id="@+id/server_md"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="center_vertical"
+                            android:textColor="@color/jet"
+                            android:textSize="@dimen/text_size_22"
+                            app:popupTextAlignment="center"
+                            app:textTint="@color/jet" />
+
+
+                    </com.zhy.android.percent.support.PercentLinearLayout>
+
+                </com.zhy.android.percent.support.PercentLinearLayout>
+
+                <com.zhy.android.percent.support.PercentLinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="30dp"
+                    android:layout_marginTop="30dp"
+                    android:orientation="horizontal">
+
+                    <View
+                        android:layout_width="3sp"
+                        android:layout_height="match_parent"
+                        android:background="@color/beauty_within_btn_red_bg"></View>
+
+                    <TextView
+                        style="@style/customerShowTextViewStyle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="5dp"
+                        android:text="项目卡描述信息"
+                        android:textSize="@dimen/text_size_22" />
+
+                </com.zhy.android.percent.support.PercentLinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1sp"
+                    android:layout_marginTop="10dp"
+                    android:background="@color/beauty_within_lines_color"></View>
+
+                <com.zhy.android.percent.support.PercentLinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:orientation="horizontal"
+                    app:layout_heightPercent="25%"
+                    app:layout_marginTopPercent="2%">
+
+                    <com.zhy.android.percent.support.PercentLinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+
+                        android:orientation="vertical"
+                        app:layout_widthPercent="50%">
+
+                        <com.zhy.android.percent.support.PercentLinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center_vertical"
+                            android:orientation="horizontal">
+
+                            <com.zhy.android.percent.support.PercentLinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="40dp"
+                                android:gravity="right"
+                                app:layout_widthPercent="23%">
+
+                                <ImageView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center"
+                                    android:layout_marginBottom="5dp"
+                                    android:src="@mipmap/tips_fail_text" />
+
+                                <TextView
+                                    style="@style/BeautyTextStyle"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="match_parent"
+                                    android:gravity="center"
+                                    android:text="卡封面:" />
+
+                            </com.zhy.android.percent.support.PercentLinearLayout>
+
+                            <CheckBox
+                                style="@style/select_style"
+                                android:layout_marginLeft="10dp"
+                                android:checked="true"
+                                android:tag="蓝色"
+                                android:text="蓝色" />
+
+                            <CheckBox
+                                style="@style/select_style"
+                                android:layout_marginLeft="30dp"
+                                android:tag="黄色"
+                                android:text="黄色" />
+
+                            <CheckBox
+                                style="@style/select_style"
+                                android:layout_marginLeft="30dp"
+                                android:tag="金色"
+                                android:text="金色" />
+
+                            <CheckBox
+                                style="@style/select_style"
+                                android:layout_marginLeft="30dp"
+                                android:tag="红色"
+                                android:text="红色" />
+                        </com.zhy.android.percent.support.PercentLinearLayout>
+
+                        <com.zhy.android.percent.support.PercentLinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center_vertical"
+                            android:orientation="horizontal">
+
+                            <com.zhy.android.percent.support.PercentLinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="40dp"
+                                android:gravity="right"
+                                android:visibility="invisible"
+                                app:layout_widthPercent="23%">
+
+                            </com.zhy.android.percent.support.PercentLinearLayout>
+
+                            <CheckBox
+                                style="@style/select_style"
+                                android:layout_marginLeft="10dp"
+                                android:tag="黑色"
+                                android:text="黑色" />
+
+                            <CheckBox
+                                style="@style/select_style"
+                                android:layout_marginLeft="30dp"
+                                android:tag="紫色"
+                                android:text="紫色" />
+
+                            <CheckBox
+                                style="@style/select_style"
+                                android:layout_marginLeft="30dp"
+                                android:tag="天蓝"
+                                android:text="天蓝" />
+
+                            <CheckBox
+                                style="@style/select_style"
+                                android:layout_marginLeft="30dp"
+                                android:tag="绿色"
+                                android:text="绿色" />
+                        </com.zhy.android.percent.support.PercentLinearLayout>
+
+                        <com.zhy.android.percent.support.PercentLinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center_vertical"
+                            android:orientation="horizontal">
+
+                            <com.zhy.android.percent.support.PercentLinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="40dp"
+                                android:gravity="right"
+                                android:visibility="invisible"
+                                app:layout_widthPercent="23%">
+
+                            </com.zhy.android.percent.support.PercentLinearLayout>
+
+                            <CheckBox
+                                style="@style/select_style"
+                                android:layout_marginLeft="10dp"
+                                android:tag="玫粉"
+                                android:text="玫粉" />
+
+                        </com.zhy.android.percent.support.PercentLinearLayout>
+
+
+                    </com.zhy.android.percent.support.PercentLinearLayout>
+
+
+                    <com.zhy.android.percent.support.PercentLinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:orientation="vertical"
+                        app:layout_widthPercent="50%">
+
+                        <com.zhy.android.percent.support.PercentLinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="40dp"
+                            android:gravity="right"
+                            app:layout_widthPercent="23%">
+
+
+                            <TextView
+                                style="@style/BeautyTextStyle"
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:gravity="center"
+                                android:text="封面预览" />
+
+                        </com.zhy.android.percent.support.PercentLinearLayout>
+
+
+                        <com.zhy.android.percent.support.PercentRelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_marginLeft="10dp"
+                            android:background="@drawable/beauty_within_gridview_item_layout1"
+                            android:orientation="vertical"
+                            android:padding="5dp"
+                            app:layout_widthPercent="45%">
+
+
+                            <com.zhy.android.percent.support.PercentRelativeLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentTop="true"
+                                android:gravity="center_vertical">
+
+
+                                <ImageView
+                                    android:id="@+id/md_img"
+                                    android:layout_width="20dp"
+                                    android:layout_height="20dp"
+                                    android:layout_centerVertical="true"
+                                    android:src="@mipmap/md" />
+
+                                <TextView
+
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_centerVertical="true"
+                                    android:layout_marginLeft="5dp"
+                                    android:layout_toRightOf="@id/md_img"
+                                    android:gravity="center"
+                                    android:text="百年吴越"
+                                    android:textColor="@color/white"
+                                    android:textSize="@dimen/text_size_15" />
+
+
+                                <TextView
+
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_alignParentRight="true"
+
+                                    android:layout_marginLeft="5dp"
+                                    android:gravity="center"
+                                    android:text="项目卡"
+                                    android:textColor="@color/white"
+                                    android:textSize="@dimen/text_size_18" />
+
+
+                            </com.zhy.android.percent.support.PercentRelativeLayout>
+
+
+                            <com.zhy.android.percent.support.PercentRelativeLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentBottom="true"
+                                android:gravity="center_vertical">
+
+                                <TextView
+                                    android:id="@+id/tip1"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_alignParentLeft="true"
+                                    android:gravity="center"
+                                    android:maxLines="1"
+                                    android:text="小气泡10次"
+                                    android:textColor="@color/white"
+                                    android:textSize="@dimen/text_size_15" />
+
+                            </com.zhy.android.percent.support.PercentRelativeLayout>
+
+
+                        </com.zhy.android.percent.support.PercentRelativeLayout>
+
+
+                    </com.zhy.android.percent.support.PercentLinearLayout>
+                </com.zhy.android.percent.support.PercentLinearLayout>
+
+
+                <com.zhy.android.percent.support.PercentLinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_marginTop="10dp"
+                    android:orientation="horizontal"
+                    app:layout_marginTopPercent="2%">
+
+                    <com.zhy.android.percent.support.PercentLinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:gravity="right"
+                        app:layout_widthPercent="11.5%">
+
+                        <TextView
+                            style="@style/BeautyTextStyle"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:gravity="center"
+                            android:text="销量:" />
+
+                    </com.zhy.android.percent.support.PercentLinearLayout>
+
+                    <android.support.v7.widget.AppCompatEditText
+
+                        style="@style/BeautyTitleStyle"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="10dp"
+                        android:digits="0123456789"
+                        android:gravity="center"
+                        android:hint="@string/beauty_xmk_sales_volume"
+                        android:inputType="number"
+                        android:textColorHint="@color/aluminum"
+                        app:layout_widthPercent="19.5%" />
+
+
+                </com.zhy.android.percent.support.PercentLinearLayout>
+                <!--备注-->
+                <com.zhy.android.percent.support.PercentLinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="150dp"
+                    android:layout_marginTop="10dp"
+                    android:orientation="horizontal">
+
+                    <com.zhy.android.percent.support.PercentLinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:gravity="right"
+                        app:layout_widthPercent="11.5%">
+
+                        <TextView
+                            style="@style/BeautyTextStyle"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:gravity="center|top"
+                            android:text="产品特点:" />
+
+                    </com.zhy.android.percent.support.PercentLinearLayout>
+
+                    <android.support.v7.widget.AppCompatEditText
+                        android:id="@+id/remarks_content"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="10dp"
+                        android:background="@drawable/customer_text_frame"
+                        android:enabled="true"
+                        android:gravity="top"
+                        android:hint="特点介绍"
+                        android:imeOptions="actionDone"
+                        android:inputType="textMultiLine"
+                        android:maxLength="300"
+                        android:maxLines="3"
+                        android:minLines="2"
+                        android:padding="5dp"
+                        android:scrollbars="vertical"
+                        android:textColor="@color/customer_text"
+                        android:textColorHint="@color/aluminum"
+                        android:textSize="@dimen/text_size_20"
+                        app:layout_widthPercent="39%" />
+
+                    <TextView
+                        android:id="@+id/remarks_num"
+                        style="@style/customerShowTextViewStyle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginLeft="10dp"
+                        android:gravity="bottom"
+                        android:text="0"
+                        android:textSize="@dimen/text_size_16" />
+
+                    <TextView
+                        style="@style/customerShowTextViewStyle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center_vertical"
+                        android:gravity="bottom"
+                        android:text="/300"
+                        android:textSize="@dimen/text_size_16" />
+
+
+                </com.zhy.android.percent.support.PercentLinearLayout>
+
+
+            </com.zhy.android.percent.support.PercentLinearLayout>
+
+
+            <!--按钮-->
+            <com.zhy.android.percent.support.PercentLinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginTop="30dp"
+                android:layout_marginBottom="30dp"
+                android:orientation="horizontal">
+
+                <android.support.v7.widget.AppCompatButton
+                    android:id="@+id/btn_yes"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/beauty_text_frame_shape_yes"
+                    android:text="保  存"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/text_size_20"
+                    app:layout_marginLeftPercent="13%"
+                    app:layout_widthPercent="12%" />
+
+                <android.support.v7.widget.AppCompatButton
+                    android:id="@+id/btn_cancel"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/beauty_text_frame_shape"
+                    android:text="取  消"
+                    android:textColor="@color/beauty_add_custmer_bg"
+                    android:textSize="@dimen/text_size_20"
+                    app:layout_marginLeftPercent="2%"
+                    app:layout_widthPercent="12%" />
+            </com.zhy.android.percent.support.PercentLinearLayout>
+
+
+        </com.zhy.android.percent.support.PercentLinearLayout>
+    </ScrollView>
+</com.zhy.android.percent.support.PercentLinearLayout>
+
+

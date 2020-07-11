@@ -20,10 +20,15 @@ import com.mnn.mydream.cosmetology.activity.AddProjectsActivity;
 import com.mnn.mydream.cosmetology.activity.BeautyActivity;
 import com.mnn.mydream.cosmetology.activity.BeautyWithinActivity;
 import com.mnn.mydream.cosmetology.bean.BeautyTitleBean;
+import com.mnn.mydream.cosmetology.eventBus.EventBusMsg;
 import com.mnn.mydream.cosmetology.utils.Constons;
 import com.mnn.mydream.cosmetology.utils.Tools;
 import com.zhy.android.percent.support.PercentLinearLayout;
 import com.zhy.android.percent.support.PercentRelativeLayout;
+
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -169,7 +174,7 @@ public class GZTFragment extends SupportFragment {
     PercentLinearLayout menuLayout;
 
     private View view;
-    private List<String> titleStrings = new ArrayList<>();//头部滚动字符串
+
 
     public static GZTFragment newInstance() {
 
@@ -186,8 +191,10 @@ public class GZTFragment extends SupportFragment {
         if (view == null) {
             view = inflater.inflate(R.layout.gzt_fragment, container, false);
             unbinder = ButterKnife.bind(this, view);
+            EventBus.getDefault().register(this);
+
             initview();
-            selectTitleStrings();
+//            selectTitleStrings();
 
         }
         ViewGroup parent = (ViewGroup) view.getParent();
@@ -206,39 +213,39 @@ public class GZTFragment extends SupportFragment {
 
     }
 
-    //查询某个时间前
-    private void selectTitleStrings() {
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        Date createdAtDate = null;
-        try {
-            createdAtDate = sdf.parse(Tools.getSameDay());
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
-        BmobDate bmobCreatedAtDate = new BmobDate(createdAtDate);
-        BmobQuery<BeautyTitleBean> categoryBmobQuery = new BmobQuery<>();
-
-        Log.e(TAG, "selectMenuItem: " + createdAtDate);
-        categoryBmobQuery.addWhereLessThan("createdAt", bmobCreatedAtDate);
-        categoryBmobQuery.findObjects(new FindListener<BeautyTitleBean>() {
-            @Override
-            public void done(List<BeautyTitleBean> object, BmobException e) {
-                if (e == null) {
-
-                    for (BeautyTitleBean beautyTitleBean : object) {
-                        titleStrings.add(beautyTitleBean.getTitleString());
-                    }
-
-                    refreshHandler.sendEmptyMessage(1);
-
-                } else {
-                    Log.e(TAG, "done: " + "查询失败" + e.toString());
-
-                }
-            }
-        });
-
-    }
+//    //查询某个时间前
+//    private void selectTitleStrings() {
+//        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+//        Date createdAtDate = null;
+//        try {
+//            createdAtDate = sdf.parse(Tools.getSameDay());
+//        } catch (ParseException e) {
+//            e.printStackTrace();
+//        }
+//        BmobDate bmobCreatedAtDate = new BmobDate(createdAtDate);
+//        BmobQuery<BeautyTitleBean> categoryBmobQuery = new BmobQuery<>();
+//
+//        Log.e(TAG, "selectMenuItem: " + createdAtDate);
+//        categoryBmobQuery.addWhereLessThan("createdAt", bmobCreatedAtDate);
+//        categoryBmobQuery.findObjects(new FindListener<BeautyTitleBean>() {
+//            @Override
+//            public void done(List<BeautyTitleBean> object, BmobException e) {
+//                if (e == null) {
+//
+//                    for (BeautyTitleBean beautyTitleBean : object) {
+//                        titleStrings.add(beautyTitleBean.getTitleString());
+//                    }
+//
+//                    refreshHandler.sendEmptyMessage(1);
+//
+//                } else {
+//                    Log.e(TAG, "done: " + "查询失败" + e.toString());
+//
+//                }
+//            }
+//        });
+//
+//    }
 
 
     @Override
@@ -349,37 +356,17 @@ public class GZTFragment extends SupportFragment {
     private void setFlipperString() {
         Log.e(TAG, "setFlipperString: ");
 
-        for (int i = 0; i < titleStrings.size(); i++) {
-            Log.e(TAG, "setFlipperString: " + titleStrings.get(i));
+        for (int i = 0; i < Constons.titleStrings.size(); i++) {
+            Log.e(TAG, "setFlipperString: " + Constons.titleStrings.get(i));
             View view = LayoutInflater.from(getContext()).inflate(R.layout.beauty_viewflipper_item, null);
             TextView textView = view.findViewById(R.id.flipper_text);
-            textView.setText(titleStrings.get(i));
+            textView.setText(Constons.titleStrings.get(i));
             vfText.addView(view);
         }
 
         vfText.startFlipping();
     }
 
-
-    ///刷新Handler
-    @SuppressLint("HandlerLeak")
-    private Handler refreshHandler = new Handler() {
-        @Override
-        public void handleMessage(Message msg) {
-            switch (msg.what) {
-                case 1:
-                    setFlipperString();
-                    break;
-
-                case 2:
-
-                    break;
-
-                default:
-                    break;
-            }
-        }
-    };
 
     @Override
     public void onHiddenChanged(boolean hidden) {
@@ -400,5 +387,21 @@ public class GZTFragment extends SupportFragment {
 
     }
 
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void onEventMain(EventBusMsg event) {
+
+        int flag = event.getMsgInt();
+        switch (flag) {
+            case Constons.SELECT_TITLE:
+                Log.e(TAG, "onEventMain: " + event.toString());
+                setFlipperString();
+                break;
+
+
+        }
+
+
+    }
 
 }

@@ -183,4 +183,12 @@
     <!--客户详情信息content layout4颜色-->
     <color name="beauty_kh_info_left_layout_color5">#EFEEF0</color>
 
+
+
+    <!--内部list背景颜色-->
+    <color name="beauty_list_bg_color">#F5F4F8</color>
+
+
+
+
 </resources>
