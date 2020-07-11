@@ -76,7 +76,7 @@ public class FuWuView1ListAdapter extends BaseAdapter {
         FuWuSaleBean fuWuSaleBean = fuWuSaleBeans.get(position);
 
         //加载图片
-        ImageLoader.displayImageView(mContext, fuWuSaleBean.getServerUrl(), holder.ivServer,R.mipmap.ic_img_default);
+        ImageLoader.displayImageView(mContext, fuWuSaleBean.getServerUrl(), holder.ivServer, R.mipmap.ic_img_default);
         holder.serverName.setText(fuWuSaleBean.getServerName() + "");
         holder.serverMoney.setText(fuWuSaleBean.getServerMoney() + "");
         holder.applyMd.setText(fuWuSaleBean.getApplyMd() + "");
@@ -141,13 +141,12 @@ public class FuWuView1ListAdapter extends BaseAdapter {
             TextView addDate = view.findViewById(R.id.add_date);
             ImageView ivServer = view.findViewById(R.id.iv_server);
             //加载图片
-            ImageLoader.displayImageView(mContext, fuWuSaleBean.getServerUrl(), ivServer,R.mipmap.ic_img_default);
+            ImageLoader.displayImageView(mContext, fuWuSaleBean.getServerUrl(), ivServer, R.mipmap.ic_img_default);
             serverName.setText(fuWuSaleBean.getServerName() + "");
             serverMoney.setText(fuWuSaleBean.getServerMoney() + "");
             applyMd.setText(fuWuSaleBean.getApplyMd() + "");
             typeText.setText(fuWuSaleBean.getServerType() + "");
             addDate.setText(fuWuSaleBean.getCreatedAt() + "");
-
 //            if (fuWuSaleBean.isServerSaleFlag()) {
 //                saleBtn.setVisibility(View.GONE);
 //                dismountBtn.setVisibility(View.VISIBLE);
@@ -156,7 +155,6 @@ public class FuWuView1ListAdapter extends BaseAdapter {
 //               dismountBtn.setVisibility(View.GONE);
 //               saleBtn.setVisibility(View.VISIBLE);
 //            }
-
             notifyDataSetInvalidated();
 //            notifyDataSetChanged();
         }

@@ -258,8 +258,6 @@ public class XJKHFragment extends SupportFragment implements View.OnClickListene
     }
 
 
-
-
     //时间选择框
     public void setOnclick(View v, final int count) {
         boolean b = false;
@@ -372,7 +370,6 @@ public class XJKHFragment extends SupportFragment implements View.OnClickListene
     private void setdataNull() {
         nameEd.setText("");
         phoneEd.setText("");
-        male.setChecked(false);
         birTxt.setText("");
         spinnerHy.setSelectedIndex(0);
         remarksContent.setText("");
@@ -381,6 +378,10 @@ public class XJKHFragment extends SupportFragment implements View.OnClickListene
         spinnerMd.setSelectedIndex(0);
         imgPhoto.setImageResource(R.mipmap.def_photo);
         picPath = "";
+        //默认女
+        CommonUtil.itemUnCheck(male);
+        femle.setChecked(true);
+
 
         birTipsLayout.setVisibility(View.GONE);
         hyTipsLayout.setVisibility(View.GONE);
@@ -405,7 +406,7 @@ public class XJKHFragment extends SupportFragment implements View.OnClickListene
                 break;
 
             case R.id.bir_img:
-                Tools.inputImm(getActivity(),v);
+                Tools.inputImm(getActivity(), v);
                 setOnclick(v, 0);
                 break;
             case R.id.btn_commit:

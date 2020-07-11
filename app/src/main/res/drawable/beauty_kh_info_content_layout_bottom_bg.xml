@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="rectangle">
+
+    <corners
+
+        android:bottomLeftRadius="3dp"
+        android:bottomRightRadius="3dp"
+        >
+    </corners>
+
+    <solid android:color="@color/beauty_kh_info_left_layout_color1" />
+</shape>

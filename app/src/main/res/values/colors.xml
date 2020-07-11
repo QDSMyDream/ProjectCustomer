@@ -167,8 +167,20 @@
 
     <!--客户详情信息name颜色-->
     <color name="beauty_kh_info_name_color">#504E50</color>
+    <!--客户详情信息content字体颜色-->
+    <color name="beauty_kh_info_content_text_color">#A5A9B4</color>
 
 
+    <!--客户详情信息content layout1颜色-->
+    <color name="beauty_kh_info_left_layout_color1">#FDF5E9</color>
+    <!--客户详情信息content layout2颜色-->
+    <color name="beauty_kh_info_left_layout_color2">#E8EEF9</color>
+    <!--客户详情信息content layout3颜色-->
+    <color name="beauty_kh_info_left_layout_color3">#EAF8D7</color>
+    <!--客户详情信息content layout4颜色-->
+    <color name="beauty_kh_info_left_layout_color4">#FDF5E9</color>
 
+    <!--客户详情信息content layout4颜色-->
+    <color name="beauty_kh_info_left_layout_color5">#EFEEF0</color>
 
 </resources>

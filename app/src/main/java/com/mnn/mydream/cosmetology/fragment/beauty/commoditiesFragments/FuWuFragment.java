@@ -189,14 +189,14 @@ public class FuWuFragment extends SupportFragment {
 
         switch (postion) {
             case 0:
-                saleText.setBackgroundResource(R.drawable.beauty_within_text_frame);
-                dismountText.setBackgroundResource(R.drawable.beauty_within_not_select_bg);
+                saleText.setBackgroundResource(R.drawable.beauty_within_text_frame_option);
+                dismountText.setBackgroundResource(R.drawable.beauty_within_text_frame_no_option);
                 addServerLayout.setVisibility(View.VISIBLE);
                 break;
 
             case 1:
-                saleText.setBackgroundResource(R.drawable.beauty_within_not_select_bg);
-                dismountText.setBackgroundResource(R.drawable.beauty_within_text_frame);
+                saleText.setBackgroundResource(R.drawable.beauty_within_text_frame_no_option);
+                dismountText.setBackgroundResource(R.drawable.beauty_within_text_frame_option);
                 addServerLayout.setVisibility(View.GONE);
                 break;
         }

@@ -6,4 +6,6 @@ package com.mnn.mydream.cosmetology.model;
  * 类描述 :
  */
 public interface IAppModel {
+
+
 }

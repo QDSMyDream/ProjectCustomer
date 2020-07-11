@@ -74,9 +74,9 @@
             android:theme="@style/Theme.AppCompat.Light.NoActionBar"
             android:windowSoftInputMode="adjustPan">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+                <action android:name="android.intent.action.MAIN"/>
 
-                <category android:name="android.intent.category.LAUNCHER" />
+                <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
         <activity android:name=".activity.DetailsActivity" />
@@ -173,7 +173,9 @@
             android:screenOrientation="landscape"
             android:theme="@style/dialogstyle"
             android:windowSoftInputMode="adjustPan"></activity>
+        <activity android:name=".demo_test.MainActivity">
 
+        </activity>
         <activity
             android:name=".activity.BeautyKHInfoActivity"
             android:screenOrientation="landscape"

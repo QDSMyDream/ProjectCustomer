@@ -66,5 +66,13 @@
     <string name="beauty_within_hint_recharge_money">请输入充值金额</string>
     <string name="beauty_within_hint_give_money">请输入赠送金额</string>
 
+    <string name="beauty_kh_info_text_small1">%1$d 张</string>
 
+    <string name="beauty_kh_info_text_small2">%1$d 元</string>
+
+    <string name="beauty_kh_info_text_small3">%1$d 个</string>
+
+    <string name="beauty_kh_info_text_small4">顾客到店次数 %1$d 次</string>
+
+    <string name="beauty_kh_info_text_small5">%1$d 年</string>
 </resources>

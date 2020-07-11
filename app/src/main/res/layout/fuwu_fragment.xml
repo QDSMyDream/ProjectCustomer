@@ -134,7 +134,7 @@
                     style="@style/BeautyTextStyle"
                     android:layout_width="wrap_content"
                     android:layout_height="40dp"
-                    android:background="@drawable/beauty_within_text_frame"
+                    android:background="@drawable/beauty_within_text_frame_option"
                     android:text="@string/beauty_within_saleing_txt"
                     app:layout_widthPercent="12%" />
 
@@ -144,7 +144,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="40dp"
                     android:layout_toRightOf="@id/sale_text"
-                    android:background="@drawable/beauty_within_not_select_bg"
+                    android:background="@drawable/beauty_within_text_frame_no_option"
                     android:text="@string/beauty_within_dismount_txt"
                     app:layout_widthPercent="12%" />
 

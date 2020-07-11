@@ -1,6 +1,7 @@
 package com.mnn.mydream.cosmetology.fragment.beauty.khfragments;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -13,6 +14,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.mnn.mydream.cosmetology.R;
+import com.mnn.mydream.cosmetology.activity.BeautyKHInfoActivity;
 import com.mnn.mydream.cosmetology.bean.BeautyBeanKh;
 import com.mnn.mydream.cosmetology.bean.Customer;
 import com.mnn.mydream.cosmetology.dialog.LoadingDialog;
@@ -248,6 +250,13 @@ public class KHZSFragment extends SupportFragment implements SetListOnClickListe
                 break;
 
             case R.id.info_btn:
+
+                Intent intent=new Intent();
+                intent.setClass(getActivity(),BeautyKHInfoActivity.class);
+                getActivity().startActivity(intent);
+
+
+
                 Log.e(TAG, "onClick: " + o.toString());
                 break;
 

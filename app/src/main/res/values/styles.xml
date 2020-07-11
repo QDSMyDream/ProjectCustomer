@@ -221,4 +221,27 @@
         <item name="windowNoTitle">true</item>
 
     </style>
+
+
+    <!--客户详情界面left字体style-->
+    <style name="khinfo_text">
+        <item name="android:textSize">@dimen/text_size_20</item>
+        <item name="android:textColor">@color/beauty_kh_info_name_color</item>
+        <item name="android:gravity">center</item>
+    </style>
+
+    <!--客户详情界面left字体style-->
+    <style name="khinfo_text2">
+        <item name="android:textSize">@dimen/text_size_16</item>
+        <item name="android:textColor">@color/beauty_kh_info_content_text_color</item>
+        <item name="android:gravity">center</item>
+    </style>
+
+    <!--客户详情界面left字体style-->
+    <style name="khinfo_text3">
+        <item name="android:textSize">@dimen/text_size_17</item>
+        <item name="android:textColor">@color/beauty_kh_info_name_color</item>
+        <item name="android:gravity">center</item>
+    </style>
+
 </resources>

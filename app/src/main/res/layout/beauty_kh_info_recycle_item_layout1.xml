@@ -1,143 +1,201 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.zhy.android.percent.support.PercentLinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<com.zhy.android.percent.support.PercentRelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/swipelistlayout"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="match_parent"
+    android:layout_gravity="center_horizontal"
+    android:background="@color/white">
 
-    <com.zhy.android.percent.support.PercentRelativeLayout
+    <!--top-->
+    <com.zhy.android.percent.support.PercentLinearLayout
         android:id="@+id/user_info_layout"
         android:layout_width="wrap_content"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
+        android:background="@drawable/beauty_within_text_frame"
         android:gravity="center_vertical"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        app:layout_heightPercent="18.2%"
+        app:layout_marginLeftPercent="1%"
+        app:layout_marginRightPercent="1%"
+        app:layout_marginTopPercent="2%"
+        app:layout_paddingLeftPercent="1%"
+        app:layout_paddingRightPercent="1%">
 
-
-        <com.mnn.mydream.cosmetology.view.CircleImageView
-            android:id="@+id/kh_tx"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:layout_marginLeft="5dp"
-            android:padding="2dp"
-            android:src="@mipmap/def_photo" />
-
-        <com.zhy.android.percent.support.PercentLinearLayout
-            android:id="@+id/khxq_left_layout"
+        <!--top list1 姓名-->
+        <com.zhy.android.percent.support.PercentRelativeLayout
+            android:id="@+id/top_layout1"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_toRightOf="@id/kh_tx"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            app:layout_widthPercent="28.5%">
+
+            <com.zhy.android.percent.support.PercentLinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_alignParentLeft="true"
+                android:gravity="center"
+                android:orientation="vertical"
+                app:layout_widthPercent="26%">
+
+                <com.mnn.mydream.cosmetology.view.CircleImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:src="@mipmap/def_photo" />
+
+                <com.zhy.android.percent.support.PercentLinearLayout
+
+                    android:layout_width="wrap_content"
+                    android:layout_height="25dp"
+                    android:layout_marginTop="10dp"
+                    android:background="@color/x_red"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="25dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:padding="3dp"
+                        android:src="@mipmap/vip_img" />
+
+                    <TextView
+                        android:id="@+id/kh_name"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:gravity="center_vertical"
+                        android:text="普通会员"
+                        android:textColor="@color/beauty_left_font_select_bg"
+                        android:textSize="@dimen/text_size_16" />
+
+
+                </com.zhy.android.percent.support.PercentLinearLayout>
+
+
+            </com.zhy.android.percent.support.PercentLinearLayout>
+
+            <com.zhy.android.percent.support.PercentLinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_alignParentRight="true"
+                android:orientation="vertical"
+                app:layout_widthPercent="72%">
+
+                <TextView
+                    android:id="@+id/name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:text="靳红艳"
+                    android:textColor="@color/beauty_kh_info_name_color"
+                    android:textSize="@dimen/text_size_16"
+                    android:textStyle="bold" />
+
+                <ListView
+                    android:id="@+id/top_list1"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"></ListView>
+
+
+            </com.zhy.android.percent.support.PercentLinearLayout>
+        </com.zhy.android.percent.support.PercentRelativeLayout>
+
+        <View
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            app:layout_heightPercent="80.2%"></View>
+
+        <!--top list2 姓名-->
+        <com.zhy.android.percent.support.PercentLinearLayout
+            android:id="@+id/top_layout2"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             android:gravity="center_vertical"
             android:orientation="vertical"
-            app:layout_widthPercent="39%">
+            app:layout_widthPercent="28.5%">
 
-            <com.zhy.android.percent.support.PercentLinearLayout
-                android:id="@+id/title_username_layout"
+            <ListView
+                android:id="@+id/top_list2"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginLeft="5dp"
-                android:orientation="horizontal"
-                app:layout_heightPercent="50%">
+                android:layout_height="match_parent"></ListView>
 
-                <TextView
-                    android:id="@+id/kh_name"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:gravity="center_vertical"
-                    android:maxLength="9"
-                    android:maxLines="1"
-                    android:textColor="@color/beauty_text_color"
-                    android:textSize="@dimen/text_size_18" />
-
-                <ImageView
-                    android:id="@+id/kh_sex"
-                    android:layout_width="25dp"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical"
-                    android:layout_marginLeft="10dp"
-                    android:src="@mipmap/nan" />
-
-            </com.zhy.android.percent.support.PercentLinearLayout>
-
-
-            <TextView
-                android:id="@+id/kh_phone"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_marginLeft="5dp"
-                android:gravity="center_vertical"
-                android:textColor="@color/beauty_text_color"
-                android:textSize="@dimen/text_size_18"
-                app:layout_heightPercent="50%" />
 
         </com.zhy.android.percent.support.PercentLinearLayout>
 
+        <View
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            app:layout_heightPercent="80.2%"></View>
 
+        <!--top list4 姓名-->
         <com.zhy.android.percent.support.PercentLinearLayout
-            android:id="@+id/khxq_right_layout"
+            android:id="@+id/top_layout3"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_alignParentTop="true"
-            android:layout_marginLeft="4dp"
-            android:layout_toRightOf="@id/khxq_left_layout"
-            android:gravity="center_vertical|left"
+            android:gravity="center_vertical"
             android:orientation="vertical"
-            app:layout_widthPercent="39%">
+            app:layout_widthPercent="28.5%">
 
-            <com.zhy.android.percent.support.PercentLinearLayout
-                android:id="@+id/khsr_layout"
+            <ListView
+                android:id="@+id/top_list3"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginLeft="10dp"
-                android:gravity="center_vertical"
-                android:orientation="horizontal"
-                app:layout_heightPercent="50%">
+                android:layout_height="match_parent"></ListView>
 
-                <TextView
-                    android:id="@+id/khsr_text"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:gravity="center_vertical|left"
-                    android:text="生日:"
-                    android:textColor="@color/beauty_text_color"
-                    android:textSize="@dimen/text_size_18" />
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical"
-                    android:layout_marginLeft="5dp"
-                    android:textColor="@color/beauty_text_color"
-                    android:textSize="@dimen/text_size_18" />
+        </com.zhy.android.percent.support.PercentLinearLayout>
 
-            </com.zhy.android.percent.support.PercentLinearLayout>
-
+        <View
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            app:layout_heightPercent="80.2%"></View>
+        <!--top list3 姓名-->
+        <com.zhy.android.percent.support.PercentLinearLayout
+            android:id="@+id/top_layout4"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical"
+            android:orientation="vertical">
 
             <TextView
-                android:id="@+id/khssmd_text"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_gravity="center|left"
-                android:layout_marginLeft="10dp"
-                android:gravity="center_vertical|left"
-                android:textColor="@color/beauty_text_color"
-                android:textSize="@dimen/text_size_18"
-                app:layout_heightPercent="50%" />
+                android:id="@+id/label_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="标签"
+                android:textColor="@color/beauty_kh_info_name_color"
+                android:textSize="@dimen/text_size_16"
+                android:textStyle="bold" />
+
+            <ListView
+                android:id="@+id/top_list4"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"></ListView>
+
 
         </com.zhy.android.percent.support.PercentLinearLayout>
 
 
-        <ImageView
-            android:id="@+id/delete_kh"
-            android:layout_width="40dp"
-            android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:layout_toRightOf="@id/khxq_right_layout"
-            android:src="@mipmap/delete" />
+    </com.zhy.android.percent.support.PercentLinearLayout>
 
 
-    </com.zhy.android.percent.support.PercentRelativeLayout>
+    <cn.droidlover.xrecyclerview.XRecyclerView
+        android:id="@+id/xrecyclerview"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone">
 
 
-</com.zhy.android.percent.support.PercentLinearLayout>
+    </cn.droidlover.xrecyclerview.XRecyclerView>
+
+
+</com.zhy.android.percent.support.PercentRelativeLayout>
+
+

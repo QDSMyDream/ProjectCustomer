@@ -55,7 +55,6 @@ import me.yokeyword.fragmentation.SupportFragment;
 public class KKFragment extends SupportFragment {
 
     private String TAG = "KKFragment";
-
     @BindView(R.id.layout1)
     LinearLayout layout1;
     @BindView(R.id.layout1_tv1)

@@ -18,7 +18,6 @@ import cn.bmob.v3.BmobConfig;
  * 项目名称：MyAnimation
  * 创建人：My Dream
  * 创建时间：2017/5/5 11:39
- *
  * @author My Dream
  */
 
