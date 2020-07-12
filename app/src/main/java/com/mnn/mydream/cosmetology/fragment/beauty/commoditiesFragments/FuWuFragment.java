@@ -1,47 +1,28 @@
 package com.mnn.mydream.cosmetology.fragment.beauty.commoditiesFragments;
 
 import android.annotation.SuppressLint;
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
-import android.os.Parcelable;
 import android.support.annotation.Nullable;
-import android.support.design.widget.Snackbar;
 import android.support.v7.widget.AppCompatEditText;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListView;
-import android.widget.ScrollView;
 import android.widget.TextView;
 
 import com.applandeo.materialcalendarview.view.NiceSpinner;
 import com.example.smoothcheckbox.SmoothCheckBox;
-import com.luck.picture.lib.PictureSelector;
-import com.luck.picture.lib.config.PictureConfig;
-import com.luck.picture.lib.config.PictureMimeType;
-import com.luck.picture.lib.entity.LocalMedia;
 import com.mnn.mydream.cosmetology.R;
-import com.mnn.mydream.cosmetology.activity.AddProjectsActivity;
-import com.mnn.mydream.cosmetology.activity.BeautyActivity;
-import com.mnn.mydream.cosmetology.activity.EditProjectsActivity;
 import com.mnn.mydream.cosmetology.activity.FuWuServerDialogActivity;
-import com.mnn.mydream.cosmetology.activity.MainActivity;
-import com.mnn.mydream.cosmetology.adapter.CustomerPeojectsListAdapter;
 import com.mnn.mydream.cosmetology.adapter.fragmentAdapter.MyViewPagerAdapter;
-import com.mnn.mydream.cosmetology.bean.Customer;
-import com.mnn.mydream.cosmetology.bean.CustomerAndProject;
-import com.mnn.mydream.cosmetology.bean.CustomerProjectBean;
+import com.mnn.mydream.cosmetology.bean.BeautyBeanKh;
 import com.mnn.mydream.cosmetology.bean.fuwuBean.FuWuSaleBean;
-import com.mnn.mydream.cosmetology.dialog.AddProjectsDialog;
-import com.mnn.mydream.cosmetology.dialog.BeautyWithinServerDialog;
-import com.mnn.mydream.cosmetology.dialog.CommonDialog;
 import com.mnn.mydream.cosmetology.dialog.LoadingDialog;
 import com.mnn.mydream.cosmetology.fragment.beauty.commoditiesFragments.adapter.FuWuView1ListAdapter;
 import com.mnn.mydream.cosmetology.interfaces.FuWuListOnClickListener;
@@ -54,13 +35,7 @@ import com.mnn.mydream.cosmetology.view.MyViewPager;
 import com.zhy.android.percent.support.PercentLinearLayout;
 import com.zhy.android.percent.support.PercentRelativeLayout;
 
-import java.io.File;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.Date;
 import java.util.List;
 
 import butterknife.BindView;
@@ -68,14 +43,9 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import butterknife.Unbinder;
 import cn.bmob.v3.BmobQuery;
-import cn.bmob.v3.datatype.BmobDate;
-import cn.bmob.v3.datatype.BmobFile;
 import cn.bmob.v3.exception.BmobException;
 import cn.bmob.v3.listener.FindListener;
-import cn.bmob.v3.listener.SaveListener;
 import cn.bmob.v3.listener.UpdateListener;
-import cn.bmob.v3.listener.UploadFileListener;
-import cn.bmob.v3.util.V;
 import me.yokeyword.fragmentation.SupportFragment;
 
 
@@ -87,6 +57,10 @@ import me.yokeyword.fragmentation.SupportFragment;
 
 public class FuWuFragment extends SupportFragment {
 
+    @BindView(R.id.remake)
+    TextView remake;
+    @BindView(R.id.remake_layout)
+    PercentRelativeLayout remakeLayout;
     private String TAG = FuWuFragment.class.getSimpleName();
 
     @BindView(R.id.server_name_edit)
@@ -151,6 +125,7 @@ public class FuWuFragment extends SupportFragment {
 
     private void initview() {
 
+        serverTypeSpinner.attachDataSource(Constons.SelectServerTypeString);
 
         mInflater = LayoutInflater.from(getActivity());
         saleView = mInflater.inflate(R.layout.fuwu_view1_layout, null);
@@ -167,6 +142,8 @@ public class FuWuFragment extends SupportFragment {
         viewpagers.setCurrentItem(0);
 
         getSelectServerAll();
+
+
     }
 
 
@@ -174,7 +151,6 @@ public class FuWuFragment extends SupportFragment {
 
         smoothCheckBox2 = dismountView.findViewById(R.id.check_box2);
         fuwuView2List = (ListView) dismountView.findViewById(R.id.fuwu_view2_list);
-
 
         fuWuView2ListAdapter = new FuWuView1ListAdapter(getActivity(), fuWuDismountBeans);
         fuWuView2ListAdapter.setFuWuListOnClickListener(fuWuListOnClickListener2);
@@ -289,12 +265,12 @@ public class FuWuFragment extends SupportFragment {
         Log.e(TAG, "setUserVisibleHint: " + isVisibleToUser);
     }
 
-    @OnClick({R.id.search_server_btn, R.id.sale_text, R.id.dismount_text, R.id.add_server_layout})
+    @OnClick({R.id.search_server_btn, R.id.sale_text, R.id.dismount_text, R.id.add_server_layout, R.id.remake_layout})
     public void onViewClicked(View view) {
         switch (view.getId()) {
 
             case R.id.search_server_btn:
-
+                getServerList();
                 break;
 
             case R.id.sale_text:
@@ -308,7 +284,97 @@ public class FuWuFragment extends SupportFragment {
             case R.id.add_server_layout:
                 setServerDialog();
                 break;
+
+            case R.id.remake_layout:
+                getRemakeLayoutKh();
+                break;
         }
+    }
+
+    private void getServerList() {
+        String serverName = serverNameEdit.getText().toString();
+
+        String typeString = serverTypeSpinner.getSelectedItem().toString();
+
+        LoadingDialog.Builder addSignDialogBuild = new LoadingDialog.Builder(getActivity());
+        loadingDialog = addSignDialogBuild.createDialog();
+        loadingDialog.setCanceledOnTouchOutside(false);
+        // 设置点击屏幕Dialog不消失
+        loadingDialog.show();
+
+        BmobQuery<FuWuSaleBean> categoryBmobQuery = new BmobQuery<>();
+
+        if (StringUtils.isEmpty(serverName)) {
+
+            if (typeString.equals("全部")) {
+                BmobQuery<FuWuSaleBean> eq2 = new BmobQuery<FuWuSaleBean>();
+                eq2.addWhereEqualTo("serverName", serverName);
+                List<BmobQuery<FuWuSaleBean>> queries = new ArrayList<BmobQuery<FuWuSaleBean>>();
+                queries.add(eq2);
+                categoryBmobQuery.and(queries);
+            } else {
+                BmobQuery<FuWuSaleBean> eq1 = new BmobQuery<FuWuSaleBean>();
+                eq1.addWhereEqualTo("serverType", typeString);
+                List<BmobQuery<FuWuSaleBean>> queries = new ArrayList<BmobQuery<FuWuSaleBean>>();
+                queries.add(eq1);
+                categoryBmobQuery.and(queries);
+            }
+
+
+        } else {
+
+            if (typeString.equals("全部")) {
+                BmobQuery<FuWuSaleBean> eq2 = new BmobQuery<FuWuSaleBean>();
+                eq2.addWhereEqualTo("serverName", serverName);
+                List<BmobQuery<FuWuSaleBean>> queries = new ArrayList<BmobQuery<FuWuSaleBean>>();
+                queries.add(eq2);
+                categoryBmobQuery.and(queries);
+            } else {
+                BmobQuery<FuWuSaleBean> eq1 = new BmobQuery<FuWuSaleBean>();
+                eq1.addWhereEqualTo("serverType", typeString);
+                BmobQuery<FuWuSaleBean> eq2 = new BmobQuery<FuWuSaleBean>();
+                eq2.addWhereEqualTo("serverName", serverName);
+                List<BmobQuery<FuWuSaleBean>> queries = new ArrayList<BmobQuery<FuWuSaleBean>>();
+                queries.add(eq1);
+                queries.add(eq2);
+                categoryBmobQuery.and(queries);
+            }
+
+        }
+        categoryBmobQuery.findObjects(new FindListener<FuWuSaleBean>() {
+            @Override
+            public void done(List<FuWuSaleBean> object, BmobException e) {
+                if (e == null) {
+                    fuWuSaleBeans.clear();
+                    fuWuDismountBeans.clear();
+                    for (int i = 0; i < object.size(); i++) {
+                        if (object.get(i).isServerSaleFlag()) {
+                            fuWuSaleBeans.add(object.get(i));
+                        } else {
+                            fuWuDismountBeans.add(object.get(i));
+                        }
+                    }
+                    refreshHandler.sendEmptyMessage(0);
+                } else {
+
+                    loadingDialog.dismiss();
+                    String s1 = String.format(getString(R.string.beauty_within_saleing_txt), fuWuSaleBeans.size());
+                    saleText.setText(s1);
+                    String s2 = String.format(getString(R.string.beauty_within_dismount_txt), fuWuDismountBeans.size());
+                    dismountText.setText(s2);
+                    Log.e("BMOB", e.toString());
+                    ToastUtils.showToast(getContext(), "查询失败", false);
+                }
+            }
+        });
+
+    }
+
+    //    重制
+    private void getRemakeLayoutKh() {
+        serverTypeSpinner.setSelectedIndex(0);
+        serverNameEdit.setText("");
+        getSelectServerAll();
     }
 
     private void setServerDialog() {
@@ -368,7 +434,6 @@ public class FuWuFragment extends SupportFragment {
         loadingDialog.setCanceledOnTouchOutside(false);
         // 设置点击屏幕Dialog不消失
         loadingDialog.show();
-
 //        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 //
 //        Date createdAtDate = null;
@@ -399,7 +464,13 @@ public class FuWuFragment extends SupportFragment {
                 } else {
 
                     loadingDialog.dismiss();
+
+                    String s1 = String.format(getString(R.string.beauty_within_saleing_txt), fuWuSaleBeans.size());
+                    saleText.setText(s1);
+                    String s2 = String.format(getString(R.string.beauty_within_dismount_txt), fuWuDismountBeans.size());
+                    dismountText.setText(s2);
                     Log.e("BMOB", e.toString());
+
                     ToastUtils.showToast(getContext(), "查询失败", false);
                 }
             }
@@ -593,7 +664,7 @@ public class FuWuFragment extends SupportFragment {
                 ImageView ivServer = itemView.findViewById(R.id.iv_server);
 
                 //加载图片
-                ImageLoader.displayImageView(getContext(), fuWuSaleBean.getServerUrl(), ivServer,R.mipmap.ic_img_default);
+                ImageLoader.displayImageView(getContext(), fuWuSaleBean.getServerUrl(), ivServer, R.mipmap.ic_img_default);
                 serverName.setText(fuWuSaleBean.getServerName() + "");
                 serverMoney.setText(fuWuSaleBean.getServerMoney() + "");
                 applyMd.setText(fuWuSaleBean.getApplyMd() + "");
@@ -618,7 +689,7 @@ public class FuWuFragment extends SupportFragment {
                 ImageView ivServer = itemView.findViewById(R.id.iv_server);
 
                 //加载图片
-                ImageLoader.displayImageView(getContext(), fuWuSaleBean.getServerUrl(), ivServer,R.mipmap.ic_img_default);
+                ImageLoader.displayImageView(getContext(), fuWuSaleBean.getServerUrl(), ivServer, R.mipmap.ic_img_default);
                 serverName.setText(fuWuSaleBean.getServerName() + "");
                 serverMoney.setText(fuWuSaleBean.getServerMoney() + "");
                 applyMd.setText(fuWuSaleBean.getApplyMd() + "");
@@ -629,10 +700,6 @@ public class FuWuFragment extends SupportFragment {
         }
 
     }
-
-
-
-
 
 
 }

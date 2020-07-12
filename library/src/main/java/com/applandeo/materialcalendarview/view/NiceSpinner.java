@@ -359,7 +359,6 @@ public class NiceSpinner extends AppCompatTextView {
         Log.e(TAG, "handleMessage: " + j);
         for (int i = 0; i < j; i++) {
             Log.e(TAG, "handleMessage: " + adapter.getItem(i).toString());
-
             if (s.equals(adapter.getItem(i).toString())) {
                 adapter.setSelectedIndex(i + 1);// 默认选中项
                 break;
@@ -376,7 +375,6 @@ public class NiceSpinner extends AppCompatTextView {
     }
 
     public NiceSpinnerBaseAdapter getAdapter() {
-
         return adapter;
     }
 

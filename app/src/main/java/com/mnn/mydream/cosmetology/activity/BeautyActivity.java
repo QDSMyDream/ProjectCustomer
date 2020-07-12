@@ -166,7 +166,7 @@ public class BeautyActivity extends SupportActivity implements BeautyContentList
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_beauty);
-
+        EventBus.getDefault().register(this);
         ButterKnife.bind(this);
 
         initView();
@@ -256,11 +256,6 @@ public class BeautyActivity extends SupportActivity implements BeautyContentList
                 }
             }
         });
-
-
-
-
-
 
 
     }
@@ -668,5 +663,17 @@ public class BeautyActivity extends SupportActivity implements BeautyContentList
     }
 
 
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void onEventMain(EventBusMsg event) {
+
+        int flag = event.getMsgInt();
+        switch (flag) {
+            case Constons.SELECT_APP_UPDATE:
+                Intent Intent = new Intent(this, AppUpdateActivity.class);
+                Intent.putExtra("flagInt", "1");
+                startActivity(Intent);
+                break;
+        }
+    }
 }
 

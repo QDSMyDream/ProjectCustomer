@@ -36,24 +36,32 @@ public class Constons {
     public static final int RESULT_FUWU_SERVER_CODE_REQUEST = 10005;//添加服务图片请求码
     public static final int RESULT_FUWU_SERVER_CODE_VIEW_REQUEST = 10006;//添加服务请求码
 
-    public static final int RESULT_FUWU_SERVER_CODE_SCUESS_REQUEST = 10007;//添加服务成功请求码
-    public static final int RESULT_FUWU_SERVER_CODE_CANCEL_REQUEST = 10008;//添加服务失败或取消请求码
 
+    /**
+     * 添加/修改服务
+     */
+    public static final int RESULT_FUWU_SERVER_CODE_SCUESS_REQUEST = 0x2717;//添加服务成功请求码
+    public static final int RESULT_FUWU_SERVER_CODE_CANCEL_REQUEST = 0x2718;//添加服务失败或取消请求码
     public static final String RESULT_FUWU_SERVER_STR_UPDATE_REQUEST = "Update";//修改服务请求标识
+    public static final int RESULT_FUWU_SERVER_CODE_UPDATE_REQUEST = 0x2719;//修改服务请求码
+    /**
+     * 添加/修改产品
+     */
+    public static final int RESULT_CP_CODE_SCUESS_REQUEST = 0x271a;//添加产品成功请求码
+    public static final int RESULT_CP_CODE_CANCEL_REQUEST = 0x271b;//添加产品失败或取消请求码
+    public static final String RESULT_CP_STR_UPDATE_REQUEST = "Update";//修改请求标识
+    public static final int RESULT_CP_CODE_UPDATE_REQUEST = 0x2719;//修改产品请求码
 
-    public static final int RESULT_FUWU_SERVER_CODE_UPDATE_REQUEST = 10009;//修改服务请求码
+
+
+
 
     public static final int RESULT_USER_INFO_REQUEST = 10010;//管理员账户详情请求码
 
     public static String FUWU_PICPATH = "";
-
-
     public static int BEAUTY_FRAGMENT_POSTION = 0;//记录当前fragment位置
     public static final int BEAUTY_FRAGMENT_PREVIOUS_POSTION = 0;//上个fragment位置
-
-
     public static int BEAUTY_WITHIN_PREVIOUS_POSTION = 0;//BeautyWithinActivity左侧菜单位置
-
 
 
     /**
@@ -80,5 +88,9 @@ public class Constons {
      */
     public static List<String> ServerTypeString = new ArrayList<>();
 
+    /**
+     * 查询服务类型
+     */
+    public static List<String> SelectServerTypeString = new ArrayList<>();
 
 }

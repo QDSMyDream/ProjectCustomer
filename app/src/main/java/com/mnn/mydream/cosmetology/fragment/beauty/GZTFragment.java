@@ -192,7 +192,6 @@ public class GZTFragment extends SupportFragment {
             view = inflater.inflate(R.layout.gzt_fragment, container, false);
             unbinder = ButterKnife.bind(this, view);
             EventBus.getDefault().register(this);
-
             initview();
 //            selectTitleStrings();
 

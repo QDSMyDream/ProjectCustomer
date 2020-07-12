@@ -42,7 +42,7 @@
                 </com.zhy.android.percent.support.PercentLinearLayout>
 
                 <android.support.v7.widget.AppCompatEditText
-                    android:id="@+id/server_name_edit"
+                    android:id="@+id/cp_name_edit"
                     style="@style/BeautyTitleStyle"
                     android:layout_height="match_parent"
                     android:layout_marginLeft="10dp"
@@ -90,7 +90,7 @@
                     app:layout_widthPercent="19.5%">
 
                     <com.applandeo.materialcalendarview.view.NiceSpinner
-                        android:id="@+id/server_type_spinner"
+                        android:id="@+id/cp_type_spinner"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:textSize="@dimen/text_size_18"
@@ -103,7 +103,7 @@
 
             <!--搜索-->
             <TextView
-                android:id="@+id/search_server_btn"
+                android:id="@+id/cp_select_btn"
                 style="@style/BeautyTextStyle"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
@@ -173,7 +173,7 @@
                     app:layout_widthPercent="12%" />
 
                 <com.zhy.android.percent.support.PercentLinearLayout
-                    android:id="@+id/add_server_layout"
+                    android:id="@+id/add_cp_layout"
                     android:layout_width="match_parent"
                     android:layout_height="35dp"
                     android:layout_alignParentRight="true"

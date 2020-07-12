@@ -5,33 +5,31 @@ import android.content.Intent;
 import android.os.IBinder;
 import android.util.Log;
 
+import com.mnn.mydream.cosmetology.bean.AppUpdateBean;
 import com.mnn.mydream.cosmetology.bean.BeautyMdBean;
 import com.mnn.mydream.cosmetology.bean.BeautyTitleBean;
 import com.mnn.mydream.cosmetology.bean.fuwuBean.ServerTypeBean;
-import com.mnn.mydream.cosmetology.dialog.LoadingDialog;
 import com.mnn.mydream.cosmetology.eventBus.EventBusMsg;
+import com.mnn.mydream.cosmetology.utils.APKVersionCodeUtils;
 import com.mnn.mydream.cosmetology.utils.Constons;
 import com.mnn.mydream.cosmetology.utils.ToastUtils;
-import com.mnn.mydream.cosmetology.utils.Tools;
 
 import org.greenrobot.eventbus.EventBus;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.List;
 
 import cn.bmob.v3.BmobQuery;
-import cn.bmob.v3.datatype.BmobDate;
 import cn.bmob.v3.exception.BmobException;
 import cn.bmob.v3.listener.FindListener;
+import cn.bmob.v3.listener.QueryListener;
 
 /**
  * 创建人：MyDream
  * 创建日期：2020/7/12 3:19
- * 类描述 :
+ * 类描述 : 启动service
  */
 public class StartService extends Service {
+
     private String TAG = getClass().getSimpleName();
 
     @Override
@@ -52,8 +50,8 @@ public class StartService extends Service {
 
         selectTitleStrings();//查询工作台title
         selectMdStrings();//查询门店
-        getSelectServerTypeAll();//类型
-
+        selectServerTypeAll();//类型
+        initUpdate();//查询更新
         return super.onStartCommand(intent, flags, startId);
     }
 
@@ -64,6 +62,9 @@ public class StartService extends Service {
     }
 
 
+    /**
+     * selectTitleStrings  title
+     */
     private void selectTitleStrings() {
 
         BmobQuery<BeautyTitleBean> categoryBmobQuery = new BmobQuery<>();
@@ -84,7 +85,9 @@ public class StartService extends Service {
 
     }
 
-
+    /**
+     * selectMdStrings  门店
+     */
     private void selectMdStrings() {
 
         BmobQuery<BeautyMdBean> categoryBmobQuery = new BmobQuery<>();
@@ -93,6 +96,7 @@ public class StartService extends Service {
             public void done(List<BeautyMdBean> object, BmobException e) {
                 if (e == null) {
                     Constons.OPERATION_MD.clear();
+
                     for (BeautyMdBean beautyMdBean : object) {
                         Constons.OPERATION_MD.add(beautyMdBean.getMdString());
                     }
@@ -108,8 +112,7 @@ public class StartService extends Service {
     /**
      * serverTypeStrings 服务类型
      */
-    private void getSelectServerTypeAll() {
-
+    private void selectServerTypeAll() {
         BmobQuery<ServerTypeBean> categoryBmobQuery = new BmobQuery<>();
         categoryBmobQuery.findObjects(new FindListener<ServerTypeBean>() {
             @Override
@@ -117,18 +120,43 @@ public class StartService extends Service {
                 if (e == null) {
                     if (object.size() == 0) {
                         Constons.ServerTypeString.add("无");
+                        Constons.SelectServerTypeString.add("全部");
                     } else {
                         Constons.ServerTypeString.clear();
+                        Constons.SelectServerTypeString.add("全部");
                         for (ServerTypeBean serverTypeBean : object) {
                             Constons.ServerTypeString.add(serverTypeBean.getServerTypeString());
+                            Constons.SelectServerTypeString.add(serverTypeBean.getServerTypeString());
                         }
                     }
+
+
                 } else {
                     Log.e("BMOB", e.toString());
                     ToastUtils.showToast(getBaseContext(), "查询失败", false);
                 }
             }
         });
+    }
+
+    //初始化登陆
+    private void initUpdate() {
+        int VERSION_CODE = APKVersionCodeUtils.getVersionCode(this);
+
+        BmobQuery<AppUpdateBean> bmobQuery = new BmobQuery<AppUpdateBean>();
+        bmobQuery.getObject("Hj7pCCCx", new QueryListener<AppUpdateBean>() {
+            @Override
+            public void done(AppUpdateBean object, BmobException e) {
+                if (e == null) {
+                    if (object.getVersion_i() > VERSION_CODE) {
+                        Log.e(TAG, "done: " + object.toString());
+                        EventBus.getDefault().post(new EventBusMsg(Constons.SELECT_APP_UPDATE));
+                    }
+                }
+            }
+        });
+
+
     }
 
 

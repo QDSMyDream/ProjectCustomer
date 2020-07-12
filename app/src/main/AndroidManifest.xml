@@ -155,6 +155,7 @@
             android:screenOrientation="landscape"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar"
             android:windowSoftInputMode="adjustPan" />
+
         <activity
             android:name=".activity.FuWuServerDialogActivity"
             android:screenOrientation="landscape"
@@ -167,6 +168,17 @@
             android:theme="@style/dialogstyle"
             android:windowSoftInputMode="adjustPan"></activity>
 
+        <activity
+            android:name=".activity.XMKDialogActivity"
+            android:screenOrientation="landscape"
+            android:theme="@style/dialogstyle"
+            android:windowSoftInputMode="adjustPan"></activity>
+
+        <activity
+            android:name=".activity.CXKDialogActivity"
+            android:screenOrientation="landscape"
+            android:theme="@style/dialogstyle"
+            android:windowSoftInputMode="adjustPan"></activity>
 
         <activity
             android:name=".activity.BeautyUserInfoActivity"

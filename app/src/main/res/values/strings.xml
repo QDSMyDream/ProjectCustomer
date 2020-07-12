@@ -47,6 +47,10 @@
 
     <string name="beauty_server_money">服务价格</string>
 
+    <string name="beauty_server_time">服务时长</string>
+
+    <string name="beauty_server_sales_volume">服务销量</string>
+
     <!--产品-->
     <string name="beauty_cp_money">产品价格</string>
 

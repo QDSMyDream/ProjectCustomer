@@ -9,6 +9,8 @@ import android.os.Message;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.AppCompatButton;
 import android.support.v7.widget.AppCompatEditText;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -27,7 +29,6 @@ import com.mnn.mydream.cosmetology.bean.fuwuBean.FuWuSaleBean;
 import com.mnn.mydream.cosmetology.bean.fuwuBean.ServerTypeBean;
 import com.mnn.mydream.cosmetology.dialog.BeautyAddServerTypeDialog;
 import com.mnn.mydream.cosmetology.dialog.CommonDialog;
-import com.mnn.mydream.cosmetology.dialog.LoadingDialog;
 import com.mnn.mydream.cosmetology.utils.Constons;
 import com.mnn.mydream.cosmetology.utils.ImageLoader;
 import com.mnn.mydream.cosmetology.utils.StringUtils;
@@ -35,17 +36,14 @@ import com.mnn.mydream.cosmetology.utils.ToastUtils;
 import com.zhy.android.percent.support.PercentRelativeLayout;
 
 import java.io.File;
-import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
-import cn.bmob.v3.BmobQuery;
 import cn.bmob.v3.BmobUser;
 import cn.bmob.v3.datatype.BmobFile;
 import cn.bmob.v3.exception.BmobException;
-import cn.bmob.v3.listener.FindListener;
 import cn.bmob.v3.listener.SaveListener;
 import cn.bmob.v3.listener.UpdateListener;
 import cn.bmob.v3.listener.UploadFileListener;
@@ -83,20 +81,19 @@ public class FuWuServerDialogActivity extends AppCompatActivity {
     PercentRelativeLayout addTypeLayout;
     @BindView(R.id.server_time)
     AppCompatEditText serverTime;
+    @BindView(R.id.server_num)
+    AppCompatEditText serverNum;
+    @BindView(R.id.server_td)
+    AppCompatEditText serverTd;
+    @BindView(R.id.server_td_num)
+    TextView serverTdNum;
     private String TAG = "FuWuServerDialogActivity";
-    private Integer flagInt;
 
-    private String picPath = "";
-
-//    private List<ServerTypeBean> serverTypeBeans = new ArrayList<>();
+    private String picPath = "https://bmob-cdn-28614.bmobpay.com/2020/07/12/49e9500440be379380eff778e5dff13a.png";
 
     private FuWuSaleBean fuWuSaleBean;
 
-    private int FLAG_POSTION;
-
     private int FLAG_INDEX;
-
-    private LoadingDialog loadingDialog;
 
     private BeautyAddServerTypeDialog beautyAddServerTypeDialog;
 
@@ -113,11 +110,7 @@ public class FuWuServerDialogActivity extends AppCompatActivity {
 
     private void initView() {
 
-        Intent intent = getIntent();
-
         fuWuSaleBean = (FuWuSaleBean) getIntent().getSerializableExtra(Constons.RESULT_FUWU_SERVER_STR_UPDATE_REQUEST);
-
-        Log.e(TAG, "onCreate: " + flagInt);
 
         serverMd.attachDataSource(Constons.OPERATION_MD);
         serverType.attachDataSource(Constons.ServerTypeString);
@@ -126,23 +119,52 @@ public class FuWuServerDialogActivity extends AppCompatActivity {
 
             FLAG_INDEX = 1;
             serverName.setText(fuWuSaleBean.getServerName());
-            serverType.setSelectedIndex(Constons.ServerTypeString.indexOf(fuWuSaleBean.getServerType()));
+//            serverType.setSelectedIndex(Constons.ServerTypeString.indexOf(fuWuSaleBean.getServerType()));
+
+            int j = serverType.getAdapter().getCount();
+            Log.e(TAG, "initView: " + j);
+            for (int i = 0; i < j; i++) {
+                Log.e(TAG, "initView: " + serverType.getAdapter().getItem(i).toString());
+                if (fuWuSaleBean.getServerType().equals(serverType.getAdapter().getItem(i).toString())) {
+                    serverType.setSelectedIndex(i + 1);// 默认选中项
+                    break;
+                }
+            }
+
             serverMd.setSelectedIndex(0);
             serverMoney.setText(fuWuSaleBean.getServerMoney() + "");
             serverTime.setText(fuWuSaleBean.getServerTime() + "");
+            serverNum.setText(fuWuSaleBean.getServerNum() + "");
+            serverTd.setText(fuWuSaleBean.getServerCharacteristic());
+            serverTdNum.setText(fuWuSaleBean.getServerCharacteristic().length() + "");
 
             //加载网络图片
-            ImageLoader.displayImageView(this, fuWuSaleBean.getServerUrl(), serverImgPhoto, R.mipmap.ic_img_default);
+            ImageLoader.displayImageView(this, fuWuSaleBean.getServerUrl(), serverImgPhoto, R.mipmap.ic_launcher_round);
 
             title.setText("修改客户服务项目");
         } else {
             FLAG_INDEX = 0;
-            flagInt = Integer.parseInt(intent.getStringExtra("flagInt"));
 
             title.setText("添加客户服务项目");
         }
 
-//        getSelectServerTypeAll();
+        serverTd.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                serverTdNum.setText((s.length()) + "");
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+
     }
 
 
@@ -401,21 +423,23 @@ public class FuWuServerDialogActivity extends AppCompatActivity {
                 return;
             }
 
+            if (Constons.ServerTypeString.size() == 0) {
+                ToastUtils.showToast(this, "请选择服务类型", false);
+                return;
+            }
             if (StringUtils.isEmpty(serverMoney.getText().toString())) {
                 ToastUtils.showToast(this, "请输入服务价格", false);
                 return;
             }
 
-            if (Constons.ServerTypeString.size() == 0) {
-                ToastUtils.showToast(this, "请选择服务类型", false);
-                return;
-            }
-
-
             if (StringUtils.isEmpty(serverTime.getText().toString())) {
                 ToastUtils.showToast(this, "请输入服务时长", false);
                 return;
             }
+
+
+            fuWuSaleBean.setServerNum(StringUtils.isEmpty(serverNum.getText().toString()) ? 0 : Integer.parseInt(serverNum.getText().toString()));
+            fuWuSaleBean.setServerCharacteristic(serverTd.getText().toString());
 
             fuWuSaleBean.setServerTime(Integer.parseInt(serverTime.getText().toString()));
 
@@ -431,7 +455,6 @@ public class FuWuServerDialogActivity extends AppCompatActivity {
             fuWuSaleBean.setServerType(type);
 
             fuWuSaleBean.setServerUrl(picPath);
-
 
             setSaveFuWuServer(fuWuSaleBean);
 

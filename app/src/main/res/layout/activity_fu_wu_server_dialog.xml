@@ -356,7 +356,7 @@
                         android:layout_marginLeft="10dp"
                         android:digits="0123456789"
                         android:gravity="center"
-                        android:hint="@string/beauty_server_money"
+                        android:hint="@string/beauty_server_time"
                         android:inputType="number"
                         android:textColorHint="@color/aluminum"
                         app:layout_widthPercent="19.5%" />
@@ -475,12 +475,13 @@
 
                     <android.support.v7.widget.AppCompatEditText
 
+                        android:id="@+id/server_num"
                         style="@style/BeautyTitleStyle"
                         android:layout_height="match_parent"
                         android:layout_marginLeft="10dp"
                         android:digits="0123456789"
                         android:gravity="center"
-                        android:hint="@string/beauty_cp_sales_volume"
+                        android:hint="@string/beauty_server_sales_volume"
                         android:inputType="number"
                         android:textColorHint="@color/aluminum"
                         app:layout_widthPercent="19.5%" />
@@ -510,7 +511,7 @@
                     </com.zhy.android.percent.support.PercentLinearLayout>
 
                     <android.support.v7.widget.AppCompatEditText
-                        android:id="@+id/remarks_content"
+                        android:id="@+id/server_td"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_marginLeft="10dp"
@@ -531,7 +532,7 @@
                         app:layout_widthPercent="39%" />
 
                     <TextView
-                        android:id="@+id/remarks_num"
+                        android:id="@+id/server_td_num"
                         style="@style/customerShowTextViewStyle"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"

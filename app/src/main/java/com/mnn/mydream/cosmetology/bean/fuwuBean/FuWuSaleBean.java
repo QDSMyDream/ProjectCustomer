@@ -19,9 +19,31 @@ public class FuWuSaleBean extends BmobObject {
     private String serverUrl;
     private String serverName;
     private String serverType;
-    private String applyMd;
     private float serverMoney;//价钱
-    private int serverTime; //是否上架
+
+    private int serverTime; //服务时长
+
+    private String applyMd;
+
+    private int serverNum; //服务销量
+
+    private String serverCharacteristic; //服务特点
+
+    public int getServerNum() {
+        return serverNum;
+    }
+
+    public void setServerNum(int serverNum) {
+        this.serverNum = serverNum;
+    }
+
+    public String getServerCharacteristic() {
+        return serverCharacteristic;
+    }
+
+    public void setServerCharacteristic(String serverCharacteristic) {
+        this.serverCharacteristic = serverCharacteristic;
+    }
 
     private boolean serverSaleFlag; //是否上架
 
@@ -86,24 +108,17 @@ public class FuWuSaleBean extends BmobObject {
         this.serverUrl = serverUrl;
     }
 
-    public FuWuSaleBean(String serverUrl, String serverName, String serverType, String applyMd, float serverMoney, boolean serverSaleFlag) {
-        this.serverUrl = serverUrl;
-        this.serverName = serverName;
-        this.serverType = serverType;
-        this.applyMd = applyMd;
-        this.serverMoney = serverMoney;
-        this.serverSaleFlag = serverSaleFlag;
-    }
-
     @Override
     public String toString() {
         return "FuWuSaleBean{" +
                 "serverUrl='" + serverUrl + '\'' +
                 ", serverName='" + serverName + '\'' +
                 ", serverType='" + serverType + '\'' +
-                ", applyMd='" + applyMd + '\'' +
                 ", serverMoney=" + serverMoney +
                 ", serverTime=" + serverTime +
+                ", applyMd='" + applyMd + '\'' +
+                ", serverNum=" + serverNum +
+                ", serverCharacteristic=" + serverCharacteristic +
                 ", serverSaleFlag=" + serverSaleFlag +
                 '}';
     }

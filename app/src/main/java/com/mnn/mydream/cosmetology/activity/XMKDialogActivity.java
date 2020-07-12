@@ -9,6 +9,8 @@ import android.os.Message;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.AppCompatButton;
 import android.support.v7.widget.AppCompatEditText;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -18,24 +20,22 @@ import android.widget.ScrollView;
 import android.widget.TextView;
 
 import com.applandeo.materialcalendarview.view.NiceSpinner;
-import com.example.smoothcheckbox.SmoothCheckBox;
 import com.luck.picture.lib.PictureSelector;
 import com.luck.picture.lib.config.PictureConfig;
 import com.luck.picture.lib.config.PictureMimeType;
 import com.luck.picture.lib.entity.LocalMedia;
 import com.mnn.mydream.cosmetology.R;
-import com.mnn.mydream.cosmetology.bean.fuwuBean.CPDataBean;
 import com.mnn.mydream.cosmetology.bean.fuwuBean.FuWuSaleBean;
 import com.mnn.mydream.cosmetology.bean.fuwuBean.ServerTypeBean;
 import com.mnn.mydream.cosmetology.dialog.BeautyAddServerTypeDialog;
 import com.mnn.mydream.cosmetology.dialog.CommonDialog;
-import com.mnn.mydream.cosmetology.dialog.LoadingDialog;
 import com.mnn.mydream.cosmetology.utils.Constons;
+import com.mnn.mydream.cosmetology.utils.ImageLoader;
+import com.mnn.mydream.cosmetology.utils.StringUtils;
 import com.mnn.mydream.cosmetology.utils.ToastUtils;
 import com.zhy.android.percent.support.PercentRelativeLayout;
 
 import java.io.File;
-import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
@@ -51,85 +51,127 @@ import cn.bmob.v3.listener.UploadFileListener;
 /**
  * 创建人 :MyDream
  * 创建时间：2020/5/3 18:18
- * 类描述：添加产品
+ * 类描述：添加项目卡
  */
-public class CPAddDialogActivity extends AppCompatActivity {
+public class XMKDialogActivity extends AppCompatActivity {
+
     @BindView(R.id.title)
     TextView title;
-    @BindView(R.id.cp_img_photo)
-    ImageView cpImgPhoto;
+    @BindView(R.id.server_img_photo)
+    ImageView serverImgPhoto;
     @BindView(R.id.layout_photo)
     PercentRelativeLayout layoutPhoto;
-    @BindView(R.id.co_name)
-    AppCompatEditText coName;
-    @BindView(R.id.cp_type)
-    NiceSpinner cpType;
-    @BindView(R.id.add_img)
-    ImageView addImg;
-    @BindView(R.id.add_type_layout)
-    PercentRelativeLayout addTypeLayout;
-    @BindView(R.id.cp_money)
-    AppCompatEditText cpMoney;
-    @BindView(R.id.cp_check_box1)
-    SmoothCheckBox cpCheckBox1;
-    @BindView(R.id.cp_check_specifications)
-    AppCompatEditText cpCheckSpecifications;
-    @BindView(R.id.cp_vip_money)
-    AppCompatEditText cpVipMoney;
-    @BindView(R.id.cp_check_box2)
-    SmoothCheckBox cpCheckBox2;
-    @BindView(R.id.cp_original_price)
-    AppCompatEditText cpOriginalPrice;
-    @BindView(R.id.cp_md)
-    NiceSpinner cpMd;
-    @BindView(R.id.cp_num)
-    AppCompatEditText cpNum;
-    @BindView(R.id.characteristic_content)
-    AppCompatEditText characteristicContent;
-    @BindView(R.id.remarks_num)
-    TextView remarksNum;
+    @BindView(R.id.server_name)
+    AppCompatEditText serverName;
+    @BindView(R.id.server_type)
+    NiceSpinner serverType;
+    @BindView(R.id.server_money)
+    AppCompatEditText serverMoney;
+    @BindView(R.id.server_md)
+    NiceSpinner serverMd;
     @BindView(R.id.btn_yes)
     AppCompatButton btnYes;
     @BindView(R.id.btn_cancel)
     AppCompatButton btnCancel;
     @BindView(R.id.myScrollView)
     ScrollView myScrollView;
-    private String TAG = "CPAddDialogActivity";
+    @BindView(R.id.add_img)
+    ImageView addImg;
+    @BindView(R.id.add_type_layout)
+    PercentRelativeLayout addTypeLayout;
+    @BindView(R.id.server_time)
+    AppCompatEditText serverTime;
+    @BindView(R.id.server_num)
+    AppCompatEditText serverNum;
+    @BindView(R.id.server_td)
+    AppCompatEditText serverTd;
+    @BindView(R.id.server_td_num)
+    TextView serverTdNum;
+    private String TAG = "XMKDialogActivity";
+    private Integer flagInt;
+
     private String picPath = "https://bmob-cdn-28614.bmobpay.com/2020/07/12/49e9500440be379380eff778e5dff13a.png";
 
-    private Integer flagInt;
-    private List<ServerTypeBean> serverTypeBeans = new ArrayList<>();
-    private CPDataBean cpDataBean;
+//    private List<ServerTypeBean> serverTypeBeans = new ArrayList<>();
+
+    private FuWuSaleBean fuWuSaleBean;
+
     private int FLAG_INDEX;
-    private LoadingDialog loadingDialog;
+
     private BeautyAddServerTypeDialog beautyAddServerTypeDialog;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
-        setContentView(R.layout.activity_add_cp_dialog);
+        setContentView(R.layout.activity_add_xmk_dialog);
         ButterKnife.bind(this);
         initView();
+
     }
 
     private void initView() {
 
-        cpDataBean = (CPDataBean) getIntent().getSerializableExtra(Constons.RESULT_CP_STR_UPDATE_REQUEST);
-        cpMd.attachDataSource(Constons.OPERATION_MD);
-        cpType.attachDataSource(Constons.ServerTypeString);
-        if (cpDataBean != null) {
-            FLAG_INDEX = 1;
+        Intent intent = getIntent();
 
-        } else {
-            FLAG_INDEX = 0;
-            title.setText("添加产品界面");
-
-        }
-
+        fuWuSaleBean = (FuWuSaleBean) getIntent().getSerializableExtra(Constons.RESULT_FUWU_SERVER_STR_UPDATE_REQUEST);
 
         Log.e(TAG, "onCreate: " + flagInt);
 
+        serverMd.attachDataSource(Constons.OPERATION_MD);
+        serverType.attachDataSource(Constons.ServerTypeString);
+
+        if (fuWuSaleBean != null) {
+
+            FLAG_INDEX = 1;
+            serverName.setText(fuWuSaleBean.getServerName());
+//            serverType.setSelectedIndex(Constons.ServerTypeString.indexOf(fuWuSaleBean.getServerType()));
+
+            int j = serverType.getAdapter().getCount();
+            Log.e(TAG, "initView: " + j);
+            for (int i = 0; i < j; i++) {
+                Log.e(TAG, "initView: " + serverType.getAdapter().getItem(i).toString());
+                if (fuWuSaleBean.getServerType().equals(serverType.getAdapter().getItem(i).toString())) {
+                    serverType.setSelectedIndex(i + 1);// 默认选中项
+                    break;
+                }
+            }
+
+            serverMd.setSelectedIndex(0);
+            serverMoney.setText(fuWuSaleBean.getServerMoney() + "");
+            serverTime.setText(fuWuSaleBean.getServerTime() + "");
+            serverNum.setText(fuWuSaleBean.getServerNum() + "");
+            serverTd.setText(fuWuSaleBean.getServerCharacteristic());
+            serverTdNum.setText(fuWuSaleBean.getServerCharacteristic().length() + "");
+
+            //加载网络图片
+            ImageLoader.displayImageView(this, fuWuSaleBean.getServerUrl(), serverImgPhoto, R.mipmap.ic_launcher_round);
+
+            title.setText("修改客户服务项目");
+        } else {
+            FLAG_INDEX = 0;
+            flagInt = Integer.parseInt(intent.getStringExtra("flagInt"));
+
+            title.setText("添加客户服务项目");
+        }
+
+        serverTd.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                serverTdNum.setText((s.length()) + "");
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
 
     }
 
@@ -280,7 +322,7 @@ public class CPAddDialogActivity extends AppCompatActivity {
                         }
 
                         //加载本地图片
-//                        ImageLoader.displayLocalImageViewCircle(this, serverImgPhoto, picPath);
+                        ImageLoader.displayLocalImageViewCircle(this, serverImgPhoto, picPath);
                         uoloadImg(picPath);
 
                     } catch (Exception e) {
@@ -293,6 +335,25 @@ public class CPAddDialogActivity extends AppCompatActivity {
 
     }
 
+    @OnClick({R.id.layout_photo, R.id.btn_yes, R.id.btn_cancel, R.id.add_type_layout})
+    public void onViewClicked(View view) {
+        switch (view.getId()) {
+            case R.id.layout_photo:
+                showPickerDialog();
+                break;
+            case R.id.btn_yes:
+                saveServer();
+                break;
+            case R.id.btn_cancel:
+                finish();
+                break;
+
+            case R.id.add_type_layout:
+                addTypeDialog();
+                break;
+
+        }
+    }
 
     private void addTypeDialog() {
         BeautyAddServerTypeDialog.Builder beautyAddServerTypeBuilder = new BeautyAddServerTypeDialog.Builder(this)
@@ -322,16 +383,121 @@ public class CPAddDialogActivity extends AppCompatActivity {
     }
 
 
-    private void setUpdateCPServer(CPDataBean cpDataBean) {
-        cpDataBean.update(new UpdateListener() {
+    private void saveServer() {
+
+        if (FLAG_INDEX == 1) {
+
+
+            if (StringUtils.isEmpty(serverName.getText().toString())) {
+                ToastUtils.showToast(this, "请输入服务名称", false);
+                return;
+            }
+
+            if (StringUtils.isEmpty(serverMoney.getText().toString())) {
+                ToastUtils.showToast(this, "请输入服务价格", false);
+                return;
+            }
+
+            if (Constons.ServerTypeString.size() == 0) {
+                ToastUtils.showToast(this, "请选择服务类型", false);
+                return;
+            }
+
+
+            String type = serverType.getSelectedItem().toString();
+
+            fuWuSaleBean.setServerName(serverName.getText().toString());
+            String md = serverMd.getSelectedItem().toString();
+            fuWuSaleBean.setApplyMd(md);
+
+            fuWuSaleBean.setServerMoney(Float.parseFloat(serverMoney.getText().toString()));
+
+            fuWuSaleBean.setServerType(type);
+
+            if (!picPath.equals("")) {
+                fuWuSaleBean.setServerUrl(picPath);
+            }
+
+            fuWuSaleBean.setServerTime(Integer.parseInt(serverTime.getText().toString()));
+
+            setUpdateFuWuServer(fuWuSaleBean);
+
+        } else {
+
+            FuWuSaleBean fuWuSaleBean = new FuWuSaleBean();
+
+            if (StringUtils.isEmpty(serverName.getText().toString())) {
+                ToastUtils.showToast(this, "请输入服务名称", false);
+                return;
+            }
+
+            if (Constons.ServerTypeString.size() == 0) {
+                ToastUtils.showToast(this, "请选择服务类型", false);
+                return;
+            }
+            if (StringUtils.isEmpty(serverMoney.getText().toString())) {
+                ToastUtils.showToast(this, "请输入服务价格", false);
+                return;
+            }
+
+            if (StringUtils.isEmpty(serverTime.getText().toString())) {
+                ToastUtils.showToast(this, "请输入服务时长", false);
+                return;
+            }
+
+
+            fuWuSaleBean.setServerNum(StringUtils.isEmpty(serverNum.getText().toString()) ? 0 : Integer.parseInt(serverNum.getText().toString()));
+            fuWuSaleBean.setServerCharacteristic(serverTd.getText().toString());
+
+            fuWuSaleBean.setServerTime(Integer.parseInt(serverTime.getText().toString()));
+
+            String type = serverType.getSelectedItem().toString();
+
+            fuWuSaleBean.setServerName(serverName.getText().toString());
+            String md = serverMd.getSelectedItem().toString();
+            fuWuSaleBean.setApplyMd(md);
+
+            fuWuSaleBean.setServerMoney(Float.parseFloat(serverMoney.getText().toString()));
+            fuWuSaleBean.setServerSaleFlag(true);
+
+            fuWuSaleBean.setServerType(type);
+
+            fuWuSaleBean.setServerUrl(picPath);
+
+            setSaveFuWuServer(fuWuSaleBean);
+
+
+        }
+
+    }
+
+    private void setSaveFuWuServer(FuWuSaleBean fuWuSaleBean) {
+        fuWuSaleBean.save(new SaveListener<String>() {
+            @Override
+            public void done(String s, BmobException e) {
+                if (e == null) {
+                    ToastUtils.showToast(getBaseContext(), "添加(" + fuWuSaleBean.getServerName() + ")服务项目成功!", true);
+                    refreshHandler.sendEmptyMessage(1);
+                    Log.e("bmob", "成功");
+                } else {
+                    ToastUtils.showToast(getBaseContext(), "添加(" + fuWuSaleBean.getServerName() + ")服务项目失败" + e.toString(), false);
+                }
+
+            }
+        });
+
+    }
+
+    private void setUpdateFuWuServer(FuWuSaleBean fuWuSaleBean) {
+        fuWuSaleBean.update(new UpdateListener() {
             @Override
             public void done(BmobException e) {
                 if (e == null) {
-                    ToastUtils.showToast(getBaseContext(), "修改成功!", true);
+                    ToastUtils.showToast(getBaseContext(), "修改(" + fuWuSaleBean.getServerName() + ")服务项目成功!", true);
                     refreshHandler.sendEmptyMessage(2);
                     Log.e("bmob", "成功");
                 } else {
-                    ToastUtils.showToast(getBaseContext(), "修改失败" + e.toString(), false);
+                    ToastUtils.showToast(getBaseContext(), "修改(" + fuWuSaleBean.getServerName() + ")服务项目失败" + e.toString(), false);
                 }
             }
 
@@ -346,10 +512,25 @@ public class CPAddDialogActivity extends AppCompatActivity {
         public void handleMessage(Message msg) {
             switch (msg.what) {
                 case 0://刷新类型
+                    serverType.attachDataSource(Constons.ServerTypeString);
+
+
+                    if (fuWuSaleBean != null) {
+                        int k = serverType.getAdapter().getCount();
+                        Log.e(TAG, "handleMessage: " + k);
+                        for (int i = 0; i < k; i++) {
+                            Log.e(TAG, "handleMessage: " + serverType.getAdapter().getItem(i).toString());
+                            if (fuWuSaleBean.getServerType().equals(serverType.getAdapter().getItem(i).toString())) {
+                                serverType.setSelectedIndex(i + 1);// 默认选中项
+                                break;
+                            }
+                        }
+                    }
+
 
                     break;
                 case 1://刷新
-                    setResult(Constons.RESULT_CP_CODE_SCUESS_REQUEST);
+                    setResult(Constons.RESULT_FUWU_SERVER_CODE_SCUESS_REQUEST);
 
                     finish();
                     break;
@@ -357,24 +538,27 @@ public class CPAddDialogActivity extends AppCompatActivity {
 
                     Intent intent = new Intent();
                     Bundle bundle = new Bundle();
-                    bundle.putSerializable(Constons.RESULT_CP_STR_UPDATE_REQUEST, cpDataBean);
+                    bundle.putSerializable(Constons.RESULT_FUWU_SERVER_STR_UPDATE_REQUEST, fuWuSaleBean);
                     intent.putExtras(bundle);
-                    setResult(Constons.RESULT_CP_CODE_UPDATE_REQUEST, intent);
+                    setResult(Constons.RESULT_FUWU_SERVER_CODE_UPDATE_REQUEST, intent);
 
                     finish();
                     break;
                 case 3://刷新
-//                    serverType.attachDataSource(Constons.ServerTypeString);
-//
-//                    int j = serverType.getAdapter().getCount();
-//                    Log.e(TAG, "handleMessage: " + j);
-//                    for (int i = 0; i < j; i++) {
-//                        Log.e(TAG, "handleMessage: " + serverType.getAdapter().getItem(i).toString());
-//                        if (fuWuSaleBean.getServerType().equals(serverType.getAdapter().getItem(i).toString())) {
-//                            serverType.setSelectedIndex(i + 1);// 默认选中项
-//                            break;
-//                        }
-//                    }
+
+                    serverType.attachDataSource(Constons.ServerTypeString);
+
+                    int j = serverType.getAdapter().getCount();
+                    Log.e(TAG, "handleMessage: " + j);
+                    for (int i = 0; i < j; i++) {
+                        Log.e(TAG, "handleMessage: " + serverType.getAdapter().getItem(i).toString());
+                        if (fuWuSaleBean.getServerType().equals(serverType.getAdapter().getItem(i).toString())) {
+                            serverType.setSelectedIndex(i + 1);// 默认选中项
+                            break;
+                        }
+                    }
+
+
                     beautyAddServerTypeDialog.dismiss();
 
                     break;
@@ -384,6 +568,54 @@ public class CPAddDialogActivity extends AppCompatActivity {
             }
         }
     };
+
+//    /**
+//     * serverTypeStrings 服务类型
+//     */
+//    private void getSelectServerTypeAll() {
+//
+//        LoadingDialog.Builder addSignDialogBuild = new LoadingDialog.Builder(this);
+//        loadingDialog = addSignDialogBuild.createDialog();
+//        loadingDialog.setCanceledOnTouchOutside(false);
+//        // 设置点击屏幕Dialog不消失
+//        loadingDialog.show();
+//
+////        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+////
+////        Date createdAtDate = null;
+////        try {
+////            createdAtDate = sdf.parse(Tools.getSameDay());
+////        } catch (ParseException e) {
+////            e.printStackTrace();
+////        }
+////        BmobDate bmobCreatedAtDate = new BmobDate(createdAtDate);
+////
+//        BmobQuery<ServerTypeBean> categoryBmobQuery = new BmobQuery<>();
+////        categoryBmobQuery.addWhereLessThanOrEqualTo("createdAt", bmobCreatedAtDate);
+//        categoryBmobQuery.findObjects(new FindListener<ServerTypeBean>() {
+//            @Override
+//            public void done(List<ServerTypeBean> object, BmobException e) {
+//                if (e == null) {
+//                    if (object.size() == 0) {
+//                        Constons.ServerTypeString.add("无");
+//                    } else {
+//                        Constons.ServerTypeString.clear();
+//                        serverTypeBeans = object;
+//                        for (ServerTypeBean serverTypeBean : serverTypeBeans) {
+//                            Constons.ServerTypeString.add(serverTypeBean.getServerTypeString());
+//                        }
+//                    }
+//                    loadingDialog.dismiss();
+//                    refreshHandler.sendEmptyMessage(0);
+//
+//                } else {
+//                    loadingDialog.dismiss();
+//                    Log.e("BMOB", e.toString());
+//                    ToastUtils.showToast(getBaseContext(), "查询失败", false);
+//                }
+//            }
+//        });
+//    }
 
 
     //添加服务类型
@@ -412,28 +644,4 @@ public class CPAddDialogActivity extends AppCompatActivity {
     }
 
 
-    @OnClick({R.id.layout_photo, R.id.btn_yes, R.id.btn_cancel, R.id.add_type_layout})
-    public void onViewClicked(View view) {
-        switch (view.getId()) {
-            case R.id.layout_photo:
-                showPickerDialog();
-                break;
-            case R.id.btn_yes:
-                saveCP();
-                break;
-            case R.id.btn_cancel:
-                finish();
-                break;
-            case R.id.add_type_layout:
-                addTypeDialog();
-                break;
-
-        }
-    }
-
-
-    private void saveCP() {
-
-
-    }
 }
