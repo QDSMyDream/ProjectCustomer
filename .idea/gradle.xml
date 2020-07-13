@@ -17,6 +17,7 @@
             <option value="$PROJECT_DIR$/library" />
             <option value="$PROJECT_DIR$/pulluprecyclerview" />
             <option value="$PROJECT_DIR$/smoothcheckbox" />
+            <option value="$PROJECT_DIR$/verticaltablayout" />
           </set>
         </option>
         <option name="resolveModulePerSourceSet" value="false" />

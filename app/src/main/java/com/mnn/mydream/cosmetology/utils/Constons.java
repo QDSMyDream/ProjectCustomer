@@ -53,12 +53,8 @@ public class Constons {
     public static final int RESULT_CP_CODE_UPDATE_REQUEST = 0x2719;//修改产品请求码
 
 
-
-
-
     public static final int RESULT_USER_INFO_REQUEST = 10010;//管理员账户详情请求码
 
-    public static String FUWU_PICPATH = "";
     public static int BEAUTY_FRAGMENT_POSTION = 0;//记录当前fragment位置
     public static final int BEAUTY_FRAGMENT_PREVIOUS_POSTION = 0;//上个fragment位置
     public static int BEAUTY_WITHIN_PREVIOUS_POSTION = 0;//BeautyWithinActivity左侧菜单位置

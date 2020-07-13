@@ -26,12 +26,15 @@ import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import com.example.verticaltablayout.TabView;
+import com.example.verticaltablayout.VerticalTabLayout;
 import com.luck.picture.lib.PictureSelector;
 import com.luck.picture.lib.config.PictureConfig;
 import com.luck.picture.lib.config.PictureMimeType;
 import com.luck.picture.lib.entity.LocalMedia;
 import com.mnn.mydream.cosmetology.R;
 import com.mnn.mydream.cosmetology.adapter.BeautyContentMenuAdapter;
+import com.mnn.mydream.cosmetology.adapter.BeautyLeftMenuAdapter;
 import com.mnn.mydream.cosmetology.adapter.BeautyListViewAdapter;
 import com.mnn.mydream.cosmetology.bean.AppUpdateBean;
 import com.mnn.mydream.cosmetology.bean.BeautyContentMenuBean;
@@ -97,6 +100,8 @@ import cn.bmob.v3.update.BmobUpdateAgent;
 import io.reactivex.functions.Consumer;
 import me.yokeyword.fragmentation.SupportActivity;
 import me.yokeyword.fragmentation.SupportFragment;
+import me.yokeyword.fragmentation.anim.DefaultVerticalAnimator;
+import me.yokeyword.fragmentation.anim.FragmentAnimator;
 
 /**
  * 创建人 :MyDream
@@ -111,7 +116,7 @@ public class BeautyActivity extends SupportActivity implements BeautyContentList
     @BindView(R.id.menu_img)
     ImageView menuImg;
     @BindView(R.id.menu_listview)
-    ListView menuListview;
+    VerticalTabLayout verticalTabLayout;
     @BindView(R.id.layout_left)
     PercentLinearLayout layoutLeft;
     @BindView(R.id.title_add_text)
@@ -134,7 +139,7 @@ public class BeautyActivity extends SupportActivity implements BeautyContentList
     @BindView(R.id.layout_content)
     PercentLinearLayout layoutContent;
 
-    private List<BeautyListItemBean> beautyListItemBeans = new ArrayList<>();
+
 
     private int leftListViewImgs[] = new int[]{R.mipmap.gzt, R.mipmap.jygk, R.mipmap.gkgl, R.mipmap.ddgl, R.mipmap.yuyue, R.mipmap.sjzx, R.mipmap.yx, R.mipmap.xm, R.mipmap.xtsz};
 
@@ -146,7 +151,6 @@ public class BeautyActivity extends SupportActivity implements BeautyContentList
 
     private int leftListViewMenuFontSelects = R.color.beauty_left_font_select_bg;
 
-    private BeautyListViewAdapter beautyListViewAdapter;
 
     public NotificationManager mNotificationManager;//通知
 
@@ -161,12 +165,14 @@ public class BeautyActivity extends SupportActivity implements BeautyContentList
 
     SupportFragment[] mFragments;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_beauty);
+
         EventBus.getDefault().register(this);
+
         ButterKnife.bind(this);
 
         initView();
@@ -185,7 +191,6 @@ public class BeautyActivity extends SupportActivity implements BeautyContentList
 
     //初始化viewPager
     private void initViewPager() {
-
         mFragments = new SupportFragment[]{
                 GZTFragment.newInstance(),
                 JYGKFragment.newInstance(),
@@ -213,9 +218,7 @@ public class BeautyActivity extends SupportActivity implements BeautyContentList
                     mFragments[7],
                     mFragments[8]
             );
-
         }
-
     }
 
 
@@ -226,14 +229,36 @@ public class BeautyActivity extends SupportActivity implements BeautyContentList
 
 
     private void initView() {
-        //绑定数据
-        for (int i = 0; i < leftListViewImgs.length; i++) {
-            BeautyListItemBean beautyListItemBean = new BeautyListItemBean(leftListViewImgs[i], leftListViewStrings[i], leftListViewMenuFontColor, leftListViewImgSelects[i], leftListViewMenuFontSelects);
-            beautyListItemBeans.add(beautyListItemBean);
-        }
 
-        beautyListViewAdapter = new BeautyListViewAdapter(this, beautyListItemBeans, onClickListener);
-        menuListview.setAdapter(beautyListViewAdapter);
+        setFragmentAnimator(new DefaultVerticalAnimator());
+//        //绑定数据
+//        for (int i = 0; i < leftListViewImgs.length; i++) {
+//            BeautyListItemBean beautyListItemBean = new BeautyListItemBean(leftListViewImgs[i], leftListViewStrings[i], leftListViewMenuFontColor, leftListViewImgSelects[i], leftListViewMenuFontSelects);
+//            beautyListItemBeans.add(beautyListItemBean);
+//        }
+
+//        beautyListViewAdapter = new BeautyListViewAdapter(this, beautyListItemBeans, onClickListener);
+
+        BeautyLeftMenuAdapter beautyLeftMenuAdapter = new BeautyLeftMenuAdapter(this, leftListViewStrings,
+                leftListViewImgs, leftListViewImgSelects, leftListViewMenuFontColor, leftListViewMenuFontSelects);
+        beautyLeftMenuAdapter.getBackground(0);
+        beautyLeftMenuAdapter.getBadge(0);
+        verticalTabLayout.setTabAdapter(beautyLeftMenuAdapter);
+
+        verticalTabLayout.addOnTabSelectedListener(new VerticalTabLayout.OnTabSelectedListener() {
+            @Override
+            public void onTabSelected(TabView tab, int position) {
+                showHideFragment(mFragments[position], mFragments[Constons.BEAUTY_FRAGMENT_POSTION]);
+                Log.e("click positon::", "" + position);
+                Constons.BEAUTY_FRAGMENT_POSTION = position;
+            }
+
+            @Override
+            public void onTabReselected(TabView tab, int position) {
+
+            }
+        });
+
 
         RxPermissions rxPermissions = new RxPermissions(this);
 
@@ -274,8 +299,10 @@ public class BeautyActivity extends SupportActivity implements BeautyContentList
             case R.id.add_customer_layout:
                 showHideFragment(mFragments[2], mFragments[Constons.BEAUTY_FRAGMENT_POSTION]);
                 Constons.BEAUTY_FRAGMENT_POSTION = 2;
-                BeautyListViewAdapter.BEAUTY_SELECT_ITEM = 2;
-                isAdapter(beautyListViewAdapter);
+//                BeautyListViewAdapter.BEAUTY_SELECT_ITEM = 2;
+//                isAdapter(beautyListViewAdapter);
+
+
                 break;
 
             case R.id.user_info_layout:
@@ -283,29 +310,28 @@ public class BeautyActivity extends SupportActivity implements BeautyContentList
                 startActivityForResult(intent, Constons.RESULT_USER_INFO_REQUEST);
                 break;
 
-
         }
     }
 
 
-    private View.OnClickListener onClickListener = new View.OnClickListener() {
-        @Override
-        public void onClick(View v) {
-            int position = menuListview.getPositionForView(v);
-            BeautyListViewAdapter.BEAUTY_SELECT_ITEM = position;
-
-            showHideFragment(mFragments[position], mFragments[Constons.BEAUTY_FRAGMENT_POSTION]);
-            isAdapter(beautyListViewAdapter);
-            Log.e("click positon::", "" + position);
-            Constons.BEAUTY_FRAGMENT_POSTION = position;
-        }
-    };
-
-    private void isAdapter(BeautyListViewAdapter adapters) {
-        if (adapters != null) {
-            adapters.notifyDataSetChanged();
-        }
-    }
+//    private View.OnClickListener onClickListener = new View.OnClickListener() {
+//        @Override
+//        public void onClick(View v) {
+//            int position = menuListview.getPositionForView(v);
+//            BeautyListViewAdapter.BEAUTY_SELECT_ITEM = position;
+//
+//            showHideFragment(mFragments[position], mFragments[Constons.BEAUTY_FRAGMENT_POSTION]);
+//            isAdapter(beautyListViewAdapter);
+//            Log.e("click positon::", "" + position);
+//            Constons.BEAUTY_FRAGMENT_POSTION = position;
+//        }
+//    };
+//
+//    private void isAdapter(BeautyListViewAdapter adapters) {
+//        if (adapters != null) {
+//            adapters.notifyDataSetChanged();
+//        }
+//    }
 
 
     //通知
@@ -381,8 +407,6 @@ public class BeautyActivity extends SupportActivity implements BeautyContentList
 
                     }
                     break;
-
-
             }
         }
 
@@ -554,7 +578,6 @@ public class BeautyActivity extends SupportActivity implements BeautyContentList
             }
         });
 
-
     }
 
     //判断是否登陆
@@ -577,7 +600,6 @@ public class BeautyActivity extends SupportActivity implements BeautyContentList
                     break;
             }
 
-
             String userTx = (String) BmobUser.getObjectByKey("userTx");
             Log.e(TAG, "setIsLoginInfo: " + userTx);
             //加载图片
@@ -590,7 +612,6 @@ public class BeautyActivity extends SupportActivity implements BeautyContentList
             intent.setClass(BeautyActivity.this, LoginActivity.class);
             startActivityForResult(intent, Constons.BEAUTY_RESULT_LONGIN_CODE);
         }
-
 
     }
 

@@ -1,1 +1,1 @@
-include ':app', ':easynavigation',':library',':pulluprecyclerview', ':smoothcheckbox',":happy-bubble",':fragmentation_core',':fragmentation',':fragmentation_swipeback'
+include ':app', ':easynavigation',':library',':pulluprecyclerview', ':smoothcheckbox', ':verticaltablayout',":happy-bubble",':fragmentation_core',':fragmentation',':fragmentation_swipeback'

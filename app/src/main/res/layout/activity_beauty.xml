@@ -22,11 +22,18 @@
             android:src="@mipmap/title_img"
             app:layout_heightPercent="14%" />
 
-        <ListView
+        <com.example.verticaltablayout.VerticalTabLayout
             android:id="@+id/menu_listview"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginTop="10dp"></ListView>
+            android:layout_marginTop="10dp"
+            android:visibility="visible"
+            app:indicator_color="@color/colorAccent"
+            app:indicator_gravity="fill"
+            app:tab_height="60dp"
+            app:tab_mode="scrollable">
+
+        </com.example.verticaltablayout.VerticalTabLayout>
 
 
     </com.zhy.android.percent.support.PercentLinearLayout>

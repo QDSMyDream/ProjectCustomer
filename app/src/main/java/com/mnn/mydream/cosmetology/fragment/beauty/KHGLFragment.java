@@ -99,5 +99,7 @@ public class KHGLFragment extends SupportFragment {
         viewpagers.setAdapter(new ViewPagerFragmentAdapter(getChildFragmentManager(), stringitles, supportFragments));
         viewpagers.setOffscreenPageLimit(3);
         tabs.setupWithViewPager(viewpagers);
+
+
     }
 }

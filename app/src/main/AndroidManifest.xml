@@ -202,10 +202,7 @@
             android:theme="@style/Theme.AppCompat.Light.NoActionBar"
             android:windowSoftInputMode="adjustPan"></activity>
 
-        <service android:name=".service.StartService"
-
-            />
-
+        <service android:name=".service.StartService" />
 
     </application>
 
