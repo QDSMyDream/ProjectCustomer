@@ -10,18 +10,11 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import com.makeramen.roundedimageview.RoundedImageView;
 import com.mnn.mydream.cosmetology.R;
-import com.mnn.mydream.cosmetology.bean.Customer;
-import com.mnn.mydream.cosmetology.bean.ProjectsListBean;
 import com.mnn.mydream.cosmetology.bean.fuwuBean.FuWuSaleBean;
 import com.mnn.mydream.cosmetology.interfaces.FuWuListOnClickListener;
-import com.mnn.mydream.cosmetology.interfaces.OnItemRecyclerViewClickListener;
 import com.mnn.mydream.cosmetology.utils.ImageLoader;
-import com.mnn.mydream.cosmetology.utils.StringUtils;
-import com.mnn.mydream.cosmetology.utils.ToastUtils;
 import com.zhy.android.percent.support.PercentLinearLayout;
-import com.zhy.android.percent.support.PercentRelativeLayout;
 
 import java.util.List;
 
@@ -113,6 +106,12 @@ public class FuWuView1ListAdapter extends BaseAdapter {
                 fuWuListOnClickListener.onClickUpdate(v, position, fuWuSaleBean);
             }
         });
+        holder.delete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                fuWuListOnClickListener.onClickDelete(v, position, fuWuSaleBean);
+            }
+        });
 
 
         return convertView;
@@ -147,6 +146,7 @@ public class FuWuView1ListAdapter extends BaseAdapter {
             applyMd.setText(fuWuSaleBean.getApplyMd() + "");
             typeText.setText(fuWuSaleBean.getServerType() + "");
             addDate.setText(fuWuSaleBean.getCreatedAt() + "");
+
 //            if (fuWuSaleBean.isServerSaleFlag()) {
 //                saleBtn.setVisibility(View.GONE);
 //                dismountBtn.setVisibility(View.VISIBLE);
@@ -155,6 +155,7 @@ public class FuWuView1ListAdapter extends BaseAdapter {
 //               dismountBtn.setVisibility(View.GONE);
 //               saleBtn.setVisibility(View.VISIBLE);
 //            }
+
             notifyDataSetInvalidated();
 //            notifyDataSetChanged();
         }
@@ -198,13 +199,13 @@ public class FuWuView1ListAdapter extends BaseAdapter {
         TextView dismountBtn;
         @BindView(R.id.sale_btn)
         TextView saleBtn;
+        @BindView(R.id.delete)
+        ImageView delete;
         @BindView(R.id.title_layout)
         PercentLinearLayout titleLayout;
 
         ViewHolder(View view) {
             ButterKnife.bind(this, view);
-
-
         }
     }
 }

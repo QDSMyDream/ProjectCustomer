@@ -12,4 +12,6 @@ public interface FuWuListOnClickListener {
 
     void onClickSale(View v, int pos, FuWuSaleBean fuWuSaleBean);
 
+
+    void onClickDelete(View v, int pos, FuWuSaleBean fuWuSaleBean);
 }

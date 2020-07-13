@@ -25,11 +25,12 @@ public class CPDataBean extends BmobObject {
 
     private String cpCharacteristic; //产品特点
 
-
     private boolean isOpenSpecifications;//是否启用规格
+
     private int intSpecifications;//规格
 
     private boolean isOpenVipMoney;//是否启用会员价
+
     private float cpVipMoney;//会员价格
 
     private float cpOriginalPrice;//产品原价

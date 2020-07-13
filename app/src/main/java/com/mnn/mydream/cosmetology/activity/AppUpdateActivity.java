@@ -119,8 +119,12 @@ public class AppUpdateActivity extends AppCompatActivity {
             content1.setText("有新版本更新:" + object.getVersion_i() + "." + object.getVersion());
             content2.setText("更新版本大小:" + object.getTarget_size());
             content3.setText(object.getUpdate_log());
-        } else {
 
+            btnCancel.setVisibility(View.VISIBLE);
+            btnCommit.setVisibility(View.VISIBLE);
+
+        } else {
+            title.setText("已是最新版本");
             content2.setText("已是最新版本:" + "BNWY_" + NEW_VERSION_CODE + "_" + VERSION_NAME);
 
             btnCancel.setVisibility(View.GONE);

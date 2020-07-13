@@ -2,9 +2,9 @@ apply plugin: 'com.android.application'
 apply plugin: 'org.greenrobot.greendao'
 
 //程序总版本
-def versionMajor = 4
+def versionMajor = 5
 def versionMinor = 0
-def versionPatch = 0
+def versionPatch = 1
 
 def getVersionName = {
     def version = String.format("%d.%d.%d", versionMajor, versionMinor, versionPatch)

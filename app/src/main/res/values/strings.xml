@@ -64,6 +64,8 @@
 
     <string name="beauty_cp_name">产品名称</string>
 
+    <string name="beauty_not_enabled">未启用</string>
+
     <!--项目卡-->
     <string name="beauty_xmk_money">项目卡价格</string>
 

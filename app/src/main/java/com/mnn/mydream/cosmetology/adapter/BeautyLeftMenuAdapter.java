@@ -48,7 +48,7 @@ public class BeautyLeftMenuAdapter implements TabAdapter {
     public QTabView.TabIcon getIcon(int position) {
 
         return new QTabView.TabIcon.Builder().setIcon(menuSelectedImg[position], menuDefaultImg[position])
-                .setIconSize(30, 30)
+                .setIconSize(50, 50)
                 .setIconGravity(Gravity.LEFT)
                 .setIconMargin(10)
                 .build();
@@ -65,11 +65,7 @@ public class BeautyLeftMenuAdapter implements TabAdapter {
 
     @Override
     public int getBackground(int pos) {
-
-
         return 0;
-
-
     }
 
 

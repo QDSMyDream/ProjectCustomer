@@ -182,6 +182,7 @@ public class QTabView extends TabView {
                     mContainer.addView(mIcon);
                     LinearLayout.LayoutParams lp = (LinearLayout.LayoutParams) mIcon.getLayoutParams();
                     lp.setMargins(0, 0, mTabIcon.mMargin, 0);
+
                     mIcon.setLayoutParams(lp);
                 }
                 if (mTitle != null)
@@ -269,6 +270,7 @@ public class QTabView extends TabView {
         public int mIconWidth;
         public int mIconHeight;
         public int mMargin;
+
 
         private TabIcon(int mSelectedIcon, int mNormalIcon, int mIconGravity, int mIconWidth, int mIconHeight, int mMargin) {
             this.mSelectedIcon = mSelectedIcon;

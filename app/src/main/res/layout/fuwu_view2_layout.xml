@@ -52,7 +52,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="分类"
-                app:layout_widthPercent="20%" />
+                app:layout_widthPercent="15%" />
 
             <TextView
                 android:id="@+id/apply_md"
@@ -60,7 +60,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="适用门店"
-                app:layout_widthPercent="18%" />
+                app:layout_widthPercent="17%" />
 
             <TextView
                 android:id="@+id/add_date"
@@ -68,7 +68,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="添加时间"
-                app:layout_widthPercent="20%" />
+                app:layout_widthPercent="17%" />
 
 
             <TextView
@@ -77,7 +77,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="操作"
-                app:layout_widthPercent="20%" />
+                app:layout_widthPercent="25%" />
 
 
         </com.zhy.android.percent.support.PercentLinearLayout>

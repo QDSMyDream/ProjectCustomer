@@ -132,7 +132,7 @@
             app:layout_widthPercent="16%" />
 
 
-        <com.zhy.android.percent.support.PercentRelativeLayout
+        <com.zhy.android.percent.support.PercentLinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_toRightOf="@id/iv_server"
@@ -201,14 +201,15 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
                 android:layout_centerVertical="true"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="5dp"
+                android:layout_marginLeft="20dp"
                 android:gravity="center"
                 android:maxLines="1"
                 android:padding="5dp"
-                android:src="@mipmap/delete" />
+                android:paddingLeft="3dp"
+                android:paddingRight="3dp"
+                android:src="@mipmap/delete_red" />
 
-        </com.zhy.android.percent.support.PercentRelativeLayout>
+        </com.zhy.android.percent.support.PercentLinearLayout>
 
     </com.zhy.android.percent.support.PercentLinearLayout>
 

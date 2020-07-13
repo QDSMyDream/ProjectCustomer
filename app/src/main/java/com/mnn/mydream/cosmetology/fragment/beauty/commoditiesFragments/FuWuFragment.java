@@ -23,6 +23,9 @@ import com.mnn.mydream.cosmetology.activity.FuWuServerDialogActivity;
 import com.mnn.mydream.cosmetology.adapter.fragmentAdapter.MyViewPagerAdapter;
 import com.mnn.mydream.cosmetology.bean.BeautyBeanKh;
 import com.mnn.mydream.cosmetology.bean.fuwuBean.FuWuSaleBean;
+import com.mnn.mydream.cosmetology.bean.fuwuBean.ServerTypeBean;
+import com.mnn.mydream.cosmetology.dialog.BeautyAddServerTypeDialog;
+import com.mnn.mydream.cosmetology.dialog.BeautyDeleteDialog;
 import com.mnn.mydream.cosmetology.dialog.LoadingDialog;
 import com.mnn.mydream.cosmetology.fragment.beauty.commoditiesFragments.adapter.FuWuView1ListAdapter;
 import com.mnn.mydream.cosmetology.interfaces.FuWuListOnClickListener;
@@ -43,6 +46,7 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import butterknife.Unbinder;
 import cn.bmob.v3.BmobQuery;
+import cn.bmob.v3.BmobUser;
 import cn.bmob.v3.exception.BmobException;
 import cn.bmob.v3.listener.FindListener;
 import cn.bmob.v3.listener.UpdateListener;
@@ -105,6 +109,7 @@ public class FuWuFragment extends SupportFragment {
 
     private int FLAG_POSTION;
 
+    BeautyDeleteDialog beautyDeleteDialog;
 
     public static FuWuFragment newInstance() {
         Bundle args = new Bundle();
@@ -542,6 +547,14 @@ public class FuWuFragment extends SupportFragment {
         public void onClickSale(View v, int pos, FuWuSaleBean fuWuSaleBean) {
             Log.e(TAG, "onClickSale: " + pos);
         }
+
+        @Override
+        public void onClickDelete(View v, int pos, FuWuSaleBean fuWuSaleBean) {
+
+//            deleteFuWu1(fuWuSaleBean, pos);
+            deleteFuWuDialog(fuWuSaleBean, pos, true);
+
+        }
     };
     FuWuListOnClickListener fuWuListOnClickListener2 = new FuWuListOnClickListener() {
         @Override
@@ -571,8 +584,60 @@ public class FuWuFragment extends SupportFragment {
 
             adapter2Sale(fuWuSaleBean, pos);
         }
+
+        @Override
+        public void onClickDelete(View v, int pos, FuWuSaleBean fuWuSaleBean) {
+
+//            deleteFuWu2(fuWuSaleBean, pos);
+            deleteFuWuDialog(fuWuSaleBean, pos, false);
+        }
     };
 
+
+    //上架删除
+    private void deleteFuWu1(FuWuSaleBean fuWuSaleBean, int pos) {
+        fuWuView1ListAdapter.deleteView(pos, fuwuView1List);
+        fuWuSaleBean.delete(new UpdateListener() {
+            @Override
+            public void done(BmobException e) {
+                if (e == null) {
+
+                    String s2 = String.format(getString(R.string.beauty_within_dismount_txt), fuWuDismountBeans.size());
+                    dismountText.setText(s2);
+                    String s1 = String.format(getString(R.string.beauty_within_saleing_txt), fuWuSaleBeans.size());
+                    saleText.setText(s1);
+
+                    ToastUtils.showToast(getContext(), "删除成功", true);
+                } else {
+
+                    ToastUtils.showToast(getContext(), "删除失败" + e.getMessage().toString(), false);
+                }
+            }
+        });
+
+
+    }
+
+
+    private void deleteFuWu2(FuWuSaleBean fuWuSaleBean, int pos) {
+        fuWuView2ListAdapter.deleteView(pos, fuwuView2List);
+        fuWuSaleBean.delete(new UpdateListener() {
+            @Override
+            public void done(BmobException e) {
+                if (e == null) {
+                    String s2 = String.format(getString(R.string.beauty_within_dismount_txt), fuWuDismountBeans.size());
+                    dismountText.setText(s2);
+                    String s1 = String.format(getString(R.string.beauty_within_saleing_txt), fuWuSaleBeans.size());
+                    saleText.setText(s1);
+                    ToastUtils.showToast(getContext(), "删除成功", true);
+                } else {
+
+                    ToastUtils.showToast(getContext(), "删除失败" + e.getMessage().toString(), false);
+                }
+            }
+        });
+
+    }
 
     //下架
     private void adapter1Dis(FuWuSaleBean fuWuSaleBean, int pos) {
@@ -698,6 +763,44 @@ public class FuWuFragment extends SupportFragment {
 
             }
         }
+
+    }
+
+    private void deleteFuWuDialog(FuWuSaleBean fuWuSaleBean, int pos, boolean flag) {
+        BeautyDeleteDialog.Builder beautyAddServerTypeBuilder = new BeautyDeleteDialog.Builder(getActivity())
+                .setTitleMsg("确定删除(" + fuWuSaleBean.getServerName() + ")的信息？")
+                .setYesOnClick(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        if (flag) {
+                            fuWuView1ListAdapter.deleteView(pos, fuwuView1List);
+                        } else {
+                            fuWuView2ListAdapter.deleteView(pos, fuwuView2List);
+                        }
+
+                        fuWuSaleBean.delete(new UpdateListener() {
+                            @Override
+                            public void done(BmobException e) {
+                                if (e == null) {
+                                    String s2 = String.format(getString(R.string.beauty_within_dismount_txt), fuWuDismountBeans.size());
+                                    dismountText.setText(s2);
+                                    String s1 = String.format(getString(R.string.beauty_within_saleing_txt), fuWuSaleBeans.size());
+                                    saleText.setText(s1);
+                                    ToastUtils.showToast(getContext(), "删除成功", true);
+                                } else {
+
+                                    ToastUtils.showToast(getContext(), "删除失败" + e.getMessage().toString(), false);
+                                }
+                            }
+                        });
+
+                        beautyDeleteDialog.dismiss();
+
+                    }
+                });
+        beautyDeleteDialog = beautyAddServerTypeBuilder.createDialog();
+        // 设置点击屏幕Dialog不消失
+        beautyDeleteDialog.show();
 
     }
 

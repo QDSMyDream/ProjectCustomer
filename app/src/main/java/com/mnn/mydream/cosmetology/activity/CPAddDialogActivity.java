@@ -25,12 +25,12 @@ import com.luck.picture.lib.config.PictureMimeType;
 import com.luck.picture.lib.entity.LocalMedia;
 import com.mnn.mydream.cosmetology.R;
 import com.mnn.mydream.cosmetology.bean.fuwuBean.CPDataBean;
-import com.mnn.mydream.cosmetology.bean.fuwuBean.FuWuSaleBean;
 import com.mnn.mydream.cosmetology.bean.fuwuBean.ServerTypeBean;
 import com.mnn.mydream.cosmetology.dialog.BeautyAddServerTypeDialog;
 import com.mnn.mydream.cosmetology.dialog.CommonDialog;
 import com.mnn.mydream.cosmetology.dialog.LoadingDialog;
 import com.mnn.mydream.cosmetology.utils.Constons;
+import com.mnn.mydream.cosmetology.utils.StringUtils;
 import com.mnn.mydream.cosmetology.utils.ToastUtils;
 import com.zhy.android.percent.support.PercentRelativeLayout;
 
@@ -60,8 +60,8 @@ public class CPAddDialogActivity extends AppCompatActivity {
     ImageView cpImgPhoto;
     @BindView(R.id.layout_photo)
     PercentRelativeLayout layoutPhoto;
-    @BindView(R.id.co_name)
-    AppCompatEditText coName;
+    @BindView(R.id.cp_name)
+    AppCompatEditText cpName;
     @BindView(R.id.cp_type)
     NiceSpinner cpType;
     @BindView(R.id.add_img)
@@ -94,14 +94,18 @@ public class CPAddDialogActivity extends AppCompatActivity {
     AppCompatButton btnCancel;
     @BindView(R.id.myScrollView)
     ScrollView myScrollView;
+    @BindView(R.id.cp_check_specifications_text)
+    TextView cpCheckSpecificationsText;
+
     private String TAG = "CPAddDialogActivity";
     private String picPath = "https://bmob-cdn-28614.bmobpay.com/2020/07/12/49e9500440be379380eff778e5dff13a.png";
 
-    private Integer flagInt;
-    private List<ServerTypeBean> serverTypeBeans = new ArrayList<>();
     private CPDataBean cpDataBean;
+
     private int FLAG_INDEX;
+
     private LoadingDialog loadingDialog;
+
     private BeautyAddServerTypeDialog beautyAddServerTypeDialog;
 
     @Override
@@ -120,15 +124,43 @@ public class CPAddDialogActivity extends AppCompatActivity {
         cpType.attachDataSource(Constons.ServerTypeString);
         if (cpDataBean != null) {
             FLAG_INDEX = 1;
-
         } else {
             FLAG_INDEX = 0;
             title.setText("添加产品界面");
-
         }
 
+        cpCheckBox1.setOnCheckedChangeListener(new SmoothCheckBox.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(SmoothCheckBox checkBox, boolean isChecked) {
+                if (isChecked) {
+                    cpCheckSpecifications.setVisibility(View.VISIBLE);
+                    cpCheckSpecificationsText.setVisibility(View.VISIBLE);
+                } else {
 
-        Log.e(TAG, "onCreate: " + flagInt);
+                    cpCheckSpecifications.setVisibility(View.GONE);
+                    cpCheckSpecificationsText.setVisibility(View.GONE);
+                }
+            }
+        });
+        cpCheckBox2.setOnCheckedChangeListener(new SmoothCheckBox.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(SmoothCheckBox checkBox, boolean isChecked) {
+
+                if (isChecked) {
+                    cpVipMoney.setEnabled(false);
+                    cpVipMoney.setAlpha((float) 0.5);
+                    cpVipMoney.setHint(getString(R.string.beauty_not_enabled));
+                } else {
+
+                    cpVipMoney.setEnabled(true);
+                    cpVipMoney.setAlpha((float) 1);
+                    cpVipMoney.setHint(getString(R.string.beauty_cp_vip_money));
+
+                }
+            }
+        });
+
+        cpCheckBox2.setChecked(true);
 
 
     }
@@ -306,7 +338,6 @@ public class CPAddDialogActivity extends AppCompatActivity {
                             serverTypeBean.setServerTypeString(editText.getText().toString());
                             serverTypeBean.setBmobUser(BmobUser.getCurrentUser(BmobUser.class));
                             addServerType(serverTypeBean);
-
                         } else {
                             ToastUtils.showToast(getBaseContext(), "请输入服务类型", false);
 
@@ -345,36 +376,39 @@ public class CPAddDialogActivity extends AppCompatActivity {
         @Override
         public void handleMessage(Message msg) {
             switch (msg.what) {
+
                 case 0://刷新类型
 
+                    finish();
                     break;
+
                 case 1://刷新
                     setResult(Constons.RESULT_CP_CODE_SCUESS_REQUEST);
 
                     finish();
                     break;
-                case 2://刷新
 
+                case 2://刷新
                     Intent intent = new Intent();
                     Bundle bundle = new Bundle();
                     bundle.putSerializable(Constons.RESULT_CP_STR_UPDATE_REQUEST, cpDataBean);
                     intent.putExtras(bundle);
                     setResult(Constons.RESULT_CP_CODE_UPDATE_REQUEST, intent);
-
                     finish();
                     break;
+
                 case 3://刷新
-//                    serverType.attachDataSource(Constons.ServerTypeString);
-//
-//                    int j = serverType.getAdapter().getCount();
-//                    Log.e(TAG, "handleMessage: " + j);
-//                    for (int i = 0; i < j; i++) {
-//                        Log.e(TAG, "handleMessage: " + serverType.getAdapter().getItem(i).toString());
-//                        if (fuWuSaleBean.getServerType().equals(serverType.getAdapter().getItem(i).toString())) {
-//                            serverType.setSelectedIndex(i + 1);// 默认选中项
-//                            break;
-//                        }
-//                    }
+                    cpType.attachDataSource(Constons.ServerTypeString);
+
+                    int j = cpType.getAdapter().getCount();
+                    Log.e(TAG, "handleMessage: " + j);
+                    for (int i = 0; i < j; i++) {
+                        Log.e(TAG, "handleMessage: " + cpType.getAdapter().getItem(i).toString());
+                        if (cpDataBean.getCpType().equals(cpType.getAdapter().getItem(i).toString())) {
+                            cpType.setSelectedIndex(i + 1);// 默认选中项
+                            break;
+                        }
+                    }
                     beautyAddServerTypeDialog.dismiss();
 
                     break;
@@ -434,6 +468,68 @@ public class CPAddDialogActivity extends AppCompatActivity {
 
     private void saveCP() {
 
+        if (StringUtils.isEmpty(cpName.getText().toString())) {
+            ToastUtils.showToast(this, "请输入产品名称", false);
+            return;
+        }
 
+        if (Constons.ServerTypeString.size() == 0) {
+            ToastUtils.showToast(this, "请选择产品类型", false);
+            return;
+        }
+        if (StringUtils.isEmpty(cpMoney.getText().toString())) {
+            ToastUtils.showToast(this, "请输入产品价格", false);
+            return;
+        }
+
+        if (StringUtils.isEmpty(cpOriginalPrice.getText().toString())) {
+            ToastUtils.showToast(this, "请输入产品原价", false);
+            return;
+        }
+
+        if (cpCheckBox1.isChecked()) {
+            if (StringUtils.isEmpty(cpCheckSpecifications.getText().toString())) {
+                ToastUtils.showToast(this, "请输入产品规格", false);
+                return;
+            }
+        }
+
+        CPDataBean cpDataBean = new CPDataBean();
+
+        cpDataBean.setCpUrl(picPath);
+        cpDataBean.setCpName(cpName.getText().toString());
+        cpDataBean.setCpType(cpType.getSelectedItem().toString());
+        cpDataBean.setApplyMd(cpMd.getSelectedItem().toString());
+
+        cpDataBean.setCpMoney(Float.parseFloat(cpMoney.getText().toString()));
+        //销量
+        cpDataBean.setCpNum(StringUtils.isEmpty(cpNum.getText().toString()) ? 0 : Integer.parseInt(cpNum.getText().toString()));
+        //vip价钱
+        cpDataBean.setOpenVipMoney(cpCheckBox2.isChecked());
+        cpDataBean.setCpVipMoney(Float.parseFloat(cpVipMoney.getText().toString()));
+        //规格
+        cpDataBean.setOpenSpecifications(cpCheckBox1.isChecked());
+        cpDataBean.setIntSpecifications(StringUtils.isEmpty(cpCheckSpecifications.getText().toString()) ? 0 : Integer.parseInt(cpCheckSpecifications.getText().toString()));
+        //特点
+        cpDataBean.setCpCharacteristic(characteristicContent.getText().toString());
+        //原价
+        cpDataBean.setCpOriginalPrice(Float.parseFloat(cpOriginalPrice.getText().toString()));
+        //是否上架
+        cpDataBean.setCpSaleFlag(true);
+
+        cpDataBean.save(new SaveListener<String>() {
+            @Override
+            public void done(String s, BmobException e) {
+                if (e == null) {
+
+                    refreshHandler.sendEmptyMessage(0);
+                    ToastUtils.showToast(getBaseContext(), "添加成功", true);
+                } else {
+
+                    ToastUtils.showToast(getBaseContext(), "添加失败", false);
+
+                }
+            }
+        });
     }
 }

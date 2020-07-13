@@ -254,8 +254,12 @@ public class CPFragment extends SupportFragment implements CPListOnClickListener
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.cp_select_btn:
+
+
                 break;
             case R.id.remake_layout:
+
+
                 break;
 
             case R.id.sale_text:
