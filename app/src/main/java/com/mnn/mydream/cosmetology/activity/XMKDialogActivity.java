@@ -115,7 +115,7 @@ public class XMKDialogActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
 
-        fuWuSaleBean = (FuWuSaleBean) getIntent().getSerializableExtra(Constons.RESULT_FUWU_SERVER_STR_UPDATE_REQUEST);
+        fuWuSaleBean = (FuWuSaleBean) getIntent().getSerializableExtra(Constons.RESULT_UPDATE_REQUEST);
 
         Log.e(TAG, "onCreate: " + flagInt);
 
@@ -538,7 +538,7 @@ public class XMKDialogActivity extends AppCompatActivity {
 
                     Intent intent = new Intent();
                     Bundle bundle = new Bundle();
-                    bundle.putSerializable(Constons.RESULT_FUWU_SERVER_STR_UPDATE_REQUEST, fuWuSaleBean);
+                    bundle.putSerializable(Constons.RESULT_UPDATE_REQUEST, fuWuSaleBean);
                     intent.putExtras(bundle);
                     setResult(Constons.RESULT_FUWU_SERVER_CODE_UPDATE_REQUEST, intent);
 

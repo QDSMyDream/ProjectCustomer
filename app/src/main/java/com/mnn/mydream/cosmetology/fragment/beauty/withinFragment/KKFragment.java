@@ -18,10 +18,9 @@ import android.widget.TextView;
 
 import com.applandeo.materialcalendarview.view.NiceSpinner;
 import com.mnn.mydream.cosmetology.R;
-import com.mnn.mydream.cosmetology.activity.BeautyWithinActivity;
 import com.mnn.mydream.cosmetology.adapter.BeautyWithinCardGridViewAdapter;
 import com.mnn.mydream.cosmetology.adapter.BeautyWithinTipsAdapter;
-import com.mnn.mydream.cosmetology.bean.BeautyBeanKh;
+import com.mnn.mydream.cosmetology.bean.khBean.BeautyBeanKh;
 import com.mnn.mydream.cosmetology.bean.BeautyWithinCardsBean;
 import com.mnn.mydream.cosmetology.pickertime.TimePickerPopWin;
 import com.mnn.mydream.cosmetology.utils.Constons;

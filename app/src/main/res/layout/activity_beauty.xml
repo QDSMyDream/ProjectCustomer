@@ -28,7 +28,7 @@
             android:layout_height="match_parent"
             android:layout_marginTop="10dp"
             android:visibility="visible"
-            app:indicator_color="@color/beauty_left_select_bg"
+            app:indicator_color="@color/beauty_add_custmer_bg"
             app:indicator_gravity="fill"
             app:tab_height="60dp"
             app:tab_mode="scrollable">

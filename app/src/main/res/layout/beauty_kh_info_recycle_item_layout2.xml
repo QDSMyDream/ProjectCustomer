@@ -293,9 +293,9 @@
         <com.zhy.android.percent.support.PercentRelativeLayout
             android:id="@+id/content_right_layout2"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="40dp"
             android:background="@color/beauty_kh_info_left_layout_color5"
-            app:layout_heightPercent="19%"
+
             app:layout_paddingLeftPercent="2%"
             app:layout_paddingRightPercent="2%">
 

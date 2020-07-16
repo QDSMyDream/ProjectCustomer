@@ -12,7 +12,8 @@ import android.widget.TextView;
 
 import com.mnn.mydream.cosmetology.R;
 import com.mnn.mydream.cosmetology.bean.fuwuBean.FuWuSaleBean;
-import com.mnn.mydream.cosmetology.interfaces.FuWuListOnClickListener;
+
+import com.mnn.mydream.cosmetology.interfaces.SPGLListOnClickListener;
 import com.mnn.mydream.cosmetology.utils.ImageLoader;
 import com.zhy.android.percent.support.PercentLinearLayout;
 
@@ -27,13 +28,13 @@ import butterknife.ButterKnife;
  * 类描述：FuWu 服务列表
  */
 
-public class FuWuView1ListAdapter extends BaseAdapter {
+public class FWListAdapter extends BaseAdapter {
 
-    private String TAG = "FuWuView1ListAdapter";
+    private String TAG = "FWListAdapter";
     private List<FuWuSaleBean> fuWuSaleBeans;
     private final Context mContext;
 
-    public FuWuView1ListAdapter(Context mContext, List<FuWuSaleBean> fuWuSaleBeans) {
+    public FWListAdapter(Context mContext, List<FuWuSaleBean> fuWuSaleBeans) {
         this.mContext = mContext;
         this.fuWuSaleBeans = fuWuSaleBeans;
     }
@@ -89,27 +90,27 @@ public class FuWuView1ListAdapter extends BaseAdapter {
         holder.saleBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                fuWuListOnClickListener.onClickSale(v, position, fuWuSaleBean);
+                spglListOnClickListener.onClickSale(v, position, fuWuSaleBean);
             }
         });
 
         holder.dismountBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                fuWuListOnClickListener.onClickDismount(v, position, fuWuSaleBean);
+                spglListOnClickListener.onClickDismount(v, position, fuWuSaleBean);
             }
         });
 
         holder.updateBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                fuWuListOnClickListener.onClickUpdate(v, position, fuWuSaleBean);
+                spglListOnClickListener.onClickUpdate(v, position, fuWuSaleBean);
             }
         });
         holder.delete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                fuWuListOnClickListener.onClickDelete(v, position, fuWuSaleBean);
+                spglListOnClickListener.onClickDelete(v, position, fuWuSaleBean);
             }
         });
 
@@ -117,11 +118,11 @@ public class FuWuView1ListAdapter extends BaseAdapter {
         return convertView;
     }
 
-    public FuWuListOnClickListener fuWuListOnClickListener;
+    public SPGLListOnClickListener spglListOnClickListener;
 
 
-    public void setFuWuListOnClickListener(FuWuListOnClickListener fuWuListOnClickListener) {
-        this.fuWuListOnClickListener = fuWuListOnClickListener;
+    public void setFuWuListOnClickListener(SPGLListOnClickListener spglListOnClickListener) {
+        this.spglListOnClickListener = spglListOnClickListener;
     }
 
 

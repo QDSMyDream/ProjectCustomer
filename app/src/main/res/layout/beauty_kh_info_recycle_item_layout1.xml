@@ -10,18 +10,17 @@
     <!--top-->
     <com.zhy.android.percent.support.PercentLinearLayout
         android:id="@+id/user_info_layout"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:layout_alignParentRight="true"
+        app:layout_heightPercent="18.2%"
+        app:layout_marginTopPercent="1%"
+        app:layout_marginLeftPercent="1%"
+        app:layout_marginRightPercent="1%"
         android:background="@drawable/beauty_within_text_frame"
         android:gravity="center_vertical"
         android:orientation="horizontal"
-        app:layout_heightPercent="18.2%"
-        app:layout_marginLeftPercent="1%"
-        app:layout_marginRightPercent="1%"
-        app:layout_marginTopPercent="2%"
-        app:layout_paddingLeftPercent="1%"
-        app:layout_paddingRightPercent="1%">
+       >
 
         <!--top list1 姓名-->
         <com.zhy.android.percent.support.PercentRelativeLayout

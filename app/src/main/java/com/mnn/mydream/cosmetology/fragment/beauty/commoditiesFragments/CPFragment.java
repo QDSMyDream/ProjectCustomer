@@ -10,6 +10,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -17,16 +18,20 @@ import com.applandeo.materialcalendarview.view.NiceSpinner;
 import com.example.smoothcheckbox.SmoothCheckBox;
 import com.mnn.mydream.cosmetology.R;
 import com.mnn.mydream.cosmetology.activity.CPAddDialogActivity;
-import com.mnn.mydream.cosmetology.activity.FuWuServerDialogActivity;
+
 import com.mnn.mydream.cosmetology.adapter.fragmentAdapter.MyViewPagerAdapter;
 import com.mnn.mydream.cosmetology.bean.fuwuBean.CPDataBean;
+
 import com.mnn.mydream.cosmetology.bean.fuwuBean.FuWuSaleBean;
+import com.mnn.mydream.cosmetology.dialog.BeautyDeleteDialog;
 import com.mnn.mydream.cosmetology.dialog.LoadingDialog;
 import com.mnn.mydream.cosmetology.fragment.beauty.commoditiesFragments.adapter.CPListAdapter;
-import com.mnn.mydream.cosmetology.fragment.beauty.commoditiesFragments.adapter.FuWuView1ListAdapter;
-import com.mnn.mydream.cosmetology.interfaces.CPListOnClickListener;
+
+import com.mnn.mydream.cosmetology.interfaces.SPGLListOnClickListener;
 import com.mnn.mydream.cosmetology.utils.Constons;
+import com.mnn.mydream.cosmetology.utils.ImageLoader;
 import com.mnn.mydream.cosmetology.utils.ToastUtils;
+
 import com.mnn.mydream.cosmetology.utils.Tools;
 import com.mnn.mydream.cosmetology.view.MyViewPager;
 import com.zhy.android.percent.support.PercentLinearLayout;
@@ -46,6 +51,7 @@ import butterknife.Unbinder;
 import cn.bmob.v3.BmobQuery;
 import cn.bmob.v3.exception.BmobException;
 import cn.bmob.v3.listener.FindListener;
+import cn.bmob.v3.listener.UpdateListener;
 import me.yokeyword.fragmentation.SupportFragment;
 
 
@@ -55,8 +61,10 @@ import me.yokeyword.fragmentation.SupportFragment;
  * 类描述：SJZXFragment 服务界面
  */
 
-public class CPFragment extends SupportFragment implements CPListOnClickListener {
+public class CPFragment extends SupportFragment {
+
     private String TAG = getClass().getSimpleName();
+
     @BindView(R.id.cp_name_edit)
     AppCompatEditText cpNameEdit;
     @BindView(R.id.cp_type_spinner)
@@ -75,7 +83,9 @@ public class CPFragment extends SupportFragment implements CPListOnClickListener
     PercentLinearLayout addCpLayout;
     @BindView(R.id.viewpagers)
     MyViewPager viewpagers;
+
     Unbinder unbinder;
+
     private View view;
     private View saleView, dismountView;
 
@@ -96,10 +106,15 @@ public class CPFragment extends SupportFragment implements CPListOnClickListener
     private List<CPDataBean> cpSaleDataBeans = new ArrayList<>();
 
     private CPListAdapter cpListAdapter2;
-    private List<CPDataBean> cpDismounDatatBeans = new ArrayList<>();
-
+    private List<CPDataBean> cpDismounDataBeans = new ArrayList<>();
 
     private SmoothCheckBox smoothCheckBox1, smoothCheckBox2;
+
+    private boolean saleFlag;//标记
+
+    private int FLAG_POSTION;
+
+    BeautyDeleteDialog beautyDeleteDialog;
 
     public static CPFragment newInstance() {
         Bundle args = new Bundle();
@@ -140,7 +155,6 @@ public class CPFragment extends SupportFragment implements CPListOnClickListener
 
         getSelectCpAll();
 
-
     }
 
     private void getSelectCpAll() {
@@ -156,12 +170,12 @@ public class CPFragment extends SupportFragment implements CPListOnClickListener
             public void done(List<CPDataBean> object, BmobException e) {
                 if (e == null) {
                     cpSaleDataBeans.clear();
-                    cpDismounDatatBeans.clear();
+                    cpDismounDataBeans.clear();
                     for (int i = 0; i < object.size(); i++) {
                         if (object.get(i).isCpSaleFlag()) {
                             cpSaleDataBeans.add(object.get(i));
                         } else {
-                            cpDismounDatatBeans.add(object.get(i));
+                            cpDismounDataBeans.add(object.get(i));
                         }
                     }
                     refreshHandler.sendEmptyMessage(0);
@@ -172,7 +186,7 @@ public class CPFragment extends SupportFragment implements CPListOnClickListener
 
                     String s1 = String.format(getString(R.string.beauty_within_saleing_txt), cpSaleDataBeans.size());
                     saleText.setText(s1);
-                    String s2 = String.format(getString(R.string.beauty_within_dismount_txt), cpDismounDatatBeans.size());
+                    String s2 = String.format(getString(R.string.beauty_within_dismount_txt), cpDismounDataBeans.size());
                     dismountText.setText(s2);
                     Log.e("BMOB", e.toString());
 
@@ -194,20 +208,20 @@ public class CPFragment extends SupportFragment implements CPListOnClickListener
                     Log.e(TAG, "handleMessage: " + cpSaleDataBeans.size());
                     //设置数据倒叙
                     setSortList(cpSaleDataBeans);
-//                    fuWuView1ListAdapter = new FuWuView1ListAdapter(getActivity(), fuWuSaleBeans);
-//                    fuWuView1ListAdapter.setFuWuListOnClickListener(fuWuListOnClickListener1);
-//                    fuwuView1List.setAdapter(fuWuView1ListAdapter);
+//                    cpListAdapter1 = new CPListAdapter(getActivity(), cpSaleDataBeans);
+//                    cpListAdapter1.setCpListOnClickListener(spglListOnClickListener1);
+//                    cpView1ListView.setAdapter(cpListAdapter1);
                     cpListAdapter1.notifyDataSetChanged();
                     String s1 = String.format(getString(R.string.beauty_within_saleing_txt), cpSaleDataBeans.size());
                     saleText.setText(s1);
 
                     //设置数据倒叙
-                    setSortList(cpDismounDatatBeans);
+                    setSortList(cpDismounDataBeans);
                     cpListAdapter2.notifyDataSetChanged();
 //                    fuWuView2ListAdapter = new FuWuView1ListAdapter(getActivity(), fuWuDismountBeans);
-//                    fuWuView2ListAdapter.setFuWuListOnClickListener(fuWuListOnClickListener2);
+//                    fuWuView2ListAdapter.setFuWuListOnClickListener(spglListOnClickListener2);
 //                    fuwuView2List.setAdapter(fuWuView2ListAdapter);
-                    String s2 = String.format(getString(R.string.beauty_within_dismount_txt), cpDismounDatatBeans.size());
+                    String s2 = String.format(getString(R.string.beauty_within_dismount_txt), cpDismounDataBeans.size());
                     dismountText.setText(s2);
 
                     loadingDialog.dismiss();
@@ -229,8 +243,8 @@ public class CPFragment extends SupportFragment implements CPListOnClickListener
         cpView1ListView = saleView.findViewById(R.id.cp_listview);
 
         cpListAdapter1 = new CPListAdapter(getContext(), cpSaleDataBeans);
-        cpListAdapter1.setCpListOnClickListener(this);
-        cpView1ListView.setAdapter(cpListAdapter2);
+        cpListAdapter1.setCpListOnClickListener(spglListOnClickListener1);
+        cpView1ListView.setAdapter(cpListAdapter1);
     }
 
 
@@ -238,8 +252,8 @@ public class CPFragment extends SupportFragment implements CPListOnClickListener
         smoothCheckBox2 = saleView.findViewById(R.id.check_box1);
         cpView2ListView = dismountView.findViewById(R.id.cp_listview);
 
-        cpListAdapter2 = new CPListAdapter(getContext(), cpDismounDatatBeans);
-        cpListAdapter2.setCpListOnClickListener(this);
+        cpListAdapter2 = new CPListAdapter(getContext(), cpDismounDataBeans);
+        cpListAdapter2.setCpListOnClickListener(spglListOnClickListener2);
         cpView2ListView.setAdapter(cpListAdapter2);
     }
 
@@ -255,11 +269,9 @@ public class CPFragment extends SupportFragment implements CPListOnClickListener
         switch (view.getId()) {
             case R.id.cp_select_btn:
 
-
                 break;
             case R.id.remake_layout:
-
-
+                getRemakeLayoutCP();
                 break;
 
             case R.id.sale_text:
@@ -275,7 +287,6 @@ public class CPFragment extends SupportFragment implements CPListOnClickListener
                 break;
         }
     }
-
 
     //倒叙
     public void setSortList(List<CPDataBean> list) {
@@ -301,12 +312,29 @@ public class CPFragment extends SupportFragment implements CPListOnClickListener
         });
     }
 
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        Log.e(TAG, "onActivityResult: " + requestCode);
+        Log.e(TAG, "onActivityResult: " + resultCode);
+        //界面刷新
+
+        if (resultCode == Constons.RESULT_CP_CODE_SCUESS_REQUEST) {
+            getSelectCpAll();
+
+        }
+        if (resultCode == Constons.RESULT_CP_CODE_UPDATE_REQUEST) {
+//            getSelectServerAll();
+            setUpdateSaleBean(data);
+        }
+
+    }
 
     //倒叙
-    public static void ListSorts(List<FuWuSaleBean> list) {
-        Collections.sort(list, new Comparator<FuWuSaleBean>() {
+    public void ListSorts(List<CPDataBean> list) {
+        Collections.sort(list, new Comparator<CPDataBean>() {
             @Override
-            public int compare(FuWuSaleBean o1, FuWuSaleBean o2) {
+            public int compare(CPDataBean o1, CPDataBean o2) {
                 SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
                 try {
                     Date dt1 = df.parse(o1.getCreatedAt());
@@ -326,22 +354,71 @@ public class CPFragment extends SupportFragment implements CPListOnClickListener
         });
     }
 
-    @Override
-    public void onClickUpdate(View v, int pos, CPDataBean cpDataBean) {
-
-
+    //    重制
+    private void getRemakeLayoutCP() {
+        cpTypeSpinner.setSelectedIndex(0);
+        cpNameEdit.setText("");
+        getSelectCpAll();
     }
 
-    @Override
-    public void onClickDismount(View v, int pos, CPDataBean cpDataBean) {
+    SPGLListOnClickListener spglListOnClickListener1 = new SPGLListOnClickListener() {
+        @Override
+        public void onClickUpdate(View v, int pos, Object object) {
+            Log.e(TAG, "onClickUpdate: " + pos);
+            FLAG_POSTION = pos;
+            saleFlag = true;
+            Intent intent = new Intent(getActivity(), CPAddDialogActivity.class);
+            Bundle bundle = new Bundle();
+            bundle.putSerializable(Constons.RESULT_UPDATE_REQUEST, (CPDataBean) object);
+            intent.putExtras(bundle);
+            startActivityForResult(intent, Constons.RESULT_CP_CODE_UPDATE_REQUEST);
 
-    }
+        }
 
-    @Override
-    public void onClickSale(View v, int pos, CPDataBean cpDataBean) {
+        @Override
+        public void onClickDismount(View v, int pos, Object object) {
+            adapter1Dis((CPDataBean) object, pos);
+        }
 
-    }
+        @Override
+        public void onClickSale(View v, int pos, Object object) {
 
+        }
+
+        @Override
+        public void onClickDelete(View v, int pos, Object object) {
+            deleteCPDialog((CPDataBean) object, pos, true);
+        }
+    };
+    SPGLListOnClickListener spglListOnClickListener2 = new SPGLListOnClickListener() {
+        @Override
+        public void onClickUpdate(View v, int pos, Object object) {
+            Log.e(TAG, "onClickUpdate: " + pos);
+            FLAG_POSTION = pos;
+            saleFlag = false;
+            Intent intent = new Intent(getActivity(), CPAddDialogActivity.class);
+            Bundle bundle = new Bundle();
+            bundle.putSerializable(Constons.RESULT_UPDATE_REQUEST, (CPDataBean) object);
+            intent.putExtras(bundle);
+            startActivityForResult(intent, Constons.RESULT_CP_CODE_UPDATE_REQUEST);
+
+        }
+
+        @Override
+        public void onClickDismount(View v, int pos, Object object) {
+
+        }
+
+        @Override
+        public void onClickSale(View v, int pos, Object object) {
+            adapter2Sale((CPDataBean) object, pos);
+        }
+
+        @Override
+        public void onClickDelete(View v, int pos, Object object) {
+            deleteCPDialog((CPDataBean) object, pos, false);
+        }
+    };
 
     //切换viewpager
     private void checkViePager(int postion) {
@@ -352,7 +429,6 @@ public class CPFragment extends SupportFragment implements CPListOnClickListener
                 dismountText.setBackgroundResource(R.drawable.beauty_within_text_frame_no_option);
                 addCpLayout.setVisibility(View.VISIBLE);
                 break;
-
             case 1:
                 saleText.setBackgroundResource(R.drawable.beauty_within_text_frame_no_option);
                 dismountText.setBackgroundResource(R.drawable.beauty_within_text_frame_option);
@@ -365,10 +441,149 @@ public class CPFragment extends SupportFragment implements CPListOnClickListener
     }
 
     private void setServerDialog() {
-
         Intent Intent = new Intent(getActivity(), CPAddDialogActivity.class);
-        Intent.putExtra("flagInt", "1");
-        startActivityForResult(Intent, Constons.RESULT_FUWU_SERVER_CODE_VIEW_REQUEST);
+        startActivityForResult(Intent, Constons.RESULT_CP_CODE_VIEW_REQUEST);
     }
+
+    //下架
+    private void adapter1Dis(CPDataBean cpDataBean, int pos) {
+        cpDataBean.setCpSaleFlag(false);
+        cpDataBean.update(new UpdateListener() {
+            @Override
+            public void done(BmobException e) {
+                if (e == null) {
+                    cpListAdapter1.deleteView(pos, cpView1ListView);
+                    cpDismounDataBeans.add(cpDataBean);
+                    ListSorts(cpDismounDataBeans);
+
+                    cpListAdapter2.notifyDataSetChanged();
+//                    fuWuView2ListAdapter = new FuWuView1ListAdapter(getActivity(), fuWuDismountBeans);
+//                    fuWuView2ListAdapter.setFuWuListOnClickListener(fuWuListOnClickListener2);
+//                    fuwuView2List.setAdapter(fuWuView2ListAdapter);
+                    String s2 = String.format(getString(R.string.beauty_within_dismount_txt), cpDismounDataBeans.size());
+                    dismountText.setText(s2);
+                    String s1 = String.format(getString(R.string.beauty_within_saleing_txt), cpSaleDataBeans.size());
+                    saleText.setText(s1);
+
+                    ToastUtils.showToast(getContext(), "下架成功", true);
+                } else {
+                    ToastUtils.showToast(getContext(), "下架失败" + e.getMessage().toString(), false);
+                }
+            }
+        });
+
+    }
+
+    //上架
+    private void adapter2Sale(CPDataBean cpDataBean, int pos) {
+        cpDataBean.setCpSaleFlag(true);
+        cpDataBean.update(new UpdateListener() {
+            @Override
+            public void done(BmobException e) {
+                if (e == null) {
+                    cpListAdapter2.deleteView(pos, cpView2ListView);
+                    cpSaleDataBeans.add(cpDataBean);
+
+                    ListSorts(cpSaleDataBeans);
+
+                    cpListAdapter1.notifyDataSetChanged();
+//                    fuWuView1ListAdapter = new FuWuView1ListAdapter(getActivity(), fuWuSaleBeans);
+//                    fuWuView1ListAdapter.setFuWuListOnClickListener(fuWuListOnClickListener1);
+//                    fuwuView1List.setAdapter(fuWuView1ListAdapter);、
+                    String s2 = String.format(getString(R.string.beauty_within_dismount_txt), cpDismounDataBeans.size());
+                    dismountText.setText(s2);
+                    String s1 = String.format(getString(R.string.beauty_within_saleing_txt), cpSaleDataBeans.size());
+                    saleText.setText(s1);
+
+                    ToastUtils.showToast(getContext(), "上架成功", true);
+                } else {
+                    ToastUtils.showToast(getContext(), "上架失败" + e.getMessage().toString(), false);
+                }
+            }
+        });
+
+    }
+
+    //修改单条item
+    private void setUpdateSaleBean(Intent intent) {
+        CPDataBean cpDataBean = (CPDataBean) intent.getSerializableExtra(Constons.RESULT_UPDATE_REQUEST);
+
+        Log.e(TAG, "setUpdateSaleBean: " + FLAG_POSTION);
+        Log.e(TAG, "setUpdateSaleBean: " + saleFlag);
+        Log.e(TAG, "setUpdateSaleBean: " + cpDataBean.toString());
+        int firstVisiblePosition;
+        View itemView = null;
+        if (saleFlag) {
+//            fuWuView1ListAdapter.updataView(FLAG_POSTION, fuwuView1List, fuWuSaleBean);
+            firstVisiblePosition = cpView1ListView.getFirstVisiblePosition();
+            if (FLAG_POSTION - firstVisiblePosition >= 0) {
+                itemView = cpView1ListView.getChildAt(FLAG_POSTION - firstVisiblePosition);
+            }
+
+        } else {
+//            fuWuView2ListAdapter.updataView(FLAG_POSTION, fuwuView2List, fuWuSaleBean);
+            firstVisiblePosition = cpView2ListView.getFirstVisiblePosition();
+            if (FLAG_POSTION - firstVisiblePosition >= 0) {
+                itemView = cpView2ListView.getChildAt(FLAG_POSTION - firstVisiblePosition);
+
+            }
+        }
+        if (itemView != null) {
+
+            ImageView ivServer = itemView.findViewById(R.id.iv_server);
+            TextView serverName = itemView.findViewById(R.id.serverName);
+            TextView serverMoney = itemView.findViewById(R.id.server_money);
+            TextView typeText = itemView.findViewById(R.id.type_text);
+            TextView applyMd = itemView.findViewById(R.id.apply_md);
+            TextView applySpecifications = itemView.findViewById(R.id.apply_specifications);
+            TextView addDate = itemView.findViewById(R.id.add_date);
+
+            ImageLoader.displayImageView(getContext(), cpDataBean.getCpUrl(), ivServer, R.mipmap.ic_img_default);
+            serverName.setText(cpDataBean.getCpName() + "");
+            serverMoney.setText(cpDataBean.getCpMoney() + "");
+            applyMd.setText(cpDataBean.getApplyMd() + "");
+            typeText.setText(cpDataBean.getCpType() + "");
+            addDate.setText(cpDataBean.getCreatedAt() + "");
+            applySpecifications.setText(cpDataBean.getIntSpecifications() + "支");
+
+        }
+
+    }
+
+    private void deleteCPDialog(CPDataBean cpDataBean, int pos, boolean flag) {
+        BeautyDeleteDialog.Builder beautyAddServerTypeBuilder = new BeautyDeleteDialog.Builder(getActivity())
+                .setTitleMsg("确定删除(" + cpDataBean.getCpName() + ")的信息？")
+                .setYesOnClick(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        if (flag) {
+                            cpListAdapter1.deleteView(pos, cpView1ListView);
+                        } else {
+                            cpListAdapter2.deleteView(pos, cpView2ListView);
+                        }
+
+                        cpDataBean.delete(new UpdateListener() {
+                            @Override
+                            public void done(BmobException e) {
+                                if (e == null) {
+                                    String s2 = String.format(getString(R.string.beauty_within_dismount_txt), cpDismounDataBeans.size());
+                                    dismountText.setText(s2);
+                                    String s1 = String.format(getString(R.string.beauty_within_saleing_txt), cpSaleDataBeans.size());
+                                    saleText.setText(s1);
+                                    ToastUtils.showToast(getContext(), "删除成功", true);
+                                } else {
+
+                                    ToastUtils.showToast(getContext(), "删除失败" + e.getMessage().toString(), false);
+                                }
+                            }
+                        });
+                        beautyDeleteDialog.dismiss();
+                    }
+                });
+        beautyDeleteDialog = beautyAddServerTypeBuilder.createDialog();
+        // 设置点击屏幕Dialog不消失
+        beautyDeleteDialog.show();
+    }
+
 
 }

@@ -11,7 +11,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.mnn.mydream.cosmetology.R;
-import com.mnn.mydream.cosmetology.bean.BeautyBeanKh;
+import com.mnn.mydream.cosmetology.bean.khBean.BeautyBeanKh;
 import com.mnn.mydream.cosmetology.bean.fuwuBean.FuWuSaleBean;
 import com.mnn.mydream.cosmetology.interfaces.SetListOnClickListener;
 import com.mnn.mydream.cosmetology.utils.ImageLoader;
@@ -38,6 +38,7 @@ public class KHZSListAdapter extends BaseAdapter {
         this.mContext = mContext;
         this.beautyBeanKhs = fuWuSaleBeans;
     }
+
 
     @Override
     public int getCount() {
@@ -92,6 +93,13 @@ public class KHZSListAdapter extends BaseAdapter {
                 setListOnClickListener.onClick(v, position, beautyBeanKh);
             }
         });
+        holder.delete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                setListOnClickListener.onClickDelete(v, position, beautyBeanKh);
+            }
+        });
+
 
         return convertView;
     }
@@ -125,7 +133,6 @@ public class KHZSListAdapter extends BaseAdapter {
             applyMd.setText(fuWuSaleBean.getApplyMd() + "");
             typeText.setText(fuWuSaleBean.getServerType() + "");
             addDate.setText(fuWuSaleBean.getCreatedAt() + "");
-
 //            if (fuWuSaleBean.isServerSaleFlag()) {
 //                saleBtn.setVisibility(View.GONE);
 //                dismountBtn.setVisibility(View.VISIBLE);
@@ -134,7 +141,6 @@ public class KHZSListAdapter extends BaseAdapter {
 //               dismountBtn.setVisibility(View.GONE);
 //               saleBtn.setVisibility(View.VISIBLE);
 //            }
-
             notifyDataSetInvalidated();
 //            notifyDataSetChanged();
         }
@@ -158,6 +164,7 @@ public class KHZSListAdapter extends BaseAdapter {
 
 
     static class ViewHolder {
+
         @BindView(R.id.img_tx)
         ImageView imgTx;
         @BindView(R.id.name)
@@ -180,6 +187,8 @@ public class KHZSListAdapter extends BaseAdapter {
         TextView infoBtn;
         @BindView(R.id.update_btn)
         TextView updateBtn;
+        @BindView(R.id.delete)
+        ImageView delete;
         @BindView(R.id.title_layout)
         PercentLinearLayout titleLayout;
 

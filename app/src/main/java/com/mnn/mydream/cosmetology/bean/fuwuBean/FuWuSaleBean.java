@@ -15,7 +15,6 @@ import cn.bmob.v3.BmobObject;
  */
 public class FuWuSaleBean extends BmobObject {
 
-
     private String serverUrl;
     private String serverName;
     private String serverType;

@@ -115,7 +115,7 @@
             android:layout_height="wrap_content"
             android:text="注册时间"
             android:textColor="@color/beauty_text_color"
-            app:layout_widthPercent="20%" />
+            app:layout_widthPercent="17%" />
 
         <com.zhy.android.percent.support.PercentLinearLayout
             android:layout_width="match_parent"
@@ -123,7 +123,7 @@
             android:layout_toRightOf="@id/iv_server"
             android:gravity="center"
             android:orientation="horizontal"
-            app:layout_widthPercent="18%">
+            app:layout_widthPercent="21%">
 
 
             <TextView
@@ -149,12 +149,25 @@
                 android:gravity="center"
                 android:maxLines="1"
                 android:padding="5dp"
-
                 android:singleLine="true"
                 android:text="编辑档案"
                 android:textColor="@color/beauty_text_color"
                 android:textSize="@dimen/text_size_18" />
 
+
+            <ImageView
+                android:id="@+id/delete"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="20dp"
+                android:gravity="center"
+                android:maxLines="1"
+                android:padding="10dp"
+                android:paddingLeft="3dp"
+                android:paddingRight="3dp"
+                android:src="@mipmap/delete_red" />
 
         </com.zhy.android.percent.support.PercentLinearLayout>
 

@@ -15,15 +15,22 @@ import android.widget.TextView;
 
 import com.mnn.mydream.cosmetology.R;
 import com.mnn.mydream.cosmetology.activity.BeautyKHInfoActivity;
-import com.mnn.mydream.cosmetology.bean.BeautyBeanKh;
-import com.mnn.mydream.cosmetology.bean.Customer;
+import com.mnn.mydream.cosmetology.bean.khBean.BeautyBeanKh;
+import com.mnn.mydream.cosmetology.dialog.BeautyDeleteDialog;
 import com.mnn.mydream.cosmetology.dialog.LoadingDialog;
+import com.mnn.mydream.cosmetology.eventBus.EventBusAddKhMsg;
+import com.mnn.mydream.cosmetology.eventBus.EventBusMsg;
 import com.mnn.mydream.cosmetology.fragment.beauty.khfragments.adapter.KHZSListAdapter;
 import com.mnn.mydream.cosmetology.interfaces.SetListOnClickListener;
+import com.mnn.mydream.cosmetology.utils.Constons;
 import com.mnn.mydream.cosmetology.utils.ToastUtils;
 import com.mnn.mydream.cosmetology.utils.Tools;
 import com.zhy.android.percent.support.PercentLinearLayout;
 import com.zhy.android.percent.support.PercentRelativeLayout;
+
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -35,6 +42,7 @@ import butterknife.Unbinder;
 import cn.bmob.v3.BmobQuery;
 import cn.bmob.v3.exception.BmobException;
 import cn.bmob.v3.listener.FindListener;
+import cn.bmob.v3.listener.UpdateListener;
 import me.yokeyword.fragmentation.SupportFragment;
 
 /**
@@ -101,6 +109,7 @@ public class KHZSFragment extends SupportFragment implements SetListOnClickListe
 
     private List<BeautyBeanKh> beautyBeanKhs = new ArrayList<>();
 
+    BeautyDeleteDialog beautyDeleteDialog;
 
     public static KHZSFragment newInstance() {
         Bundle args = new Bundle();
@@ -112,7 +121,7 @@ public class KHZSFragment extends SupportFragment implements SetListOnClickListe
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.khzs_fragment, container, false);
-
+        EventBus.getDefault().register(this);
         unbinder = ButterKnife.bind(this, view);
 
         initview();
@@ -122,6 +131,11 @@ public class KHZSFragment extends SupportFragment implements SetListOnClickListe
 
 
     private void initview() {
+        getKhzs();//查询所有
+    }
+
+
+    private void getKhzs() {
 
         khzsListAdapter = new KHZSListAdapter(getContext(), beautyBeanKhs);
         khzsListAdapter.setListOnClickListener(this);
@@ -132,13 +146,6 @@ public class KHZSFragment extends SupportFragment implements SetListOnClickListe
         loadingDialog.setCanceledOnTouchOutside(false);
         // 设置点击屏幕Dialog不消失
         loadingDialog.show();
-
-        getKhzs();//查询所有
-    }
-
-
-    private void getKhzs() {
-
 
         BmobQuery<BeautyBeanKh> categoryBmobQuery = new BmobQuery<>();
 //      categoryBmobQuery.addWhereLessThanOrEqualTo("createdAt", bmobCreatedAtDate);
@@ -250,11 +257,11 @@ public class KHZSFragment extends SupportFragment implements SetListOnClickListe
                 break;
 
             case R.id.info_btn:
-
-                Intent intent = new Intent();
-                intent.setClass(getActivity(), BeautyKHInfoActivity.class);
-                getActivity().startActivity(intent);
-
+                Intent intent = new Intent(getActivity(), BeautyKHInfoActivity.class);
+                Bundle bundle = new Bundle();
+                bundle.putSerializable(Constons.RESULT_KG_INFO_code_REQUEST, (BeautyBeanKh) o);
+                intent.putExtras(bundle);
+                startActivityForResult(intent, Constons.RESULT_KG_INFO_REQUEST);
 
                 Log.e(TAG, "onClick: " + o.toString());
                 break;
@@ -268,6 +275,13 @@ public class KHZSFragment extends SupportFragment implements SetListOnClickListe
 
     }
 
+    @Override
+    public void onClickDelete(View v, int pos, Object o) {
+
+        deleteFuWuDialog((BeautyBeanKh) o, pos);
+
+
+    }
 
     //按name,phone“或” 查询
     private void getSelectCustomers(String string) {
@@ -313,5 +327,57 @@ public class KHZSFragment extends SupportFragment implements SetListOnClickListe
         super.onSupportInvisible();
         Log.e(TAG, "onSupportInvisible: ");
         loadingDialog.dismiss();
+    }
+
+    //删除用户
+    private void deleteFuWuDialog(BeautyBeanKh beautyBeanKh, int pos) {
+
+        BeautyDeleteDialog.Builder beautyAddServerTypeBuilder = new BeautyDeleteDialog.Builder(getActivity())
+                .setTitleMsg("确定删除(" + beautyBeanKh.getName() + ")的信息？")
+                .setYesOnClick(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+
+                        khzsListAdapter.deleteView(pos, khList);
+
+                        beautyBeanKh.delete(new UpdateListener() {
+                            @Override
+                            public void done(BmobException e) {
+                                if (e == null) {
+                                    int beautySize = beautyBeanKhs.size();
+                                    String s = String.format(getString(R.string.beauty_within_select_all_text), beautySize);
+                                    selectText.setText(s);
+                                    ToastUtils.showToast(getContext(), "删除成功", true);
+                                } else {
+
+                                    ToastUtils.showToast(getContext(), "删除失败" + e.getMessage().toString(), false);
+                                }
+                            }
+                        });
+
+                        beautyDeleteDialog.dismiss();
+
+                    }
+                });
+        beautyDeleteDialog = beautyAddServerTypeBuilder.createDialog();
+        // 设置点击屏幕Dialog不消失
+        beautyDeleteDialog.show();
+
+    }
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void onEventMain(EventBusAddKhMsg event) {
+        int flag = event.getMsgInt();
+
+        switch (flag) {
+
+            case Constons.SELECT_SELECT_ADD_KH:
+
+                Log.e(TAG, "onEventMain: " + event.toString());
+
+                getKhzs();//查询所有
+
+                break;
+        }
     }
 }

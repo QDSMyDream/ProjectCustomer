@@ -18,8 +18,7 @@ import android.widget.Filterable;
 import android.widget.TextView;
 
 import com.mnn.mydream.cosmetology.R;
-import com.mnn.mydream.cosmetology.bean.BeautyBeanKh;
-import com.mnn.mydream.cosmetology.bean.Customer;
+import com.mnn.mydream.cosmetology.bean.khBean.BeautyBeanKh;
 
 import java.util.ArrayList;
 import java.util.List;

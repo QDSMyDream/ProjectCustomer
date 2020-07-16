@@ -21,14 +21,14 @@ import com.example.smoothcheckbox.SmoothCheckBox;
 import com.mnn.mydream.cosmetology.R;
 import com.mnn.mydream.cosmetology.activity.FuWuServerDialogActivity;
 import com.mnn.mydream.cosmetology.adapter.fragmentAdapter.MyViewPagerAdapter;
-import com.mnn.mydream.cosmetology.bean.BeautyBeanKh;
+
 import com.mnn.mydream.cosmetology.bean.fuwuBean.FuWuSaleBean;
-import com.mnn.mydream.cosmetology.bean.fuwuBean.ServerTypeBean;
-import com.mnn.mydream.cosmetology.dialog.BeautyAddServerTypeDialog;
+
 import com.mnn.mydream.cosmetology.dialog.BeautyDeleteDialog;
 import com.mnn.mydream.cosmetology.dialog.LoadingDialog;
-import com.mnn.mydream.cosmetology.fragment.beauty.commoditiesFragments.adapter.FuWuView1ListAdapter;
-import com.mnn.mydream.cosmetology.interfaces.FuWuListOnClickListener;
+import com.mnn.mydream.cosmetology.fragment.beauty.commoditiesFragments.adapter.FWListAdapter;
+
+import com.mnn.mydream.cosmetology.interfaces.SPGLListOnClickListener;
 import com.mnn.mydream.cosmetology.utils.Constons;
 import com.mnn.mydream.cosmetology.utils.ImageLoader;
 import com.mnn.mydream.cosmetology.utils.StringUtils;
@@ -46,7 +46,6 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import butterknife.Unbinder;
 import cn.bmob.v3.BmobQuery;
-import cn.bmob.v3.BmobUser;
 import cn.bmob.v3.exception.BmobException;
 import cn.bmob.v3.listener.FindListener;
 import cn.bmob.v3.listener.UpdateListener;
@@ -65,6 +64,7 @@ public class FuWuFragment extends SupportFragment {
     TextView remake;
     @BindView(R.id.remake_layout)
     PercentRelativeLayout remakeLayout;
+
     private String TAG = FuWuFragment.class.getSimpleName();
 
     @BindView(R.id.server_name_edit)
@@ -97,15 +97,15 @@ public class FuWuFragment extends SupportFragment {
     /**
      * view1 上架项目
      */
-    private FuWuView1ListAdapter fuWuView1ListAdapter;
+    private FWListAdapter fuWuView1ListAdapter;
     private List<FuWuSaleBean> fuWuSaleBeans = new ArrayList<>();//售卖中列表
 
-    private FuWuView1ListAdapter fuWuView2ListAdapter;
+    private FWListAdapter fuWuView2ListAdapter;
     private List<FuWuSaleBean> fuWuDismountBeans = new ArrayList<>();//下架列表
 
     private LoadingDialog loadingDialog;
 
-    private int FLAG_INDEX;//标记
+    private boolean saleFlag;//标记
 
     private int FLAG_POSTION;
 
@@ -157,7 +157,7 @@ public class FuWuFragment extends SupportFragment {
         smoothCheckBox2 = dismountView.findViewById(R.id.check_box2);
         fuwuView2List = (ListView) dismountView.findViewById(R.id.fuwu_view2_list);
 
-        fuWuView2ListAdapter = new FuWuView1ListAdapter(getActivity(), fuWuDismountBeans);
+        fuWuView2ListAdapter = new FWListAdapter(getActivity(), fuWuDismountBeans);
         fuWuView2ListAdapter.setFuWuListOnClickListener(fuWuListOnClickListener2);
         fuwuView2List.setAdapter(fuWuView2ListAdapter);
 
@@ -191,7 +191,7 @@ public class FuWuFragment extends SupportFragment {
         smoothCheckBox1 = saleView.findViewById(R.id.check_box1);
         fuwuView1List = (ListView) saleView.findViewById(R.id.fuwu_view1_list);
 
-        fuWuView1ListAdapter = new FuWuView1ListAdapter(getActivity(), fuWuSaleBeans);
+        fuWuView1ListAdapter = new FWListAdapter(getActivity(), fuWuSaleBeans);
         fuWuView1ListAdapter.setFuWuListOnClickListener(fuWuListOnClickListener1);
         fuwuView1List.setAdapter(fuWuView1ListAdapter);
 
@@ -256,13 +256,11 @@ public class FuWuFragment extends SupportFragment {
         Log.e(TAG, "onSupportInvisible: ");
     }
 
-
     @Override
     public void onHiddenChanged(boolean hidden) {
         super.onHiddenChanged(hidden);
         Log.e(TAG, "onHiddenChanged: " + hidden);
     }
-
 
     @Override
     public void setUserVisibleHint(boolean isVisibleToUser) {
@@ -404,7 +402,6 @@ public class FuWuFragment extends SupportFragment {
         startActivityForResult(Intent, Constons.RESULT_FUWU_SERVER_CODE_VIEW_REQUEST);
     }
 
-
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -455,6 +452,7 @@ public class FuWuFragment extends SupportFragment {
             @Override
             public void done(List<FuWuSaleBean> object, BmobException e) {
                 if (e == null) {
+
                     fuWuSaleBeans.clear();
                     fuWuDismountBeans.clear();
                     for (int i = 0; i < object.size(); i++) {
@@ -469,7 +467,6 @@ public class FuWuFragment extends SupportFragment {
                 } else {
 
                     loadingDialog.dismiss();
-
                     String s1 = String.format(getString(R.string.beauty_within_saleing_txt), fuWuSaleBeans.size());
                     saleText.setText(s1);
                     String s2 = String.format(getString(R.string.beauty_within_dismount_txt), fuWuDismountBeans.size());
@@ -477,11 +474,11 @@ public class FuWuFragment extends SupportFragment {
                     Log.e("BMOB", e.toString());
 
                     ToastUtils.showToast(getContext(), "查询失败", false);
+
                 }
             }
         });
     }
-
 
     ///刷新Handler
     @SuppressLint("HandlerLeak")
@@ -516,83 +513,67 @@ public class FuWuFragment extends SupportFragment {
                 case 1:
 
                     break;
-
             }
         }
 
     };
 
-
-    FuWuListOnClickListener fuWuListOnClickListener1 = new FuWuListOnClickListener() {
+    SPGLListOnClickListener fuWuListOnClickListener1 = new SPGLListOnClickListener() {
         @Override
-        public void onClickUpdate(View v, int pos, FuWuSaleBean fuWuSaleBean) {
+        public void onClickUpdate(View v, int pos, Object fuWuSaleBean) {
             Log.e(TAG, "onClickUpdate: " + pos);
-            FLAG_INDEX = 0;
+            saleFlag = true;
             FLAG_POSTION = pos;
             Intent intent = new Intent(getActivity(), FuWuServerDialogActivity.class);
             Bundle bundle = new Bundle();
-            bundle.putSerializable(Constons.RESULT_FUWU_SERVER_STR_UPDATE_REQUEST, fuWuSaleBean);
+            bundle.putSerializable(Constons.RESULT_UPDATE_REQUEST, (FuWuSaleBean) fuWuSaleBean);
             intent.putExtras(bundle);
             startActivityForResult(intent, Constons.RESULT_FUWU_SERVER_CODE_UPDATE_REQUEST);
 
         }
 
         @Override
-        public void onClickDismount(View v, int pos, FuWuSaleBean fuWuSaleBean) {
-            Log.e(TAG, "onClickDismount: " + pos);
-            adapter1Dis(fuWuSaleBean, pos);
+        public void onClickDismount(View v, int pos, Object fuWuSaleBean) {
+
         }
 
         @Override
-        public void onClickSale(View v, int pos, FuWuSaleBean fuWuSaleBean) {
-            Log.e(TAG, "onClickSale: " + pos);
+        public void onClickSale(View v, int pos, Object fuWuSaleBean) {
+            adapter1Dis((FuWuSaleBean) fuWuSaleBean, pos);
         }
 
         @Override
-        public void onClickDelete(View v, int pos, FuWuSaleBean fuWuSaleBean) {
-
-//            deleteFuWu1(fuWuSaleBean, pos);
-            deleteFuWuDialog(fuWuSaleBean, pos, true);
-
+        public void onClickDelete(View v, int pos, Object fuWuSaleBean) {
+            deleteFuWuDialog((FuWuSaleBean) fuWuSaleBean, pos, true);
         }
     };
-    FuWuListOnClickListener fuWuListOnClickListener2 = new FuWuListOnClickListener() {
+
+    SPGLListOnClickListener fuWuListOnClickListener2 = new SPGLListOnClickListener() {
         @Override
-        public void onClickUpdate(View v, int pos, FuWuSaleBean fuWuSaleBean) {
+        public void onClickUpdate(View v, int pos, Object fuWuSaleBean) {
             Log.e(TAG, "onClickUpdate: " + pos);
             FLAG_POSTION = pos;
-            FLAG_INDEX = 1;
+            saleFlag = false;
             Intent intent = new Intent(getActivity(), FuWuServerDialogActivity.class);
             Bundle bundle = new Bundle();
-            bundle.putSerializable(Constons.RESULT_FUWU_SERVER_STR_UPDATE_REQUEST, fuWuSaleBean);
+            bundle.putSerializable(Constons.RESULT_UPDATE_REQUEST, (FuWuSaleBean) fuWuSaleBean);
             intent.putExtras(bundle);
             startActivityForResult(intent, Constons.RESULT_FUWU_SERVER_CODE_UPDATE_REQUEST);
-
-
         }
 
         @Override
-        public void onClickDismount(View v, int pos, FuWuSaleBean fuWuSaleBean) {
-            Log.e(TAG, "onClickDismount: " + pos);
-
+        public void onClickDismount(View v, int pos, Object fuWuSaleBean) {
 
         }
-
         @Override
-        public void onClickSale(View v, int pos, FuWuSaleBean fuWuSaleBean) {
-            Log.e(TAG, "onClickSale: " + pos);
-
-            adapter2Sale(fuWuSaleBean, pos);
+        public void onClickSale(View v, int pos, Object fuWuSaleBean) {
+            adapter2Sale((FuWuSaleBean) fuWuSaleBean, pos);
         }
-
         @Override
-        public void onClickDelete(View v, int pos, FuWuSaleBean fuWuSaleBean) {
-
-//            deleteFuWu2(fuWuSaleBean, pos);
-            deleteFuWuDialog(fuWuSaleBean, pos, false);
+        public void onClickDelete(View v, int pos, Object fuWuSaleBean) {
+            deleteFuWuDialog((FuWuSaleBean) fuWuSaleBean, pos, false);
         }
     };
-
 
     //上架删除
     private void deleteFuWu1(FuWuSaleBean fuWuSaleBean, int pos) {
@@ -617,7 +598,6 @@ public class FuWuFragment extends SupportFragment {
 
 
     }
-
 
     private void deleteFuWu2(FuWuSaleBean fuWuSaleBean, int pos) {
         fuWuView2ListAdapter.deleteView(pos, fuwuView2List);
@@ -671,7 +651,6 @@ public class FuWuFragment extends SupportFragment {
 
     }
 
-
     //上架
     private void adapter2Sale(FuWuSaleBean fuWuSaleBean, int pos) {
         fuWuSaleBean.setServerSaleFlag(true);
@@ -704,64 +683,47 @@ public class FuWuFragment extends SupportFragment {
 
     }
 
+    //修改单条item
     private void setUpdateSaleBean(Intent intent) {
 
-        FuWuSaleBean fuWuSaleBean = (FuWuSaleBean) intent.getSerializableExtra(Constons.RESULT_FUWU_SERVER_STR_UPDATE_REQUEST);
+        FuWuSaleBean fuWuSaleBean = (FuWuSaleBean) intent.getSerializableExtra(Constons.RESULT_UPDATE_REQUEST);
         Log.e(TAG, "setUpdateSaleBean: " + FLAG_POSTION);
-        Log.e(TAG, "setUpdateSaleBean: " + FLAG_INDEX);
+        Log.e(TAG, "setUpdateSaleBean: " + saleFlag);
         Log.e(TAG, "setUpdateSaleBean: " + fuWuSaleBean.toString());
-
-
-        if (FLAG_INDEX == 0) {
+        int firstVisiblePosition;
+        View itemView = null;
+        if (saleFlag) {
 //            fuWuView1ListAdapter.updataView(FLAG_POSTION, fuwuView1List, fuWuSaleBean);
 
-            int firstVisiblePosition = fuwuView1List.getFirstVisiblePosition(); //屏幕内当前可以看见的第一条数据
+            firstVisiblePosition = fuwuView1List.getFirstVisiblePosition();
             if (FLAG_POSTION - firstVisiblePosition >= 0) {
-                //1.获取当前点击的条目的view
-                View itemView = fuwuView1List.getChildAt(FLAG_POSTION - firstVisiblePosition);
-                //2.查找出相应的控件
-
-                TextView serverName = itemView.findViewById(R.id.serverName);
-                TextView serverMoney = itemView.findViewById(R.id.server_money);
-                TextView applyMd = itemView.findViewById(R.id.apply_md);
-                TextView typeText = itemView.findViewById(R.id.type_text);
-                TextView addDate = itemView.findViewById(R.id.add_date);
-                ImageView ivServer = itemView.findViewById(R.id.iv_server);
-
-                //加载图片
-                ImageLoader.displayImageView(getContext(), fuWuSaleBean.getServerUrl(), ivServer, R.mipmap.ic_img_default);
-                serverName.setText(fuWuSaleBean.getServerName() + "");
-                serverMoney.setText(fuWuSaleBean.getServerMoney() + "");
-                applyMd.setText(fuWuSaleBean.getApplyMd() + "");
-                typeText.setText(fuWuSaleBean.getServerType() + "");
-                addDate.setText(fuWuSaleBean.getCreatedAt() + "");
-
+                itemView = fuwuView1List.getChildAt(FLAG_POSTION - firstVisiblePosition);
             }
 
         } else {
 //            fuWuView2ListAdapter.updataView(FLAG_POSTION, fuwuView2List, fuWuSaleBean);
-            int firstVisiblePosition = fuwuView2List.getFirstVisiblePosition(); //屏幕内当前可以看见的第一条数据
+
+            firstVisiblePosition = fuwuView2List.getFirstVisiblePosition();
             if (FLAG_POSTION - firstVisiblePosition >= 0) {
-                //1.获取当前点击的条目的view
-                View itemView = fuwuView2List.getChildAt(FLAG_POSTION - firstVisiblePosition);
-                //2.查找出相应的控件
-
-                TextView serverName = itemView.findViewById(R.id.serverName);
-                TextView serverMoney = itemView.findViewById(R.id.server_money);
-                TextView applyMd = itemView.findViewById(R.id.apply_md);
-                TextView typeText = itemView.findViewById(R.id.type_text);
-                TextView addDate = itemView.findViewById(R.id.add_date);
-                ImageView ivServer = itemView.findViewById(R.id.iv_server);
-
-                //加载图片
-                ImageLoader.displayImageView(getContext(), fuWuSaleBean.getServerUrl(), ivServer, R.mipmap.ic_img_default);
-                serverName.setText(fuWuSaleBean.getServerName() + "");
-                serverMoney.setText(fuWuSaleBean.getServerMoney() + "");
-                applyMd.setText(fuWuSaleBean.getApplyMd() + "");
-                typeText.setText(fuWuSaleBean.getServerType() + "");
-                addDate.setText(fuWuSaleBean.getCreatedAt() + "");
+                itemView = fuwuView2List.getChildAt(FLAG_POSTION - firstVisiblePosition);
 
             }
+        }
+        if (itemView != null) {
+
+            TextView serverName = itemView.findViewById(R.id.serverName);
+            TextView serverMoney = itemView.findViewById(R.id.server_money);
+            TextView applyMd = itemView.findViewById(R.id.apply_md);
+            TextView typeText = itemView.findViewById(R.id.type_text);
+            TextView addDate = itemView.findViewById(R.id.add_date);
+            ImageView ivServer = itemView.findViewById(R.id.iv_server);
+            ImageLoader.displayImageView(getContext(), fuWuSaleBean.getServerUrl(), ivServer, R.mipmap.ic_img_default);
+            serverName.setText(fuWuSaleBean.getServerName() + "");
+            serverMoney.setText(fuWuSaleBean.getServerMoney() + "");
+            applyMd.setText(fuWuSaleBean.getApplyMd() + "");
+            typeText.setText(fuWuSaleBean.getServerType() + "");
+            addDate.setText(fuWuSaleBean.getCreatedAt() + "");
+
         }
 
     }

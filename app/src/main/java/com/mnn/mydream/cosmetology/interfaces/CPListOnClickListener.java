@@ -11,5 +11,6 @@ public interface CPListOnClickListener {
     void onClickDismount(View v, int pos, CPDataBean cpDataBean);
 
     void onClickSale(View v, int pos, CPDataBean cpDataBean);
-
+    
+    void onClickDelete(View v, int pos, CPDataBean cpDataBean);
 }

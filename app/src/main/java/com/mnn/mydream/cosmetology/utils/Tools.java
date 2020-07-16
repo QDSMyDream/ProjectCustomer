@@ -12,7 +12,7 @@ import android.util.TypedValue;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 
-import com.mnn.mydream.cosmetology.bean.BeautyBeanKh;
+import com.mnn.mydream.cosmetology.bean.khBean.BeautyBeanKh;
 import com.mnn.mydream.cosmetology.bean.PickTimeBean;
 import com.mnn.mydream.cosmetology.bean.fuwuBean.FuWuSaleBean;
 import com.mnn.mydream.cosmetology.pickertime.TimePickerPopWin;
@@ -29,7 +29,6 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.Date;
 import java.util.List;
-import java.util.Objects;
 
 public class Tools {
 

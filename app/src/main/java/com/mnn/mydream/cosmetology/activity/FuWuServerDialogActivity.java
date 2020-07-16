@@ -110,7 +110,7 @@ public class FuWuServerDialogActivity extends AppCompatActivity {
 
     private void initView() {
 
-        fuWuSaleBean = (FuWuSaleBean) getIntent().getSerializableExtra(Constons.RESULT_FUWU_SERVER_STR_UPDATE_REQUEST);
+        fuWuSaleBean = (FuWuSaleBean) getIntent().getSerializableExtra(Constons.RESULT_UPDATE_REQUEST);
 
         serverMd.attachDataSource(Constons.OPERATION_MD);
         serverType.attachDataSource(Constons.ServerTypeString);
@@ -141,11 +141,11 @@ public class FuWuServerDialogActivity extends AppCompatActivity {
             //加载网络图片
             ImageLoader.displayImageView(this, fuWuSaleBean.getServerUrl(), serverImgPhoto, R.mipmap.ic_launcher_round);
 
-            title.setText("修改客户服务项目");
+            title.setText("修改客户服务项目界面");
         } else {
             FLAG_INDEX = 0;
 
-            title.setText("添加客户服务项目");
+            title.setText("添加客户服务项目界面");
         }
 
         serverTd.addTextChangedListener(new TextWatcher() {
@@ -530,7 +530,7 @@ public class FuWuServerDialogActivity extends AppCompatActivity {
 
                     Intent intent = new Intent();
                     Bundle bundle = new Bundle();
-                    bundle.putSerializable(Constons.RESULT_FUWU_SERVER_STR_UPDATE_REQUEST, fuWuSaleBean);
+                    bundle.putSerializable(Constons.RESULT_UPDATE_REQUEST, fuWuSaleBean);
                     intent.putExtras(bundle);
                     setResult(Constons.RESULT_FUWU_SERVER_CODE_UPDATE_REQUEST, intent);
 

@@ -14,6 +14,7 @@ import com.mnn.mydream.cosmetology.R;
 import com.mnn.mydream.cosmetology.bean.fuwuBean.CPDataBean;
 import com.mnn.mydream.cosmetology.bean.fuwuBean.FuWuSaleBean;
 import com.mnn.mydream.cosmetology.interfaces.CPListOnClickListener;
+import com.mnn.mydream.cosmetology.interfaces.SPGLListOnClickListener;
 import com.mnn.mydream.cosmetology.utils.ImageLoader;
 import com.zhy.android.percent.support.PercentLinearLayout;
 
@@ -91,21 +92,27 @@ public class CPListAdapter extends BaseAdapter {
         holder.saleBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                cpListOnClickListener.onClickSale(v, position, cpDataBean);
+                spglListOnClickListener.onClickSale(v, position, cpDataBean);
             }
         });
 
         holder.dismountBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                cpListOnClickListener.onClickDismount(v, position, cpDataBean);
+                spglListOnClickListener.onClickDismount(v, position, cpDataBean);
             }
         });
 
         holder.updateBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                cpListOnClickListener.onClickUpdate(v, position, cpDataBean);
+                spglListOnClickListener.onClickUpdate(v, position, cpDataBean);
+            }
+        });
+        holder.delete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                spglListOnClickListener.onClickDelete(v, position, cpDataBean);
             }
         });
 
@@ -113,11 +120,11 @@ public class CPListAdapter extends BaseAdapter {
         return convertView;
     }
 
-    public CPListOnClickListener cpListOnClickListener;
+    public SPGLListOnClickListener spglListOnClickListener;
 
 
-    public void setCpListOnClickListener(CPListOnClickListener cpListOnClickListener) {
-        this.cpListOnClickListener = cpListOnClickListener;
+    public void setCpListOnClickListener(SPGLListOnClickListener spglListOnClickListener) {
+        this.spglListOnClickListener = spglListOnClickListener;
     }
 
 
@@ -128,20 +135,6 @@ public class CPListAdapter extends BaseAdapter {
 
         if (posi >= visibleFirstPosi && posi <= visibleLastPosi) {
             View view = listView.getChildAt(posi - visibleFirstPosi);
-//            ViewHolder holder = (ViewHolder) view.getTag();
-            TextView serverName = view.findViewById(R.id.serverName);
-            TextView serverMoney = view.findViewById(R.id.server_money);
-            TextView applyMd = view.findViewById(R.id.apply_md);
-            TextView typeText = view.findViewById(R.id.type_text);
-            TextView addDate = view.findViewById(R.id.add_date);
-            ImageView ivServer = view.findViewById(R.id.iv_server);
-            //加载图片
-            ImageLoader.displayImageView(mContext, fuWuSaleBean.getServerUrl(), ivServer, R.mipmap.ic_img_default);
-            serverName.setText(fuWuSaleBean.getServerName() + "");
-            serverMoney.setText(fuWuSaleBean.getServerMoney() + "");
-            applyMd.setText(fuWuSaleBean.getApplyMd() + "");
-            typeText.setText(fuWuSaleBean.getServerType() + "");
-            addDate.setText(fuWuSaleBean.getCreatedAt() + "");
 
             notifyDataSetInvalidated();
 

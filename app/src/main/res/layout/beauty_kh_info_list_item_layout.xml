@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.zhy.android.percent.support.PercentRelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="center"
+    android:orientation="horizontal">
+
+    <com.zhy.android.percent.support.PercentRelativeLayout
+        android:id="@+id/slip_layout"
+        android:layout_width="match_parent"
+        android:layout_height="25dp"
+        android:layout_gravity="center_vertical"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp">
+
+        <TextView
+            android:id="@+id/str1"
+            style="@style/customerShowTextViewStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="5dp"
+            android:gravity="center"
+            android:text="ssssssssssssss"
+            android:textColor="@color/beauty_kh_info_content_text_color"
+
+            android:textSize="@dimen/text_size_16" />
+
+        <TextView
+            android:id="@+id/str2"
+            style="@style/customerShowTextViewStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="5dp"
+            android:gravity="center"
+            android:text="ssssssssssssss"
+            android:textColor="@color/beauty_kh_info_name_color"
+            android:textSize="@dimen/text_size_16" />
+
+    </com.zhy.android.percent.support.PercentRelativeLayout>
+</com.zhy.android.percent.support.PercentRelativeLayout>

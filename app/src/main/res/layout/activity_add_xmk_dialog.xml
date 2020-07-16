@@ -99,7 +99,7 @@
                     </com.zhy.android.percent.support.PercentLinearLayout>
 
                     <android.support.v7.widget.AppCompatEditText
-                        android:id="@+id/server_name"
+                        android:id="@+id/xmk_name"
                         style="@style/BeautyTitleStyle"
                         android:layout_height="match_parent"
                         android:layout_marginLeft="10dp"
@@ -150,7 +150,7 @@
                         app:layout_widthPercent="19.5%">
 
                         <com.applandeo.materialcalendarview.view.NiceSpinner
-                            android:id="@+id/server_type"
+                            android:id="@+id/xmk_type"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:gravity="center_vertical"
@@ -167,7 +167,6 @@
                         android:id="@+id/add_type_layout"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
-
                         android:background="@drawable/beauty_text_frame_shape"
                         android:gravity="center_vertical"
                         android:orientation="horizontal"
@@ -256,10 +255,10 @@
                         android:id="@+id/add_fuwu_layout"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
+                        android:layout_marginLeft="10dp"
                         android:background="@drawable/beauty_text_frame_shape"
                         android:gravity="center_vertical"
-                        android:orientation="horizontal"
-                        app:layout_marginLeftPercent="2%">
+                        android:orientation="horizontal">
 
                         <ImageView
                             android:id="@+id/add_img2"
@@ -295,18 +294,54 @@
                         android:layout_height="40dp"
                         android:gravity="right"
                         android:visibility="invisible"
-                        app:layout_widthPercent="11.5%">
-
-                    </com.zhy.android.percent.support.PercentLinearLayout>
+                        app:layout_widthPercent="11.5%"></com.zhy.android.percent.support.PercentLinearLayout>
 
                     <com.zhy.android.percent.support.PercentRelativeLayout
+                        android:id="@+id/server_content"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
                         android:background="@color/beauty_list_bg_color"
                         android:gravity="center_vertical"
-                        android:orientation="horizontal"
-                        app:layout_marginLeftPercent="2%">
+                        android:orientation="horizontal">
 
+                        <com.zhy.android.percent.support.PercentRelativeLayout
+                            android:id="@+id/server_content_title"
+                            android:layout_width="match_parent"
+                            android:layout_height="40dp"
+                            android:background="@color/beauty_kh_info_left_layout_color5">
+
+                            <TextView
+                                android:id="@+id/title1"
+                                style="@style/khinfo_text"
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:gravity="center"
+                                android:text="服务名称"
+                                app:layout_widthPercent="30%" />
+
+                            <TextView
+                                android:id="@+id/title2"
+                                style="@style/khinfo_text"
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:layout_toRightOf="@id/title1"
+                                android:gravity="center"
+                                android:text="规格"
+                                app:layout_widthPercent="20%" />
+
+                            <TextView
+                                android:id="@+id/title3"
+                                style="@style/khinfo_text"
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:layout_toRightOf="@id/title2"
+                                android:gravity="center"
+                                android:text="操作"
+                                app:layout_widthPercent="20%" />
+
+
+                        </com.zhy.android.percent.support.PercentRelativeLayout>
 
                     </com.zhy.android.percent.support.PercentRelativeLayout>
 
@@ -343,7 +378,7 @@
                     </com.zhy.android.percent.support.PercentLinearLayout>
 
                     <android.support.v7.widget.AppCompatEditText
-                        android:id="@+id/server_money"
+                        android:id="@+id/xmk_money"
                         style="@style/BeautyTitleStyle"
                         android:layout_height="match_parent"
                         android:layout_marginLeft="10dp"
@@ -389,7 +424,7 @@
                     </com.zhy.android.percent.support.PercentLinearLayout>
 
                     <android.support.v7.widget.AppCompatEditText
-                        android:id="@+id/server_time"
+                        android:id="@+id/xmk_time"
                         style="@style/BeautyTitleStyle"
                         android:layout_height="match_parent"
                         android:layout_marginLeft="10dp"
@@ -417,7 +452,7 @@
                         app:layout_widthPercent="13%">
 
                         <com.example.smoothcheckbox.SmoothCheckBox
-                            android:id="@+id/check_box2"
+                            android:id="@+id/vip_check_box"
                             android:layout_width="25dp"
                             android:layout_height="25dp"
                             android:layout_centerVertical="true"
@@ -430,7 +465,7 @@
                             android:layout_height="wrap_content"
                             android:layout_centerVertical="true"
                             android:layout_marginLeft="5dp"
-                            android:layout_toRightOf="@id/check_box2"
+                            android:layout_toRightOf="@id/vip_check_box"
                             android:text="不启用" />
 
                     </com.zhy.android.percent.support.PercentRelativeLayout>
@@ -478,7 +513,7 @@
                         app:layout_widthPercent="13%">
 
                         <com.example.smoothcheckbox.SmoothCheckBox
-                            android:id="@+id/check_box3"
+                            android:id="@+id/permanent_validity_check_box"
                             android:layout_width="25dp"
                             android:layout_height="25dp"
                             android:layout_centerVertical="true"
@@ -491,7 +526,7 @@
                             android:layout_height="wrap_content"
                             android:layout_centerVertical="true"
                             android:layout_marginLeft="5dp"
-                            android:layout_toRightOf="@id/check_box3"
+                            android:layout_toRightOf="@id/permanent_validity_check_box"
                             android:text="永久有效" />
 
                     </com.zhy.android.percent.support.PercentRelativeLayout>
@@ -527,7 +562,7 @@
                         android:orientation="horizontal">
 
                         <com.example.smoothcheckbox.SmoothCheckBox
-                            android:id="@+id/check_box4"
+                            android:id="@+id/immediate_effect_check_box"
                             android:layout_width="25dp"
                             android:layout_height="25dp"
                             android:layout_centerVertical="true"
@@ -540,7 +575,7 @@
                             android:layout_height="wrap_content"
                             android:layout_centerVertical="true"
                             android:layout_marginLeft="5dp"
-                            android:layout_toRightOf="@id/check_box4"
+                            android:layout_toRightOf="@id/immediate_effect_check_box"
                             android:text="购买后立即生效，有效期至" />
 
                     </com.zhy.android.percent.support.PercentRelativeLayout>
@@ -557,7 +592,7 @@
 
 
                         <TextView
-                            android:id="@+id/expire_txt"
+                            android:id="@+id/expire_txt_time"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:gravity="center"
@@ -569,7 +604,7 @@
                             app:layout_widthPercent="85%" />
 
                         <ImageView
-                            android:id="@+id/expire_img"
+                            android:id="@+id/expire_txt_img"
                             android:layout_width="wrap_content"
                             android:layout_height="match_parent"
                             android:src="@mipmap/time" />
@@ -617,7 +652,7 @@
                         android:orientation="horizontal">
 
                         <com.example.smoothcheckbox.SmoothCheckBox
-                            android:id="@+id/check_box5"
+                            android:id="@+id/empower_check_box"
                             android:layout_width="25dp"
                             android:layout_height="25dp"
                             android:layout_centerVertical="true"
@@ -630,7 +665,7 @@
                             android:layout_height="wrap_content"
                             android:layout_centerVertical="true"
                             android:layout_marginLeft="5dp"
-                            android:layout_toRightOf="@id/check_box5"
+                            android:layout_toRightOf="@id/empower_check_box"
                             android:text="无法授权" />
 
                     </com.zhy.android.percent.support.PercentRelativeLayout>
@@ -643,7 +678,7 @@
                         android:orientation="horizontal">
 
                         <com.example.smoothcheckbox.SmoothCheckBox
-                            android:id="@+id/check_box6"
+                            android:id="@+id/may_authorize_check_box"
                             android:layout_width="25dp"
                             android:layout_height="25dp"
                             android:layout_centerVertical="true"
@@ -656,7 +691,7 @@
                             android:layout_height="wrap_content"
                             android:layout_centerVertical="true"
                             android:layout_marginLeft="5dp"
-                            android:layout_toRightOf="@id/check_box6"
+                            android:layout_toRightOf="@id/may_authorize_check_box"
                             android:text="可以授权给他/她人使用" />
 
                     </com.zhy.android.percent.support.PercentRelativeLayout>
@@ -703,7 +738,7 @@
 
                         <com.applandeo.materialcalendarview.view.NiceSpinner
 
-                            android:id="@+id/server_md"
+                            android:id="@+id/xmk_md"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:gravity="center_vertical"
@@ -906,6 +941,7 @@
 
 
                         <com.zhy.android.percent.support.PercentRelativeLayout
+                            android:id="@+id/card_cover"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:layout_marginLeft="10dp"
@@ -1009,6 +1045,7 @@
 
                     <android.support.v7.widget.AppCompatEditText
 
+                        android:id="@+id/xmk_num"
                         style="@style/BeautyTitleStyle"
                         android:layout_height="match_parent"
                         android:layout_marginLeft="10dp"

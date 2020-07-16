@@ -11,20 +11,36 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.WindowManager;
+import android.widget.ImageView;
+import android.widget.ListView;
+import android.widget.TextView;
 
 import com.luck.picture.lib.PictureSelector;
 import com.luck.picture.lib.config.PictureConfig;
 import com.luck.picture.lib.config.PictureMimeType;
 import com.luck.picture.lib.entity.LocalMedia;
 import com.mnn.mydream.cosmetology.R;
+import com.mnn.mydream.cosmetology.adapter.BeautyKhInfoListAdapter;
+import com.mnn.mydream.cosmetology.bean.User;
+import com.mnn.mydream.cosmetology.bean.khBean.BeautyBeanKh;
+import com.mnn.mydream.cosmetology.bean.khBean.BeautyListBeanKh;
 import com.mnn.mydream.cosmetology.dialog.CommonDialog;
 import com.mnn.mydream.cosmetology.utils.Constons;
+import com.mnn.mydream.cosmetology.utils.ImageLoader;
 import com.mnn.mydream.cosmetology.utils.ToastUtils;
+import com.mnn.mydream.cosmetology.view.CircleImageView;
+import com.mnn.mydream.cosmetology.view.MyViewPager;
+import com.zhy.android.percent.support.PercentLinearLayout;
+import com.zhy.android.percent.support.PercentRelativeLayout;
 
 import java.io.File;
+import java.util.ArrayList;
 import java.util.List;
 
+import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
+import cn.bmob.v3.BmobUser;
 import cn.bmob.v3.datatype.BmobFile;
 import cn.bmob.v3.exception.BmobException;
 import cn.bmob.v3.listener.UploadFileListener;
@@ -38,6 +54,112 @@ import cn.bmob.v3.listener.UploadFileListener;
 public class BeautyKHInfoActivity extends AppCompatActivity {
 
     private String TAG = "BeautyKHInfoActivity";
+
+    @BindView(R.id.title)
+    TextView title;
+    @BindView(R.id.kh_tx)
+    CircleImageView khTx;
+    @BindView(R.id.kh_vip)
+    TextView khVip;
+    @BindView(R.id.kh_vip_layout)
+    PercentLinearLayout khVipLayout;
+    @BindView(R.id.kh_name)
+    TextView khName;
+    @BindView(R.id.top_list1)
+    ListView topList1;
+    @BindView(R.id.top_layout1)
+    PercentRelativeLayout topLayout1;
+    @BindView(R.id.top_list2)
+    ListView topList2;
+    @BindView(R.id.top_layout2)
+    PercentLinearLayout topLayout2;
+    @BindView(R.id.top_list3)
+    ListView topList3;
+    @BindView(R.id.top_layout3)
+    PercentLinearLayout topLayout3;
+    @BindView(R.id.label_text)
+    TextView labelText;
+    @BindView(R.id.top_list4)
+    TextView topList4;
+    @BindView(R.id.top_layout4)
+    PercentLinearLayout topLayout4;
+    @BindView(R.id.top_info_layout)
+    PercentLinearLayout topInfoLayout;
+    @BindView(R.id.content_left_layout1_text1)
+    TextView contentLeftLayout1Text1;
+    @BindView(R.id.content_left_layout1_text2)
+    TextView contentLeftLayout1Text2;
+    @BindView(R.id.content_left_layout1_text3)
+    TextView contentLeftLayout1Text3;
+    @BindView(R.id.content_left_layout1_text4)
+    TextView contentLeftLayout1Text4;
+    @BindView(R.id.content_left_layout1)
+    PercentRelativeLayout contentLeftLayout1;
+    @BindView(R.id.content_left_layout2_text1)
+    TextView contentLeftLayout2Text1;
+    @BindView(R.id.content_left_layout2_text2)
+    TextView contentLeftLayout2Text2;
+    @BindView(R.id.content_left_layout2_text3)
+    TextView contentLeftLayout2Text3;
+    @BindView(R.id.content_left_layout2_text4)
+    TextView contentLeftLayout2Text4;
+    @BindView(R.id.content_left_layout2)
+    PercentRelativeLayout contentLeftLayout2;
+    @BindView(R.id.content_left_layout3_text1)
+    TextView contentLeftLayout3Text1;
+    @BindView(R.id.content_left_layout3_text2)
+    TextView contentLeftLayout3Text2;
+    @BindView(R.id.content_left_layout3_text3)
+    TextView contentLeftLayout3Text3;
+    @BindView(R.id.content_left_layout3_text4)
+    TextView contentLeftLayout3Text4;
+    @BindView(R.id.content_left_layout3)
+    PercentRelativeLayout contentLeftLayout3;
+    @BindView(R.id.dc_fuwu)
+    TextView dcFuwu;
+    @BindView(R.id.yhq)
+    TextView yhq;
+    @BindView(R.id.qk)
+    TextView qk;
+    @BindView(R.id.zsj)
+    TextView zsj;
+    @BindView(R.id.content_left_layout4)
+    PercentLinearLayout contentLeftLayout4;
+    @BindView(R.id.content_left_layout)
+    PercentLinearLayout contentLeftLayout;
+    @BindView(R.id.content_right_layout2_text1)
+    TextView contentRightLayout2Text1;
+    @BindView(R.id.content_right_layout2_img1)
+    ImageView contentRightLayout2Img1;
+    @BindView(R.id.content_right_layout2_text2)
+    TextView contentRightLayout2Text2;
+    @BindView(R.id.content_right_layout2_img2)
+    ImageView contentRightLayout2Img2;
+    @BindView(R.id.content_right_layout3)
+    PercentLinearLayout contentRightLayout3;
+    @BindView(R.id.content_right_layout2_text3)
+    TextView contentRightLayout2Text3;
+    @BindView(R.id.content_right_layout2)
+    PercentRelativeLayout contentRightLayout2;
+    @BindView(R.id.content_right_list)
+    ListView contentRightList;
+    @BindView(R.id.content_right_layout)
+    PercentLinearLayout contentRightLayout;
+    @BindView(R.id.bottom_text1)
+    TextView bottomText1;
+    @BindView(R.id.bottom_text2)
+    TextView bottomText2;
+    @BindView(R.id.bottom_text3)
+    TextView bottomText3;
+    @BindView(R.id.bottom_text4)
+    TextView bottomText4;
+    @BindView(R.id.viewpagers)
+    MyViewPager viewpagers;
+
+
+    private BeautyBeanKh beautyBeanKh;
+
+
     private String picPath;
 
     @Override
@@ -45,11 +167,50 @@ public class BeautyKHInfoActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_kh_info_layout);
+        ButterKnife.bind(this);
         initView();
 
     }
 
     private void initView() {
+
+        beautyBeanKh = (BeautyBeanKh) getIntent().getSerializableExtra(Constons.RESULT_KG_INFO_code_REQUEST);
+
+        if (beautyBeanKh == null) {
+            return;
+        }
+        //加载网络图片
+        ImageLoader.displayImageView(this, beautyBeanKh.getTx(), khTx, R.mipmap.def_photo);
+        khName.setText(beautyBeanKh.getName());
+        khVip.setText(beautyBeanKh.getHy());
+
+        List<BeautyListBeanKh> beautyListBeanKhs1 = new ArrayList<>();
+        beautyListBeanKhs1.add(new BeautyListBeanKh("手机", beautyBeanKh.getPhone()));
+        beautyListBeanKhs1.add(new BeautyListBeanKh("会员日期", beautyBeanKh.getCreatedAt()));
+        beautyListBeanKhs1.add(new BeautyListBeanKh("归属门店", beautyBeanKh.getMd()));
+        User user = BmobUser.getCurrentUser(User.class);
+        beautyListBeanKhs1.add(new BeautyListBeanKh("性别", beautyBeanKh.getSex()));
+        beautyListBeanKhs1.add(new BeautyListBeanKh("来源", beautyBeanKh.getLy()));
+        beautyListBeanKhs1.add(new BeautyListBeanKh("所属技师", user.getUsername()));//技师为当前登陆客户
+        beautyListBeanKhs1.add(new BeautyListBeanKh("所属销售", "--"));//技师为当前登陆客户
+        beautyListBeanKhs1.add(new BeautyListBeanKh("最近到店", beautyBeanKh.getCreatedAt().equals(beautyBeanKh.getUpdatedAt()) ? "--" : beautyBeanKh.getUpdatedAt()));
+        beautyListBeanKhs1.add(new BeautyListBeanKh("上次消费项目", "--"));
+        beautyListBeanKhs1.add(new BeautyListBeanKh("累计消费", "--"));
+        beautyListBeanKhs1.add(new BeautyListBeanKh("本年消费", "--"));
+
+        BeautyKhInfoListAdapter beautyKhInfoListAdapter = new BeautyKhInfoListAdapter(getBaseContext(), beautyListBeanKhs1, 1);
+        topList1.setAdapter(beautyKhInfoListAdapter);
+
+        BeautyKhInfoListAdapter beautyKhInfoListAdapter2 = new BeautyKhInfoListAdapter(getBaseContext(), beautyListBeanKhs1, 2);
+        topList2.setAdapter(beautyKhInfoListAdapter2);
+
+        BeautyKhInfoListAdapter beautyKhInfoListAdapter3 = new BeautyKhInfoListAdapter(getBaseContext(), beautyListBeanKhs1, 3);
+        topList3.setAdapter(beautyKhInfoListAdapter3);
+
+        topList4.setText(beautyBeanKh.getRemarksContent());//标签
+
+
+
 
     }
 
@@ -231,4 +392,21 @@ public class BeautyKHInfoActivity extends AppCompatActivity {
     };
 
 
+    @OnClick({R.id.content_right_layout2_img1, R.id.content_right_layout2_img2, R.id.bottom_text1, R.id.bottom_text2, R.id.bottom_text3, R.id.bottom_text4})
+    public void onViewClicked(View view) {
+        switch (view.getId()) {
+            case R.id.content_right_layout2_img1:
+                break;
+            case R.id.content_right_layout2_img2:
+                break;
+            case R.id.bottom_text1:
+                break;
+            case R.id.bottom_text2:
+                break;
+            case R.id.bottom_text3:
+                break;
+            case R.id.bottom_text4:
+                break;
+        }
+    }
 }

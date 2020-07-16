@@ -1,13 +1,8 @@
 package com.mnn.mydream.cosmetology.fragment.beauty.khfragments;
 
-import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
-import android.support.design.widget.TabLayout;
-import android.support.v4.app.Fragment;
-import android.support.v4.view.ViewPager;
 import android.support.v7.widget.AppCompatButton;
 import android.support.v7.widget.AppCompatEditText;
 import android.text.Editable;
@@ -16,7 +11,6 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.inputmethod.InputMethodManager;
 import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -27,10 +21,10 @@ import com.luck.picture.lib.config.PictureConfig;
 import com.luck.picture.lib.config.PictureMimeType;
 import com.luck.picture.lib.entity.LocalMedia;
 import com.mnn.mydream.cosmetology.R;
-import com.mnn.mydream.cosmetology.adapter.fragmentAdapter.MyViewPagerAdapter;
-import com.mnn.mydream.cosmetology.bean.BeautyBeanKh;
+import com.mnn.mydream.cosmetology.bean.khBean.BeautyBeanKh;
 import com.mnn.mydream.cosmetology.bean.User;
 import com.mnn.mydream.cosmetology.dialog.CommonDialog;
+import com.mnn.mydream.cosmetology.eventBus.EventBusAddKhMsg;
 import com.mnn.mydream.cosmetology.pickertime.TimePickerPopWin;
 import com.mnn.mydream.cosmetology.utils.CommonUtil;
 import com.mnn.mydream.cosmetology.utils.Constons;
@@ -41,13 +35,13 @@ import com.mnn.mydream.cosmetology.view.CircleImageView;
 import com.zhy.android.percent.support.PercentLinearLayout;
 import com.zhy.android.percent.support.PercentRelativeLayout;
 
+import org.greenrobot.eventbus.EventBus;
+
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
-import butterknife.BindView;
 import butterknife.ButterKnife;
-import butterknife.OnClick;
 import butterknife.Unbinder;
 import cn.bmob.v3.BmobUser;
 import cn.bmob.v3.datatype.BmobFile;
@@ -145,9 +139,7 @@ public class XJKHFragment extends SupportFragment implements View.OnClickListene
         btnCancel = (AppCompatButton) xjkhView.findViewById(R.id.btn_cancel);
         spinnerMd = (NiceSpinner) xjkhView.findViewById(R.id.spinner_md);
         photoTx = (PercentRelativeLayout) xjkhView.findViewById(R.id.layout_photo);
-
         imgPhoto = xjkhView.findViewById(R.id.img_photo);
-
         photoTx.setOnClickListener(this);
         male.setOnClickListener(this);
         femle.setOnClickListener(this);
@@ -158,7 +150,6 @@ public class XJKHFragment extends SupportFragment implements View.OnClickListene
         khhyStrings.add("普通会员");
         khhyStrings.add("白金会员");
         spinnerHy.attachDataSource(khhyStrings);
-
         khmdStrings.clear();
         khmdStrings.add("苏州曼哈顿店");
         spinnerMd.attachDataSource(khmdStrings);
@@ -330,16 +321,36 @@ public class XJKHFragment extends SupportFragment implements View.OnClickListene
 
         BeautyBeanKh beautyBeanKh = new BeautyBeanKh();
         beautyBeanKh.setTx(picPath);
-        beautyBeanKh.setMd(md);
-        beautyBeanKh.setBir(bir);
-        beautyBeanKh.setHy(hy);
         beautyBeanKh.setPhone(phone);
         beautyBeanKh.setName(name);
+
+        beautyBeanKh.setMd(md);
+
+        beautyBeanKh.setBir(bir);
+
         beautyBeanKh.setSex(sex);
-        beautyBeanKh.setJs(js);
+
+        beautyBeanKh.setHy(hy);
+
         beautyBeanKh.setLy(ly);
-        beautyBeanKh.setRemarksContent(remarks);
-        beautyBeanKh.setBmobUser(BmobUser.getCurrentUser(User.class));
+
+        beautyBeanKh.setRemarksContent(remarks);//标签
+
+        beautyBeanKh.setBmobUser(BmobUser.getCurrentUser(User.class));//添加人
+
+        beautyBeanKh.setJs("");//技师
+
+
+        beautyBeanKh.setXmkJson("");//项目卡
+        beautyBeanKh.setCxkJson("");//储蓄卡
+        beautyBeanKh.setLpkJson("");//礼品卡
+
+        beautyBeanKh.setDcfw(0);//单次服务
+        beautyBeanKh.setYhq(0);//优惠券
+        beautyBeanKh.setQk(0);//欠款
+        beautyBeanKh.setZsj(0);//赠送金
+
+
         beautyBeanKh.save(new SaveListener<String>() {
             @Override
             public void done(String s, BmobException e) {
@@ -356,6 +367,8 @@ public class XJKHFragment extends SupportFragment implements View.OnClickListene
                 }
             }
         });
+
+        EventBus.getDefault().post(new EventBusAddKhMsg(Constons.SELECT_SELECT_ADD_KH, beautyBeanKh));
 
 
     }
@@ -381,7 +394,6 @@ public class XJKHFragment extends SupportFragment implements View.OnClickListene
         //默认女
         CommonUtil.itemUnCheck(male);
         femle.setChecked(true);
-
 
         birTipsLayout.setVisibility(View.GONE);
         hyTipsLayout.setVisibility(View.GONE);

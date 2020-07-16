@@ -53,7 +53,7 @@ import cn.bmob.v3.listener.UploadFileListener;
 /**
  * 创建人 :MyDream
  * 创建时间：2020/5/3 18:18
- * 类描述：添加服务
+ * 类描述：结账界面
  */
 public class BeautyCheckOutActivity extends AppCompatActivity {
     private String TAG = "BeautyCheckOutActivity";

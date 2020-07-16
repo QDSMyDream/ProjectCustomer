@@ -140,7 +140,6 @@ public class BeautyActivity extends SupportActivity implements BeautyContentList
     PercentLinearLayout layoutContent;
 
 
-
     private int leftListViewImgs[] = new int[]{R.mipmap.gzt, R.mipmap.jygk, R.mipmap.gkgl, R.mipmap.ddgl, R.mipmap.yuyue, R.mipmap.sjzx, R.mipmap.yx, R.mipmap.xm, R.mipmap.xtsz};
 
     private String leftListViewStrings[] = new String[]{"工作台", "经营概况", "顾客管理", "订单管理", "预约管理", "数据中心", "营销中心", "服务管理", "系统设置"};
@@ -299,9 +298,9 @@ public class BeautyActivity extends SupportActivity implements BeautyContentList
             case R.id.add_customer_layout:
                 showHideFragment(mFragments[2], mFragments[Constons.BEAUTY_FRAGMENT_POSTION]);
                 Constons.BEAUTY_FRAGMENT_POSTION = 2;
+                verticalTabLayout.setTabSelected(2);
 //                BeautyListViewAdapter.BEAUTY_SELECT_ITEM = 2;
 //                isAdapter(beautyListViewAdapter);
-
 
                 break;
 
@@ -312,7 +311,6 @@ public class BeautyActivity extends SupportActivity implements BeautyContentList
 
         }
     }
-
 
 //    private View.OnClickListener onClickListener = new View.OnClickListener() {
 //        @Override
