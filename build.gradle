@@ -3,10 +3,13 @@
 buildscript {
 
     repositories {
-        google()
-        jcenter()
-        maven{ url 'https://maven.aliyun.com/repository/google'}
+        maven { url 'https://maven.aliyun.com/repository/public' }
+        maven { url 'https://maven.aliyun.com/repository/google' }
+        maven { url 'http://maven.aliyun.com/nexus/content/groups/public/' }
+
     }
+
+
     dependencies {
         classpath 'com.android.tools.build:gradle:3.2.0'
         classpath 'com.jfrog.bintray.gradle:gradle-bintray-plugin:1.6'
@@ -20,9 +23,12 @@ buildscript {
 
 allprojects {
     repositories {
-        google()
-        jcenter()
+        maven { url 'https://maven.aliyun.com/repository/public' }
+        maven { url 'https://maven.aliyun.com/repository/google' }
+        maven { url 'http://maven.aliyun.com/nexus/content/groups/public/' }
         maven { url "https://jitpack.io" }
+
+
         //Bmob的maven仓库地址--必填
         maven {url 'https://dl.bintray.com/chaozhouzhang/maven' }
 

@@ -27,6 +27,7 @@ import com.luck.picture.lib.entity.LocalMedia;
 import com.mnn.mydream.cosmetology.R;
 import com.mnn.mydream.cosmetology.bean.fuwuBean.FuWuSaleBean;
 import com.mnn.mydream.cosmetology.bean.fuwuBean.ServerTypeBean;
+import com.mnn.mydream.cosmetology.bmob.UserBeans;
 import com.mnn.mydream.cosmetology.dialog.BeautyAddServerTypeDialog;
 import com.mnn.mydream.cosmetology.dialog.CommonDialog;
 import com.mnn.mydream.cosmetology.utils.Constons;
@@ -172,6 +173,8 @@ public class XMKDialogActivity extends AppCompatActivity {
 
             }
         });
+
+
 
     }
 

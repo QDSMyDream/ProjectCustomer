@@ -1,5 +1,7 @@
 package com.mnn.mydream.cosmetology.bean.fuwuBean;
 
+import com.mnn.mydream.cosmetology.bmob.BeanBmob;
+
 import cn.bmob.v3.BmobObject;
 
 /**
@@ -7,7 +9,7 @@ import cn.bmob.v3.BmobObject;
  * 创建日期：2020/7/12 18:43
  * 类描述 :产品bean
  */
-public class CPDataBean extends BmobObject {
+public class CPDataBean extends BeanBmob {
 
 
     private String cpUrl;

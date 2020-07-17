@@ -127,4 +127,23 @@ public class Constons {
      */
     public static List<String> SelectServerTypeString = new ArrayList<>();
 
+
+
+
+
+    public static final int POST_ADD_SUCCESS = 0x3e8;
+    public static final int POST_DROP_SUCCESS = 0x3e9;
+    public static final int POST_UPDATE_SUCCESS = 0x3ea;
+    public static final int POST_DELETE_SUCCESS = 0x3eb;
+
+
+
+
+
+
+
+
+
+
+
 }
