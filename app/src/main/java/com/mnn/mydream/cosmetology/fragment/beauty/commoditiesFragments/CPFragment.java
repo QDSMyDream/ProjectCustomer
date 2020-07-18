@@ -456,7 +456,7 @@ public class CPFragment extends SupportFragment {
     //下架
     private void adapter1Dis(CPDataBean cpDataBean, int pos) {
         cpDataBean.setCpSaleFlag(false);
-        cpDataBean.updateBean(Constons.POST_UPDATE_SUCCESS, new UpdateListener() {
+        cpDataBean.update( new UpdateListener() {
             @Override
             public void done(BmobException e) {
                 if (e == null) {
@@ -570,20 +570,23 @@ public class CPFragment extends SupportFragment {
                             cpListAdapter2.deleteView(pos, cpView2ListView);
                         }
 
-                        cpDataBean.dorp(Constons.POST_DELETE_SUCCESS,null);
 //
-//                        cpDataBean.delete(new UpdateListener() {
-//                            @Override
-//                            public void done(BmobException e) {
-//                                if (e == null) {
-//
-//                                    ToastUtils.showToast(getContext(), "删除成功", true);
-//                                } else {
-//
-//                                    ToastUtils.showToast(getContext(), "删除失败" + e.getMessage().toString(), false);
-//                                }
-//                            }
-//                        });
+                        cpDataBean.delete(new UpdateListener() {
+                            @Override
+                            public void done(BmobException e) {
+                                if (e == null) {
+                                    String s2 = String.format(getString(R.string.beauty_within_dismount_txt), cpSaleDataBeans.size());
+                                    dismountText.setText(s2);
+                                    String s1 = String.format(getString(R.string.beauty_within_saleing_txt), cpDismounDataBeans.size());
+                                    saleText.setText(s1);
+
+                                    ToastUtils.showToast(getContext(), "删除成功", true);
+                                } else {
+
+                                    ToastUtils.showToast(getContext(), "删除失败" + e.getMessage().toString(), false);
+                                }
+                            }
+                        });
                         beautyDeleteDialog.dismiss();
                     }
                 });
