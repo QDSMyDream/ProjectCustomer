@@ -1,16 +1,26 @@
 package com.mnn.mydream.cosmetology.fragment.beauty.commoditiesFragments;
 
-import android.annotation.SuppressLint;
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-
+import android.support.v7.widget.AppCompatEditText;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
+import com.applandeo.materialcalendarview.view.NiceSpinner;
 import com.mnn.mydream.cosmetology.R;
+import com.mnn.mydream.cosmetology.activity.FuWuServerDialogActivity;
+import com.mnn.mydream.cosmetology.activity.XMKDialogActivity;
+import com.mnn.mydream.cosmetology.utils.Constons;
+import com.mnn.mydream.cosmetology.view.MyViewPager;
+import com.zhy.android.percent.support.PercentLinearLayout;
+import com.zhy.android.percent.support.PercentRelativeLayout;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+import butterknife.OnClick;
+import butterknife.Unbinder;
 import me.yokeyword.fragmentation.SupportFragment;
 
 
@@ -22,6 +32,25 @@ import me.yokeyword.fragmentation.SupportFragment;
 
 public class XMKFragment extends SupportFragment {
 
+    @BindView(R.id.xmk_name_edit)
+    AppCompatEditText xmkNameEdit;
+    @BindView(R.id.xmk_type_spinner)
+    NiceSpinner xmkTypeSpinner;
+    @BindView(R.id.xmk_server_btn)
+    TextView xmkServerBtn;
+    @BindView(R.id.remake)
+    TextView remake;
+    @BindView(R.id.remake_layout)
+    PercentRelativeLayout remakeLayout;
+    @BindView(R.id.sale_text)
+    TextView saleText;
+    @BindView(R.id.dismount_text)
+    TextView dismountText;
+    @BindView(R.id.add_xmk_layout)
+    PercentLinearLayout addXmkLayout;
+    @BindView(R.id.viewpagers)
+    MyViewPager viewpagers;
+    Unbinder unbinder;
     private View view;
 
     public static XMKFragment newInstance() {
@@ -37,14 +66,50 @@ public class XMKFragment extends SupportFragment {
 
         view = inflater.inflate(R.layout.xmk_fragment, container, false);
 
-//        unbinder = ButterKnife.bind(this, view);
-//        initview();
 
+        unbinder = ButterKnife.bind(this, view);
+        initview();
         return view;
 
     }
 
-//    private void initview() {
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        unbinder.unbind();
+    }
+
+    @OnClick({R.id.xmk_server_btn, R.id.remake_layout, R.id.sale_text, R.id.dismount_text, R.id.add_xmk_layout})
+    public void onViewClicked(View view) {
+        switch (view.getId()) {
+            case R.id.xmk_server_btn:
+                break;
+            case R.id.remake_layout:
+                break;
+            case R.id.sale_text:
+                break;
+            case R.id.dismount_text:
+                break;
+            case R.id.add_xmk_layout:
+
+                setXmkDialog();
+                break;
+        }
+    }
+
+    private void setXmkDialog() {
+
+        Intent Intent = new Intent(getActivity(), XMKDialogActivity.class);
+        startActivityForResult(Intent, Constons.RESULT_XMK_CODE_VIEW_REQUEST);
+
+    }
+
+
+
+    private void initview() {
+
+
+    }
 //
 //        serverTypeSpinner.attachDataSource(Constons.SelectServerTypeString);
 //

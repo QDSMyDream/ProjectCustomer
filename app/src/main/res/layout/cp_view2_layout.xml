@@ -63,7 +63,7 @@
                 style="@style/HorTextStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="价格"
+                android:text="规格"
                 app:layout_widthPercent="10%" />
             <TextView
                 android:id="@+id/add_date"

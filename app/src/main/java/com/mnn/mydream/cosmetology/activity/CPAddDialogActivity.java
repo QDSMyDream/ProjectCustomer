@@ -121,6 +121,7 @@ public class CPAddDialogActivity extends AppCompatActivity {
     }
 
     private void initView() {
+
         cpDataBean = (CPDataBean) getIntent().getSerializableExtra(Constons.RESULT_UPDATE_REQUEST);
 
         cpMd.attachDataSource(Constons.OPERATION_MD);
@@ -133,7 +134,6 @@ public class CPAddDialogActivity extends AppCompatActivity {
                     cpCheckSpecifications.setVisibility(View.VISIBLE);
                     cpCheckSpecificationsText.setVisibility(View.VISIBLE);
                 } else {
-
                     cpCheckSpecifications.setVisibility(View.GONE);
                     cpCheckSpecificationsText.setVisibility(View.GONE);
                 }
@@ -149,17 +149,15 @@ public class CPAddDialogActivity extends AppCompatActivity {
                     cpVipMoney.setAlpha((float) 0.5);
                     cpVipMoney.setHint(getString(R.string.beauty_not_enabled));
                 } else {
-
                     cpVipMoney.setEnabled(true);
                     cpVipMoney.setAlpha((float) 1);
                     cpVipMoney.setHint(getString(R.string.beauty_cp_vip_money));
-
                 }
             }
         });
 
-
         if (cpDataBean != null) {
+
             CP_FLAG = false;
             title.setText("修改产品界面");
 
@@ -187,12 +185,13 @@ public class CPAddDialogActivity extends AppCompatActivity {
             cpVipMoney.setText(cpDataBean.getCpVipMoney() + "");
 
         } else {
-
             CP_FLAG = true;
             title.setText("添加产品界面");
             cpCheckBox2.setChecked(true);
-
         }
+
+
+
     }
 
 
@@ -521,9 +520,12 @@ public class CPAddDialogActivity extends AppCompatActivity {
             cpDataBean.setCpNum(StringUtils.isEmpty(cpNum.getText().toString()) ? 0 : Integer.parseInt(cpNum.getText().toString()));
             //vip价钱
             cpDataBean.setOpenVipMoney(cpCheckBox2.isChecked());
-            cpDataBean.setCpVipMoney(Float.parseFloat(cpVipMoney.getText().toString()));
+
+            cpDataBean.setCpVipMoney(StringUtils.isEmpty(cpVipMoney.getText().toString()) ? 0 : Float.parseFloat(cpVipMoney.getText().toString()));
+
             //规格
             cpDataBean.setOpenSpecifications(cpCheckBox1.isChecked());
+
             cpDataBean.setIntSpecifications(StringUtils.isEmpty(cpCheckSpecifications.getText().toString()) ? 0 : Integer.parseInt(cpCheckSpecifications.getText().toString()));
             //特点
             cpDataBean.setCpCharacteristic(characteristicContent.getText().toString());

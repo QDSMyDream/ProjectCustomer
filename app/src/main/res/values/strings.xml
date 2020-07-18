@@ -81,6 +81,14 @@
 
     <string name="beauty_xmk_expire_time">选择到期日期</string>
 
+    <string name="beauty_xmk_total_num">总次数</string>
+
+
+
+
+
+
+
     <!--储蓄卡-->
     <string name="beauty_cxk_money">储蓄卡价格</string>
 
@@ -132,6 +140,7 @@
     <string name="beauty_within_select_all_text">共查询到%1$d位顾客</string>
 
     <string name="beauty_within_hint_recharge_money">请输入充值金额</string>
+
     <string name="beauty_within_hint_give_money">请输入赠送金额</string>
 
     <string name="beauty_kh_info_text_small1">%1$d 张</string>
@@ -143,4 +152,19 @@
     <string name="beauty_kh_info_text_small4">顾客到店次数 %1$d 次</string>
 
     <string name="beauty_kh_info_text_small5">%1$d 年</string>
+
+
+
+    <string name="beauty_add_service_select_fuwu">查询到上架%1$d个服务</string>
+
+    <string name="beauty_add_service_choice_fuwu">已选择%1$d个</string>
+
+
+
+
+
+
+
+
 </resources>
+

@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.zhy.android.percent.support.PercentLinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+    <!--listview提示状态栏-->
+    <com.zhy.android.percent.support.PercentLinearLayout
+        android:id="@+id/title_layout"
+        android:layout_width="wrap_content"
+        android:layout_height="60dp"
+        android:layout_gravity="center_horizontal"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <com.zhy.android.percent.support.PercentLinearLayout
+            android:id="@+id/select_server_all"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <com.zhy.android.percent.support.PercentRelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                app:layout_widthPercent="30%">
+
+                <ImageView
+                    android:id="@+id/iv_server"
+                    android:layout_width="50dp"
+                    android:layout_height="match_parent"
+                    android:layout_margin="3dp"
+                    android:layout_marginLeft="5dp"
+                    android:src="@mipmap/ic_launcher" />
+
+                <com.zhy.android.percent.support.PercentLinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:layout_toRightOf="@id/iv_server"
+                    android:gravity="center_vertical"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/serverName"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:maxLines="1"
+                        android:singleLine="true"
+                        android:text="商品名"
+                        android:textColor="@color/beauty_text_color"
+                        android:textSize="@dimen/text_size_18" />
+
+                    <com.zhy.android.percent.support.PercentLinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_toRightOf="@id/iv_server"
+                        android:gravity="center"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:layout_width="22dp"
+                            android:layout_height="wrap_content"
+                            android:padding="2dp"
+                            android:src="@mipmap/money_black" />
+
+                        <TextView
+                            android:id="@+id/server_money"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:maxLines="1"
+                            android:singleLine="true"
+                            android:text="11111"
+                            android:textColor="@color/beauty_text_color"
+                            android:textSize="@dimen/text_size_16" />
+
+                    </com.zhy.android.percent.support.PercentLinearLayout>
+                </com.zhy.android.percent.support.PercentLinearLayout>
+
+            </com.zhy.android.percent.support.PercentRelativeLayout>
+
+        </com.zhy.android.percent.support.PercentLinearLayout>
+
+        <TextView
+            android:id="@+id/type_text"
+            style="@style/HorTextStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="分类"
+            app:layout_widthPercent="20%" />
+
+        <TextView
+            android:id="@+id/apply_md"
+            style="@style/HorTextStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="适用门店"
+            app:layout_widthPercent="20%" />
+
+        <TextView
+            android:id="@+id/add_date"
+            style="@style/HorTextStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="添加时间"
+            app:layout_widthPercent="20%" />
+
+        <com.zhy.android.percent.support.PercentRelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            app:layout_widthPercent="10%">
+
+            <com.example.smoothcheckbox.SmoothCheckBox
+                android:id="@+id/check_box"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:layout_centerHorizontal="true" />
+
+        </com.zhy.android.percent.support.PercentRelativeLayout>
+
+    </com.zhy.android.percent.support.PercentLinearLayout>
+
+
+</com.zhy.android.percent.support.PercentLinearLayout>

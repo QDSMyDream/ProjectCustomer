@@ -103,7 +103,10 @@
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:screenOrientation="landscape"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar"
-            android:windowSoftInputMode="stateHidden|adjustUnspecified" />
+            android:windowSoftInputMode="stateHidden|adjustUnspecified" >
+
+
+        </activity>
         <activity
             android:name=".activity.LoginActivity"
             android:configChanges="orientation|keyboardHidden"
