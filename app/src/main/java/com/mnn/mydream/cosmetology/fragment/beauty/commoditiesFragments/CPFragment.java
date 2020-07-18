@@ -17,6 +17,7 @@ import android.widget.TextView;
 import com.applandeo.materialcalendarview.view.NiceSpinner;
 import com.example.smoothcheckbox.SmoothCheckBox;
 import com.mnn.mydream.cosmetology.R;
+import com.mnn.mydream.cosmetology.activity.AppUpdateActivity;
 import com.mnn.mydream.cosmetology.activity.CPAddDialogActivity;
 
 import com.mnn.mydream.cosmetology.adapter.fragmentAdapter.MyViewPagerAdapter;
@@ -25,6 +26,7 @@ import com.mnn.mydream.cosmetology.bean.fuwuBean.CPDataBean;
 import com.mnn.mydream.cosmetology.bean.fuwuBean.FuWuSaleBean;
 import com.mnn.mydream.cosmetology.dialog.BeautyDeleteDialog;
 import com.mnn.mydream.cosmetology.dialog.LoadingDialog;
+import com.mnn.mydream.cosmetology.eventBus.EventBusMsg;
 import com.mnn.mydream.cosmetology.fragment.beauty.commoditiesFragments.adapter.CPListAdapter;
 
 import com.mnn.mydream.cosmetology.interfaces.SPGLListOnClickListener;
@@ -36,6 +38,10 @@ import com.mnn.mydream.cosmetology.utils.Tools;
 import com.mnn.mydream.cosmetology.view.MyViewPager;
 import com.zhy.android.percent.support.PercentLinearLayout;
 import com.zhy.android.percent.support.PercentRelativeLayout;
+
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -129,6 +135,8 @@ public class CPFragment extends SupportFragment {
 
         view = inflater.inflate(R.layout.cp_fragment, container, false);
         unbinder = ButterKnife.bind(this, view);
+        EventBus.getDefault().register(this);
+
         initview();
         return view;
 
@@ -448,7 +456,7 @@ public class CPFragment extends SupportFragment {
     //下架
     private void adapter1Dis(CPDataBean cpDataBean, int pos) {
         cpDataBean.setCpSaleFlag(false);
-        cpDataBean.update(new UpdateListener() {
+        cpDataBean.updateBean(Constons.POST_UPDATE_SUCCESS, new UpdateListener() {
             @Override
             public void done(BmobException e) {
                 if (e == null) {
@@ -562,21 +570,20 @@ public class CPFragment extends SupportFragment {
                             cpListAdapter2.deleteView(pos, cpView2ListView);
                         }
 
-                        cpDataBean.delete(new UpdateListener() {
-                            @Override
-                            public void done(BmobException e) {
-                                if (e == null) {
-                                    String s2 = String.format(getString(R.string.beauty_within_dismount_txt), cpDismounDataBeans.size());
-                                    dismountText.setText(s2);
-                                    String s1 = String.format(getString(R.string.beauty_within_saleing_txt), cpSaleDataBeans.size());
-                                    saleText.setText(s1);
-                                    ToastUtils.showToast(getContext(), "删除成功", true);
-                                } else {
-
-                                    ToastUtils.showToast(getContext(), "删除失败" + e.getMessage().toString(), false);
-                                }
-                            }
-                        });
+                        cpDataBean.dorp(Constons.POST_DELETE_SUCCESS,null);
+//
+//                        cpDataBean.delete(new UpdateListener() {
+//                            @Override
+//                            public void done(BmobException e) {
+//                                if (e == null) {
+//
+//                                    ToastUtils.showToast(getContext(), "删除成功", true);
+//                                } else {
+//
+//                                    ToastUtils.showToast(getContext(), "删除失败" + e.getMessage().toString(), false);
+//                                }
+//                            }
+//                        });
                         beautyDeleteDialog.dismiss();
                     }
                 });
@@ -585,5 +592,33 @@ public class CPFragment extends SupportFragment {
         beautyDeleteDialog.show();
     }
 
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void onEventMain(EventBusMsg event) {
+        int flag = event.getMsgInt();
+        switch (flag) {
+            case Constons.POST_DELETE_SUCCESS:
+                Log.e(TAG, "onEventMain: ");
+                String s2 = String.format(getString(R.string.beauty_within_dismount_txt), cpDismounDataBeans.size());
+                dismountText.setText(s2);
+                String s1 = String.format(getString(R.string.beauty_within_saleing_txt), cpSaleDataBeans.size());
+                saleText.setText(s1);
+
+                ToastUtils.showToast(getContext(), "删除成功", true);
+
+                break;
+
+
+            case Constons .POST_UPDATE_SUCCESS:
+
+                ToastUtils.showToast(getContext(), "修改成功", true);
+
+
+                break;
+
+
+
+
+        }
+    }
 
 }
