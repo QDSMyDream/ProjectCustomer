@@ -10,11 +10,16 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import com.mnn.mydream.cosmetology.R;
-import com.mnn.mydream.cosmetology.bean.fuwuBean.FuWuSaleBean;
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONArray;
+import com.alibaba.fastjson.JSONObject;
 
+import com.mnn.mydream.cosmetology.R;
+import com.mnn.mydream.cosmetology.bean.User;
+import com.mnn.mydream.cosmetology.bean.fuwuBean.FuWuSaleBean;
+import com.mnn.mydream.cosmetology.bean.fuwuBean.XMKDataBean;
+import com.mnn.mydream.cosmetology.bean.fuwuBean.XMKDataOpertionBean;
 import com.mnn.mydream.cosmetology.interfaces.SPGLListOnClickListener;
-import com.mnn.mydream.cosmetology.utils.ImageLoader;
 import com.zhy.android.percent.support.PercentLinearLayout;
 
 import java.util.List;
@@ -25,30 +30,28 @@ import butterknife.ButterKnife;
 /**
  * 创建人 :MyDream
  * 创建时间：2020/5/3 18:18
- * 类描述：FuWu 服务列表
+ * 类描述：项目卡列表
  */
 
-public class FWListAdapter extends BaseAdapter {
+public class XmkListAdapter extends BaseAdapter {
 
-    private String TAG = "FWListAdapter";
-    private List<FuWuSaleBean> fuWuSaleBeans;
+    private String TAG = "FuWuView1ListAdapter";
+    private List<XMKDataBean> xmkDataBeans;
     private final Context mContext;
-    LayoutInflater mLayoutInflater;
-    public FWListAdapter(Context mContext, List<FuWuSaleBean> fuWuSaleBeans) {
-        this.mContext = mContext;
-        this.fuWuSaleBeans = fuWuSaleBeans;
-        mLayoutInflater = LayoutInflater.from(mContext);
 
+    public XmkListAdapter(Context mContext, List<XMKDataBean> xmkDataBeans) {
+        this.mContext = mContext;
+        this.xmkDataBeans = xmkDataBeans;
     }
 
     @Override
     public int getCount() {
-        return fuWuSaleBeans.size();
+        return xmkDataBeans.size();
     }
 
     @Override
     public Object getItem(int position) {
-        return fuWuSaleBeans.get(position);
+        return xmkDataBeans.get(position);
     }
 
     @Override
@@ -61,7 +64,7 @@ public class FWListAdapter extends BaseAdapter {
         ViewHolder holder = null;
 
         if (convertView == null) {
-            convertView =mLayoutInflater.inflate(R.layout.fuwu_view1_list_item, null);
+            convertView = LayoutInflater.from(mContext).inflate(R.layout.xmk_list_item_layout, null);
             holder = new ViewHolder(convertView);
             convertView.setTag(holder);
 
@@ -69,17 +72,37 @@ public class FWListAdapter extends BaseAdapter {
             holder = (ViewHolder) convertView.getTag();
         }
 
-        FuWuSaleBean fuWuSaleBean = fuWuSaleBeans.get(position);
+        XMKDataBean xmkDataBean = xmkDataBeans.get(position);
 
         //加载图片
-        ImageLoader.displayImageView(mContext, fuWuSaleBean.getServerUrl(), holder.ivServer, R.mipmap.ic_img_default);
-        holder.serverName.setText(fuWuSaleBean.getServerName() + "");
-        holder.serverMoney.setText(fuWuSaleBean.getServerMoney() + "");
-        holder.applyMd.setText(fuWuSaleBean.getApplyMd() + "");
-        holder.typeText.setText(fuWuSaleBean.getServerType() + "");
-        holder.addDate.setText(fuWuSaleBean.getCreatedAt() + "");
+        holder.serverName.setText(xmkDataBean.getXmkName() + "");
+        holder.serverMoney.setText(xmkDataBean.getXmkMoney() + "");
+        holder.applyMd.setText(xmkDataBean.getXmkMd() + "");
+        holder.typeText.setText(xmkDataBean.getXmkType() + "");
+        holder.addDate.setText(xmkDataBean.getCreatedAt() + "");
+        holder.projectText.setText(xmkDataBean.isTotalNumFlag() ? "是" : "否");
 
-        if (fuWuSaleBean.isServerSaleFlag()) {
+        Log.e(TAG, "getView: " + xmkDataBean.getFwJson());
+
+        JSONArray jsonArray = JSONArray.parseArray(xmkDataBean.getFwJson());
+
+        int num = 0;
+        for (int j = 0; j < jsonArray.size(); j++) {
+            num=num+JSON.parseObject(jsonArray.get(j).toString()).getInteger("num");
+        }
+
+
+//        JSON.parse(xmkDataBean.getFwJson());
+//        List<XMKDataOpertionBean> xmkDataOpertionBeans = (List<XMKDataOpertionBean>) JSONArray.parseArray(xmkDataBean.getFwJson(), XMKDataOpertionBean.class);
+//        Log.e(TAG, "getView: " + xmkDataOpertionBeans.size());
+//        int num=0 ;
+//        for (XMKDataOpertionBean xmkDataOpertionBean : xmkDataOpertionBeans) {
+//            num = num + xmkDataOpertionBean.getMoney();
+//        }
+
+        holder.applySpecifications.setText(num + "");
+
+        if (xmkDataBean.isXmlSaleFlag()) {
             holder.saleBtn.setVisibility(View.GONE);
             holder.dismountBtn.setVisibility(View.VISIBLE);
 
@@ -92,27 +115,27 @@ public class FWListAdapter extends BaseAdapter {
         holder.saleBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                spglListOnClickListener.onClickSale(v, position, fuWuSaleBean);
+                spglListOnClickListener.onClickSale(v, position, xmkDataBean);
             }
         });
 
         holder.dismountBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                spglListOnClickListener.onClickDismount(v, position, fuWuSaleBean);
+                spglListOnClickListener.onClickDismount(v, position, xmkDataBean);
             }
         });
 
         holder.updateBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                spglListOnClickListener.onClickUpdate(v, position, fuWuSaleBean);
+                spglListOnClickListener.onClickUpdate(v, position, xmkDataBean);
             }
         });
         holder.delete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                spglListOnClickListener.onClickDelete(v, position, fuWuSaleBean);
+                spglListOnClickListener.onClickDelete(v, position, xmkDataBean);
             }
         });
 
@@ -123,7 +146,7 @@ public class FWListAdapter extends BaseAdapter {
     public SPGLListOnClickListener spglListOnClickListener;
 
 
-    public void setFuWuListOnClickListener(SPGLListOnClickListener spglListOnClickListener) {
+    public void setCpListOnClickListener(SPGLListOnClickListener spglListOnClickListener) {
         this.spglListOnClickListener = spglListOnClickListener;
     }
 
@@ -135,32 +158,9 @@ public class FWListAdapter extends BaseAdapter {
 
         if (posi >= visibleFirstPosi && posi <= visibleLastPosi) {
             View view = listView.getChildAt(posi - visibleFirstPosi);
-//            ViewHolder holder = (ViewHolder) view.getTag();
-            TextView serverName = view.findViewById(R.id.serverName);
-            TextView serverMoney = view.findViewById(R.id.server_money);
-            TextView applyMd = view.findViewById(R.id.apply_md);
-            TextView typeText = view.findViewById(R.id.type_text);
-            TextView addDate = view.findViewById(R.id.add_date);
-            ImageView ivServer = view.findViewById(R.id.iv_server);
-            //加载图片
-            ImageLoader.displayImageView(mContext, fuWuSaleBean.getServerUrl(), ivServer, R.mipmap.ic_img_default);
-            serverName.setText(fuWuSaleBean.getServerName() + "");
-            serverMoney.setText(fuWuSaleBean.getServerMoney() + "");
-            applyMd.setText(fuWuSaleBean.getApplyMd() + "");
-            typeText.setText(fuWuSaleBean.getServerType() + "");
-            addDate.setText(fuWuSaleBean.getCreatedAt() + "");
-
-//            if (fuWuSaleBean.isServerSaleFlag()) {
-//                saleBtn.setVisibility(View.GONE);
-//                dismountBtn.setVisibility(View.VISIBLE);
-//
-//            } else {
-//               dismountBtn.setVisibility(View.GONE);
-//               saleBtn.setVisibility(View.VISIBLE);
-//            }
 
             notifyDataSetInvalidated();
-//            notifyDataSetChanged();
+
         }
 
     }
@@ -175,7 +175,7 @@ public class FWListAdapter extends BaseAdapter {
             View view = listView.getChildAt(posi - visibleFirstPosi);
             ViewHolder holder = (ViewHolder) view.getTag();
             Log.e(TAG, "deleteView: ");
-            fuWuSaleBeans.remove(posi);
+            xmkDataBeans.remove(posi);
             notifyDataSetChanged();
         }
     }
@@ -192,8 +192,12 @@ public class FWListAdapter extends BaseAdapter {
         PercentLinearLayout selectServerAll;
         @BindView(R.id.type_text)
         TextView typeText;
+        @BindView(R.id.project_text)
+        TextView projectText;
         @BindView(R.id.apply_md)
         TextView applyMd;
+        @BindView(R.id.apply_specifications)
+        TextView applySpecifications;
         @BindView(R.id.add_date)
         TextView addDate;
         @BindView(R.id.update_btn)

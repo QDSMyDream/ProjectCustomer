@@ -1,37 +1,52 @@
 package com.mnn.mydream.cosmetology.activity;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.AppCompatButton;
 import android.support.v7.widget.AppCompatEditText;
+import android.support.v7.widget.LinearLayoutManager;
 import android.util.Log;
+
 import android.view.View;
+
 import android.view.WindowManager;
 import android.widget.CheckBox;
+import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.ListView;
+import android.widget.LinearLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.support.odps.udf.CodecCheck;
 import com.applandeo.materialcalendarview.view.NiceSpinner;
 import com.example.smoothcheckbox.SmoothCheckBox;
 import com.mnn.mydream.cosmetology.R;
 import com.mnn.mydream.cosmetology.bean.fuwuBean.FuWuSaleBean;
 import com.mnn.mydream.cosmetology.bean.fuwuBean.ServerTypeBean;
 import com.mnn.mydream.cosmetology.bean.fuwuBean.XMKDataBean;
+import com.mnn.mydream.cosmetology.bean.fuwuBean.XMKDataOpertionBean;
 import com.mnn.mydream.cosmetology.bmob.BeanCallBack;
 import com.mnn.mydream.cosmetology.dialog.BeautyAddServerTypeDialog;
 import com.mnn.mydream.cosmetology.dialog.BeautyAddServiceDialog;
-import com.mnn.mydream.cosmetology.fragment.beauty.commoditiesFragments.adapter.FWOperationListAdapter;
+
+import com.mnn.mydream.cosmetology.fragment.beauty.commoditiesFragments.adapter.FWOperationRecycleAdapter;
+
+import com.mnn.mydream.cosmetology.interfaces.ServiceOperationRecycleInterface;
 import com.mnn.mydream.cosmetology.pickertime.TimePickerPopWin;
 import com.mnn.mydream.cosmetology.utils.CommonUtil;
 import com.mnn.mydream.cosmetology.utils.Constons;
 import com.mnn.mydream.cosmetology.utils.StringUtils;
 import com.mnn.mydream.cosmetology.utils.ToastUtils;
 import com.mnn.mydream.cosmetology.utils.Tools;
-import com.mnn.mydream.cosmetology.view.ExpandListView;
+
+import com.zhy.android.percent.support.PercentLinearLayout;
 import com.zhy.android.percent.support.PercentRelativeLayout;
 
 import java.util.ArrayList;
@@ -43,6 +58,7 @@ import butterknife.OnClick;
 import cn.bmob.v3.BmobUser;
 import cn.bmob.v3.exception.BmobException;
 import cn.bmob.v3.listener.SaveListener;
+import cn.droidlover.xrecyclerview.XRecyclerView;
 
 /**
  * 创建人 :MyDream
@@ -113,30 +129,45 @@ public class XMKDialogActivity extends AppCompatActivity {
     AppCompatButton btnCancel;
     @BindView(R.id.myScrollView)
     ScrollView myScrollView;
+
     @BindView(R.id.check1)
     CheckBox check1;
+
     @BindView(R.id.check2)
     CheckBox check2;
+
     @BindView(R.id.check3)
     CheckBox check3;
+
     @BindView(R.id.check4)
     CheckBox check4;
+
     @BindView(R.id.check5)
     CheckBox check5;
+
     @BindView(R.id.check6)
     CheckBox check6;
+
     @BindView(R.id.check7)
     CheckBox check7;
+
     @BindView(R.id.check8)
     CheckBox check8;
+
     @BindView(R.id.check9)
     CheckBox check9;
+
     @BindView(R.id.total_num_checkbox)
     SmoothCheckBox totalNumCheckbox;
+
     @BindView(R.id.total_num)
     AppCompatEditText totalNum;
+
     @BindView(R.id.service_listview)
-    ExpandListView serviceListview;
+    XRecyclerView serviceListview;
+    @BindView(R.id.title4)
+    TextView title4;
+
 
     private String TAG = "XMKDialogActivity";
 
@@ -158,7 +189,9 @@ public class XMKDialogActivity extends AppCompatActivity {
 
     private List<FuWuSaleBean> fuWuSaleBeans = new ArrayList<>();
 
-    private FWOperationListAdapter fwOperationListAdapter;
+    private List<XMKDataOpertionBean> xmkDataOpertionBeans = new ArrayList<>();//数据存储
+
+    private FWOperationRecycleAdapter fwOperationRecycleAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -178,28 +211,23 @@ public class XMKDialogActivity extends AppCompatActivity {
         xmkMd.attachDataSource(Constons.OPERATION_MD);
         xmkType.attachDataSource(Constons.ServerTypeString);
 
-        expireTxtImg.setOnClickListener(new View.OnClickListener() {
+        //创建布局管理器，垂直设置LinearLayoutManager.VERTICAL，水平设置LinearLayoutManager.HORIZONTAL
+        LinearLayoutManager mLinearLayoutManager = new LinearLayoutManager(getBaseContext(), LinearLayoutManager.VERTICAL, false);
+        fwOperationRecycleAdapter = new FWOperationRecycleAdapter(this, fuWuSaleBeans, totalNumCheckbox.isChecked());
+        fwOperationRecycleAdapter.setServiceOperationRecycleInterface(new ServiceOperationRecycleInterface() {
             @Override
-            public void onClick(View v) {
+            public void onClickDelete(int pos, FuWuSaleBean fuWuSaleBean) {
+                fuWuSaleBeans.remove(fuWuSaleBean);
 
+                fwOperationRecycleAdapter.removeData(pos);
+
+                Log.e(TAG, "onClickDelete: " + fuWuSaleBeans.size());
             }
         });
-
-
-
-
+        serviceListview.setLayoutManager(mLinearLayoutManager);
+        serviceListview.setAdapter(fwOperationRecycleAdapter);
     }
 
-
-    private View.OnClickListener deleteFWOnClick = new View.OnClickListener() {
-        @Override
-        public void onClick(View v) {
-            FuWuSaleBean fuWuSaleBean = (FuWuSaleBean) fwOperationListAdapter.getItem(serviceListview.getPositionForView(v));
-            Log.e(TAG, "onClick: " + serviceListview.getPositionForView(v));
-
-
-        }
-    };
 
     //设置卡封面
     private void setCheckedColor() {
@@ -240,6 +268,7 @@ public class XMKDialogActivity extends AppCompatActivity {
 
     private void addTypeDialog() {
         BeautyAddServerTypeDialog.Builder beautyAddServerTypeBuilder = new BeautyAddServerTypeDialog.Builder(this)
+
                 .setTitleString("添加服务类型弹窗")
                 .setYesOnClick(new View.OnClickListener() {
                     @Override
@@ -265,7 +294,7 @@ public class XMKDialogActivity extends AppCompatActivity {
     }
 
     private void addServiceDialog() {
-        BeautyAddServiceDialog.Builder builder = new BeautyAddServiceDialog.Builder(this);
+        BeautyAddServiceDialog.Builder builder = new BeautyAddServiceDialog.Builder(this).setFuWuSaleBeans(fuWuSaleBeans);
         builder.setBeanCallBack(beanCallBack);
         beautyAddServiceDialog = builder.createDialog();
         beautyAddServiceDialog.setCanceledOnTouchOutside(false);// 设置点击屏幕Dialog不消失
@@ -277,6 +306,7 @@ public class XMKDialogActivity extends AppCompatActivity {
 
     private void saveXmk() {
 
+
         if (StringUtils.isEmpty(xmkName.getText().toString())) {
             ToastUtils.showToast(this, "请输入项目卡名称", false);
             return;
@@ -286,10 +316,12 @@ public class XMKDialogActivity extends AppCompatActivity {
             ToastUtils.showToast(this, "请选择项目卡类型", false);
             return;
         }
+
         if (StringUtils.isEmpty(xmkMoney.getText().toString())) {
             ToastUtils.showToast(this, "请输入项目卡价格", false);
             return;
         }
+
         if (!vipCheckBox.isChecked()) {
             if (StringUtils.isEmpty(xmkVipMoney.getText().toString())) {
                 ToastUtils.showToast(this, "请输入项目卡VIP价格", false);
@@ -304,18 +336,92 @@ public class XMKDialogActivity extends AppCompatActivity {
             }
         }
 
-//        if (StringUtils.isEmpty(cpOriginalPrice.getText().toString())) {
-//            ToastUtils.showToast(this, "请输入产品原价", false);
-//            return;
-//        }
-//
-//        XMKDataBean xmkDataBean = new XMKDataBean();
-//
-//        xmkDataBean.setXmkMd();
+        if (totalNumCheckbox.isChecked()) {
+            if (StringUtils.isEmpty(totalNum.getText().toString())) {
+                ToastUtils.showToast(this, "请输入项目卡总次数", false);
+                return;
+            }
+        }
+
+        if (fuWuSaleBeans.size() == 0) {
+            ToastUtils.showToast(this, "请选择服务！", false);
+            return;
+        }
 
 
+        XMKDataBean xmkDataBean = new XMKDataBean();
+
+        xmkDataBean.setXmkName(xmkName.getText().toString());
+
+        xmkDataBean.setXmkMd(xmkMd.getSelectedItem().toString());
+
+        xmkDataBean.setXmkMoney(Float.parseFloat(xmkMoney.getText().toString()));
+
+        xmkDataBean.setXmkType(xmkType.getSelectedItem().toString());
+
+        if (vipCheckBox.isChecked()) {
+            xmkDataBean.setXmkVipMoney(0);
+        } else {
+            xmkDataBean.setXmkVipMoney(Float.parseFloat(xmkVipMoney.getText().toString()));
+        }
+
+        xmkDataBean.setXmkVipFlag(vipCheckBox.isChecked());
+
+        if (totalNumCheckbox.isChecked()) {
+            xmkDataBean.setTotalNum(Integer.parseInt(totalNum.getText().toString()));
+            for (int i = 0; i < serviceListview.getChildCount(); i++) {
+                PercentLinearLayout layout = (PercentLinearLayout) serviceListview.getChildAt(i);// 获得子item的layout
+                EditText et = (EditText) layout.findViewById(R.id.total_num);// 从layout中获得控件,根据其id
+                xmkDataOpertionBeans.add(new XMKDataOpertionBean(StringUtils.isEmpty(et.getText().toString()) ? 0 : Integer.parseInt(et.getText().toString()), fuWuSaleBeans.get(i)));
+            }
+
+
+        } else {
+            xmkDataBean.setTotalNum(0);
+            for (int i = 0; i < serviceListview.getChildCount(); i++) {
+                PercentLinearLayout layout = (PercentLinearLayout) serviceListview.getChildAt(i);// 获得子item的layout
+                EditText et = (EditText) layout.findViewById(R.id.total_num);// 从layout中获得控件,根据其id
+                if (StringUtils.isEmpty(et.getText().toString())) {
+                    ToastUtils.showToast(this, "服务列表第" + (i + 1) + "未输入", false);
+                    return;
+                }
+                xmkDataOpertionBeans.add(new XMKDataOpertionBean(Integer.parseInt(et.getText().toString()), fuWuSaleBeans.get(i)));
+            }
+
+        }
+        Log.e(TAG, "saveXmk: " + xmkDataOpertionBeans.size());
+        String jsonString = JSON.toJSONString(xmkDataOpertionBeans);
+        Log.e(TAG, "saveXmk: " + jsonString);
+        xmkDataBean.setFwJson(jsonString);
+
+        xmkDataBean.setTotalNumFlag(totalNumCheckbox.isChecked());
+        xmkDataBean.setEffectiveFlag(immediateEffectCheckBox.isChecked());
+        xmkDataBean.setEffectiveTime(xmkName.getText().toString());
+
+        xmkDataBean.setEmpowerFlag(mayAuthorizeCheckBox.isChecked());
         //设置预览颜色
         xmkDataBean.setCoverColorStr(check1.isChecked() ? check1.getTag().toString() : check2.isChecked() ? check2.getTag().toString() : check3.isChecked() ? check3.getTag().toString() : check4.isChecked() ? check4.getTag().toString() : check5.isChecked() ? check5.getTag().toString() : check6.isChecked() ? check6.getTag().toString() : check7.isChecked() ? check7.getTag().toString() : check8.isChecked() ? check8.getTag().toString() : check9.isChecked() ? check9.getTag().toString() : "");
+
+        xmkDataBean.setXmkNum(xmkNum.getText().toString());
+
+        xmkDataBean.setCharacteristicStr(remarksContent.getText().toString());
+
+        //是否上架
+        xmkDataBean.setXmlSaleFlag(true);
+        xmkDataBean.save(new SaveListener<String>() {
+            @Override
+            public void done(String s, BmobException e) {
+                if (e == null) {
+                    ToastUtils.showToast(getBaseContext(), "添加(" + xmkDataBean.getXmkName() + ")项目卡成功!", true);
+                    refreshHandler.sendEmptyMessage(1);
+                    Log.e("bmob", "成功");
+                } else {
+                    ToastUtils.showToast(getBaseContext(), "添加(" + xmkDataBean.getXmkName() + ")项目卡失败" + e.toString(), false);
+                }
+
+            }
+        });
+
 
         Log.e(TAG, "saveXmk: " + (check1.isChecked() ? check1.getTag().toString() : check2.isChecked() ? check2.getTag().toString() : check3.isChecked() ? check3.getTag().toString() : check4.isChecked() ? check4.getTag().toString() : check5.isChecked() ? check5.getTag().toString() : check6.isChecked() ? check6.getTag().toString() : check7.isChecked() ? check7.getTag().toString() : check8.isChecked() ? check8.getTag().toString() : check9.isChecked() ? check9.getTag().toString() : ""));
     }
@@ -545,18 +651,23 @@ public class XMKDialogActivity extends AppCompatActivity {
         totalNumCheckbox.setOnCheckedChangeListener(new SmoothCheckBox.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(SmoothCheckBox checkBox, boolean isChecked) {
-                if (isChecked) {
+                if (!isChecked) {
                     totalNum.setEnabled(false);
                     totalNum.setAlpha((float) 0.5);
                     totalNum.setHint(getString(R.string.beauty_not_enabled));
+
                 } else {
                     totalNum.setEnabled(true);
                     totalNum.setAlpha((float) 1);
                     totalNum.setHint(getString(R.string.beauty_xmk_total_num));
                 }
+                fwOperationRecycleAdapter.setAllEditText(isChecked);
             }
         });
 
+        totalNum.setEnabled(false);
+        totalNum.setAlpha((float) 0.5);
+        totalNum.setHint(getString(R.string.beauty_not_enabled));
     }
 
 
@@ -585,21 +696,43 @@ public class XMKDialogActivity extends AppCompatActivity {
         timePickerPopWin.showPopWin(this);
     }
 
-
     //选中回调
     BeanCallBack beanCallBack = new BeanCallBack() {
         @Override
         public void setLists(List lists, int flagInt) {
             Log.e(TAG, "setLists: " + lists.size());
-            fuWuSaleBeans.clear();
             if (lists.size() > 0) {
+
+                fuWuSaleBeans.clear();
                 fuWuSaleBeans = (List<FuWuSaleBean>) lists;
-                fwOperationListAdapter = new FWOperationListAdapter(getBaseContext(), fuWuSaleBeans, deleteFWOnClick);
-                serviceListview.setAdapter(fwOperationListAdapter);
+                fwOperationRecycleAdapter.addDatas(fuWuSaleBeans);
             }
-
-
         }
     };
+
+    ///刷新Handler
+    @SuppressLint("HandlerLeak")
+    private Handler refreshHandler = new Handler() {
+        @Override
+        public void handleMessage(Message msg) {
+            switch (msg.what) {
+                case 0://刷新类型
+                    break;
+                case 1://刷新
+                    setResult(Constons.RESULT_XMK_CODE_SCUESS_REQUEST);
+
+                    finish();
+                    break;
+
+                default:
+                    break;
+            }
+        }
+    };
+
+
+    public void saveEditData(int position, String str) {
+        Toast.makeText(this, str + "----" + position, Toast.LENGTH_LONG).show();
+    }
 
 }

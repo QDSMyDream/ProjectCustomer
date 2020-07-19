@@ -4,6 +4,7 @@ import android.app.Dialog;
 import android.content.Context;
 import android.support.v7.widget.AppCompatButton;
 import android.support.v7.widget.AppCompatEditText;
+import android.support.v7.widget.LinearLayoutManager;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -35,6 +36,7 @@ import butterknife.ButterKnife;
 import cn.bmob.v3.BmobQuery;
 import cn.bmob.v3.exception.BmobException;
 import cn.bmob.v3.listener.FindListener;
+import cn.droidlover.xrecyclerview.XRecyclerView;
 
 /**
  * Created by MyDream on 2020/5/16.
@@ -57,27 +59,26 @@ public class BeautyAddServiceDialog extends Dialog {
 
         private Context context;
 
-        private String titleString = "删除客户项目信息";
-
         private List<FuWuSaleBean> fuWuSaleBeans = new ArrayList<>();
 
         private List<FuWuSaleBean> selectFuWuSaleBeans = new ArrayList<>();
 
+        private List<FuWuSaleBean> fuWuSaleBeans2;
 
         public Builder(Context context) {
             this.context = context;
 
         }
 
+        public Builder setFuWuSaleBeans(List<FuWuSaleBean> fuWuSaleBeans2) {
+            this.fuWuSaleBeans2 = fuWuSaleBeans2;
+            return this;
+        }
+
         public BeanCallBack beanCallBack;
 
         public Builder setBeanCallBack(BeanCallBack beanCallBack) {
             this.beanCallBack = beanCallBack;
-            return this;
-        }
-
-        public Builder setTitleMsg(String title) {
-            this.titleString = title;
             return this;
         }
 
@@ -114,17 +115,23 @@ public class BeautyAddServiceDialog extends Dialog {
             }, Constons.RESULT_ADD_SERVICE_VIEW_REQUEST);
 
 
-
-
-
             View.OnClickListener onClickListener = new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     Log.e(TAG, "onClick: ");
+                    SmoothCheckBox smoothCheckBox = v.findViewById(R.id.check_box);
+                    if (smoothCheckBox.isChecked()) {
+                        smoothCheckBox.setChecked(false);
+                    } else {
+                        smoothCheckBox.setChecked(true);
+                    }
 
                 }
             };
-            AddFWListAdapter addFWListAdapter = new AddFWListAdapter(context, fuWuSaleBeans, onClickListener);
+            //创建布局管理器，垂直设置LinearLayoutManager.VERTICAL，水平设置LinearLayoutManager.HORIZONTAL
+            LinearLayoutManager mLinearLayoutManager = new LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false);
+
+            AddFWListAdapter addFWListAdapter = new AddFWListAdapter(context, fuWuSaleBeans, fuWuSaleBeans2, onClickListener);
 
             addFWListAdapter.setAddServiceOnCheckedChangeListener(new AddServiceOnCheckedChangeListener() {
                 @Override
@@ -133,7 +140,6 @@ public class BeautyAddServiceDialog extends Dialog {
                     Log.e(TAG, "addOnCheckedBean: ");
                     String selectFuwuTextStr = String.format(context.getString(R.string.beauty_add_service_choice_fuwu), selectFuWuSaleBeans.size());
                     viewHolder.choiceFuwuText.setText(selectFuwuTextStr);
-
                 }
 
                 @Override
@@ -148,18 +154,8 @@ public class BeautyAddServiceDialog extends Dialog {
             String selectFuwuTextStr = String.format(context.getString(R.string.beauty_add_service_choice_fuwu), selectFuWuSaleBeans.size());
             viewHolder.choiceFuwuText.setText(selectFuwuTextStr);
 
-            viewHolder.fwList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-                @Override
-                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                    SmoothCheckBox smoothCheckBox = view.findViewById(R.id.check_box);
-                    if (smoothCheckBox.isChecked()) {
-                        smoothCheckBox.setChecked(false);
-                    } else {
-                        smoothCheckBox.setChecked(true);
-                    }
-                }
-            });
 
+            viewHolder.fwList.setLayoutManager(mLinearLayoutManager);
             viewHolder.fwList.setAdapter(addFWListAdapter);
 
             viewHolder.serverTypeSpinner.attachDataSource(Constons.SelectServerTypeString);
@@ -175,9 +171,13 @@ public class BeautyAddServiceDialog extends Dialog {
                 @Override
                 public void onClick(View v) {
 
-                    if(selectFuWuSaleBeans.size()>5){
+                    Log.e(TAG, "onClick: "+fuWuSaleBeans2.size());
+                    Log.e(TAG, "onClick: "+selectFuWuSaleBeans.size());
 
-                        ToastUtils.showToast(context,"选中项目请勿超过5个",false);
+
+                    if (selectFuWuSaleBeans.size() > 5 || (fuWuSaleBeans2.size() + selectFuWuSaleBeans.size()) > 5) {
+
+                        ToastUtils.showToast(context, "项目列表超过5个，请重新选择", false);
                         return;
                     }
 
@@ -291,7 +291,7 @@ public class BeautyAddServiceDialog extends Dialog {
             @BindView(R.id.title_layout)
             PercentLinearLayout titleLayout;
             @BindView(R.id.fw_list)
-            ListView fwList;
+            XRecyclerView fwList;
             @BindView(R.id.btn_cancel)
             AppCompatButton btnCancel;
             @BindView(R.id.btn_commit)

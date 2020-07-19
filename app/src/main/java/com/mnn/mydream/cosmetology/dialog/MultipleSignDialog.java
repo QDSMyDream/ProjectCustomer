@@ -93,6 +93,7 @@ public class MultipleSignDialog extends Dialog {
                     }
 
                     selectSignItem.get(viewHolder.selectSignListview.getPositionForView(v)).setSignFlag(smoothCheckBox.isChecked());
+
                     boolean isAll = true;
                     for (SelectSignBean customerProjectsItem : selectSignItem) {
                         if (!customerProjectsItem.isSignFlag()) {

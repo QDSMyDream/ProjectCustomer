@@ -257,7 +257,7 @@
 
     </com.zhy.android.percent.support.PercentLinearLayout>
 
-    <ListView
+    <cn.droidlover.xrecyclerview.XRecyclerView
         android:id="@+id/fw_list"
         android:layout_width="match_parent"
         android:layout_height="match_parent"

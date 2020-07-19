@@ -12,6 +12,7 @@ import android.widget.TextView;
 
 import com.mnn.mydream.cosmetology.R;
 import com.mnn.mydream.cosmetology.bean.CustomerProjectsItem;
+import com.mnn.mydream.cosmetology.bean.fuwuBean.FuWuSaleBean;
 
 import java.util.List;
 
@@ -51,10 +52,11 @@ public class BeautyAddServerTypeDialog extends Dialog {
         private String yesString = "确定";
 
         private String titleString = "添加服务项目类型";
-
+         LayoutInflater mLayoutInflater;
 
         public Builder(Context context) {
             this.context = context;
+            mLayoutInflater = LayoutInflater.from(context);
         }
 
 
@@ -72,7 +74,7 @@ public class BeautyAddServerTypeDialog extends Dialog {
         public BeautyAddServerTypeDialog createDialog() {
 
             BeautyAddServerTypeDialog dialog = new BeautyAddServerTypeDialog(context, R.style.ShowDetailsCustomer_Dialog);
-            View contentView = LayoutInflater.from(context).inflate(R.layout.beauty_add_servertype_dialog, null);
+            View contentView = mLayoutInflater.inflate(R.layout.beauty_add_servertype_dialog, null);
             dialog.setContentView(contentView);
             ButterKnife.bind(this, contentView);
 

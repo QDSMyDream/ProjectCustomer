@@ -48,7 +48,7 @@
                     android:layout_marginLeft="10dp"
                     android:digits="0123456789"
                     android:gravity="center"
-                    android:hint="@string/beauty_cp_name"
+                    android:hint="@string/beauty_xmk_name"
                     android:imeOptions="actionDone"
                     android:maxLength="11"
                     android:maxLines="1"

@@ -4,6 +4,7 @@ import com.mnn.mydream.cosmetology.bmob.BeanCallBack;
 import com.mnn.mydream.cosmetology.bmob.BmobBean;
 import com.mnn.mydream.cosmetology.utils.StringUtils;
 
+import java.io.Serializable;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -21,7 +22,7 @@ import cn.bmob.v3.listener.FindListener;
  * 创建日期：2020/6/23 19:01
  * 类描述 : saleBean 上架服务表
  */
-public class FuWuSaleBean extends BmobBean {
+public class FuWuSaleBean extends BmobBean  implements Serializable {
 
     private String serverUrl;
     private String serverName;

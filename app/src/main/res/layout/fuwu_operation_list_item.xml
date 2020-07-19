@@ -4,6 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@color/white"
+    android:descendantFocusability="beforeDescendants"
     android:orientation="vertical">
 
 
@@ -95,7 +96,7 @@
                 android:layout_toRightOf="@id/tip1"
                 android:digits=".0123456789"
                 android:gravity="center"
-                android:hint="次数"
+                android:hint="@string/beauty_xmk_frequency_num"
                 android:inputType="number"
                 android:textColorHint="@color/aluminum"
                 app:layout_widthPercent="40%" />

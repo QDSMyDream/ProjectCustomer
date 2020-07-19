@@ -175,7 +175,7 @@
             android:name=".activity.XMKDialogActivity"
             android:screenOrientation="landscape"
             android:theme="@style/dialogstyle"
-            android:windowSoftInputMode="adjustPan"></activity>
+            android:windowSoftInputMode="stateHidden|adjustResize"></activity>
 
         <activity
             android:name=".activity.CXKDialogActivity"

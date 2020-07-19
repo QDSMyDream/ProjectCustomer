@@ -313,7 +313,7 @@
                         android:layout_height="match_parent"
                         android:layout_centerVertical="true"
                         android:layout_marginLeft="10dp"
-                        android:digits=".0123456789"
+                        android:digits="0123456789"
                         android:gravity="center"
                         android:hint="@string/beauty_xmk_total_num"
                         android:inputType="number"
@@ -405,16 +405,26 @@
 
                         </com.zhy.android.percent.support.PercentRelativeLayout>
 
+<!--                        <com.zhy.android.percent.support.PercentRelativeLayout-->
+<!--                            android:id="@+id/server_content_list"-->
+<!--                            android:layout_width="match_parent"-->
+<!--                            android:layout_height="40dp"-->
+<!--                            android:layout_below="@id/server_content_title"-->
+<!--                            android:layout_marginTop="3dp"-->
+<!--                            app:layout_widthPercent="90%">-->
 
-                        <com.mnn.mydream.cosmetology.view.ExpandListView
+
+<!--                        </com.zhy.android.percent.support.PercentRelativeLayout>-->
+
+                        <cn.droidlover.xrecyclerview.XRecyclerView
                             android:id="@+id/service_listview"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:divider="@android:color/holo_blue_light"
                             android:dividerHeight="1px"
                             app:layout_widthPercent="90%"
+                            android:descendantFocusability="afterDescendants"
                             android:layout_below="@id/server_content_title"
-                            android:listSelector="@drawable/list_bg_lelector"
                             android:paddingBottom="1px" />
 
                     </com.zhy.android.percent.support.PercentRelativeLayout>

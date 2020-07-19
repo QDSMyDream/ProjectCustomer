@@ -73,20 +73,28 @@ public class CPFragment extends SupportFragment {
 
     @BindView(R.id.cp_name_edit)
     AppCompatEditText cpNameEdit;
+
     @BindView(R.id.cp_type_spinner)
     NiceSpinner cpTypeSpinner;
+
     @BindView(R.id.cp_select_btn)
     TextView cpSelectBtn;
+
     @BindView(R.id.remake)
     TextView remake;
+
     @BindView(R.id.remake_layout)
     PercentRelativeLayout remakeLayout;
+
     @BindView(R.id.sale_text)
     TextView saleText;
+
     @BindView(R.id.dismount_text)
     TextView dismountText;
+
     @BindView(R.id.add_cp_layout)
     PercentLinearLayout addCpLayout;
+
     @BindView(R.id.viewpagers)
     MyViewPager viewpagers;
 
@@ -514,6 +522,7 @@ public class CPFragment extends SupportFragment {
 
     //修改单条item
     private void setUpdateSaleBean(Intent intent) {
+
         CPDataBean cpDataBean = (CPDataBean) intent.getSerializableExtra(Constons.RESULT_UPDATE_REQUEST);
 
         Log.e(TAG, "setUpdateSaleBean: " + FLAG_POSTION);
@@ -569,7 +578,6 @@ public class CPFragment extends SupportFragment {
                         } else {
                             cpListAdapter2.deleteView(pos, cpView2ListView);
                         }
-
 //
                         cpDataBean.delete(new UpdateListener() {
                             @Override

@@ -1,0 +1,226 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.zhy.android.percent.support.PercentLinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+    <!--listview提示状态栏-->
+    <com.zhy.android.percent.support.PercentLinearLayout
+        android:id="@+id/title_layout"
+        android:layout_width="wrap_content"
+        android:layout_height="60dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingTop="5dp"
+        android:paddingBottom="5dp">
+
+        <com.zhy.android.percent.support.PercentLinearLayout
+            android:id="@+id/select_server_all"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <com.example.smoothcheckbox.SmoothCheckBox
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:layout_alignParentRight="true"
+                android:layout_gravity="center_vertical|right"
+                android:layout_marginLeft="5dp" />
+
+            <com.zhy.android.percent.support.PercentRelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                app:layout_widthPercent="19%">
+
+                <ImageView
+                    android:id="@+id/iv_server"
+                    android:layout_width="50dp"
+                    android:layout_height="match_parent"
+                    android:layout_margin="3dp"
+                    android:layout_marginLeft="5dp"
+                    android:src="@mipmap/ic_launcher" />
+
+
+                <com.zhy.android.percent.support.PercentLinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:layout_toRightOf="@id/iv_server"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/serverName"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center|left"
+                        android:maxLines="1"
+                        android:singleLine="true"
+                        android:text="商品名"
+                        android:textColor="@color/beauty_text_color"
+                        android:textSize="@dimen/text_size_18" />
+
+                    <com.zhy.android.percent.support.PercentLinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_toRightOf="@id/iv_server"
+                        android:gravity="center|left"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:layout_width="22dp"
+                            android:layout_height="wrap_content"
+                            android:padding="2dp"
+                            android:src="@mipmap/money_black" />
+
+                        <TextView
+                            android:id="@+id/server_money"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="center|left"
+                            android:maxLines="1"
+                            android:singleLine="true"
+                            android:text="11111"
+                            android:textColor="@color/beauty_text_color"
+                            android:textSize="@dimen/text_size_16" />
+
+                    </com.zhy.android.percent.support.PercentLinearLayout>
+                </com.zhy.android.percent.support.PercentLinearLayout>
+
+            </com.zhy.android.percent.support.PercentRelativeLayout>
+
+        </com.zhy.android.percent.support.PercentLinearLayout>
+
+        <TextView
+            android:id="@+id/type_text"
+            style="@style/HorTextStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="分类"
+            android:textColor="@color/beauty_text_color"
+            app:layout_widthPercent="13%" />
+
+        <TextView
+            android:id="@+id/project_text"
+            style="@style/HorTextStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="项目无限次"
+            android:textColor="@color/beauty_text_color"
+            app:layout_widthPercent="8%" />
+
+        <TextView
+            android:id="@+id/apply_md"
+            style="@style/HorTextStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="适用门店"
+            android:textColor="@color/beauty_text_color"
+            app:layout_widthPercent="15%" />
+
+        <TextView
+            android:id="@+id/apply_specifications"
+            style="@style/HorTextStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="卡总次数"
+            android:textColor="@color/beauty_text_color"
+            app:layout_widthPercent="8%" />
+
+        <TextView
+            android:id="@+id/add_date"
+            style="@style/HorTextStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="添加时间"
+            android:textColor="@color/beauty_text_color"
+            app:layout_widthPercent="15%" />
+
+
+        <com.zhy.android.percent.support.PercentLinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_toRightOf="@id/iv_server"
+            android:gravity="center"
+            android:orientation="horizontal"
+            app:layout_widthPercent="20%">
+
+
+            <TextView
+                android:id="@+id/update_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="10dp"
+                android:background="@drawable/beauty_within_btn_shape"
+                android:gravity="center"
+                android:maxLines="1"
+                android:paddingLeft="3dp"
+                android:paddingRight="3dp"
+                android:singleLine="true"
+                android:text="编 辑"
+                android:textColor="@color/white"
+                android:textSize="@dimen/text_size_18" />
+
+
+            <TextView
+                android:id="@+id/dismount_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="20dp"
+                android:layout_toRightOf="@id/update_btn"
+                android:background="@drawable/beauty_within_btn_dis_shape"
+                android:gravity="center"
+                android:maxLines="1"
+                android:padding="5dp"
+                android:paddingLeft="3dp"
+                android:paddingRight="3dp"
+                android:singleLine="true"
+                android:text="下 架"
+                android:textColor="@color/beauty_text_color"
+                android:textSize="@dimen/text_size_18" />
+
+            <TextView
+                android:id="@+id/sale_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="20dp"
+                android:layout_toRightOf="@id/dismount_btn"
+                android:background="@drawable/beauty_within_btn_dis_shape"
+                android:gravity="center"
+                android:maxLines="1"
+                android:padding="5dp"
+                android:paddingLeft="3dp"
+                android:paddingRight="3dp"
+                android:singleLine="true"
+                android:text="上 架"
+                android:textColor="@color/beauty_text_color"
+                android:textSize="@dimen/text_size_18"
+                android:visibility="gone" />
+
+
+            <ImageView
+                android:id="@+id/delete"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="20dp"
+                android:gravity="center"
+                android:maxLines="1"
+                android:padding="10dp"
+                android:paddingLeft="3dp"
+                android:paddingRight="3dp"
+                android:src="@mipmap/delete_red" />
+
+        </com.zhy.android.percent.support.PercentLinearLayout>
+
+    </com.zhy.android.percent.support.PercentLinearLayout>
+
+
+</com.zhy.android.percent.support.PercentLinearLayout>

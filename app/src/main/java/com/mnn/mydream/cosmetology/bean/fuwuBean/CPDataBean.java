@@ -9,7 +9,6 @@ import cn.bmob.v3.BmobObject;
  */
 public class CPDataBean extends BmobObject {
 
-
     private String cpUrl;
 
     private String cpName;
@@ -17,7 +16,6 @@ public class CPDataBean extends BmobObject {
     private String cpType;
 
     private float cpMoney;//价钱
-
 
     private String applyMd;//门店
 

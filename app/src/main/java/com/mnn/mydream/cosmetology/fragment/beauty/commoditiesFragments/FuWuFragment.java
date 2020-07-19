@@ -534,12 +534,12 @@ public class FuWuFragment extends SupportFragment {
 
         @Override
         public void onClickDismount(View v, int pos, Object fuWuSaleBean) {
-
+            adapter1Dis((FuWuSaleBean) fuWuSaleBean, pos);
         }
 
         @Override
         public void onClickSale(View v, int pos, Object fuWuSaleBean) {
-            adapter1Dis((FuWuSaleBean) fuWuSaleBean, pos);
+
         }
 
         @Override

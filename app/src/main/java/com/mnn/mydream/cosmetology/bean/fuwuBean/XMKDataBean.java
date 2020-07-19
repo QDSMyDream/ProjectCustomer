@@ -1,5 +1,7 @@
 package com.mnn.mydream.cosmetology.bean.fuwuBean;
 
+import java.io.Serializable;
+
 import cn.bmob.v3.BmobObject;
 
 /**
@@ -8,13 +10,18 @@ import cn.bmob.v3.BmobObject;
  * 类描述 :项目卡 bean
  */
 
-public class XMKDataBean extends BmobObject {
+public class XMKDataBean extends BmobObject  {
 
     private String xmkName;//项目卡名称
 
     private String xmkType;//项目卡类型
 
     private String fwJson;//项目卡服务json数据
+
+    private boolean totalNumFlag;//每个项目无限次使用，总次数限制  是否开启
+
+    private int totalNum;
+
 
     private float xmkMoney;//项目价格
 
@@ -36,12 +43,40 @@ public class XMKDataBean extends BmobObject {
 
     private String characteristicStr;//特点
 
+    private boolean xmlSaleFlag; //是否上架
+
+    public boolean isXmlSaleFlag() {
+        return xmlSaleFlag;
+    }
+
+    public void setXmlSaleFlag(boolean xmlSaleFlag) {
+        this.xmlSaleFlag = xmlSaleFlag;
+    }
+
+    public boolean isTotalNumFlag() {
+        return totalNumFlag;
+    }
+
+    public void setTotalNumFlag(boolean totalNumFlag) {
+        this.totalNumFlag = totalNumFlag;
+    }
+
+    public int getTotalNum() {
+        return totalNum;
+    }
+
+    public void setTotalNum(int totalNum) {
+        this.totalNum = totalNum;
+    }
+
     @Override
     public String toString() {
         return "XMKDataBean{" +
                 "xmkName='" + xmkName + '\'' +
                 ", xmkType='" + xmkType + '\'' +
                 ", fwJson='" + fwJson + '\'' +
+                ", totalNumFlag=" + totalNumFlag +
+                ", totalNum=" + totalNum +
                 ", xmkMoney=" + xmkMoney +
                 ", xmkVipMoney=" + xmkVipMoney +
                 ", xmkVipFlag=" + xmkVipFlag +
@@ -52,6 +87,7 @@ public class XMKDataBean extends BmobObject {
                 ", coverColorStr='" + coverColorStr + '\'' +
                 ", xmkNum='" + xmkNum + '\'' +
                 ", characteristicStr='" + characteristicStr + '\'' +
+                ", xmlSaleFlag=" + xmlSaleFlag +
                 '}';
     }
 
