@@ -39,7 +39,7 @@ public class MultipleSignDialog extends Dialog {
 
     public static class Builder {
 
-        private String TAG = "ShowCustomerProjectsDialog";
+        private String TAG = "MultipleSignDialog";
         private Context context;
         private View.OnClickListener cancelOnClick = null;
         private View.OnClickListener yesOnClick = null;
@@ -52,22 +52,15 @@ public class MultipleSignDialog extends Dialog {
 
         public Builder(Context context, List<SelectSignBean> integers) {
             this.context = context;
-
             this.selectSignItem = integers;
         }
-
         public Builder setTitleMsg(String title) {
             this.titleString = title;
-
             return this;
-
         }
-
         public Builder setYesOnClick(View.OnClickListener onClickListener) {
             this.yesOnClick = onClickListener;
-
             return this;
-
         }
 
         public MultipleSignDialog createDialog() {

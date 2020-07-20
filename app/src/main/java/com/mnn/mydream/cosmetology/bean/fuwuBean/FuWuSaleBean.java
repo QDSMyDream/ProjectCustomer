@@ -149,7 +149,6 @@ public class FuWuSaleBean extends BmobBean  implements Serializable {
         });
     }
 
-
     /**
      * 查询数据库----传值
      */

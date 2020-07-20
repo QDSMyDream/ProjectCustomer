@@ -341,7 +341,6 @@ public class GZTFragment extends SupportFragment {
             //激活礼品卡
             case R.id.layout10:
                 Constons.BEAUTY_WITHIN_PREVIOUS_POSTION = 13;
-
                 startBeautyWithinActivity();
 
                 break;

@@ -28,6 +28,7 @@ import com.mnn.mydream.cosmetology.fragment.beauty.commoditiesFragments.adapter.
 import com.mnn.mydream.cosmetology.fragment.beauty.commoditiesFragments.adapter.XmkListAdapter;
 import com.mnn.mydream.cosmetology.interfaces.SPGLListOnClickListener;
 import com.mnn.mydream.cosmetology.utils.Constons;
+import com.mnn.mydream.cosmetology.utils.StringUtils;
 import com.mnn.mydream.cosmetology.utils.ToastUtils;
 import com.mnn.mydream.cosmetology.view.MyViewPager;
 import com.zhy.android.percent.support.PercentLinearLayout;
@@ -54,7 +55,7 @@ import me.yokeyword.fragmentation.SupportFragment;
 /**
  * 创建人 :MyDream
  * 创建时间：2020/6/11 18:18
- * 类描述：SJZXFragment 服务界面
+ * 类描述：XMKFragment 项目卡界面
  */
 
 public class XMKFragment extends SupportFragment {
@@ -121,7 +122,6 @@ public class XMKFragment extends SupportFragment {
 
         view = inflater.inflate(R.layout.xmk_fragment, container, false);
 
-
         unbinder = ButterKnife.bind(this, view);
         initview();
         return view;
@@ -138,7 +138,7 @@ public class XMKFragment extends SupportFragment {
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.xmk_server_btn:
-
+                getQueryList();
                 break;
             case R.id.remake_layout:
                 getRemakeLayoutCP();
@@ -511,5 +511,74 @@ public class XMKFragment extends SupportFragment {
         getSelectXmkAll();
     }
 
+    private void getQueryList() {
+        String serverName = xmkNameEdit.getText().toString();
+
+        String typeString = xmkTypeSpinner.getSelectedItem().toString();
+
+        LoadingDialog.Builder addSignDialogBuild = new LoadingDialog.Builder(getActivity());
+        loadingDialog = addSignDialogBuild.createDialog();
+        loadingDialog.setCanceledOnTouchOutside(false);
+        // 设置点击屏幕Dialog不消失
+        loadingDialog.show();
+
+
+        BmobQuery<XMKDataBean> categoryBmobQuery = new BmobQuery<>();
+
+        if (StringUtils.isEmpty(serverName)) {
+            if (!typeString.equals("全部")) {
+                BmobQuery<XMKDataBean> eq1 = new BmobQuery<XMKDataBean>();
+                eq1.addWhereEqualTo("serverType", typeString);
+                List<BmobQuery<XMKDataBean>> queries = new ArrayList<BmobQuery<XMKDataBean>>();
+                queries.add(eq1);
+                categoryBmobQuery.and(queries);
+            }
+
+        } else {
+            if (typeString.equals("全部")) {
+                BmobQuery<XMKDataBean> eq2 = new BmobQuery<XMKDataBean>();
+                eq2.addWhereEqualTo("serverName", serverName);
+                List<BmobQuery<XMKDataBean>> queries = new ArrayList<BmobQuery<XMKDataBean>>();
+                queries.add(eq2);
+                categoryBmobQuery.and(queries);
+            } else {
+                BmobQuery<XMKDataBean> eq1 = new BmobQuery<XMKDataBean>();
+                eq1.addWhereEqualTo("serverType", typeString);
+                BmobQuery<XMKDataBean> eq2 = new BmobQuery<XMKDataBean>();
+                eq2.addWhereEqualTo("serverName", serverName);
+                List<BmobQuery<XMKDataBean>> queries = new ArrayList<BmobQuery<XMKDataBean>>();
+                queries.add(eq1);
+                queries.add(eq2);
+                categoryBmobQuery.and(queries);
+            }
+        }
+        categoryBmobQuery.findObjects(new FindListener<XMKDataBean>() {
+            @Override
+            public void done(List<XMKDataBean> object, BmobException e) {
+                if (e == null) {
+                    xmkSaleDataBeans.clear();
+                    xmkDismounDataBeans.clear();
+                    for (int i = 0; i < object.size(); i++) {
+                        if (object.get(i).isXmlSaleFlag()) {
+                            xmkSaleDataBeans.add(object.get(i));
+                        } else {
+                            xmkDismounDataBeans.add(object.get(i));
+                        }
+                    }
+                    refreshHandler.sendEmptyMessage(0);
+                } else {
+
+                    loadingDialog.dismiss();
+                    String s1 = String.format(getString(R.string.beauty_within_saleing_txt), xmkSaleDataBeans.size());
+                    saleText.setText(s1);
+                    String s2 = String.format(getString(R.string.beauty_within_dismount_txt), xmkDismounDataBeans.size());
+                    dismountText.setText(s2);
+                    Log.e("BMOB", e.toString());
+                    ToastUtils.showToast(getContext(), "查询失败", false);
+                }
+            }
+        });
+
+    }
 
 }

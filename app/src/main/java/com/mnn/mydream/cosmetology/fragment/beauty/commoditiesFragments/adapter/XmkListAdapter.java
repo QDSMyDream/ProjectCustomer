@@ -14,6 +14,7 @@ import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 
+import com.alibaba.fastjson.TypeReference;
 import com.mnn.mydream.cosmetology.R;
 import com.mnn.mydream.cosmetology.bean.User;
 import com.mnn.mydream.cosmetology.bean.fuwuBean.FuWuSaleBean;
@@ -87,10 +88,18 @@ public class XmkListAdapter extends BaseAdapter {
         JSONArray jsonArray = JSONArray.parseArray(xmkDataBean.getFwJson());
 
         int num = 0;
-        for (int j = 0; j < jsonArray.size(); j++) {
-            num=num+JSON.parseObject(jsonArray.get(j).toString()).getInteger("num");
-        }
+        String json = null;
 
+        for (int j = 0; j < jsonArray.size(); j++) {
+            num = num + JSON.parseObject(jsonArray.get(j).toString()).getInteger("num");
+            json = JSON.parseObject(jsonArray.get(j).toString()).getString("fuWuSaleBean");
+            Log.e(TAG, "getView: " + json);
+        }
+        JSONObject jsonObject = JSON.parseObject(json);
+        FuWuSaleBean fuWuSaleBean = JSON.parseObject(jsonObject.toJSONString(), new TypeReference<FuWuSaleBean>() {
+        });
+
+        Log.e(TAG, "getView: " + fuWuSaleBean.toString());
 
 //        JSON.parse(xmkDataBean.getFwJson());
 //        List<XMKDataOpertionBean> xmkDataOpertionBeans = (List<XMKDataOpertionBean>) JSONArray.parseArray(xmkDataBean.getFwJson(), XMKDataOpertionBean.class);

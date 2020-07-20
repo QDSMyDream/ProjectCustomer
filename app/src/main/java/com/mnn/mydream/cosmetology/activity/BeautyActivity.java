@@ -44,6 +44,8 @@ import com.mnn.mydream.cosmetology.bean.User;
 import com.mnn.mydream.cosmetology.dialog.APPUpdateDialog;
 import com.mnn.mydream.cosmetology.dialog.CommonDialog;
 import com.mnn.mydream.cosmetology.dialog.LoadingDialog;
+import com.mnn.mydream.cosmetology.dialog.MultipleSignDialog;
+import com.mnn.mydream.cosmetology.dialog.RefreshRotateDialog;
 import com.mnn.mydream.cosmetology.eventBus.EventBusMsg;
 import com.mnn.mydream.cosmetology.fragment.beauty.DDGLFragment;
 import com.mnn.mydream.cosmetology.fragment.beauty.GZTFragment;
@@ -305,8 +307,13 @@ public class BeautyActivity extends SupportActivity implements BeautyContentList
                 break;
 
             case R.id.user_info_layout:
+
+
                 Intent intent = new Intent(this, BeautyUserInfoActivity.class);
                 startActivityForResult(intent, Constons.RESULT_USER_INFO_REQUEST);
+
+
+
                 break;
 
         }

@@ -32,6 +32,7 @@ import com.mnn.mydream.cosmetology.fragment.beauty.commoditiesFragments.adapter.
 import com.mnn.mydream.cosmetology.interfaces.SPGLListOnClickListener;
 import com.mnn.mydream.cosmetology.utils.Constons;
 import com.mnn.mydream.cosmetology.utils.ImageLoader;
+import com.mnn.mydream.cosmetology.utils.StringUtils;
 import com.mnn.mydream.cosmetology.utils.ToastUtils;
 
 import com.mnn.mydream.cosmetology.utils.Tools;
@@ -284,7 +285,7 @@ public class CPFragment extends SupportFragment {
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.cp_select_btn:
-
+                getQueryList();
                 break;
             case R.id.remake_layout:
                 getRemakeLayoutCP();
@@ -631,5 +632,73 @@ public class CPFragment extends SupportFragment {
 
         }
     }
+    private void getQueryList() {
+        String serverName = cpNameEdit.getText().toString();
 
+        String typeString = cpTypeSpinner.getSelectedItem().toString();
+
+        LoadingDialog.Builder addSignDialogBuild = new LoadingDialog.Builder(getActivity());
+        loadingDialog = addSignDialogBuild.createDialog();
+        loadingDialog.setCanceledOnTouchOutside(false);
+        // 设置点击屏幕Dialog不消失
+        loadingDialog.show();
+
+
+        BmobQuery<CPDataBean> categoryBmobQuery = new BmobQuery<>();
+
+        if (StringUtils.isEmpty(serverName)) {
+            if (!typeString.equals("全部")) {
+                BmobQuery<CPDataBean> eq1 = new BmobQuery<CPDataBean>();
+                eq1.addWhereEqualTo("serverType", typeString);
+                List<BmobQuery<CPDataBean>> queries = new ArrayList<BmobQuery<CPDataBean>>();
+                queries.add(eq1);
+                categoryBmobQuery.and(queries);
+            }
+
+        } else {
+            if (typeString.equals("全部")) {
+                BmobQuery<CPDataBean> eq2 = new BmobQuery<CPDataBean>();
+                eq2.addWhereEqualTo("serverName", serverName);
+                List<BmobQuery<CPDataBean>> queries = new ArrayList<BmobQuery<CPDataBean>>();
+                queries.add(eq2);
+                categoryBmobQuery.and(queries);
+            } else {
+                BmobQuery<CPDataBean> eq1 = new BmobQuery<CPDataBean>();
+                eq1.addWhereEqualTo("serverType", typeString);
+                BmobQuery<CPDataBean> eq2 = new BmobQuery<CPDataBean>();
+                eq2.addWhereEqualTo("serverName", serverName);
+                List<BmobQuery<CPDataBean>> queries = new ArrayList<BmobQuery<CPDataBean>>();
+                queries.add(eq1);
+                queries.add(eq2);
+                categoryBmobQuery.and(queries);
+            }
+        }
+        categoryBmobQuery.findObjects(new FindListener<CPDataBean>() {
+            @Override
+            public void done(List<CPDataBean> object, BmobException e) {
+                if (e == null) {
+                    cpSaleDataBeans.clear();
+                    cpDismounDataBeans.clear();
+                    for (int i = 0; i < object.size(); i++) {
+                        if (object.get(i).isCpSaleFlag()) {
+                            cpSaleDataBeans.add(object.get(i));
+                        } else {
+                            cpDismounDataBeans.add(object.get(i));
+                        }
+                    }
+                    refreshHandler.sendEmptyMessage(0);
+                } else {
+
+                    loadingDialog.dismiss();
+                    String s1 = String.format(getString(R.string.beauty_within_saleing_txt), cpSaleDataBeans.size());
+                    saleText.setText(s1);
+                    String s2 = String.format(getString(R.string.beauty_within_dismount_txt), cpDismounDataBeans.size());
+                    dismountText.setText(s2);
+                    Log.e("BMOB", e.toString());
+                    ToastUtils.showToast(getContext(), "查询失败", false);
+                }
+            }
+        });
+
+    }
 }

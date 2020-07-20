@@ -36,7 +36,6 @@ public class LoadingDialog extends Dialog {
 
         private String loadingString = "BallSpinFadeLoaderIndicator";
 
-
         public Builder(Context context) {
             this.context = context;
         }
@@ -59,7 +58,6 @@ public class LoadingDialog extends Dialog {
 
             return dialog;
         }
-
 
         static class ViewHolder {
             @BindView(R.id.avloading)

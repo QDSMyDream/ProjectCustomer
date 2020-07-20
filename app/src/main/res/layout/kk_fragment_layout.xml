@@ -461,6 +461,7 @@
         android:layout_height="match_parent"
         android:background="@color/white"
         android:orientation="vertical"
+        android:paddingBottom="3dp"
         app:layout_paddingLeftPercent="1%"
         app:layout_paddingRightPercent="1%"
         app:layout_widthPercent="46%">
@@ -941,10 +942,10 @@
         </com.zhy.android.percent.support.PercentLinearLayout>
         <!--结账-->
         <com.zhy.android.percent.support.PercentLinearLayout
-
             android:layout_width="match_parent"
             android:layout_height="fill_parent"
             android:layout_marginTop="3dp"
+            android:layout_marginBottom="3dp"
             android:background="@drawable/beauty_within_text_frame"
             android:orientation="horizontal"
             app:layout_marginLeftPercent="1%"

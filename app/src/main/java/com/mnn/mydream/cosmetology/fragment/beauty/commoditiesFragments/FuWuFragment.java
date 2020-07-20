@@ -59,14 +59,12 @@ import me.yokeyword.fragmentation.SupportFragment;
  */
 
 public class FuWuFragment extends SupportFragment {
+    private String TAG = FuWuFragment.class.getSimpleName();
 
     @BindView(R.id.remake)
     TextView remake;
     @BindView(R.id.remake_layout)
     PercentRelativeLayout remakeLayout;
-
-    private String TAG = FuWuFragment.class.getSimpleName();
-
     @BindView(R.id.server_name_edit)
     AppCompatEditText serverNameEdit;
     @BindView(R.id.server_type_spinner)
@@ -305,27 +303,19 @@ public class FuWuFragment extends SupportFragment {
         // 设置点击屏幕Dialog不消失
         loadingDialog.show();
 
+
         BmobQuery<FuWuSaleBean> categoryBmobQuery = new BmobQuery<>();
 
         if (StringUtils.isEmpty(serverName)) {
-
-            if (typeString.equals("全部")) {
-                BmobQuery<FuWuSaleBean> eq2 = new BmobQuery<FuWuSaleBean>();
-                eq2.addWhereEqualTo("serverName", serverName);
-                List<BmobQuery<FuWuSaleBean>> queries = new ArrayList<BmobQuery<FuWuSaleBean>>();
-                queries.add(eq2);
-                categoryBmobQuery.and(queries);
-            } else {
+            if (!typeString.equals("全部")) {
                 BmobQuery<FuWuSaleBean> eq1 = new BmobQuery<FuWuSaleBean>();
                 eq1.addWhereEqualTo("serverType", typeString);
                 List<BmobQuery<FuWuSaleBean>> queries = new ArrayList<BmobQuery<FuWuSaleBean>>();
                 queries.add(eq1);
                 categoryBmobQuery.and(queries);
             }
-
 
         } else {
-
             if (typeString.equals("全部")) {
                 BmobQuery<FuWuSaleBean> eq2 = new BmobQuery<FuWuSaleBean>();
                 eq2.addWhereEqualTo("serverName", serverName);
@@ -342,7 +332,6 @@ public class FuWuFragment extends SupportFragment {
                 queries.add(eq2);
                 categoryBmobQuery.and(queries);
             }
-
         }
         categoryBmobQuery.findObjects(new FindListener<FuWuSaleBean>() {
             @Override

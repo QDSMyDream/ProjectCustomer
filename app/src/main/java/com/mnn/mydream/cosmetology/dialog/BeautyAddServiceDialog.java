@@ -195,7 +195,7 @@ public class BeautyAddServiceDialog extends Dialog {
                     fuWuSaleBean.selectBeanStr(new BeanCallBack() {
                         @Override
                         public void setLists(List lists, int flagInt) {
-                            Log.e(TAG, "setLists: ");
+                            Log.e(TAG, "setLists: "+flagInt);
                             fuWuSaleBeans.clear();
                             for (FuWuSaleBean fuWuSaleBean : (List<FuWuSaleBean>) lists) {
 
@@ -209,7 +209,6 @@ public class BeautyAddServiceDialog extends Dialog {
                             addFWListAdapter.notifyDataSetChanged();
                         }
                     }, Constons.RESULT_ADD_SERVICE_VIEW_REQUEST_SELECT, viewHolder.serverNameEdit.getText().toString(), viewHolder.serverTypeSpinner.getSelectedItem().toString());
-
 
                     String selectFuwuTextStr = String.format(context.getString(R.string.beauty_add_service_choice_fuwu), selectFuWuSaleBeans.size());
                     viewHolder.choiceFuwuText.setText(selectFuwuTextStr);
