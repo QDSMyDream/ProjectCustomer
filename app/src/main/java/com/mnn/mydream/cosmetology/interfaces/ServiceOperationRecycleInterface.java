@@ -1,9 +1,6 @@
 package com.mnn.mydream.cosmetology.interfaces;
 
-import android.view.View;
-
-import com.mnn.mydream.cosmetology.bean.fuwuBean.CPDataBean;
-import com.mnn.mydream.cosmetology.bean.fuwuBean.FuWuSaleBean;
+import com.mnn.mydream.cosmetology.bean.fuwuBean.XMKDataOpertionBean;
 
 /**
  * 创建人：MyDream
@@ -12,7 +9,7 @@ import com.mnn.mydream.cosmetology.bean.fuwuBean.FuWuSaleBean;
  */
 public interface ServiceOperationRecycleInterface {
 
-    void onClickDelete( int pos, FuWuSaleBean fuWuSaleBean);
+    void onClickDelete( int pos, XMKDataOpertionBean fuWuSaleBean);
 
 
 }

@@ -19,6 +19,7 @@ import com.example.smoothcheckbox.SmoothCheckBox;
 import com.mnn.mydream.cosmetology.R;
 import com.mnn.mydream.cosmetology.bean.SelectSignBean;
 import com.mnn.mydream.cosmetology.bean.fuwuBean.FuWuSaleBean;
+import com.mnn.mydream.cosmetology.bean.fuwuBean.XMKDataOpertionBean;
 import com.mnn.mydream.cosmetology.bmob.BeanCallBack;
 import com.mnn.mydream.cosmetology.fragment.beauty.commoditiesFragments.adapter.AddFWListAdapter;
 import com.mnn.mydream.cosmetology.interfaces.AddServiceOnCheckedChangeListener;
@@ -63,15 +64,15 @@ public class BeautyAddServiceDialog extends Dialog {
 
         private List<FuWuSaleBean> selectFuWuSaleBeans = new ArrayList<>();
 
-        private List<FuWuSaleBean> fuWuSaleBeans2;
+        private List<XMKDataOpertionBean> xmkDataOpertionBeans;
 
         public Builder(Context context) {
             this.context = context;
 
         }
 
-        public Builder setFuWuSaleBeans(List<FuWuSaleBean> fuWuSaleBeans2) {
-            this.fuWuSaleBeans2 = fuWuSaleBeans2;
+        public Builder setXMKDataOpertionBeans(List<XMKDataOpertionBean> xmkDataOpertionBeans) {
+            this.xmkDataOpertionBeans = xmkDataOpertionBeans;
             return this;
         }
 
@@ -131,7 +132,7 @@ public class BeautyAddServiceDialog extends Dialog {
             //创建布局管理器，垂直设置LinearLayoutManager.VERTICAL，水平设置LinearLayoutManager.HORIZONTAL
             LinearLayoutManager mLinearLayoutManager = new LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false);
 
-            AddFWListAdapter addFWListAdapter = new AddFWListAdapter(context, fuWuSaleBeans, fuWuSaleBeans2, onClickListener);
+            AddFWListAdapter addFWListAdapter = new AddFWListAdapter(context, fuWuSaleBeans, xmkDataOpertionBeans, onClickListener);
 
             addFWListAdapter.setAddServiceOnCheckedChangeListener(new AddServiceOnCheckedChangeListener() {
                 @Override
@@ -171,17 +172,18 @@ public class BeautyAddServiceDialog extends Dialog {
                 @Override
                 public void onClick(View v) {
 
-                    Log.e(TAG, "onClick: "+fuWuSaleBeans2.size());
+                    Log.e(TAG, "onClick: "+xmkDataOpertionBeans.size());
                     Log.e(TAG, "onClick: "+selectFuWuSaleBeans.size());
 
 
-                    if (selectFuWuSaleBeans.size() > 5 || (fuWuSaleBeans2.size() + selectFuWuSaleBeans.size()) > 5) {
+                    if (selectFuWuSaleBeans.size() > 5 || (xmkDataOpertionBeans.size() + selectFuWuSaleBeans.size()) > 5) {
 
                         ToastUtils.showToast(context, "项目列表超过5个，请重新选择", false);
                         return;
                     }
 
                     beanCallBack.setLists(selectFuWuSaleBeans, Constons.RESULT_ADD_SERVICE_VIEW_REQUEST_CALLBACK);
+
                     dialog.dismiss();
                 }
             });

@@ -88,7 +88,6 @@ public class FWOperationListAdapter extends BaseAdapter {
 
     public AddServiceOnCheckedChangeListener addServiceOnCheckedChangeListener;
 
-
     public void setAddServiceOnCheckedChangeListener(AddServiceOnCheckedChangeListener addServiceOnCheckedChangeListener) {
         this.addServiceOnCheckedChangeListener = addServiceOnCheckedChangeListener;
     }

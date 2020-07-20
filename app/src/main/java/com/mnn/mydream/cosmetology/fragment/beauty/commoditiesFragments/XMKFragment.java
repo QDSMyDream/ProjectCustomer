@@ -232,11 +232,11 @@ public class XMKFragment extends SupportFragment {
             Log.e(TAG, "onClickUpdate: " + pos);
             FLAG_POSTION = pos;
             saleFlag = true;
-            Intent intent = new Intent(getActivity(), CPAddDialogActivity.class);
+            Intent intent = new Intent(getActivity(), XMKDialogActivity.class);
             Bundle bundle = new Bundle();
-            bundle.putSerializable(Constons.RESULT_UPDATE_REQUEST, (CPDataBean) object);
+            bundle.putSerializable(Constons.RESULT_UPDATE_REQUEST, (XMKDataBean) object);
             intent.putExtras(bundle);
-            startActivityForResult(intent, Constons.RESULT_CP_CODE_UPDATE_REQUEST);
+            startActivityForResult(intent, Constons.RESULT_XMK_CODE_UPDATE_REQUEST);
 
         }
 
@@ -329,11 +329,12 @@ public class XMKFragment extends SupportFragment {
             Log.e(TAG, "onClickUpdate: " + pos);
             FLAG_POSTION = pos;
             saleFlag = false;
-            Intent intent = new Intent(getActivity(), CPAddDialogActivity.class);
+            Intent intent = new Intent(getActivity(), XMKDialogActivity.class);
             Bundle bundle = new Bundle();
-            bundle.putSerializable(Constons.RESULT_UPDATE_REQUEST, (CPDataBean) object);
+            bundle.putSerializable(Constons.RESULT_UPDATE_REQUEST, (XMKDataBean) object);
             intent.putExtras(bundle);
-            startActivityForResult(intent, Constons.RESULT_CP_CODE_UPDATE_REQUEST);
+            startActivityForResult(intent, Constons.RESULT_XMK_CODE_UPDATE_REQUEST);
+
 
         }
 

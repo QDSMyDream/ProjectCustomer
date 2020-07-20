@@ -24,6 +24,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONArray;
+import com.alibaba.fastjson.TypeReference;
 import com.alibaba.fastjson.support.odps.udf.CodecCheck;
 import com.applandeo.materialcalendarview.view.NiceSpinner;
 import com.example.smoothcheckbox.SmoothCheckBox;
@@ -187,8 +189,6 @@ public class XMKDialogActivity extends AppCompatActivity {
 
     private List<CheckBox> checkBoxList;
 
-    private List<FuWuSaleBean> fuWuSaleBeans = new ArrayList<>();
-
     private List<XMKDataOpertionBean> xmkDataOpertionBeans = new ArrayList<>();//数据存储
 
     private FWOperationRecycleAdapter fwOperationRecycleAdapter;
@@ -213,15 +213,13 @@ public class XMKDialogActivity extends AppCompatActivity {
 
         //创建布局管理器，垂直设置LinearLayoutManager.VERTICAL，水平设置LinearLayoutManager.HORIZONTAL
         LinearLayoutManager mLinearLayoutManager = new LinearLayoutManager(getBaseContext(), LinearLayoutManager.VERTICAL, false);
-        fwOperationRecycleAdapter = new FWOperationRecycleAdapter(this, fuWuSaleBeans, totalNumCheckbox.isChecked());
+        fwOperationRecycleAdapter = new FWOperationRecycleAdapter(this, xmkDataOpertionBeans, totalNumCheckbox.isChecked());
         fwOperationRecycleAdapter.setServiceOperationRecycleInterface(new ServiceOperationRecycleInterface() {
             @Override
-            public void onClickDelete(int pos, FuWuSaleBean fuWuSaleBean) {
-                fuWuSaleBeans.remove(fuWuSaleBean);
-
+            public void onClickDelete(int pos, XMKDataOpertionBean xmkDataOpertionBean) {
                 fwOperationRecycleAdapter.removeData(pos);
 
-                Log.e(TAG, "onClickDelete: " + fuWuSaleBeans.size());
+                Log.e(TAG, "onClickDelete: " + xmkDataOpertionBeans.size());
             }
         });
         serviceListview.setLayoutManager(mLinearLayoutManager);
@@ -249,6 +247,8 @@ public class XMKDialogActivity extends AppCompatActivity {
         if (xmkDataBean != null) {
             XMK_FLAG = false;
             title.setText("修改项目卡内容");
+            setDefaultData();
+
         } else {
             XMK_FLAG = true;
             title.setText("添加项目卡内容");
@@ -256,6 +256,139 @@ public class XMKDialogActivity extends AppCompatActivity {
             permanentValidityCheckBox.setChecked(true);
             empowerCheckBox.setChecked(true);
         }
+    }
+
+    private void setDefaultData() {
+
+        xmkName.setText(xmkDataBean.getXmkName());
+
+        xmkMd.setSelectedIndex(0);
+
+        xmkMoney.setText(xmkDataBean.getXmkMoney() + "");
+
+        int j = xmkType.getAdapter().getCount();
+        Log.e(TAG, "initView: " + j);
+        for (int i = 0; i < j; i++) {
+            Log.e(TAG, "initView: " + xmkType.getAdapter().getItem(i).toString());
+            if (xmkDataBean.getXmkType().equals(xmkType.getAdapter().getItem(i).toString())) {
+                xmkType.setSelectedIndex(i + 1);// 默认选中项
+                break;
+            }
+        }
+
+        if (!xmkDataBean.isXmkVipFlag()) {
+            xmkVipMoney.setText(xmkDataBean.getXmkVipMoney() + "");
+        } else {
+            vipCheckBox.setChecked(xmkDataBean.isXmkVipFlag());
+        }
+
+        totalNumCheckbox.setChecked(xmkDataBean.isTotalNumFlag());
+
+
+        if (xmkDataBean.isEffectiveFlag()) {
+            immediateEffectCheckBox.setChecked(true);
+            permanentValidityCheckBox.setChecked(false);
+        } else {
+            immediateEffectCheckBox.setChecked(false);
+            permanentValidityCheckBox.setChecked(true);
+        }
+
+
+        xmkDataBean.setEffectiveTime(xmkName.getText().toString());
+
+        xmkName.setText(xmkDataBean.getEffectiveTime());
+
+
+        if (xmkDataBean.isEmpowerFlag()) {
+            mayAuthorizeCheckBox.setChecked(true);
+            empowerCheckBox.setChecked(false);
+        } else {
+            mayAuthorizeCheckBox.setChecked(false);
+            empowerCheckBox.setChecked(true);
+        }
+
+
+        xmkNum.setText(xmkDataBean.getXmkNum());
+
+        remarksContent.setText(xmkDataBean.getCharacteristicStr());
+
+
+        switch (xmkDataBean.getCoverColorStr()) {
+            case "蓝色":
+                cardCover.setBackgroundResource(R.drawable.beauty_within_gridview_item_layout1);
+                checkTrue(check1);
+                break;
+            case "黄色":
+                cardCover.setBackgroundResource(R.drawable.beauty_within_gridview_item_layout2);
+                checkTrue(check2);
+                break;
+            case "金色":
+                cardCover.setBackgroundResource(R.drawable.beauty_within_gridview_item_layout3);
+                checkTrue(check3);
+                break;
+            case "红色":
+                checkTrue(check4);
+                cardCover.setBackgroundResource(R.drawable.beauty_within_gridview_item_layout4);
+                break;
+            case "黑色":
+                checkTrue(check5);
+                cardCover.setBackgroundResource(R.drawable.beauty_within_gridview_item_layout5);
+                break;
+            case "紫色":
+                checkTrue(check6);
+                cardCover.setBackgroundResource(R.drawable.beauty_within_gridview_item_layout6);
+                break;
+            case "天蓝":
+                checkTrue(check7);
+                cardCover.setBackgroundResource(R.drawable.beauty_within_gridview_item_layout7);
+                break;
+            case "绿色":
+                checkTrue(check8);
+                cardCover.setBackgroundResource(R.drawable.beauty_within_gridview_item_layout8);
+                break;
+            case "玫粉":
+                checkTrue(check9);
+                cardCover.setBackgroundResource(R.drawable.beauty_within_gridview_item_layout9);
+                break;
+        }
+
+        JSONArray jsonArray = JSONArray.parseArray(xmkDataBean.getFwJson());
+
+        if (xmkDataBean.getTotalNum() == 0) {
+
+            totalNumCheckbox.setChecked(false);
+            xmkDataOpertionBeans = JSON.parseArray(xmkDataBean.getFwJson(), XMKDataOpertionBean.class);
+            Log.e(TAG, "setDefaultData: " + xmkDataBean.getFwJson());
+//            for (int i = 0; i < jsonArray.size(); i++) {
+//                int num = JSON.parseObject(jsonArray.get(i).toString()).getInteger("num");
+//
+//                Log.e(TAG, "setDefaultData: "+ JSON.parseObject(jsonArray.get(j-1).toString()).getString("fuWuSaleBean"));
+////                FuWuSaleBean fuWuSaleBean = JSON.parseObject(, new TypeReference<FuWuSaleBean>() {});
+////                xmkDataOpertionBeans.add(new XMKDataOpertionBean(num, fuWuSaleBean));
+//            }
+
+            fwOperationRecycleAdapter.addDatas(xmkDataOpertionBeans);
+        } else {
+            totalNumCheckbox.setChecked(true);
+            totalNum.setText(xmkDataBean.getTotalNum() + "");
+
+            for (int i = 0; i < jsonArray.size(); i++) {
+                int num = JSON.parseObject(jsonArray.get(i).toString()).getInteger("num");
+                FuWuSaleBean fuWuSaleBean = JSON.parseObject(JSON.parseObject(JSON.parseObject(jsonArray.get(j).toString()).getString("fuWuSaleBean")).toJSONString(), new TypeReference<FuWuSaleBean>() {
+                });
+                xmkDataOpertionBeans.add(new XMKDataOpertionBean(num, fuWuSaleBean));
+            }
+
+            fwOperationRecycleAdapter.addDatas(xmkDataOpertionBeans);
+        }
+
+
+//        Log.e(TAG, "saveXmk: " + xmkDataOpertionBeans.size());
+//        String jsonString = JSON.toJSONString(xmkDataOpertionBeans);
+//        Log.e(TAG, "saveXmk: " + jsonString);
+//        xmkDataBean.setFwJson(jsonString);
+
+
     }
 
 
@@ -294,7 +427,7 @@ public class XMKDialogActivity extends AppCompatActivity {
     }
 
     private void addServiceDialog() {
-        BeautyAddServiceDialog.Builder builder = new BeautyAddServiceDialog.Builder(this).setFuWuSaleBeans(fuWuSaleBeans);
+        BeautyAddServiceDialog.Builder builder = new BeautyAddServiceDialog.Builder(this).setXMKDataOpertionBeans(xmkDataOpertionBeans);
         builder.setBeanCallBack(beanCallBack);
         beautyAddServiceDialog = builder.createDialog();
         beautyAddServiceDialog.setCanceledOnTouchOutside(false);// 设置点击屏幕Dialog不消失
@@ -343,7 +476,7 @@ public class XMKDialogActivity extends AppCompatActivity {
             }
         }
 
-        if (fuWuSaleBeans.size() == 0) {
+        if (xmkDataOpertionBeans.size() == 0) {
             ToastUtils.showToast(this, "请选择服务！", false);
             return;
         }
@@ -368,11 +501,15 @@ public class XMKDialogActivity extends AppCompatActivity {
         xmkDataBean.setXmkVipFlag(vipCheckBox.isChecked());
 
         if (totalNumCheckbox.isChecked()) {
+
             xmkDataBean.setTotalNum(Integer.parseInt(totalNum.getText().toString()));
+
             for (int i = 0; i < serviceListview.getChildCount(); i++) {
                 PercentLinearLayout layout = (PercentLinearLayout) serviceListview.getChildAt(i);// 获得子item的layout
                 EditText et = (EditText) layout.findViewById(R.id.total_num);// 从layout中获得控件,根据其id
-                xmkDataOpertionBeans.add(new XMKDataOpertionBean(StringUtils.isEmpty(et.getText().toString()) ? 0 : Integer.parseInt(et.getText().toString()), fuWuSaleBeans.get(i)));
+
+                xmkDataOpertionBeans.get(i).setNumCount(0);
+//                xmkDataOpertionBeans.add(new XMKDataOpertionBean(StringUtils.isEmpty(et.getText().toString()) ? 0 : Integer.parseInt(et.getText().toString()), xmkDataOpertionBeans.get(i).getFuWuSaleBean()));
             }
 
 
@@ -385,7 +522,13 @@ public class XMKDialogActivity extends AppCompatActivity {
                     ToastUtils.showToast(this, "服务列表第" + (i + 1) + "未输入", false);
                     return;
                 }
-                xmkDataOpertionBeans.add(new XMKDataOpertionBean(Integer.parseInt(et.getText().toString()), fuWuSaleBeans.get(i)));
+
+                if (Integer.parseInt(et.getText().toString()) == 0) {
+                    ToastUtils.showToast(this, "服务列表第" + (i + 1) + "不能小于0次", false);
+                    return;
+                }
+                xmkDataOpertionBeans.get(i).setNumCount(Integer.parseInt(et.getText().toString()));
+
             }
 
         }
@@ -701,12 +844,20 @@ public class XMKDialogActivity extends AppCompatActivity {
         @Override
         public void setLists(List lists, int flagInt) {
             Log.e(TAG, "setLists: " + lists.size());
-            if (lists.size() > 0) {
+            if (flagInt == Constons.RESULT_ADD_SERVICE_VIEW_REQUEST_CALLBACK) {
+                if (lists.size() > 0) {
 
-                fuWuSaleBeans.clear();
-                fuWuSaleBeans = (List<FuWuSaleBean>) lists;
-                fwOperationRecycleAdapter.addDatas(fuWuSaleBeans);
+                    List<FuWuSaleBean> fuWuSaleBeans = (List<FuWuSaleBean>) lists;
+                    for (FuWuSaleBean fuWuSaleBean : fuWuSaleBeans) {
+                        xmkDataOpertionBeans.add(new XMKDataOpertionBean(0, fuWuSaleBean));
+                    }
+
+                    fwOperationRecycleAdapter.addDatass(xmkDataOpertionBeans);
+
+                }
+
             }
+
         }
     };
 
@@ -730,9 +881,5 @@ public class XMKDialogActivity extends AppCompatActivity {
         }
     };
 
-
-    public void saveEditData(int position, String str) {
-        Toast.makeText(this, str + "----" + position, Toast.LENGTH_LONG).show();
-    }
 
 }

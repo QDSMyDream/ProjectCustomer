@@ -1,8 +1,7 @@
 package com.mnn.mydream.cosmetology.bean.fuwuBean;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
+
 
 /**
  * 创建人：MyDream
@@ -11,28 +10,24 @@ import java.util.List;
  */
 public class XMKDataOpertionBean implements Serializable {
 
-    private int num;//代表此服务限制多少次
+    private int numCount;//代表此服务限制多少次
     private FuWuSaleBean fuWuSaleBean;
 
     public XMKDataOpertionBean(int num, FuWuSaleBean fuWuSaleBean) {
-        this.num = num;
+        this.numCount = num;
         this.fuWuSaleBean = fuWuSaleBean;
     }
 
-    @Override
-    public String toString() {
-        return "XMKDataOpertionBean{" +
-                "money=" + num +
-                ", fuWuSaleBean=" + fuWuSaleBean +
-                '}';
+    public XMKDataOpertionBean() {
+      super();
     }
 
-    public int getNum() {
-        return num;
+    public int getNumCount() {
+        return numCount;
     }
 
-    public void setNum(int num) {
-        this.num = num;
+    public void setNumCount(int numCount) {
+        this.numCount = numCount;
     }
 
     public FuWuSaleBean getFuWuSaleBean() {

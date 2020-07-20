@@ -15,6 +15,7 @@ import android.widget.TextView;
 import com.example.smoothcheckbox.SmoothCheckBox;
 import com.mnn.mydream.cosmetology.R;
 import com.mnn.mydream.cosmetology.bean.fuwuBean.FuWuSaleBean;
+import com.mnn.mydream.cosmetology.bean.fuwuBean.XMKDataOpertionBean;
 import com.mnn.mydream.cosmetology.interfaces.AddServiceOnCheckedChangeListener;
 import com.mnn.mydream.cosmetology.interfaces.SPGLListOnClickListener;
 import com.mnn.mydream.cosmetology.utils.ImageLoader;
@@ -40,13 +41,13 @@ public class AddFWListAdapter extends XRecyclerView.Adapter {
     private final Context mContext;
     private View.OnClickListener onClickListener;
     LayoutInflater mLayoutInflater;
-    private List<FuWuSaleBean> fuWuSaleBeans2;
+    private List<XMKDataOpertionBean> xmkDataOpertionBeans;
 
-    public AddFWListAdapter(Context mContext, List<FuWuSaleBean> fuWuSaleBeans, List<FuWuSaleBean> fuWuSaleBeans2, View.OnClickListener onClickListener) {
+    public AddFWListAdapter(Context mContext, List<FuWuSaleBean> fuWuSaleBeans, List<XMKDataOpertionBean> xmkDataOpertionBeans, View.OnClickListener onClickListener) {
         this.mContext = mContext;
         this.fuWuSaleBeans = fuWuSaleBeans;
         this.onClickListener = onClickListener;
-        this.fuWuSaleBeans2 = fuWuSaleBeans2;
+        this.xmkDataOpertionBeans = xmkDataOpertionBeans;
         mLayoutInflater = LayoutInflater.from(mContext);
 
     }
@@ -129,10 +130,10 @@ public class AddFWListAdapter extends XRecyclerView.Adapter {
 
                     } else {
                         Log.e(TAG, "onClick: " + fuWuSaleBean.toString());
-                        if (fuWuSaleBeans2 != null && fuWuSaleBeans2.size() > 0) {
+                        if (xmkDataOpertionBeans != null && xmkDataOpertionBeans.size() > 0) {
 
-                            for (FuWuSaleBean fuWuSaleBean1 : fuWuSaleBeans2) {
-                                if (fuWuSaleBean.getObjectId().equals(fuWuSaleBean1.getObjectId())) {
+                            for (XMKDataOpertionBean xmkDataOpertionBean : xmkDataOpertionBeans) {
+                                if (fuWuSaleBean.getObjectId().equals(xmkDataOpertionBean.getFuWuSaleBean().getObjectId())) {
                                     ToastUtils.showToast(mContext, "此服务已经添加", false);
                                     return;
                                 }
