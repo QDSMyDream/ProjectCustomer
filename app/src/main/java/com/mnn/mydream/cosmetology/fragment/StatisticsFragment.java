@@ -15,8 +15,7 @@ import com.mnn.mydream.cosmetology.R;
  * 账户设置
  */
 public class StatisticsFragment extends Fragment {
-
-
+    
     private View myView;
 
     @Override

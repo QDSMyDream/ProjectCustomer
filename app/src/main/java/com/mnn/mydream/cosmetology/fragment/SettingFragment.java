@@ -27,7 +27,6 @@ import cn.bmob.v3.BmobUser;
 
 public class SettingFragment extends android.support.v4.app.Fragment {
 
-
     private String TAG = "SetingFragment";
 
     @BindView(R.id.img_photo)
@@ -153,7 +152,6 @@ public class SettingFragment extends android.support.v4.app.Fragment {
                 startActivity(intent2);
                 break;
             case R.id.layout_update:
-
 
 
                 break;

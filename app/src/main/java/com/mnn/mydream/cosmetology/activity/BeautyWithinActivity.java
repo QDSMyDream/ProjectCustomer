@@ -28,13 +28,16 @@ import me.yokeyword.fragmentation.SupportFragment;
 
 public class BeautyWithinActivity extends SupportActivity {
 
+    private String TAG = "BeautyWithinActivity";
+
     @BindView(R.id.title_content2)
     TextView titleContent2;
+
     @BindView(R.id.within_fragment)
     FrameLayout withinFragment;
+
     @BindView(R.id.layout_content)
     PercentLinearLayout layoutContent;
-    private String TAG = "BeautyWithinActivity";
 
     @BindView(R.id.back_img)
     ImageView backImg;
@@ -59,7 +62,6 @@ public class BeautyWithinActivity extends SupportActivity {
 
     private String[] strings = new String[]{"充值", "开卡", "续充卡", "消费", "服务", "产品", "项目卡", "消耗", "耗卡", "券核销", "服务核销", "其它", "消费赠送", "激活礼品卡"};
 
-
     SupportFragment[] mFragments;
 
     @Override
@@ -74,12 +76,11 @@ public class BeautyWithinActivity extends SupportActivity {
     private void initView() {
 
 
-        mFragments = new SupportFragment[]{
-                KKFragment.newInstance()
-        };
+        mFragments = new SupportFragment[]{KKFragment.newInstance()};
 
         //这里需要如下判断，否则可能出现这个错误https://xuexuan.blog.csdn.net/article/details/103733622
         if (findFragment(KKFragment.class) == null) {
+
             loadMultipleRootFragment(R.id.within_fragment, 0,
                     mFragments[0]);
         }

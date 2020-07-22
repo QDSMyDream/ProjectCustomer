@@ -30,7 +30,7 @@ import butterknife.ButterKnife;
 
 public class KHZSListAdapter extends BaseAdapter {
 
-    private String TAG = "FuWuView1ListAdapter";
+    private String TAG = "KHZSListAdapter";
     private List<BeautyBeanKh> beautyBeanKhs;
     private final Context mContext;
 

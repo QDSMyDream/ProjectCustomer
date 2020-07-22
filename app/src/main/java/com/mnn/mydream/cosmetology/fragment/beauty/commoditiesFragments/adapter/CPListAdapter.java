@@ -31,7 +31,7 @@ import butterknife.ButterKnife;
 
 public class CPListAdapter extends BaseAdapter {
 
-    private String TAG = "FuWuView1ListAdapter";
+    private String TAG = "CPListAdapter";
     private List<CPDataBean> cpDataBeans;
     private final Context mContext;
 

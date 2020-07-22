@@ -68,7 +68,6 @@ import cn.droidlover.xrecyclerview.XRecyclerView;
  * 类描述：添加项目卡
  */
 public class XMKDialogActivity extends AppCompatActivity {
-
     @BindView(R.id.title)
     TextView title;
     @BindView(R.id.xmk_name)
@@ -507,7 +506,6 @@ public class XMKDialogActivity extends AppCompatActivity {
             for (int i = 0; i < serviceListview.getChildCount(); i++) {
                 PercentLinearLayout layout = (PercentLinearLayout) serviceListview.getChildAt(i);// 获得子item的layout
                 EditText et = (EditText) layout.findViewById(R.id.total_num);// 从layout中获得控件,根据其id
-
                 xmkDataOpertionBeans.get(i).setNumCount(0);
 //                xmkDataOpertionBeans.add(new XMKDataOpertionBean(StringUtils.isEmpty(et.getText().toString()) ? 0 : Integer.parseInt(et.getText().toString()), xmkDataOpertionBeans.get(i).getFuWuSaleBean()));
             }

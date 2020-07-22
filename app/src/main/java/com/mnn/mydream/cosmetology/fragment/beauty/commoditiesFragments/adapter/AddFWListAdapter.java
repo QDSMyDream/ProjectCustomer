@@ -36,7 +36,7 @@ import cn.droidlover.xrecyclerview.XRecyclerView;
 
 public class AddFWListAdapter extends XRecyclerView.Adapter {
 
-    private String TAG = "FWListAdapter";
+    private String TAG = "AddFWListAdapter";
     private List<FuWuSaleBean> fuWuSaleBeans;
     private final Context mContext;
     private View.OnClickListener onClickListener;

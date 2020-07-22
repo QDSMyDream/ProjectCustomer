@@ -239,7 +239,6 @@ public class KKFragment extends SupportFragment {
                 deleteKhInfo();
                 break;
             case R.id.consumption_img:
-
                 Tools.inputImm(getActivity(), view);
                 setOnclick(1);
                 break;
@@ -259,7 +258,6 @@ public class KKFragment extends SupportFragment {
 
     //查询客户
     private void selectKhInfo() {
-
         getSelectCustomers(edSelect.getText().toString());
     }
 
@@ -336,7 +334,6 @@ public class KKFragment extends SupportFragment {
             BeautyBeanKh beautyBeanKh = (BeautyBeanKh) beautyWithinTipsAdapter.getItem(position);
 
             if (beautyBeanKh.getName().equals("无")) {
-
                 edSelect.setText("");
                 return;
             }
@@ -357,7 +354,6 @@ public class KKFragment extends SupportFragment {
             khPhone.setText("手机号：" + beautyBeanKh.getPhone());
             khsrText.setText("生日：" + beautyBeanKh.getBir());
             khssmdText.setText("所属门店：" + beautyBeanKh.getMd());
-
 
         }
     };
@@ -385,9 +381,7 @@ public class KKFragment extends SupportFragment {
                     }
                 } else if (count == 1) {
                     consumptionTxt.setText(time);
-
                 }
-
             }
         }).btnTextSize(16)
                 .viewTextSize(25)

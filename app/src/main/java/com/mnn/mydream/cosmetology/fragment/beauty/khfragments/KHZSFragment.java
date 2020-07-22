@@ -131,6 +131,11 @@ public class KHZSFragment extends SupportFragment implements SetListOnClickListe
 
 
     private void initview() {
+        LoadingDialog.Builder addSignDialogBuild = new LoadingDialog.Builder(getActivity());
+        loadingDialog = addSignDialogBuild.createDialog();
+        loadingDialog.setCanceledOnTouchOutside(false);
+        // 设置点击屏幕Dialog不消失
+
         getKhzs();//查询所有
     }
 
@@ -141,10 +146,6 @@ public class KHZSFragment extends SupportFragment implements SetListOnClickListe
         khzsListAdapter.setListOnClickListener(this);
         khList.setAdapter(khzsListAdapter);
 
-        LoadingDialog.Builder addSignDialogBuild = new LoadingDialog.Builder(getActivity());
-        loadingDialog = addSignDialogBuild.createDialog();
-        loadingDialog.setCanceledOnTouchOutside(false);
-        // 设置点击屏幕Dialog不消失
         loadingDialog.show();
 
         BmobQuery<BeautyBeanKh> categoryBmobQuery = new BmobQuery<>();
@@ -182,6 +183,7 @@ public class KHZSFragment extends SupportFragment implements SetListOnClickListe
                     selectText.setText(s);
                     Tools.ListSortsKh(beautyBeanKhs);
                     khzsListAdapter.notifyDataSetChanged();
+
                     loadingDialog.dismiss();
 
                     break;
@@ -217,11 +219,9 @@ public class KHZSFragment extends SupportFragment implements SetListOnClickListe
 
         String khString = khNamePhoneEdit.getText().toString();
         if (!khString.equals("")) {
-            getSelectCustomers(khString);
-
             loadingDialog.show();
+            getSelectCustomers(khString);
         } else {
-
             ToastUtils.showToast(getActivity(), "请输入姓名或手机号进行搜索", false);
 
         }
@@ -233,7 +233,7 @@ public class KHZSFragment extends SupportFragment implements SetListOnClickListe
     private void getRemakeLayoutKh() {
 
         khNamePhoneEdit.setText("");
-        loadingDialog.show();
+
         getKhzs();//查询所有
 
 

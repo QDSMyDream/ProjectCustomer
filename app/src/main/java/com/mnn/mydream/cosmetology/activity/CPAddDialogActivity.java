@@ -56,6 +56,8 @@ import cn.bmob.v3.listener.UploadFileListener;
  * 类描述：添加产品
  */
 public class CPAddDialogActivity extends AppCompatActivity {
+
+    private String TAG = "CPAddDialogActivity";
     @BindView(R.id.title)
     TextView title;
     @BindView(R.id.cp_img_photo)
@@ -99,7 +101,7 @@ public class CPAddDialogActivity extends AppCompatActivity {
     @BindView(R.id.cp_check_specifications_text)
     TextView cpCheckSpecificationsText;
 
-    private String TAG = "CPAddDialogActivity";
+
 
     private String picPath = "https://bmob-cdn-28614.bmobpay.com/2020/07/12/49e9500440be379380eff778e5dff13a.png";
 

@@ -37,6 +37,7 @@ import io.reactivex.functions.Consumer;
 
 public class LoginActivity extends AppCompatActivity {
     private static final String TAG = "LoginActivity";
+
     @BindView(R.id.input_email)
     EditText _emailText;
     @BindView(R.id.input_password)

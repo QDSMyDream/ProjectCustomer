@@ -54,7 +54,7 @@ import cn.bmob.v3.listener.UploadFileListener;
  * 类描述：添加服务
  */
 public class FuWuServerDialogActivity extends AppCompatActivity {
-
+    private String TAG = "FuWuServerDialogActivity";
     @BindView(R.id.title)
     TextView title;
     @BindView(R.id.server_img_photo)
@@ -87,7 +87,7 @@ public class FuWuServerDialogActivity extends AppCompatActivity {
     AppCompatEditText serverTd;
     @BindView(R.id.server_td_num)
     TextView serverTdNum;
-    private String TAG = "FuWuServerDialogActivity";
+
 
     private String picPath = "https://bmob-cdn-28614.bmobpay.com/2020/07/12/49e9500440be379380eff778e5dff13a.png";
 

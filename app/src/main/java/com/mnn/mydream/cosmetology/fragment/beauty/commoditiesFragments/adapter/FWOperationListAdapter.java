@@ -29,7 +29,8 @@ import butterknife.ButterKnife;
 
 public class FWOperationListAdapter extends BaseAdapter {
 
-    private String TAG = "FWListAdapter";
+    private String TAG = "FWOperationListAdapter";
+
     private List<FuWuSaleBean> fuWuSaleBeans;
     private final Context mContext;
     private View.OnClickListener onClickListener;

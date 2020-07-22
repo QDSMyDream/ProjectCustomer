@@ -20,12 +20,14 @@ import me.yokeyword.fragmentation.SupportFragment;
 public class YYGLFragment extends SupportFragment {
 
     private View view;
+
     public static YYGLFragment newInstance() {
         Bundle args = new Bundle();
         YYGLFragment fragment = new YYGLFragment();
         fragment.setArguments(args);
         return fragment;
     }
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         if (view == null) {

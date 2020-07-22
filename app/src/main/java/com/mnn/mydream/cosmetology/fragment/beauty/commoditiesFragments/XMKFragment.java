@@ -59,7 +59,9 @@ import me.yokeyword.fragmentation.SupportFragment;
  */
 
 public class XMKFragment extends SupportFragment {
+
     private String TAG = XMKFragment.class.getSimpleName();
+    
     @BindView(R.id.xmk_name_edit)
     AppCompatEditText xmkNameEdit;
     @BindView(R.id.xmk_type_spinner)

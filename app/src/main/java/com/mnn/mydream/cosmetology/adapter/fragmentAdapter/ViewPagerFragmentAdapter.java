@@ -15,6 +15,7 @@ import me.yokeyword.fragmentation.SupportFragment;
  * Created by YoKeyword on 16/6/5.
  */
 public class ViewPagerFragmentAdapter extends FragmentPagerAdapter {
+
     private String[] mTitles;
     private SupportFragment[] mFragments;
 

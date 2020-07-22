@@ -73,6 +73,8 @@ import cn.bmob.v3.listener.UploadFileListener;
 
 public class CustomerActivity extends AppCompatActivity implements View.OnClickListener {
 
+    private String TAG = "CustomerActivity";
+
     @BindView(R.id.back)
     TextView mBack;
     @BindView(R.id.title_text)
@@ -115,7 +117,6 @@ public class CustomerActivity extends AppCompatActivity implements View.OnClickL
     @BindView(R.id.img_tx)
     ImageView imgTx;
 
-    private String TAG = "CustomerActivity";
 
     private List<CustomerProjectBean> customerProjectsList = new ArrayList<>();//总项目bean
 

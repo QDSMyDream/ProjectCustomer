@@ -78,6 +78,7 @@ import cn.bmob.v3.listener.UploadFileListener;
  */
 
 public class ShowProjectsActivity extends AppCompatActivity {
+
     private String TAG = "ShowProjectsActivity";
 
     @BindView(R.id.add_content)

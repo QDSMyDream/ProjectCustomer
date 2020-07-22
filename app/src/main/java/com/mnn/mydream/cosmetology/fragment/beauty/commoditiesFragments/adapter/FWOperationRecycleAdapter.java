@@ -2,27 +2,18 @@ package com.mnn.mydream.cosmetology.fragment.beauty.commoditiesFragments.adapter
 
 import android.app.Activity;
 import android.support.v7.widget.AppCompatEditText;
-
-import android.text.Editable;
-import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.TextSwitcher;
 import android.widget.TextView;
-
 import com.mnn.mydream.cosmetology.R;
-import com.mnn.mydream.cosmetology.activity.MainActivity;
-import com.mnn.mydream.cosmetology.activity.XMKDialogActivity;
 import com.mnn.mydream.cosmetology.bean.fuwuBean.FuWuSaleBean;
 import com.mnn.mydream.cosmetology.bean.fuwuBean.XMKDataOpertionBean;
 import com.mnn.mydream.cosmetology.interfaces.ServiceOperationRecycleInterface;
 import com.mnn.mydream.cosmetology.utils.ImageLoader;
 import com.zhy.android.percent.support.PercentLinearLayout;
-
 import java.util.List;
-
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import cn.droidlover.xrecyclerview.XRecyclerView;

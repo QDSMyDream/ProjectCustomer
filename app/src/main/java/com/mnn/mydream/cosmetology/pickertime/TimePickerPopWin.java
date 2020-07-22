@@ -30,7 +30,6 @@ public class TimePickerPopWin extends PopupWindow implements View.OnClickListene
     private Button cancelBtn;
     private Button confirmBtn;
 
-
     private TextView h, m, s;
     private LoopView yearLoopView;
     private LoopView monthLoopView;

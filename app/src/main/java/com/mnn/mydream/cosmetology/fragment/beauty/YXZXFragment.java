@@ -20,6 +20,7 @@ import me.yokeyword.fragmentation.SupportFragment;
 public class YXZXFragment extends SupportFragment {
 
     private View view;
+
     public static YXZXFragment newInstance() {
 
 
@@ -30,6 +31,7 @@ public class YXZXFragment extends SupportFragment {
         return fragment;
 
     }
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         if (view == null) {

@@ -42,7 +42,7 @@ import cn.bmob.v3.listener.SaveListener;
 import cn.bmob.v3.listener.UpdateListener;
 
 public class EditProjectsActivity extends AppCompatActivity implements OnItemRecyclerViewClickListener {
-
+    private String TAG = "EditProjectsActivity";
     @BindView(R.id.projects_list)
     ListView projectsList;
 
@@ -61,7 +61,7 @@ public class EditProjectsActivity extends AppCompatActivity implements OnItemRec
     @BindView(R.id.complete)
     TextView complete;
 
-    private String TAG = "EditProjectsActivity";
+
 
     private ProjectsShowListAdapter projectsShowListAdapter;
 
