@@ -10,21 +10,17 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.WindowManager;
-import android.widget.AdapterView;
-import android.widget.ListView;
 import android.widget.TextView;
 
 import com.applandeo.materialcalendarview.view.NiceSpinner;
 import com.example.smoothcheckbox.SmoothCheckBox;
 import com.mnn.mydream.cosmetology.R;
-import com.mnn.mydream.cosmetology.bean.SelectSignBean;
-import com.mnn.mydream.cosmetology.bean.fuwuBean.FuWuSaleBean;
-import com.mnn.mydream.cosmetology.bean.fuwuBean.XMKDataOpertionBean;
+import com.mnn.mydream.cosmetology.bean.spglBean.FuWuSaleBean;
+import com.mnn.mydream.cosmetology.bean.spglBean.XMKDataOpertionBean;
 import com.mnn.mydream.cosmetology.bmob.BeanCallBack;
 import com.mnn.mydream.cosmetology.fragment.beauty.commoditiesFragments.adapter.AddFWListAdapter;
 import com.mnn.mydream.cosmetology.interfaces.AddServiceOnCheckedChangeListener;
 import com.mnn.mydream.cosmetology.utils.Constons;
-import com.mnn.mydream.cosmetology.utils.StringUtils;
 import com.mnn.mydream.cosmetology.utils.ToastUtils;
 import com.zhy.android.percent.support.PercentLinearLayout;
 import com.zhy.android.percent.support.PercentRelativeLayout;
@@ -34,9 +30,6 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import cn.bmob.v3.BmobQuery;
-import cn.bmob.v3.exception.BmobException;
-import cn.bmob.v3.listener.FindListener;
 import cn.droidlover.xrecyclerview.XRecyclerView;
 
 /**

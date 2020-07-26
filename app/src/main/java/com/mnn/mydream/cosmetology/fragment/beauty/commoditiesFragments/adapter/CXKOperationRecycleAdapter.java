@@ -6,14 +6,17 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.TextView;
+
 import com.mnn.mydream.cosmetology.R;
-import com.mnn.mydream.cosmetology.bean.spglBean.FuWuSaleBean;
+import com.mnn.mydream.cosmetology.activity.CXKDialogActivity;
+import com.mnn.mydream.cosmetology.bean.spglBean.CXKCZFABean;
+import com.mnn.mydream.cosmetology.bean.spglBean.CXKDataBean;
 import com.mnn.mydream.cosmetology.bean.spglBean.XMKDataOpertionBean;
 import com.mnn.mydream.cosmetology.interfaces.ServiceOperationRecycleInterface;
-import com.mnn.mydream.cosmetology.utils.ImageLoader;
 import com.zhy.android.percent.support.PercentLinearLayout;
+
 import java.util.List;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import cn.droidlover.xrecyclerview.XRecyclerView;
@@ -21,20 +24,19 @@ import cn.droidlover.xrecyclerview.XRecyclerView;
 /**
  * 创建人 :MyDream
  * 创建时间：2020/5/3 18:18
- * 类描述：总记录客户记录列表适配器
+ * 类描述：储蓄卡充值方案
  */
-public class FWOperationRecycleAdapter extends XRecyclerView.Adapter {
+public class CXKOperationRecycleAdapter extends XRecyclerView.Adapter {
 
-    private String TAG = "FWOperationRecycleAdapter";
-    private final List<XMKDataOpertionBean> xmkDataOpertionBeans;
+    private String TAG = "CXKOperationRecycleAdapter";
+    private final List<CXKCZFABean> cxkczfaBeans;
     private final Activity mContext;
     private final LayoutInflater mLayoutInflater;
-    private boolean aBoolean;
 
-    public FWOperationRecycleAdapter(Activity mContext, List<XMKDataOpertionBean> xmkDataOpertionBeans, boolean b) {
+
+    public CXKOperationRecycleAdapter(Activity mContext, List<CXKCZFABean> cxkczfaBeans) {
         this.mContext = mContext;
-        this.xmkDataOpertionBeans = xmkDataOpertionBeans;
-        this.aBoolean = b;
+        this.cxkczfaBeans = cxkczfaBeans;
 
         mLayoutInflater = LayoutInflater.from(mContext);
     }
@@ -42,7 +44,7 @@ public class FWOperationRecycleAdapter extends XRecyclerView.Adapter {
 
     @Override
     public XRecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        return new ViewHolder(mLayoutInflater.inflate(R.layout.fuwu_operation_list_item, null));
+        return new ViewHolder(mLayoutInflater.inflate(R.layout.cxk_operation_list_item, null));
     }
 
     @Override
@@ -53,34 +55,33 @@ public class FWOperationRecycleAdapter extends XRecyclerView.Adapter {
 
     @Override
     public int getItemCount() {
-        return xmkDataOpertionBeans.size();
+        return cxkczfaBeans.size();
     }
 
     //  删除数据
     public void removeData(int position) {
-        xmkDataOpertionBeans.remove(position);
+        cxkczfaBeans.remove(position);
         notifyDataSetChanged();
     }
 
     //  添加数据
-    public void addData(XMKDataOpertionBean fuWuSaleBean) {
+    public void addData(CXKCZFABean cxkDataBean) {
 //      在list中添加数据，并通知条目加入一条
-        xmkDataOpertionBeans.add(fuWuSaleBean);
+        cxkczfaBeans.add(cxkDataBean);
 
         notifyDataSetChanged();
     }
 
     public void setAllEditText(boolean b) {
-        aBoolean = b;
         notifyDataSetChanged();
 
     }
 
 
     //  添加数据
-    public void addDatas(List<XMKDataOpertionBean> fuWuSaleBeanList) {
+    public void addDatas(List<CXKCZFABean> cxkDataBeans) {
 //      在list中添加数据，并通知条目加入一条
-        xmkDataOpertionBeans.addAll(fuWuSaleBeanList);
+        cxkczfaBeans.addAll(cxkDataBeans);
 
         notifyDataSetChanged();
     }
@@ -93,7 +94,6 @@ public class FWOperationRecycleAdapter extends XRecyclerView.Adapter {
     }
 
 
-
     public ServiceOperationRecycleInterface serviceOperationRecycleInterface;
 
 
@@ -101,21 +101,12 @@ public class FWOperationRecycleAdapter extends XRecyclerView.Adapter {
         this.serviceOperationRecycleInterface = fuWuListOnClickListener;
     }
 
+
     class ViewHolder extends XRecyclerView.ViewHolder {
-        @BindView(R.id.iv_server)
-        ImageView ivServer;
-        @BindView(R.id.title1)
-        TextView title1;
-        @BindView(R.id.title2)
-        TextView title2;
-        @BindView(R.id.title3)
-        TextView title3;
-        @BindView(R.id.tip1)
-        TextView tip1;
-        @BindView(R.id.total_num)
-        AppCompatEditText totalNum;
-        @BindView(R.id.tip2)
-        TextView tip2;
+        @BindView(R.id.czje)
+        AppCompatEditText czje;
+        @BindView(R.id.zsje)
+        AppCompatEditText zsje;
         @BindView(R.id.delete)
         ImageView delete;
         @BindView(R.id.title_layout)
@@ -127,39 +118,17 @@ public class FWOperationRecycleAdapter extends XRecyclerView.Adapter {
         }
 
         public void setData(int position) {
-            FuWuSaleBean fuWuSaleBean = xmkDataOpertionBeans.get(position).getFuWuSaleBean();
-            //加载图片
-            ImageLoader.displayImageView(mContext, fuWuSaleBean.getServerUrl(), ivServer, R.mipmap.ic_img_default);
-            title1.setText(fuWuSaleBean.getServerName() + "");
-            title3.setText(fuWuSaleBean.getServerMoney() + "");
-            title2.setText(fuWuSaleBean.getServerType() + "");
+            CXKCZFABean cxkczfaBean = cxkczfaBeans.get(position);
+            czje.setText(cxkczfaBean.getCzje() + "");
+            zsje.setText(cxkczfaBean.getZsje() + "");
             delete.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    serviceOperationRecycleInterface.onClickDelete(position, xmkDataOpertionBeans.get(position));
+                    serviceOperationRecycleInterface.onClickDelete(position, cxkczfaBean);
                 }
             });
 
-            if (aBoolean) {
-                totalNum.setEnabled(false);
-                totalNum.setAlpha((float) 0.5);
-                totalNum.setHint(R.string.beauty_xmk_infinite_num);
-
-
-            } else {
-                totalNum.setEnabled(true);
-                totalNum.setAlpha((float) 1);
-                totalNum.setHint(R.string.beauty_xmk_frequency_num);
-            }
-
-            if (xmkDataOpertionBeans.get(position).getNumCount() == 0) {
-                totalNum.setText("");
-            } else {
-                totalNum.setText(xmkDataOpertionBeans.get(position).getNumCount() + "");
-
-            }
 
         }
     }
-
 }

@@ -1,18 +1,13 @@
-package com.mnn.mydream.cosmetology.bean.fuwuBean;
+package com.mnn.mydream.cosmetology.bean.spglBean;
 
 import com.mnn.mydream.cosmetology.bmob.BeanCallBack;
 import com.mnn.mydream.cosmetology.bmob.BmobBean;
 import com.mnn.mydream.cosmetology.utils.StringUtils;
 
 import java.io.Serializable;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.Date;
 import java.util.List;
 
-import cn.bmob.v3.BmobObject;
 import cn.bmob.v3.BmobQuery;
 import cn.bmob.v3.exception.BmobException;
 import cn.bmob.v3.listener.FindListener;

@@ -24,9 +24,8 @@ import com.luck.picture.lib.config.PictureConfig;
 import com.luck.picture.lib.config.PictureMimeType;
 import com.luck.picture.lib.entity.LocalMedia;
 import com.mnn.mydream.cosmetology.R;
-import com.mnn.mydream.cosmetology.bean.fuwuBean.CPDataBean;
-import com.mnn.mydream.cosmetology.bean.fuwuBean.FuWuSaleBean;
-import com.mnn.mydream.cosmetology.bean.fuwuBean.ServerTypeBean;
+import com.mnn.mydream.cosmetology.bean.spglBean.CPDataBean;
+import com.mnn.mydream.cosmetology.bean.spglBean.ServerTypeBean;
 import com.mnn.mydream.cosmetology.dialog.BeautyAddServerTypeDialog;
 import com.mnn.mydream.cosmetology.dialog.CommonDialog;
 import com.mnn.mydream.cosmetology.dialog.LoadingDialog;
@@ -37,7 +36,6 @@ import com.mnn.mydream.cosmetology.utils.ToastUtils;
 import com.zhy.android.percent.support.PercentRelativeLayout;
 
 import java.io.File;
-import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
@@ -58,6 +56,9 @@ import cn.bmob.v3.listener.UploadFileListener;
 public class CPAddDialogActivity extends AppCompatActivity {
 
     private String TAG = "CPAddDialogActivity";
+
+    private String picPath = "https://bmob-cdn-28614.bmobpay.com/2020/07/12/49e9500440be379380eff778e5dff13a.png";
+
     @BindView(R.id.title)
     TextView title;
     @BindView(R.id.cp_img_photo)
@@ -101,10 +102,6 @@ public class CPAddDialogActivity extends AppCompatActivity {
     @BindView(R.id.cp_check_specifications_text)
     TextView cpCheckSpecificationsText;
 
-
-
-    private String picPath = "https://bmob-cdn-28614.bmobpay.com/2020/07/12/49e9500440be379380eff778e5dff13a.png";
-
     private CPDataBean cpDataBean;
 
     private boolean CP_FLAG;
@@ -123,7 +120,6 @@ public class CPAddDialogActivity extends AppCompatActivity {
     }
 
     private void initView() {
-
         cpDataBean = (CPDataBean) getIntent().getSerializableExtra(Constons.RESULT_UPDATE_REQUEST);
 
         cpMd.attachDataSource(Constons.OPERATION_MD);
@@ -165,8 +161,11 @@ public class CPAddDialogActivity extends AppCompatActivity {
 
             //加载网络图片
             ImageLoader.displayImageView(this, cpDataBean.getCpUrl(), cpImgPhoto, R.mipmap.ic_launcher_round);
+
             cpName.setText(cpDataBean.getCpName());
+
             int j = cpType.getAdapter().getCount();
+
             Log.e(TAG, "initView: " + j);
             for (int i = 0; i < j; i++) {
                 Log.e(TAG, "initView: " + cpType.getAdapter().getItem(i).toString());
@@ -181,7 +180,7 @@ public class CPAddDialogActivity extends AppCompatActivity {
             cpCheckSpecifications.setText(cpDataBean.getIntSpecifications() + "");//规格
             cpOriginalPrice.setText(cpDataBean.getCpOriginalPrice() + "");//原价
             characteristicContent.setText(cpDataBean.getCpCharacteristic() + "");//特点
-            remarksNum.setText(cpDataBean.getCpCharacteristic().length());//特点长度
+            remarksNum.setText(cpDataBean.getCpCharacteristic().length() + "");//特点长度
             cpCheckBox1.setChecked(cpDataBean.isOpenSpecifications());
             cpCheckBox2.setChecked(cpDataBean.isOpenVipMoney());
             cpVipMoney.setText(cpDataBean.getCpVipMoney() + "");
@@ -193,9 +192,7 @@ public class CPAddDialogActivity extends AppCompatActivity {
         }
 
 
-
     }
-
 
     /**
      * 拍照
@@ -586,6 +583,7 @@ public class CPAddDialogActivity extends AppCompatActivity {
         });
 
     }
+
 
     private void setSaveCP(CPDataBean cpDataBean) {
         cpDataBean.save(new SaveListener<String>() {

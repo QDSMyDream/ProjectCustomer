@@ -22,7 +22,7 @@ import com.mnn.mydream.cosmetology.R;
 import com.mnn.mydream.cosmetology.activity.FuWuServerDialogActivity;
 import com.mnn.mydream.cosmetology.adapter.fragmentAdapter.MyViewPagerAdapter;
 
-import com.mnn.mydream.cosmetology.bean.fuwuBean.FuWuSaleBean;
+import com.mnn.mydream.cosmetology.bean.spglBean.FuWuSaleBean;
 
 import com.mnn.mydream.cosmetology.dialog.BeautyDeleteDialog;
 import com.mnn.mydream.cosmetology.dialog.LoadingDialog;

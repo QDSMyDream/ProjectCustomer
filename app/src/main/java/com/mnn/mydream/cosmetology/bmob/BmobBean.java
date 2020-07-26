@@ -1,16 +1,7 @@
 package com.mnn.mydream.cosmetology.bmob;
 
-import android.os.Handler;
-
-import com.mnn.mydream.cosmetology.bean.fuwuBean.FuWuSaleBean;
-import com.mnn.mydream.cosmetology.utils.Constons;
-
-import java.util.List;
-
 import cn.bmob.v3.BmobObject;
-import cn.bmob.v3.BmobQuery;
 import cn.bmob.v3.exception.BmobException;
-import cn.bmob.v3.listener.FindListener;
 import cn.bmob.v3.listener.SaveListener;
 
 /**

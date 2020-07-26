@@ -14,7 +14,7 @@ import android.widget.TextView;
 import com.applandeo.materialcalendarview.view.NiceSpinner;
 import com.mnn.mydream.cosmetology.R;
 import com.mnn.mydream.cosmetology.bean.CustomerProjectsItem;
-import com.mnn.mydream.cosmetology.bean.fuwuBean.FuWuSaleBean;
+import com.mnn.mydream.cosmetology.bean.spglBean.FuWuSaleBean;
 import com.zhy.android.percent.support.PercentRelativeLayout;
 
 import java.util.List;

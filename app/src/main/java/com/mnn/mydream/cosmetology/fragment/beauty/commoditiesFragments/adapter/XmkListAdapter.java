@@ -13,8 +13,8 @@ import android.widget.TextView;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.mnn.mydream.cosmetology.R;
-import com.mnn.mydream.cosmetology.bean.fuwuBean.FuWuSaleBean;
-import com.mnn.mydream.cosmetology.bean.fuwuBean.XMKDataBean;
+import com.mnn.mydream.cosmetology.bean.spglBean.FuWuSaleBean;
+import com.mnn.mydream.cosmetology.bean.spglBean.XMKDataBean;
 import com.mnn.mydream.cosmetology.interfaces.SPGLListOnClickListener;
 import com.zhy.android.percent.support.PercentLinearLayout;
 

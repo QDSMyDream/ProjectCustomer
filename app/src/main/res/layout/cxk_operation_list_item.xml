@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.zhy.android.percent.support.PercentLinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white"
+    android:descendantFocusability="beforeDescendants"
+    android:orientation="vertical">
+
+    <!--listview提示状态栏-->
+    <com.zhy.android.percent.support.PercentLinearLayout
+        android:id="@+id/title_layout"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:layout_gravity="center_horizontal"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <android.support.v7.widget.AppCompatEditText
+            android:id="@+id/czje"
+            style="@style/BeautyTitleStyle"
+            android:layout_height="match_parent"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:layout_marginTop="3dp"
+            android:layout_marginBottom="3dp"
+            android:layout_toRightOf="@id/tip1"
+            android:digits=".0123456789"
+            android:gravity="center"
+            android:hint="@string/beauty_cxk_recharge_money"
+            android:inputType="number"
+            android:textColorHint="@color/aluminum"
+            app:layout_widthPercent="40%" />
+
+        <android.support.v7.widget.AppCompatEditText
+            android:id="@+id/zsje"
+            style="@style/BeautyTitleStyle"
+            android:layout_height="match_parent"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="3dp"
+            android:layout_marginBottom="3dp"
+            android:layout_toRightOf="@id/tip1"
+            android:digits=".0123456789"
+            android:gravity="center"
+            android:hint="@string/beauty_cxk_give_money"
+            android:inputType="number"
+            android:textColorHint="@color/aluminum"
+            app:layout_widthPercent="40%" />
+
+
+        <ImageView
+            android:id="@+id/delete"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="20dp"
+            android:gravity="center"
+            android:maxLines="1"
+            android:padding="10dp"
+            android:paddingLeft="3dp"
+            android:paddingRight="3dp"
+            android:src="@mipmap/delete_red" />
+
+    </com.zhy.android.percent.support.PercentLinearLayout>
+
+</com.zhy.android.percent.support.PercentLinearLayout>

@@ -1,4 +1,4 @@
-package com.mnn.mydream.cosmetology.bean.fuwuBean;
+package com.mnn.mydream.cosmetology.bean.spglBean;
 
 import cn.bmob.v3.BmobObject;
 

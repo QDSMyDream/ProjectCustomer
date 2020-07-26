@@ -11,9 +11,8 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.mnn.mydream.cosmetology.R;
-import com.mnn.mydream.cosmetology.bean.fuwuBean.CPDataBean;
-import com.mnn.mydream.cosmetology.bean.fuwuBean.FuWuSaleBean;
-import com.mnn.mydream.cosmetology.interfaces.CPListOnClickListener;
+import com.mnn.mydream.cosmetology.bean.spglBean.CPDataBean;
+import com.mnn.mydream.cosmetology.bean.spglBean.FuWuSaleBean;
 import com.mnn.mydream.cosmetology.interfaces.SPGLListOnClickListener;
 import com.mnn.mydream.cosmetology.utils.ImageLoader;
 import com.zhy.android.percent.support.PercentLinearLayout;

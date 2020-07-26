@@ -11,10 +11,6 @@ import android.view.WindowManager;
 import android.widget.TextView;
 
 import com.mnn.mydream.cosmetology.R;
-import com.mnn.mydream.cosmetology.bean.CustomerProjectsItem;
-import com.mnn.mydream.cosmetology.bean.fuwuBean.FuWuSaleBean;
-
-import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;

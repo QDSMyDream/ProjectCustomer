@@ -1,4 +1,4 @@
-package com.mnn.mydream.cosmetology.bean.fuwuBean;
+package com.mnn.mydream.cosmetology.bean.spglBean;
 
 /**
  * 创建人：MyDream

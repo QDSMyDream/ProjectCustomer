@@ -1,6 +1,4 @@
-package com.mnn.mydream.cosmetology.bean.fuwuBean;
-
-import android.content.Intent;
+package com.mnn.mydream.cosmetology.bean.spglBean;
 
 import cn.bmob.v3.BmobObject;
 import cn.bmob.v3.BmobUser;

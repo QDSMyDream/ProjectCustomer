@@ -17,13 +17,11 @@ import android.widget.TextView;
 import com.applandeo.materialcalendarview.view.NiceSpinner;
 import com.example.smoothcheckbox.SmoothCheckBox;
 import com.mnn.mydream.cosmetology.R;
-import com.mnn.mydream.cosmetology.activity.AppUpdateActivity;
 import com.mnn.mydream.cosmetology.activity.CPAddDialogActivity;
 
 import com.mnn.mydream.cosmetology.adapter.fragmentAdapter.MyViewPagerAdapter;
-import com.mnn.mydream.cosmetology.bean.fuwuBean.CPDataBean;
+import com.mnn.mydream.cosmetology.bean.spglBean.CPDataBean;
 
-import com.mnn.mydream.cosmetology.bean.fuwuBean.FuWuSaleBean;
 import com.mnn.mydream.cosmetology.dialog.BeautyDeleteDialog;
 import com.mnn.mydream.cosmetology.dialog.LoadingDialog;
 import com.mnn.mydream.cosmetology.eventBus.EventBusMsg;
@@ -35,7 +33,6 @@ import com.mnn.mydream.cosmetology.utils.ImageLoader;
 import com.mnn.mydream.cosmetology.utils.StringUtils;
 import com.mnn.mydream.cosmetology.utils.ToastUtils;
 
-import com.mnn.mydream.cosmetology.utils.Tools;
 import com.mnn.mydream.cosmetology.view.MyViewPager;
 import com.zhy.android.percent.support.PercentLinearLayout;
 import com.zhy.android.percent.support.PercentRelativeLayout;

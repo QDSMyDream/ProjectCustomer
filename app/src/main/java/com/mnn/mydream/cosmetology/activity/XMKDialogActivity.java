@@ -18,22 +18,19 @@ import android.view.WindowManager;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.TypeReference;
-import com.alibaba.fastjson.support.odps.udf.CodecCheck;
 import com.applandeo.materialcalendarview.view.NiceSpinner;
 import com.example.smoothcheckbox.SmoothCheckBox;
 import com.mnn.mydream.cosmetology.R;
-import com.mnn.mydream.cosmetology.bean.fuwuBean.FuWuSaleBean;
-import com.mnn.mydream.cosmetology.bean.fuwuBean.ServerTypeBean;
-import com.mnn.mydream.cosmetology.bean.fuwuBean.XMKDataBean;
-import com.mnn.mydream.cosmetology.bean.fuwuBean.XMKDataOpertionBean;
+import com.mnn.mydream.cosmetology.bean.spglBean.FuWuSaleBean;
+import com.mnn.mydream.cosmetology.bean.spglBean.ServerTypeBean;
+import com.mnn.mydream.cosmetology.bean.spglBean.XMKDataBean;
+import com.mnn.mydream.cosmetology.bean.spglBean.XMKDataOpertionBean;
 import com.mnn.mydream.cosmetology.bmob.BeanCallBack;
 import com.mnn.mydream.cosmetology.dialog.BeautyAddServerTypeDialog;
 import com.mnn.mydream.cosmetology.dialog.BeautyAddServiceDialog;
@@ -68,66 +65,99 @@ import cn.droidlover.xrecyclerview.XRecyclerView;
  * 类描述：添加项目卡
  */
 public class XMKDialogActivity extends AppCompatActivity {
+
+    private String TAG = "XMKDialogActivity";
+
     @BindView(R.id.title)
     TextView title;
+
     @BindView(R.id.xmk_name)
     AppCompatEditText xmkName;
+
     @BindView(R.id.xmk_type)
     NiceSpinner xmkType;
+
     @BindView(R.id.add_img)
     ImageView addImg;
+
     @BindView(R.id.add_type_layout)
     PercentRelativeLayout addTypeLayout;
+
     @BindView(R.id.add_img2)
     ImageView addImg2;
+
     @BindView(R.id.add_server_layout)
     PercentRelativeLayout addServerLayout;
+
     @BindView(R.id.title1)
     TextView title1;
+
     @BindView(R.id.title2)
     TextView title2;
+
     @BindView(R.id.title3)
     TextView title3;
+
     @BindView(R.id.server_content_title)
     PercentRelativeLayout serverContentTitle;
+
     @BindView(R.id.server_content)
     PercentRelativeLayout serverContent;
+
     @BindView(R.id.xmk_money)
     AppCompatEditText xmkMoney;
+
     @BindView(R.id.xmk_vip_money)
     AppCompatEditText xmkVipMoney;
+
     @BindView(R.id.vip_check_box)
     SmoothCheckBox vipCheckBox;
+
     @BindView(R.id.permanent_validity_check_box)
     SmoothCheckBox permanentValidityCheckBox;
+
     @BindView(R.id.immediate_effect_check_box)
     SmoothCheckBox immediateEffectCheckBox;
+
     @BindView(R.id.expire_txt_time)
     TextView expireTxtTime;
+
     @BindView(R.id.expire_txt_img)
     ImageView expireTxtImg;
+
     @BindView(R.id.empower_check_box)
     SmoothCheckBox empowerCheckBox;
+
     @BindView(R.id.may_authorize_check_box)
     SmoothCheckBox mayAuthorizeCheckBox;
+
     @BindView(R.id.xmk_md)
     NiceSpinner xmkMd;
+
     @BindView(R.id.md_img)
     ImageView mdImg;
+
     @BindView(R.id.tip1)
     TextView tip1;
+
     @BindView(R.id.card_cover)
     PercentRelativeLayout cardCover;
+
     @BindView(R.id.xmk_num)
     AppCompatEditText xmkNum;
+
     @BindView(R.id.remarks_content)
     AppCompatEditText remarksContent;
+
     @BindView(R.id.remarks_num)
     TextView remarksNum;
+
     @BindView(R.id.btn_yes)
     AppCompatButton btnYes;
+
     @BindView(R.id.btn_cancel)
     AppCompatButton btnCancel;
+
     @BindView(R.id.myScrollView)
     ScrollView myScrollView;
 
@@ -166,21 +196,11 @@ public class XMKDialogActivity extends AppCompatActivity {
 
     @BindView(R.id.service_listview)
     XRecyclerView serviceListview;
+
     @BindView(R.id.title4)
     TextView title4;
 
-
-    private String TAG = "XMKDialogActivity";
-
-    private Integer flagInt;
-
-    private String picPath = "https://bmob-cdn-28614.bmobpay.com/2020/07/12/49e9500440be379380eff778e5dff13a.png";
-
-    private boolean XMK_FLAG;
-
     private XMKDataBean xmkDataBean;
-
-    private int FLAG_INDEX;
 
     private BeautyAddServerTypeDialog beautyAddServerTypeDialog;
 
@@ -194,10 +214,12 @@ public class XMKDialogActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_add_xmk_dialog);
         ButterKnife.bind(this);
+
         initData();
         initView();
 
@@ -215,10 +237,8 @@ public class XMKDialogActivity extends AppCompatActivity {
         fwOperationRecycleAdapter = new FWOperationRecycleAdapter(this, xmkDataOpertionBeans, totalNumCheckbox.isChecked());
         fwOperationRecycleAdapter.setServiceOperationRecycleInterface(new ServiceOperationRecycleInterface() {
             @Override
-            public void onClickDelete(int pos, XMKDataOpertionBean xmkDataOpertionBean) {
+            public void onClickDelete(int pos, Object o) {
                 fwOperationRecycleAdapter.removeData(pos);
-
-                Log.e(TAG, "onClickDelete: " + xmkDataOpertionBeans.size());
             }
         });
         serviceListview.setLayoutManager(mLinearLayoutManager);
@@ -244,12 +264,10 @@ public class XMKDialogActivity extends AppCompatActivity {
     private void initView() {
         xmkDataBean = (XMKDataBean) getIntent().getSerializableExtra(Constons.RESULT_UPDATE_REQUEST);
         if (xmkDataBean != null) {
-            XMK_FLAG = false;
             title.setText("修改项目卡内容");
             setDefaultData();
 
         } else {
-            XMK_FLAG = true;
             title.setText("添加项目卡内容");
             vipCheckBox.setChecked(true);
             permanentValidityCheckBox.setChecked(true);
@@ -381,13 +399,10 @@ public class XMKDialogActivity extends AppCompatActivity {
             fwOperationRecycleAdapter.addDatas(xmkDataOpertionBeans);
         }
 
-
 //        Log.e(TAG, "saveXmk: " + xmkDataOpertionBeans.size());
 //        String jsonString = JSON.toJSONString(xmkDataOpertionBeans);
 //        Log.e(TAG, "saveXmk: " + jsonString);
 //        xmkDataBean.setFwJson(jsonString);
-
-
     }
 
 

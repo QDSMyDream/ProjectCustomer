@@ -1,8 +1,6 @@
 package com.mnn.mydream.cosmetology.interfaces;
 
-import android.view.View;
-
-import com.mnn.mydream.cosmetology.bean.fuwuBean.FuWuSaleBean;
+import com.mnn.mydream.cosmetology.bean.spglBean.FuWuSaleBean;
 
 public interface AddServiceOnCheckedChangeListener {
 

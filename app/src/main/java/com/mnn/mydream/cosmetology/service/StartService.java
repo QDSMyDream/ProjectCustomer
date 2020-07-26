@@ -8,7 +8,7 @@ import android.util.Log;
 import com.mnn.mydream.cosmetology.bean.AppUpdateBean;
 import com.mnn.mydream.cosmetology.bean.BeautyMdBean;
 import com.mnn.mydream.cosmetology.bean.BeautyTitleBean;
-import com.mnn.mydream.cosmetology.bean.fuwuBean.ServerTypeBean;
+import com.mnn.mydream.cosmetology.bean.spglBean.ServerTypeBean;
 import com.mnn.mydream.cosmetology.eventBus.EventBusMsg;
 import com.mnn.mydream.cosmetology.utils.APKVersionCodeUtils;
 import com.mnn.mydream.cosmetology.utils.Constons;

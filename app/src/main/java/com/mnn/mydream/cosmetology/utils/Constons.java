@@ -107,12 +107,24 @@ public class Constons {
     public static final int RESULT_XMK_CODE_VIEW_REQUEST = 0x2723;//添加项目卡请求码
 
 
+
     /**
      * 添加服务标识
      * */
     public static final int RESULT_ADD_SERVICE_VIEW_REQUEST = 0x2724;//添加项目卡请求码
     public static final int RESULT_ADD_SERVICE_VIEW_REQUEST_CALLBACK = 0x2725;//添加项目卡请求码
     public static final int RESULT_ADD_SERVICE_VIEW_REQUEST_SELECT = 0x2726;//添加项目卡请求码
+
+
+    /**
+     * 添加/修改储蓄卡
+     */
+    public static final int RESULT_CXK_CODE_SCUESS_REQUEST = 0x2727;//添加储蓄卡成功请求码
+    public static final int RESULT_CXK_CODE_CANCEL_REQUEST = 0x2728;//添加储蓄卡失败或取消请求码
+    public static final int RESULT_CXK_CODE_UPDATE_REQUEST = 0x2729;//修改储蓄卡请求码
+    public static final int RESULT_CXK_CODE_VIEW_REQUEST = 0x272a;//添加储蓄卡请求码
+
+
 
 
 

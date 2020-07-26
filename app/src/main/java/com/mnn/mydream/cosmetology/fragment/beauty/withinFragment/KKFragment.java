@@ -166,7 +166,6 @@ public class KKFragment extends SupportFragment {
     private BeautyWithinTipsAdapter beautyWithinTipsAdapter;
 
     public static KKFragment newInstance() {
-
         Bundle args = new Bundle();
 
         KKFragment fragment = new KKFragment();
@@ -192,9 +191,13 @@ public class KKFragment extends SupportFragment {
 
         //气泡布局
         bubbleLayout.setLook(BubbleLayout.Look.RIGHT);
+
         bubbleLayout.setShadowColor(getResources().getColor(R.color.beauty_add_custmer_bg));
+
         bubbleLayout.setBubbleRadius(Tools.dpTopx(getContext(), 5));
+
         bubbleLayout.setShadowRadius(Tools.dpTopx(getContext(), 3));
+
         bubbleLayout.invalidate();
 
         beautyWithinCardsBeans.add(new BeautyWithinCardsBean("我是秦大帅1", "大苏打大撒", "储蓄卡", 0));
@@ -203,10 +206,8 @@ public class KKFragment extends SupportFragment {
         beautyWithinCardsBeans.add(new BeautyWithinCardsBean("我是秦大帅4", "温热打赏", "储蓄卡", 3));
         beautyWithinCardsBeans.add(new BeautyWithinCardsBean("我是秦大帅5", "大沙发阿斯顿", "储蓄卡", 4));
         beautyWithinCardsBeans.add(new BeautyWithinCardsBean("我是秦大帅6", "温热打赏", "储蓄卡", 5));
-
         beautyWithinCardsBeans.add(new BeautyWithinCardsBean("我是秦大帅7", "大沙发阿斯顿", "储蓄卡", 6));
         beautyWithinCardsBeans.add(new BeautyWithinCardsBean("我是秦大帅8", "温热打赏", "储蓄卡", 7));
-
         beautyWithinCardsBeans.add(new BeautyWithinCardsBean("我是秦大帅9", "大沙发阿斯顿", "储蓄卡", 8));
         beautyWithinCardsBeans.add(new BeautyWithinCardsBean("我是秦大帅0", "温热打赏", "储蓄卡", 9));
 
@@ -303,7 +304,6 @@ public class KKFragment extends SupportFragment {
                     Log.e(TAG, "handleMessage: 1");
 
                     if (beautyBeanKhs.size() == 0) {
-
                         BeautyBeanKh beautyBeanKh = new BeautyBeanKh();
                         beautyBeanKh.setName("无");
                         beautyBeanKh.setPhone("无");
