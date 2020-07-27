@@ -17,6 +17,7 @@ import android.widget.ImageView;
 import android.widget.ScrollView;
 import android.widget.TextView;
 
+import com.alibaba.fastjson.JSON;
 import com.applandeo.materialcalendarview.view.NiceSpinner;
 import com.example.smoothcheckbox.SmoothCheckBox;
 import com.mnn.mydream.cosmetology.R;
@@ -25,7 +26,6 @@ import com.mnn.mydream.cosmetology.bean.spglBean.CXKDataBean;
 import com.mnn.mydream.cosmetology.bean.spglBean.FuWuSaleBean;
 import com.mnn.mydream.cosmetology.bean.spglBean.ServerTypeBean;
 import com.mnn.mydream.cosmetology.fragment.beauty.commoditiesFragments.adapter.CXKOperationRecycleAdapter;
-import com.mnn.mydream.cosmetology.fragment.beauty.commoditiesFragments.adapter.FWOperationRecycleAdapter;
 import com.mnn.mydream.cosmetology.interfaces.ServiceOperationRecycleInterface;
 import com.mnn.mydream.cosmetology.utils.CommonUtil;
 import com.mnn.mydream.cosmetology.utils.Constons;
@@ -52,8 +52,6 @@ import cn.droidlover.xrecyclerview.XRecyclerView;
  */
 public class CXKDialogActivity extends AppCompatActivity {
 
-    @BindView(R.id.card_cover)
-    PercentRelativeLayout cardCover;
     private String TAG = "CXKDialogActivity";
 
     @BindView(R.id.title)
@@ -70,9 +68,6 @@ public class CXKDialogActivity extends AppCompatActivity {
 
     @BindView(R.id.recyclerView)
     XRecyclerView recyclerView;
-
-    @BindView(R.id.czfa_layout)
-    PercentLinearLayout czfaLayout;
 
     @BindView(R.id.check_kzk1)
     SmoothCheckBox checkKzk1;
@@ -155,9 +150,24 @@ public class CXKDialogActivity extends AppCompatActivity {
     @BindView(R.id.myScrollView)
     ScrollView myScrollView;
 
+    @BindView(R.id.card_cover)
+    PercentRelativeLayout cardCover;
+
+    @BindView(R.id.fw_siscount)
+    AppCompatEditText fwSiscount;
+
+    @BindView(R.id.cp_siscount)
+    AppCompatEditText cpSiscount;
+
+    @BindView(R.id.xmk_siscount)
+    AppCompatEditText xmkSiscount;
+
+    @BindView(R.id.xmk_num)
+    AppCompatEditText xmkNum;
+
     private CXKDataBean cxkDataBean;
 
-    private int FLAG_INDEX;
+    private boolean FLAG_BOOLEAN;
 
     private List<CheckBox> checkBoxList;
 
@@ -178,6 +188,8 @@ public class CXKDialogActivity extends AppCompatActivity {
 
     private void initView() {
 
+        setChecked();
+
         setCheckedColor();
 
         cxkDataBean = (CXKDataBean) getIntent().getSerializableExtra(Constons.RESULT_UPDATE_REQUEST);
@@ -185,12 +197,13 @@ public class CXKDialogActivity extends AppCompatActivity {
         cxkMd.attachDataSource(Constons.OPERATION_MD);
 
         if (cxkDataBean != null) {
-            FLAG_INDEX = 1;
-            cxkName.setText(cxkDataBean.getCxkName());
-            cxkMd.setSelectedIndex(0);
+            FLAG_BOOLEAN = true;
+
             title.setText("修改储蓄卡");
+            setDefaultData();
+
         } else {
-            FLAG_INDEX = 0;
+            FLAG_BOOLEAN = false;
             title.setText("添加储蓄卡");
         }
         //创建布局管理器，垂直设置LinearLayoutManager.VERTICAL，水平设置LinearLayoutManager.HORIZONTAL
@@ -208,6 +221,180 @@ public class CXKDialogActivity extends AppCompatActivity {
 
     }
 
+    private void setDefaultData() {
+
+        cxkName.setText(cxkDataBean.getCxkName());
+        cxkMd.setSelectedIndex(0);
+
+        if (cxkDataBean.isRyc()) {
+            checkRyc1.setChecked(true);
+            checkRyc2.setChecked(false);
+        } else {
+            checkRyc1.setChecked(false);
+            checkRyc2.setChecked(true);
+        }
+
+        if (cxkDataBean.isKsq()) {
+            checkBox5.setChecked(false);
+            checkBox6.setChecked(true);
+        } else {
+            checkBox5.setChecked(true);
+            checkBox6.setChecked(false);
+        }
+
+
+    }
+
+    //设置checkbox点击事件
+    private void setChecked() {
+
+        checkKzk2.setChecked(true);
+        checkKzk4.setChecked(true);
+        checkKzk6.setChecked(true);
+        checkRyc1.setChecked(true);
+        checkBox5.setChecked(true);
+
+        fwSiscount.setEnabled(false);
+        fwSiscount.setAlpha((float) 0.5);
+        fwSiscount.setHint(getString(R.string.beauty_not_enabled));
+
+
+        cpSiscount.setEnabled(false);
+        cpSiscount.setAlpha((float) 0.5);
+        cpSiscount.setHint(getString(R.string.beauty_not_enabled));
+
+        xmkSiscount.setEnabled(false);
+        xmkSiscount.setAlpha((float) 0.5);
+        xmkSiscount.setHint(getString(R.string.beauty_not_enabled));
+
+
+        checkKzk1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (!checkKzk1.isChecked()) {
+                    checkKzk1.setChecked(true);
+                    checkKzk2.setChecked(false);
+                    fwSiscount.setEnabled(true);
+                    fwSiscount.setAlpha((float) 1);
+                    fwSiscount.setHint(getString(R.string.beauty_cxk_discount));
+                }
+
+            }
+        });
+        checkKzk2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                if (!checkKzk2.isChecked()) {
+                    checkKzk2.setChecked(true);
+                    checkKzk1.setChecked(false);
+                    fwSiscount.setEnabled(false);
+                    fwSiscount.setAlpha((float) 0.5);
+                    fwSiscount.setHint(getString(R.string.beauty_not_enabled));
+                }
+            }
+        });
+
+
+        checkKzk3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (!checkKzk3.isChecked()) {
+                    checkKzk3.setChecked(true);
+                    checkKzk4.setChecked(false);
+                    cpSiscount.setEnabled(true);
+                    cpSiscount.setAlpha((float) 1);
+                    cpSiscount.setHint(getString(R.string.beauty_cxk_discount));
+                }
+
+            }
+        });
+        checkKzk4.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                if (!checkKzk4.isChecked()) {
+                    checkKzk4.setChecked(true);
+                    checkKzk3.setChecked(false);
+                    cpSiscount.setEnabled(false);
+                    cpSiscount.setAlpha((float) 0.5);
+                    cpSiscount.setHint(getString(R.string.beauty_not_enabled));
+                }
+            }
+        });
+
+
+        checkKzk5.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (!checkKzk5.isChecked()) {
+                    checkKzk5.setChecked(true);
+                    checkKzk6.setChecked(false);
+                    xmkSiscount.setEnabled(true);
+                    xmkSiscount.setAlpha((float) 1);
+                    xmkSiscount.setHint(getString(R.string.beauty_cxk_discount));
+                }
+
+            }
+        });
+        checkKzk6.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (!checkKzk6.isChecked()) {
+                    checkKzk6.setChecked(true);
+                    checkKzk5.setChecked(false);
+                    xmkSiscount.setEnabled(false);
+                    xmkSiscount.setAlpha((float) 0.5);
+                    xmkSiscount.setHint(getString(R.string.beauty_not_enabled));
+                }
+            }
+        });
+
+
+        checkRyc1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (!checkRyc1.isChecked()) {
+                    checkRyc1.setChecked(true);
+                    checkRyc2.setChecked(false);
+                }
+
+            }
+        });
+        checkRyc2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (!checkRyc2.isChecked()) {
+                    checkRyc2.setChecked(true);
+                    checkRyc1.setChecked(false);
+                }
+            }
+        });
+
+
+        checkBox5.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (!checkBox5.isChecked()) {
+                    checkBox5.setChecked(true);
+                    checkBox6.setChecked(false);
+
+                }
+
+            }
+        });
+        checkBox6.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (!checkBox6.isChecked()) {
+                    checkBox6.setChecked(true);
+                    checkBox5.setChecked(false);
+                }
+            }
+        });
+
+
+    }
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -228,13 +415,14 @@ public class CXKDialogActivity extends AppCompatActivity {
 
             case R.id.add_czje:
 
-
+                Log.e(TAG, "onViewClicked:add_czje ");
+                addczfa();
                 break;
 
 
             case R.id.cxk_md:
 
-                addczfa();
+
                 break;
             case R.id.check1:
                 cardCover.setBackgroundResource(R.drawable.beauty_within_gridview_item_layout1);
@@ -281,9 +469,16 @@ public class CXKDialogActivity extends AppCompatActivity {
     }
 
     private void addczfa() {
+        if (cxkczfaBeans.size() < 10) {
+            cxkOperationRecycleAdapter.addData(new CXKCZFABean());
+
+        } else {
+            ToastUtils.showToast(this, "充值方案最多10个", false);
+        }
 
 
     }
+
 
     //设置卡封面
     private void setCheckedColor() {
@@ -306,16 +501,81 @@ public class CXKDialogActivity extends AppCompatActivity {
 
     private void saveCXK() {
 
-        if (FLAG_INDEX == 1) {
+        if (FLAG_BOOLEAN) {
 
             if (StringUtils.isEmpty(cxkName.getText().toString())) {
                 ToastUtils.showToast(this, "请输入储蓄卡名称", false);
                 return;
             }
+
+            if (cxkczfaBeans.size() == 0) {
+                ToastUtils.showToast(this, "请添加充值方案", false);
+                return;
+            }
+            if (checkKzk1.isChecked()) {
+                ToastUtils.showToast(this, "请输入服务价格折扣", false);
+                return;
+            }
+            if (checkKzk3.isChecked()) {
+                ToastUtils.showToast(this, "请输入产品价格折扣", false);
+                return;
+            }
+            if (checkKzk5.isChecked()) {
+                ToastUtils.showToast(this, "请输入项目卡价格折扣", false);
+                return;
+            }
+
+            for (int i = 0; i < recyclerView.getChildCount(); i++) {
+                PercentLinearLayout layout = (PercentLinearLayout) recyclerView.getChildAt(i);// 获得子item的layout
+                AppCompatEditText czje = (AppCompatEditText) layout.findViewById(R.id.czje);// 从layout中获得控件,根据其id
+                AppCompatEditText zsje = (AppCompatEditText) layout.findViewById(R.id.zsje);// 从layout中获得控件,根据其id
+
+                if (StringUtils.isEmpty(czje.getText().toString())) {
+                    ToastUtils.showToast(this, "充值列表第" + (i + 1) + "未输入", false);
+                    return;
+                }
+
+                if (StringUtils.isEmpty(zsje.getText().toString())) {
+                    ToastUtils.showToast(this, "赠送列表第" + (i + 1) + "未输入", false);
+                    return;
+                }
+
+                cxkczfaBeans.get(i).setCzje(Float.parseFloat(czje.getText().toString()));
+                cxkczfaBeans.get(i).setZsje(Float.parseFloat(zsje.getText().toString()));
+            }
+
+
             cxkDataBean.setCxkName(cxkName.getText().toString());
 
-            String md = cxkMd.getSelectedItem().toString();
-            cxkDataBean.setMd(md);
+            Log.e(TAG, "saveXmk: " + cxkczfaBeans.size());
+            String jsonString = JSON.toJSONString(cxkczfaBeans);
+            Log.e(TAG, "saveXmk: " + jsonString);
+
+            cxkDataBean.setCzfa(jsonString);
+
+            cxkDataBean.setKzkFWFlag(checkKzk1.isChecked());
+            cxkDataBean.setKzkFW(fwSiscount.getText().toString());
+
+            cxkDataBean.setKzkCPFlag(checkKzk3.isChecked());
+            cxkDataBean.setKzkCP(cpSiscount.getText().toString());
+
+            cxkDataBean.setKzkXMKFlag(checkKzk5.isChecked());
+            cxkDataBean.setKzkXMK(xmkSiscount.getText().toString());
+
+            cxkDataBean.setCharacteristicStr(remarksContent.getText().toString());
+
+            //设置预览颜色
+            cxkDataBean.setFm(check1.isChecked() ? check1.getTag().toString() : check2.isChecked() ? check2.getTag().toString() : check3.isChecked() ? check3.getTag().toString() : check4.isChecked() ? check4.getTag().toString() : check5.isChecked() ? check5.getTag().toString() : check6.isChecked() ? check6.getTag().toString() : check7.isChecked() ? check7.getTag().toString() : check8.isChecked() ? check8.getTag().toString() : check9.isChecked() ? check9.getTag().toString() : "");
+
+            cxkDataBean.setNum(xmkNum.getText().toString());
+
+            cxkDataBean.setMd(cxkMd.getSelectedItem().toString());
+
+            cxkDataBean.setKsq(checkBox5.isChecked() ? false : true);
+
+            cxkDataBean.setRyc(checkRyc1.isChecked() ? true : false);
+
+            setSaveCXKData(cxkDataBean, FLAG_BOOLEAN);
 
 
         } else {
@@ -323,51 +583,119 @@ public class CXKDialogActivity extends AppCompatActivity {
             CXKDataBean cxkDataBean = new CXKDataBean();
 
             if (StringUtils.isEmpty(cxkName.getText().toString())) {
-                ToastUtils.showToast(this, "请输入服务名称", false);
+                ToastUtils.showToast(this, "请输入储蓄卡名称", false);
                 return;
             }
 
-            if (Constons.ServerTypeString.size() == 0) {
-                ToastUtils.showToast(this, "请选择服务类型", false);
+            if (cxkczfaBeans.size() == 0) {
+                ToastUtils.showToast(this, "请添加充值方案", false);
+                return;
+            }
+            if (checkKzk1.isChecked()&&StringUtils.isEmpty(fwSiscount.getText().toString())) {
+                ToastUtils.showToast(this, "请输入服务价格折扣", false);
+                return;
+            }
+            if (checkKzk3.isChecked()&&StringUtils.isEmpty(cpSiscount.getText().toString())) {
+                ToastUtils.showToast(this, "请输入产品价格折扣", false);
+                return;
+            }
+            if (checkKzk5.isChecked()&&StringUtils.isEmpty(xmkSiscount.getText().toString())) {
+                ToastUtils.showToast(this, "请输入项目卡价格折扣", false);
                 return;
             }
 
+            for (int i = 0; i < recyclerView.getChildCount(); i++) {
+                PercentLinearLayout layout = (PercentLinearLayout) recyclerView.getChildAt(i);// 获得子item的layout
+                AppCompatEditText czje = (AppCompatEditText) layout.findViewById(R.id.czje);// 从layout中获得控件,根据其id
+                AppCompatEditText zsje = (AppCompatEditText) layout.findViewById(R.id.zsje);// 从layout中获得控件,根据其id
+
+                if (StringUtils.isEmpty(czje.getText().toString())) {
+                    ToastUtils.showToast(this, "充值列表第" + (i + 1) + "未输入", false);
+                    return;
+                }
+
+                if (StringUtils.isEmpty(zsje.getText().toString())) {
+                    ToastUtils.showToast(this, "赠送列表第" + (i + 1) + "未输入", false);
+                    return;
+                }
+
+                cxkczfaBeans.get(i).setCzje(Float.parseFloat(czje.getText().toString()));
+                cxkczfaBeans.get(i).setZsje(Float.parseFloat(zsje.getText().toString()));
+            }
+
+
+            cxkDataBean.setCxkName(cxkName.getText().toString());
+
+            Log.e(TAG, "saveXmk: " + cxkczfaBeans.size());
+            String jsonString = JSON.toJSONString(cxkczfaBeans);
+            Log.e(TAG, "saveXmk: " + jsonString);
+
+            cxkDataBean.setCzfa(jsonString);
+
+            cxkDataBean.setKzkFWFlag(checkKzk1.isChecked());
+            cxkDataBean.setKzkFW(fwSiscount.getText().toString());
+
+            cxkDataBean.setKzkCPFlag(checkKzk3.isChecked());
+            cxkDataBean.setKzkCP(cpSiscount.getText().toString());
+
+            cxkDataBean.setKzkXMKFlag(checkKzk5.isChecked());
+            cxkDataBean.setKzkXMK(xmkSiscount.getText().toString());
+
+            cxkDataBean.setCharacteristicStr(remarksContent.getText().toString());
+
+            //设置预览颜色
+            cxkDataBean.setFm(check1.isChecked() ? check1.getTag().toString() : check2.isChecked() ? check2.getTag().toString() : check3.isChecked() ? check3.getTag().toString() : check4.isChecked() ? check4.getTag().toString() : check5.isChecked() ? check5.getTag().toString() : check6.isChecked() ? check6.getTag().toString() : check7.isChecked() ? check7.getTag().toString() : check8.isChecked() ? check8.getTag().toString() : check9.isChecked() ? check9.getTag().toString() : "");
+
+            cxkDataBean.setNum(xmkNum.getText().toString());
+
+            cxkDataBean.setMd(cxkMd.getSelectedItem().toString());
+
+            cxkDataBean.setKsq(checkBox5.isChecked() ? false : true);
+
+            cxkDataBean.setRyc(checkRyc1.isChecked() ? true : false);
+
+
+            setSaveCXKData(cxkDataBean, FLAG_BOOLEAN);
 
         }
 
     }
 
-    private void setSaveCXKServer(CXKDataBean cxkDataBean) {
-        cxkDataBean.save(new SaveListener<String>() {
-            @Override
-            public void done(String s, BmobException e) {
-                if (e == null) {
-                    ToastUtils.showToast(getBaseContext(), "添加(" + cxkDataBean.getCxkName() + ")服务项目成功!", true);
-                    refreshHandler.sendEmptyMessage(1);
-                    Log.e("bmob", "成功");
-                } else {
-                    ToastUtils.showToast(getBaseContext(), "添加(" + cxkDataBean.getCxkName() + ")服务项目失败" + e.toString(), false);
+    private void setSaveCXKData(CXKDataBean cxkDataBean, boolean FLAG_BOOLEAN) {
+        if (FLAG_BOOLEAN) {
+
+            cxkDataBean.update(new UpdateListener() {
+                @Override
+                public void done(BmobException e) {
+                    if (e == null) {
+                        ToastUtils.showToast(getBaseContext(), "修改(" + cxkDataBean.getCxkName() + ")储蓄卡成功!", true);
+                        refreshHandler.sendEmptyMessage(2);
+                        Log.e("bmob", "成功");
+                    } else {
+                        ToastUtils.showToast(getBaseContext(), "修改(" + cxkDataBean.getCxkName() + ")储蓄卡失败" + e.toString(), false);
+                    }
                 }
 
-            }
-        });
+            });
 
-    }
+        } else {
 
-    private void setUpdateFuWuServer(FuWuSaleBean fuWuSaleBean) {
-        fuWuSaleBean.update(new UpdateListener() {
-            @Override
-            public void done(BmobException e) {
-                if (e == null) {
-                    ToastUtils.showToast(getBaseContext(), "修改(" + fuWuSaleBean.getServerName() + ")服务项目成功!", true);
-                    refreshHandler.sendEmptyMessage(2);
-                    Log.e("bmob", "成功");
-                } else {
-                    ToastUtils.showToast(getBaseContext(), "修改(" + fuWuSaleBean.getServerName() + ")服务项目失败" + e.toString(), false);
+            cxkDataBean.save(new SaveListener<String>() {
+                @Override
+                public void done(String s, BmobException e) {
+
+                    if (e == null) {
+                        ToastUtils.showToast(getBaseContext(), "添加(" + cxkDataBean.getCxkName() + ")储蓄卡成功!", true);
+                        refreshHandler.sendEmptyMessage(1);
+                        Log.e("bmob", "成功");
+                    } else {
+                        ToastUtils.showToast(getBaseContext(), "添加(" + cxkDataBean.getCxkName() + ")储蓄卡失败" + e.toString(), false);
+                    }
+
                 }
-            }
+            });
+        }
 
-        });
 
     }
 
@@ -382,11 +710,18 @@ public class CXKDialogActivity extends AppCompatActivity {
 
                     break;
                 case 1://刷新
-                    setResult(Constons.RESULT_FUWU_SERVER_CODE_SCUESS_REQUEST);
+                    setResult(Constons.RESULT_CXK_CODE_VIEW_REQUEST);
 
                     finish();
                     break;
                 case 2://刷新
+
+                    Intent intent = new Intent();
+                    Bundle bundle = new Bundle();
+                    bundle.putSerializable(Constons.RESULT_UPDATE_REQUEST, cxkDataBean);
+                    intent.putExtras(bundle);
+                    setResult(Constons.RESULT_CXK_CODE_UPDATE_REQUEST, intent);
+
 
                     finish();
                     break;

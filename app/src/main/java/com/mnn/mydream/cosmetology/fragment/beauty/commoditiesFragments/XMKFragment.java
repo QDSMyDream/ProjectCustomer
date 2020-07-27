@@ -503,7 +503,7 @@ public class XMKFragment extends SupportFragment {
 
     }
 
-    //    重制
+    //重制
     private void getRemakeLayoutCP() {
         xmkTypeSpinner.setSelectedIndex(0);
         xmkNameEdit.setText("");

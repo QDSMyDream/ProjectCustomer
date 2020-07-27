@@ -405,17 +405,6 @@
 
                         </com.zhy.android.percent.support.PercentRelativeLayout>
 
-<!--                        <com.zhy.android.percent.support.PercentRelativeLayout-->
-<!--                            android:id="@+id/server_content_list"-->
-<!--                            android:layout_width="match_parent"-->
-<!--                            android:layout_height="40dp"-->
-<!--                            android:layout_below="@id/server_content_title"-->
-<!--                            android:layout_marginTop="3dp"-->
-<!--                            app:layout_widthPercent="90%">-->
-
-
-<!--                        </com.zhy.android.percent.support.PercentRelativeLayout>-->
-
                         <cn.droidlover.xrecyclerview.XRecyclerView
                             android:id="@+id/service_listview"
                             android:layout_width="match_parent"

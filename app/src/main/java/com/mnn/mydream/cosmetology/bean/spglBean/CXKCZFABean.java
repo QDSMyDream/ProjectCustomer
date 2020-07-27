@@ -11,6 +11,10 @@ public class CXKCZFABean {
     private float czje;
     private float zsje;
 
+    public CXKCZFABean() {
+
+    }
+
     public CXKCZFABean(float czje, float zsje) {
         this.czje = czje;
         this.zsje = zsje;

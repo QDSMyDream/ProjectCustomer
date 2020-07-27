@@ -13,12 +13,21 @@ public class CXKDataBean extends BmobObject implements Serializable {
 
     private String cxkName;
     private String czfa;
-    private String kzk;
+
+    private String kzkFW;
+    private String kzkCP;
+    private String kzkXMK;
+
+    private boolean kzkFWFlag;
+    private boolean kzkCPFlag;
+    private boolean kzkXMKFlag;
+
     private boolean ryc;
     private boolean ksq;
     private String md;
     private String fm;
-    private int num;
+
+    private String num;
     private String characteristicStr;//特点
 
     @Override
@@ -26,7 +35,12 @@ public class CXKDataBean extends BmobObject implements Serializable {
         return "CXKDataBean{" +
                 "cxkName='" + cxkName + '\'' +
                 ", czfa='" + czfa + '\'' +
-                ", kzk='" + kzk + '\'' +
+                ", kzkFW='" + kzkFW + '\'' +
+                ", kzkFWFlag=" + kzkFWFlag +
+                ", kzkCPFlag=" + kzkCPFlag +
+                ", kzkXMKFlag=" + kzkXMKFlag +
+                ", kzkCP='" + kzkCP + '\'' +
+                ", kzkXMK='" + kzkXMK + '\'' +
                 ", ryc=" + ryc +
                 ", ksq=" + ksq +
                 ", md='" + md + '\'' +
@@ -52,12 +66,52 @@ public class CXKDataBean extends BmobObject implements Serializable {
         this.czfa = czfa;
     }
 
-    public String getKzk() {
-        return kzk;
+    public String getKzkFW() {
+        return kzkFW;
     }
 
-    public void setKzk(String kzk) {
-        this.kzk = kzk;
+    public void setKzkFW(String kzkFW) {
+        this.kzkFW = kzkFW;
+    }
+
+    public boolean isKzkFWFlag() {
+        return kzkFWFlag;
+    }
+
+    public void setKzkFWFlag(boolean kzkFWFlag) {
+        this.kzkFWFlag = kzkFWFlag;
+    }
+
+    public boolean isKzkCPFlag() {
+        return kzkCPFlag;
+    }
+
+    public void setKzkCPFlag(boolean kzkCPFlag) {
+        this.kzkCPFlag = kzkCPFlag;
+    }
+
+    public boolean isKzkXMKFlag() {
+        return kzkXMKFlag;
+    }
+
+    public void setKzkXMKFlag(boolean kzkXMKFlag) {
+        this.kzkXMKFlag = kzkXMKFlag;
+    }
+
+    public String getKzkCP() {
+        return kzkCP;
+    }
+
+    public void setKzkCP(String kzkCP) {
+        this.kzkCP = kzkCP;
+    }
+
+    public String getKzkXMK() {
+        return kzkXMK;
+    }
+
+    public void setKzkXMK(String kzkXMK) {
+        this.kzkXMK = kzkXMK;
     }
 
     public boolean isRyc() {
@@ -92,11 +146,11 @@ public class CXKDataBean extends BmobObject implements Serializable {
         this.fm = fm;
     }
 
-    public int getNum() {
+    public String getNum() {
         return num;
     }
 
-    public void setNum(int num) {
+    public void setNum(String num) {
         this.num = num;
     }
 

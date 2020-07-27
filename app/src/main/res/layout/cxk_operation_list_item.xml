@@ -8,7 +8,7 @@
     android:orientation="vertical">
 
     <!--listview提示状态栏-->
-    <com.zhy.android.percent.support.PercentLinearLayout
+    <com.zhy.android.percent.support.PercentRelativeLayout
         android:id="@+id/title_layout"
         android:layout_width="wrap_content"
         android:layout_height="40dp"
@@ -24,31 +24,28 @@
             android:layout_centerVertical="true"
             android:layout_marginTop="3dp"
             android:layout_marginBottom="3dp"
-            android:layout_toRightOf="@id/tip1"
             android:digits=".0123456789"
             android:gravity="center"
             android:hint="@string/beauty_cxk_recharge_money"
             android:inputType="number"
             android:textColorHint="@color/aluminum"
-            app:layout_widthPercent="40%" />
+            app:layout_widthPercent="30%" />
 
         <android.support.v7.widget.AppCompatEditText
             android:id="@+id/zsje"
             style="@style/BeautyTitleStyle"
             android:layout_height="match_parent"
-            android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
-            android:layout_marginLeft="20dp"
+            android:layout_marginLeft="30dp"
             android:layout_marginTop="3dp"
             android:layout_marginBottom="3dp"
-            android:layout_toRightOf="@id/tip1"
+            android:layout_toRightOf="@id/czje"
             android:digits=".0123456789"
             android:gravity="center"
             android:hint="@string/beauty_cxk_give_money"
             android:inputType="number"
             android:textColorHint="@color/aluminum"
-            app:layout_widthPercent="40%" />
-
+            app:layout_widthPercent="30%" />
 
         <ImageView
             android:id="@+id/delete"
@@ -56,7 +53,7 @@
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
-            android:layout_marginLeft="20dp"
+            android:layout_marginLeft="30dp"
             android:gravity="center"
             android:maxLines="1"
             android:padding="10dp"
@@ -64,6 +61,6 @@
             android:paddingRight="3dp"
             android:src="@mipmap/delete_red" />
 
-    </com.zhy.android.percent.support.PercentLinearLayout>
+    </com.zhy.android.percent.support.PercentRelativeLayout>
 
 </com.zhy.android.percent.support.PercentLinearLayout>

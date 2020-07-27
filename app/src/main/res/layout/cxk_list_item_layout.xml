@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.zhy.android.percent.support.PercentLinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+    <!--listview提示状态栏-->
+    <com.zhy.android.percent.support.PercentLinearLayout
+        android:id="@+id/title_layout"
+        android:layout_width="wrap_content"
+        android:layout_height="60dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingTop="5dp"
+        android:paddingBottom="5dp">
+
+        <com.zhy.android.percent.support.PercentLinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <com.example.smoothcheckbox.SmoothCheckBox
+                android:id="@+id/checkbox_cxk"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:layout_alignParentRight="true"
+                android:layout_gravity="center_vertical|right"
+                android:layout_marginLeft="5dp" />
+
+            <com.zhy.android.percent.support.PercentLinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                app:layout_widthPercent="15%">
+
+                <ImageView
+                    android:id="@+id/iv_server"
+                    android:layout_width="50dp"
+                    android:layout_height="match_parent"
+                    android:layout_margin="3dp"
+                    android:layout_marginLeft="5dp"
+                    android:src="@mipmap/ic_launcher" />
+
+
+                <TextView
+                    android:id="@+id/cxkName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:gravity="center|left"
+                    android:maxLines="1"
+                    android:singleLine="true"
+                    android:text="商品名"
+                    android:textColor="@color/beauty_text_color"
+                    android:textSize="@dimen/text_size_18" />
+
+
+            </com.zhy.android.percent.support.PercentLinearLayout>
+
+        </com.zhy.android.percent.support.PercentLinearLayout>
+
+        <TextView
+
+            android:id="@+id/fw_siscount"
+            style="@style/HorTextStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="服务折扣"
+            app:layout_widthPercent="10%" />
+
+        <TextView
+            android:id="@+id/cp_siscount"
+            style="@style/HorTextStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="产品折扣"
+            app:layout_widthPercent="10%" />
+
+        <TextView
+            android:id="@+id/xmk_siscount"
+            style="@style/HorTextStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="项目卡折扣"
+            app:layout_widthPercent="12%" />
+
+        <TextView
+
+            android:id="@+id/num"
+            style="@style/HorTextStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="销量"
+            app:layout_widthPercent="7%" />
+
+        <TextView
+            android:id="@+id/ryc"
+            style="@style/HorTextStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="任意充"
+            android:textColor="@color/beauty_text_color"
+            app:layout_widthPercent="8%" />
+
+        <TextView
+            android:id="@+id/add_date"
+            style="@style/HorTextStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="适用门店"
+            android:textColor="@color/beauty_text_color"
+            app:layout_widthPercent="15%" />
+
+        <com.zhy.android.percent.support.PercentLinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_toRightOf="@id/iv_server"
+            android:gravity="center"
+            android:orientation="horizontal"
+            app:layout_widthPercent="20%">
+
+
+            <TextView
+                android:id="@+id/update_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="10dp"
+                android:background="@drawable/beauty_within_btn_shape"
+                android:gravity="center"
+                android:maxLines="1"
+                android:paddingLeft="3dp"
+                android:paddingRight="3dp"
+                android:singleLine="true"
+                android:text="编 辑"
+                android:textColor="@color/white"
+                android:textSize="@dimen/text_size_18" />
+
+            <ImageView
+                android:id="@+id/delete"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="20dp"
+                android:gravity="center"
+                android:maxLines="1"
+                android:padding="10dp"
+                android:paddingLeft="3dp"
+                android:paddingRight="3dp"
+                android:src="@mipmap/delete_red" />
+
+        </com.zhy.android.percent.support.PercentLinearLayout>
+
+    </com.zhy.android.percent.support.PercentLinearLayout>
+
+
+</com.zhy.android.percent.support.PercentLinearLayout>

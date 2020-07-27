@@ -1,6 +1,7 @@
 package com.mnn.mydream.cosmetology.fragment.beauty.commoditiesFragments.adapter;//package com.mnn.mydream.cosmetology.adapter;
 
 import android.app.Activity;
+import android.content.Context;
 import android.support.v7.widget.AppCompatEditText;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -30,11 +31,11 @@ public class CXKOperationRecycleAdapter extends XRecyclerView.Adapter {
 
     private String TAG = "CXKOperationRecycleAdapter";
     private final List<CXKCZFABean> cxkczfaBeans;
-    private final Activity mContext;
+    private final Context mContext;
     private final LayoutInflater mLayoutInflater;
 
 
-    public CXKOperationRecycleAdapter(Activity mContext, List<CXKCZFABean> cxkczfaBeans) {
+    public CXKOperationRecycleAdapter(Context mContext, List<CXKCZFABean> cxkczfaBeans) {
         this.mContext = mContext;
         this.cxkczfaBeans = cxkczfaBeans;
 
@@ -66,9 +67,8 @@ public class CXKOperationRecycleAdapter extends XRecyclerView.Adapter {
 
     //  添加数据
     public void addData(CXKCZFABean cxkDataBean) {
-//      在list中添加数据，并通知条目加入一条
+////      在list中添加数据，并通知条目加入一条
         cxkczfaBeans.add(cxkDataBean);
-
         notifyDataSetChanged();
     }
 
@@ -109,8 +109,7 @@ public class CXKOperationRecycleAdapter extends XRecyclerView.Adapter {
         AppCompatEditText zsje;
         @BindView(R.id.delete)
         ImageView delete;
-        @BindView(R.id.title_layout)
-        PercentLinearLayout titleLayout;
+
 
         ViewHolder(View view) {
             super(view);
@@ -119,8 +118,10 @@ public class CXKOperationRecycleAdapter extends XRecyclerView.Adapter {
 
         public void setData(int position) {
             CXKCZFABean cxkczfaBean = cxkczfaBeans.get(position);
-            czje.setText(cxkczfaBean.getCzje() + "");
-            zsje.setText(cxkczfaBean.getZsje() + "");
+
+            if(cxkczfaBean.getCzje()==0) czje.setText(""); else  czje.setText(cxkczfaBean.getCzje() + "");
+            if(cxkczfaBean.getZsje()==0) zsje.setText(""); else  zsje.setText(cxkczfaBean.getZsje() + "");
+
             delete.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {

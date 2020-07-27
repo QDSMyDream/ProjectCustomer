@@ -203,25 +203,24 @@
                 </com.zhy.android.percent.support.PercentLinearLayout>
 
                 <com.zhy.android.percent.support.PercentLinearLayout
-                    android:id="@+id/czfa_layout"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="fill_parent"
                     android:layout_marginTop="10dp"
-                    android:orientation="horizontal"
-                    app:layout_marginTopPercent="2%">
+                    android:orientation="horizontal">
 
                     <com.zhy.android.percent.support.PercentLinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="40dp"
                         android:gravity="right"
+                        android:visibility="invisible"
                         app:layout_widthPercent="11.5%">
 
                     </com.zhy.android.percent.support.PercentLinearLayout>
 
-
-                    <com.zhy.android.percent.support.PercentLinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
+                    <com.zhy.android.percent.support.PercentRelativeLayout
+                        android:id="@+id/server_content"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
                         android:layout_marginLeft="10dp"
                         android:background="@color/beauty_list_bg_color"
                         android:gravity="center_vertical"
@@ -229,41 +228,41 @@
                         app:layout_widthPercent="70%">
 
                         <com.zhy.android.percent.support.PercentLinearLayout
+                            android:id="@+id/server_content_title"
                             android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:background="@color/beauty_list_bg_color"
-                            android:gravity="center_vertical"
-                            android:orientation="horizontal">
+                            android:layout_height="40dp"
+                            android:background="@color/beauty_kh_info_left_layout_color5">
 
                             <TextView
                                 style="@style/BeautyTextStyle"
                                 android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:gravity="left"
-                                android:text="充值金额(元)"
+                                android:layout_height="match_parent"
+                                android:gravity="left|center_vertical"
+                                android:text="充值金额（元）"
                                 app:layout_widthPercent="35%" />
 
                             <TextView
                                 style="@style/BeautyTextStyle"
                                 android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:gravity="left"
-                                android:text="赠送金额(元)"
+                                android:layout_height="match_parent"
+                                android:gravity="left|center_vertical"
+                                android:text="赠送金额（元）"
                                 app:layout_widthPercent="50%" />
 
-                        </com.zhy.android.percent.support.PercentLinearLayout>
 
+                        </com.zhy.android.percent.support.PercentLinearLayout>
 
                         <cn.droidlover.xrecyclerview.XRecyclerView
                             android:id="@+id/recyclerView"
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content">
+                            android:layout_height="wrap_content"
+                            android:layout_below="@id/server_content_title"
+                            android:descendantFocusability="afterDescendants"
+                            android:divider="@android:color/holo_blue_light"
+                            android:dividerHeight="1px"
+                            android:paddingBottom="1px" />
 
-                        </cn.droidlover.xrecyclerview.XRecyclerView>
-
-
-                    </com.zhy.android.percent.support.PercentLinearLayout>
-
+                    </com.zhy.android.percent.support.PercentRelativeLayout>
 
                 </com.zhy.android.percent.support.PercentLinearLayout>
 
@@ -385,6 +384,7 @@
                         </com.zhy.android.percent.support.PercentRelativeLayout>
 
                         <android.support.v7.widget.AppCompatEditText
+                            android:id="@+id/fw_siscount"
                             style="@style/BeautyTitleStyle"
                             android:layout_width="113dp"
                             android:layout_height="match_parent"
@@ -497,6 +497,8 @@
                         </com.zhy.android.percent.support.PercentRelativeLayout>
 
                         <android.support.v7.widget.AppCompatEditText
+                            android:id="@+id/cp_siscount"
+
                             style="@style/BeautyTitleStyle"
                             android:layout_height="match_parent"
                             android:layout_marginLeft="5dp"
@@ -605,6 +607,8 @@
                         </com.zhy.android.percent.support.PercentRelativeLayout>
 
                         <android.support.v7.widget.AppCompatEditText
+                            android:id="@+id/xmk_siscount"
+
                             style="@style/BeautyTitleStyle"
                             android:layout_height="match_parent"
                             android:layout_marginLeft="5dp"
@@ -778,7 +782,8 @@
                         android:layout_height="match_parent"
                         android:layout_marginLeft="10dp"
                         android:gravity="center_vertical"
-                        android:orientation="horizontal">
+                        android:orientation="horizontal"
+                        app:layout_widthPercent="13%">
 
                         <com.example.smoothcheckbox.SmoothCheckBox
                             android:id="@+id/check_box5"
@@ -1181,6 +1186,7 @@
 
                     <android.support.v7.widget.AppCompatEditText
 
+                        android:id="@+id/xmk_num"
                         style="@style/BeautyTitleStyle"
                         android:layout_height="match_parent"
                         android:layout_marginLeft="10dp"
